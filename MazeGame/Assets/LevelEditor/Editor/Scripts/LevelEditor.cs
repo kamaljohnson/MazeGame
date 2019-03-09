@@ -24,6 +24,7 @@ namespace LevelEditor
             MAZE_BODY,      //maze body editing mode
             MAZE_LAYOUT,    //maze structure editing mode
             ITEMS,          //add and delete items on the maze
+            MAZE_POS,       //can set the position of the maze
             MAZE_PIVOT,     //set the pivot of the maze
         }
 
@@ -153,47 +154,39 @@ namespace LevelEditor
             if (CurrentMaze != null)
             {
                 editorMode = (Modes)EditorGUILayout.EnumPopup("", editorMode);
-
-                if (editorMode == Modes.MAZE_BODY)
+                switch(editorMode)
                 {
-                    if (!mazeEditingActivated)
-                    {
+                    case Modes.MAZE_BODY:
                         ReCalculateAllMazeCubes();
                         ReCalculateNodes();
-                        mazeEditingActivated = true;
-                    }
-                }
-                else
-                {
-                    mazeEditingActivated = false;
-                }
-
-                if (editorMode == Modes.MAZE_LAYOUT)
-                {
-                    if (!mazeEditingActivated)
-                    {
+                        RenderPaths();
+                        break;
+                    case Modes.MAZE_LAYOUT:
                         ReCalculateAllMazeCubes();
                         ReCalculateNodes();
-                        mazeEditingActivated = true;
-                    }
 
-                    inactiveNodesEditing = GUILayout.Toggle(inactiveNodesEditing, "set inactive nodes");
+                        inactiveNodesEditing = GUILayout.Toggle(inactiveNodesEditing, "set inactive nodes");
 
-                    if (GUILayout.Button("reset paths"))
-                    {
-                        if (!EditorUtility.DisplayDialog("Warning!!", "Resetting the maze layout will delete the current progress completely", "Cancel", "Reset"))
+                        if (GUILayout.Button("reset paths"))
                         {
-                            ResetPaths();
-                            ReCalculateNodes();
-                            RenderPaths();
-                        }
+                            if (!EditorUtility.DisplayDialog("Warning!!", "Resetting the maze layout will delete the current progress completely", "Cancel", "Reset"))
+                            {
+                                ResetPaths();
+                                ReCalculateNodes();
+                            }
 
-                    }
+                        }
+                        RenderPaths();
+                        break;
+                    case Modes.ITEMS:
+                        break;
+                    case Modes.MAZE_POS:
+
+                        break;
+                    default:
+                        break;
                 }
-                else
-                {
-                    mazeEditingActivated = false;
-                }
+                
             }
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Save", GUILayout.Height(30)))
