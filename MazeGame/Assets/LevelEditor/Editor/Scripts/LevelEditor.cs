@@ -142,7 +142,7 @@ namespace LevelEditor
                     SetMazeHolder();
                 }
             }
-            else if (Selection.activeGameObject != null && Selection.activeGameObject.GetComponent<Maze_e>() == null)
+            else if (Selection.activeGameObject != null && Selection.activeGameObject.GetComponent<Maze.Maze_e>() == null)
             {
                 if (GUILayout.Button("Initialize Maze", GUILayout.Height(_size)))
                 {
@@ -372,9 +372,9 @@ namespace LevelEditor
                 }
 
 
-                if (CurrentMaze.GetComponent<Maze_e>() == null)
+                if (CurrentMaze.GetComponent<Maze.Maze_e>() == null)
                 {
-                    CurrentMaze.AddComponent<Maze_e>();
+                    CurrentMaze.AddComponent<Maze.Maze_e>();
                 }
 
                 ReCalculateAllMazeCubes();
