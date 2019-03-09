@@ -48,11 +48,15 @@ namespace LevelEditor.Maze
                     case LevelEditor.Modes.ITEMS:
                         Tools.current = Tool.None;
                         break;
+                    case LevelEditor.Modes.MAZE_POS:
+                        Tools.current = Tool.None;
+                        CreateSetMazePositionHandle();
+                        break;
                     case LevelEditor.Modes.MAZE_PIVOT:
                         Tools.current = Tool.None;
+                        CreateSetMazePivotHandle();
                         break;
                 }
-
             }
         }
 
@@ -75,8 +79,6 @@ namespace LevelEditor.Maze
                         Selection.SetActiveObjectWithContext(LevelEditor.CurrentMaze, LevelEditor.CurrentMaze);
 
                         LevelEditor.AllMazeCubes.Add(obj);
-                        LevelEditor.ReCalculateNodes();
-                        LevelEditor.RenderPaths();
                     }
                 }
             }
@@ -173,7 +175,37 @@ namespace LevelEditor.Maze
                             startNode = node;
                         }
                     }
-                    LevelEditor.RenderPaths();
+                }
+            }
+        }
+
+        //TODO: add snaping feature
+        public void CreateSetMazePositionHandle()
+        {
+            EditorGUI.BeginChangeCheck();
+            Vector3 newTargetPosition = Handles.PositionHandle(maze.transform.position, maze.transform.rotation);
+            if (EditorGUI.EndChangeCheck())
+            {
+                if (Vector3.Distance(newTargetPosition, maze.transform.position) == 1)
+                {
+                    maze.transform.position = newTargetPosition;
+                }
+            }
+        }
+
+        public void CreateSetMazePivotHandle()
+        {
+            EditorGUI.BeginChangeCheck();
+            Vector3 newTargetPosition = Handles.PositionHandle(maze.transform.position, maze.transform.rotation);
+            if (EditorGUI.EndChangeCheck())
+            {
+                if (Vector3.Distance(newTargetPosition, maze.transform.position) == 1)
+                {
+                    for (int i = 0; i < maze.transform.childCount; i++)
+                    {
+                        maze.transform.GetChild(i).position -= newTargetPosition - maze.transform.position;
+                    }
+                    maze.transform.position = newTargetPosition;
                 }
             }
         }
