@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Maze_e : MonoBehaviour
+namespace LevelEditor.Maze
 {
-    
+    public class Maze_e : MonoBehaviour
+    {
+
+    }
 }
+
