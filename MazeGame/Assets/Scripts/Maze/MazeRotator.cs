@@ -5,18 +5,12 @@ namespace Game.Maze
 {
     public class MazeRotator : MonoBehaviour
     {
-        public bool IsRotating;
-        private int angle;
+        public bool IsRotating = false;
+        private int angle = 0;
         private float speed;
         private Vector3 direction;
         private Vector3 prevRotation;
         private int step;
-
-        public void Start()
-        {
-            IsRotating = false;
-            angle = 0;
-        }
 
         public void Update()
         {

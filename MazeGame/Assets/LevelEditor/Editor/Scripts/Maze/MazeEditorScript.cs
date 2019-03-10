@@ -23,6 +23,7 @@ namespace LevelEditor.Maze
             if (LevelEditor.Mazes != null)
             {
                 LevelEditor.SetMazeParent();
+                LevelEditor.ReCalculateAllMazeCubes();
                 LevelEditor.ReCalculateNodes();
             }
 
@@ -49,6 +50,7 @@ namespace LevelEditor.Maze
                         break;
                     case Modes.ITEMS:
                         Tools.current = Tool.None;
+                        CreateItemCreationHandle(maze.transform.GetChild(i).gameObject);
                         break;
                     case Modes.MAZE_POS:
                         Tools.current = Tool.None;
@@ -181,7 +183,30 @@ namespace LevelEditor.Maze
             }
         }
 
-        //TODO: add snaping feature
+        public void CreateItemCreationHandle(GameObject mazeCube)
+        {
+            RaycastHit hit;
+            foreach (var offset in Helper.Vector3Directions)
+            {
+                if (!Physics.Raycast(mazeCube.transform.position, offset, out hit, 1f))
+                {
+
+                    Handles.color = new Color(1f, 0.5f, 0.41f);
+                    Handles.zTest = UnityEngine.Rendering.CompareFunction.LessEqual;
+                    if (Handles.Button(mazeCube.transform.position + (offset * 0.55f), Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+                    {
+                        GameObject obj = Instantiate((GameObject)LevelEditor.currentItemPrefab, mazeCube.transform.position + offset, mazeCube.transform.localRotation, mazeCube.transform);
+                        obj.transform.up = offset;
+                        Selection.SetActiveObjectWithContext(obj, obj);
+                        SceneView.lastActiveSceneView.FrameSelected();
+                        Selection.SetActiveObjectWithContext(LevelEditor.CurrentMaze, LevelEditor.CurrentMaze);
+
+                        LevelEditor.AllItems[(int)LevelEditor.currentItemType].Add(obj);
+                    }
+                }
+            }
+        }
+
         public void CreateSetMazePositionHandle()
         {
             EditorGUI.BeginChangeCheck();

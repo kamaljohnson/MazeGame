@@ -6,6 +6,6 @@ namespace LevelEditor.Maze
 {
     public class Maze_e : MonoBehaviour
     {
-
+        public string ID;
     }
 }

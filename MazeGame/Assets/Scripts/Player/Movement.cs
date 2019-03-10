@@ -5,8 +5,7 @@ namespace Game.Player
 {
     public class Movement : MonoBehaviour
     {
-
-        public Transform Maze;
+        public GameObject ParentMaze;
         public Transform PlayerCube;
         public PlayerInput Input;
 
@@ -72,7 +71,7 @@ namespace Game.Player
 
         public void Update()
         {
-            if (Maze.GetComponent<Maze.MazeRotator>().IsRotating)    //no calculations will be made or applied while the maze is rotating
+            if (ParentMaze.GetComponent<Maze.MazeRotator>().IsRotating)    //no calculations will be made or applied while the maze is rotating
                 return;
 
             HandleInput();
@@ -250,16 +249,16 @@ namespace Game.Player
                     switch (movementDirection)
                     {
                         case Direction.Right:
-                            Maze.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, Speed);
+                            ParentMaze.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, Speed);
                             break;
                         case Direction.Left:
-                            Maze.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, Speed);
+                            ParentMaze.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, Speed);
                             break;
                         case Direction.Forward:
-                            Maze.GetComponent<Maze.MazeRotator>().Rotate(-transform.right, Speed);
+                            ParentMaze.GetComponent<Maze.MazeRotator>().Rotate(-transform.right, Speed);
                             break;
                         case Direction.Back:
-                            Maze.GetComponent<Maze.MazeRotator>().Rotate(transform.right, Speed);
+                            ParentMaze.GetComponent<Maze.MazeRotator>().Rotate(transform.right, Speed);
                             break;
                     }
                     
@@ -318,16 +317,16 @@ namespace Game.Player
                     switch (movementDirection)
                     {
                         case Direction.Right:
-                            Maze.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, Speed);
+                            ParentMaze.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, Speed);
                             break;
                         case Direction.Left:
-                            Maze.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, Speed);
+                            ParentMaze.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, Speed);
                             break;
                         case Direction.Forward:
-                            Maze.GetComponent<Maze.MazeRotator>().Rotate(transform.right, Speed);
+                            ParentMaze.GetComponent<Maze.MazeRotator>().Rotate(transform.right, Speed);
                             break;
                         case Direction.Back:
-                            Maze.GetComponent<Maze.MazeRotator>().Rotate(-transform.right, Speed);
+                            ParentMaze.GetComponent<Maze.MazeRotator>().Rotate(-transform.right, Speed);
                             break;
                     }                
                 }
@@ -356,6 +355,12 @@ namespace Game.Player
         
             
             return PlayerRayCastData[(int)Direction.Down];
+        }
+
+        public void SetParentMaze(GameObject Maze)
+        {
+            this.ParentMaze = Maze;
+            transform.parent= this.ParentMaze.transform;
         }
     }
 }

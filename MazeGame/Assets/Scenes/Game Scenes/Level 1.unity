@@ -414,7 +414,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1751839973}
-  - component: {fileID: 1751839974}
   m_Layer: 0
   m_Name: Maze
   m_TagString: Untagged
@@ -436,19 +435,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1751839974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751839972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48a6e2fa507f554891c4d210e6259b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsRotating: 0
 --- !u!1 &2040202238
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,6 +45,7 @@ namespace LevelEditor
         public static Object currentMazeCubePrefab;
         public static Object currentMazeWallPrefab;
         public static Object currentItemPrefab;
+        public static ItemCategories currentItemType;
 
         //actual list of gameobject in the scene
         public static List<GameObject> AllMazeCubes = new List<GameObject>();
@@ -89,6 +90,9 @@ namespace LevelEditor
             GUILayout.EndHorizontal();
             GUILayout.Space(10);
 
+            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+
+
             if (editorMode == Modes.ITEMS)
             {
                 prefabScrollViewValue = GUILayout.BeginScrollView(prefabScrollViewValue, GUI.skin.scrollView);
@@ -122,10 +126,6 @@ namespace LevelEditor
                         GUILayout.EndHorizontal();
                     }
                     GUILayout.EndVertical();
-                }
-                if (GUILayout.Button("Create Item", GUILayout.Height(30)))
-                {
-
                 }
                 if (GUILayout.Button("Refresh", GUILayout.Height(30)))
                 {
@@ -227,7 +227,7 @@ namespace LevelEditor
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
             GUILayout.BeginHorizontal();
             GUILayout.BeginVertical();
-            int _size = 80;
+            int _size = 65;
             if (Mazes == null)
             {
                 if (GUILayout.Button("Create Maze Holder", GUILayout.Height(_size)))
@@ -246,16 +246,19 @@ namespace LevelEditor
             GUILayout.BeginVertical();
             if (CurrentMaze != null)
             {
-                editorMode = (Modes)EditorGUILayout.EnumPopup("", editorMode);
+                Modes _tempMode = (Modes)EditorGUILayout.EnumPopup("", editorMode);
+                if(_tempMode != editorMode)
+                {
+                    editorMode = _tempMode;
+                    ReCalculateAllMazeCubes();
+                    ReCalculateNodes();
+                }
+
                 switch (editorMode)
                 {
                     case Modes.MAZE_BODY:
-                        ReCalculateAllMazeCubes();
-                        ReCalculateNodes();
                         break;
                     case Modes.MAZE_LAYOUT:
-                        ReCalculateAllMazeCubes();
-                        ReCalculateNodes();
 
                         inactiveNodesEditing = GUILayout.Toggle(inactiveNodesEditing, "set inactive nodes");
 
@@ -291,12 +294,7 @@ namespace LevelEditor
             {
                 Maze.MazeEditorScript.endNode = null;
                 Maze.MazeEditorScript.startNode = null;
-                for (int k = 0; k < Mazes.childCount; k++)
-                {
-                    CurrentMaze = Mazes.GetChild(k).gameObject;
-
-                    RenderPaths();
-                }
+                RenderPaths();
             }
             GUILayout.EndHorizontal();
 
@@ -356,7 +354,10 @@ namespace LevelEditor
             {
                 for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
                 {
-                    AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>().ReCalculateNeighbourInterations();
+                    if (AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>() != null)
+                    {
+                        AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>().ReCalculateNeighbourInterations();
+                    }
                 }
             }
         }
@@ -403,6 +404,7 @@ namespace LevelEditor
             if (isToggleDown)
             {
                 currentItemPrefab = TypesOfItems[typeIndex][itemIndex];
+                currentItemType = (ItemCategories)typeIndex;
             }
         }
 
@@ -464,7 +466,6 @@ namespace LevelEditor
                     if (_itemObject != null)
                     {
                         TypesOfItems[_itemIndex].Add(_itemObject);
-                        Debug.Log(ItemFilePath + Enum.GetName(typeof(ItemCategories), (ItemCategories)_itemIndex) + "/" + n.ToString() + ".prefab");
                     }
                     else
                     {
@@ -479,52 +480,59 @@ namespace LevelEditor
 
         public static void SetMazeHolder()
         {
-            Mazes = Selection.activeTransform;
-            if (Mazes != null)
+            if(Mazes == null)
             {
-                Selection.SetActiveObjectWithContext(Mazes, Mazes);
-                SceneView.lastActiveSceneView.FrameSelected();
+                Mazes = Selection.activeTransform;
+                if (Mazes == null)
+                {
+                    GameObject _tempMazesGameobject = new GameObject();
+                    Mazes = _tempMazesGameobject.transform;
+                }
             }
-            else
-            {
-                Debug.LogError("select an empty gameobject before initializing maze holder");
-            }
+
+            Mazes.transform.position = Vector3.zero;
+            Mazes.transform.eulerAngles = Vector3.zero;
+            Mazes.name = "Mazes";
+            
+            Selection.SetActiveObjectWithContext(Mazes, Mazes);
+            SceneView.lastActiveSceneView.FrameSelected();
         }
 
 
         public static void SetMazeParent()
         {
+
             CurrentMaze = Selection.activeGameObject;
-
-            if (CurrentMaze != null)
+            if (CurrentMaze == null)
             {
-                CurrentMaze.transform.parent = Mazes;
-                Selection.SetActiveObjectWithContext(CurrentMaze, CurrentMaze);
-                SceneView.lastActiveSceneView.FrameSelected();
-
-                if (currentMazeCubePrefab == null)
-                {
-                    Debug.LogError("MazeCube prefab not assigned");
-                    return;
-                }
-
-
-                if (CurrentMaze.GetComponent<Maze.Maze_e>() == null)
-                {
-                    CurrentMaze.AddComponent<Maze.Maze_e>();
-                }
-
-                ReCalculateAllMazeCubes();
-
-                if (AllMazeCubes.Count == 0)
-                {
-                    GameObject obj = Instantiate((GameObject)currentMazeCubePrefab, CurrentMaze.transform);
-                    AllMazeCubes.Add(obj);
-                }
+                GameObject _tempMazesGameobject = new GameObject();
+                CurrentMaze = _tempMazesGameobject;
             }
-            else
+            CurrentMaze.name = "Maze" + Mazes.childCount.ToString();
+            
+            CurrentMaze.transform.parent = Mazes;
+
+            Selection.SetActiveObjectWithContext(CurrentMaze, CurrentMaze);
+            SceneView.lastActiveSceneView.FrameSelected();
+
+            if (currentMazeCubePrefab == null)
             {
-                Debug.LogError("select an empty gameobject before creating the maze cube");
+                Debug.LogError("MazeCube prefab not assigned");
+                return;
+            }
+
+
+            if (CurrentMaze.GetComponent<Maze.Maze_e>() == null)
+            {
+                CurrentMaze.AddComponent<Maze.Maze_e>();
+            }
+
+            ReCalculateAllMazeCubes();
+
+            if (AllMazeCubes.Count == 0)
+            {
+                GameObject obj = Instantiate((GameObject)currentMazeCubePrefab, CurrentMaze.transform);
+                AllMazeCubes.Add(obj);
             }
         }
 
@@ -535,6 +543,7 @@ namespace LevelEditor
 
             for (int i = 0; i < CurrentMaze.transform.childCount; i++)
             {
+                CurrentMaze.transform.GetChild(i).gameObject.name = CurrentMaze.name + " cube";
                 for (int j = 0; j < CurrentMaze.transform.GetChild(i).childCount; j++)
                 {
                     for (int k = 0; k < CurrentMaze.transform.GetChild(i).GetChild(j).childCount; k++)

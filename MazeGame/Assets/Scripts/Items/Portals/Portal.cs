@@ -4,15 +4,12 @@ using UnityEngine;
 
 namespace Game.Items.Portal
 {
+    [SerializeField]
     public class Portal : MonoBehaviour, Interactables
     {
-        public enum States
-        {
-            Active,
-            InActive
-        };
-
+        [HideInInspector]
         public Vector3 portalPos;
+
         public bool IsCheckpoint;     //is the portal acting as a checkpoint
         public string PortalName;     //name format: "levelname mazeID portalID
         public string DestinationPortalName;
@@ -20,7 +17,7 @@ namespace Game.Items.Portal
         private int portalID;
         private int mazeID;
         private string levelName;
-        
+
         public void CheckpointSaveGameState()       //saves the entier state of the game for checkpoint reference
         {
 

@@ -7,7 +7,6 @@ namespace Game.Maze
 {
     public class MazeRender : MonoBehaviour
     {
-
         public Transform MazeHolder;
 
         public GameObject MazeCube;
@@ -19,7 +18,7 @@ namespace Game.Maze
         {
             Render();
             GameObject playerCube = Instantiate(PlayerCube);
-            playerCube.GetComponent<Player.Movement>().Maze = MazeHolder;
+            playerCube.GetComponent<Player.Movement>().SetParentMaze(MazeHolder.GetChild(0).gameObject);
         }
 
         public void Render()
@@ -30,6 +29,7 @@ namespace Game.Maze
             for(int i = 0; i < state.m.Count; i++)  //for each maze
             {
                 GameObject _maze = new GameObject();
+                _maze.AddComponent<MazeRotator>();
                 _maze.transform.parent = MazeHolder;
                 _maze.transform.position = new Vector3(
                     state.m[i].x,
@@ -66,6 +66,7 @@ namespace Game.Maze
                         _node.gameObject.GetComponent<Node>().SetNodeFromNode(_tempNode, _cube.transform.position);
                         _node.gameObject.GetComponent<Node>().CalculateRenderNodePath();
                     }
+                    _cube.SetActive(false);
                 }
             }
 
@@ -76,6 +77,8 @@ namespace Game.Maze
                 for (int j = 0; j < _maze.childCount; j++)    //for each cube
                 {
                     Transform _cube = _maze.GetChild(j);
+                    _cube.gameObject.SetActive(true);
+
                     for (int k = 0; k < _cube.childCount; k++)      //for each node
                     {
                         Node node = _cube.GetChild(k).GetComponent<Node>();
