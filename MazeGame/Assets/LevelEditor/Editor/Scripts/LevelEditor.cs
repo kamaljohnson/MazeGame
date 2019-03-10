@@ -22,6 +22,7 @@ namespace LevelEditor
         Interactable,           // [PORTAL, LASER, SPIKES, GATES, BRIDGE]
         Collectable,            // [COIN, DIAMOND, COLLECTION POINT]
         Enemie,                 // [GUARDIAN, KNIGHT, HAMMER]
+        Decoratable,           // [PLANT_01, FOUNTAIN, ...]
     }
 
     public class LevelEditor : EditorWindow
@@ -52,7 +53,7 @@ namespace LevelEditor
 
         #region local variables
         private Vector2 prefabScrollViewValue = Vector2.zero;
-        private ItemCategories currentItemCatgory;
+        private ItemCategories currentItemCatgoryToggled;
         #endregion
 
         public static Modes editorMode;
@@ -106,7 +107,7 @@ namespace LevelEditor
                     GUILayout.Label(Enum.GetName(typeof(ItemCategories), (ItemCategories)_typeIndex));
                     for (int _itemIndex = 0; _itemIndex < TypesOfItems[_typeIndex].Count;)
                     {
-                        int _horizontalStackingLimit = 4;
+                        int _horizontalStackingLimit = 6;
                         GUILayout.BeginHorizontal();
                         for (int k = 0; k < _horizontalStackingLimit; k++)
                         {
@@ -132,12 +133,32 @@ namespace LevelEditor
                 }
                 GUILayout.EndVertical();
                 EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+
                 //display all the items in the scene
                 GUILayout.BeginHorizontal();
                 GUILayout.FlexibleSpace();
                 GUILayout.Label("ADDED ITEMS", _style);
                 GUILayout.FlexibleSpace();
                 GUILayout.EndHorizontal();
+                GUILayout.BeginVertical();
+                
+                for (int _itemType = 0; _itemType < Enum.GetNames(typeof(ItemCategories)).Length; _itemType++)
+                {
+                    //bool isToggleDown = GUILayout.Toggle(currentItemCatgoryToggled, GUILayout.Label(Enum.GetName(typeof(ItemCategories), currentItemCatgoryToggled)), GUI.skin.button, GUILayout.Height(35), GUILayout.Width(35));
+                    GUIStyle _toggleButtonStyleNormal = null;
+                    GUIStyle _toggleButtonStyleToggled = null;
+
+                    _toggleButtonStyleNormal = "Button";
+                    _toggleButtonStyleToggled = new GUIStyle(_toggleButtonStyleNormal);
+                    _toggleButtonStyleToggled.normal.background = _toggleButtonStyleToggled.active.background;
+
+                    bool _isToggled = _itemType == (int)currentItemCatgoryToggled;
+                    if (GUILayout.Button(Enum.GetName(typeof(ItemCategories), (ItemCategories)_itemType), _isToggled ? _toggleButtonStyleToggled : _toggleButtonStyleNormal, GUILayout.Height(25)))
+                    {
+                        currentItemCatgoryToggled = (ItemCategories)_itemType;
+                    }
+                }
+                GUILayout.EndVertical();
                 //display all the items available
                 GUILayout.EndScrollView();
             }
@@ -328,7 +349,7 @@ namespace LevelEditor
 
             GUIContent buttonContent = new GUIContent(previewImage);
 
-            bool isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button);
+            bool isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button, GUILayout.Height(125), GUILayout.Width(125));
             if (isToggleDown)
             {
                 currentMazeCubePrefab = TypesOfMazeCubes[index];
@@ -343,7 +364,7 @@ namespace LevelEditor
 
             GUIContent buttonContent = new GUIContent(previewImage);
 
-            bool isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button);
+            bool isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button, GUILayout.Height(125), GUILayout.Width(125));
             if (isToggleDown)
             {
                 currentMazeWallPrefab = TypesOfMazeWalls[index];
@@ -352,20 +373,17 @@ namespace LevelEditor
 
         public void DrawCustomItemButtons(int typeIndex, int itemIndex)
         {
-            GUILayout.BeginVertical();
             bool selected = currentItemPrefab == TypesOfItems[typeIndex][itemIndex];
 
             Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfItems[typeIndex][itemIndex]);
 
             GUIContent buttonContent = new GUIContent(previewImage);
 
-            bool isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button, GUILayout.Height(75), GUILayout.Width(75));
+            bool isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button, GUILayout.Height(35), GUILayout.Width(35));
             if (isToggleDown)
             {
                 currentItemPrefab = TypesOfItems[typeIndex][itemIndex];
             }
-            GUILayout.Label(TypesOfItems[typeIndex][itemIndex].name);
-            GUILayout.EndVertical();
         }
 
         public void AddMazePrefabs()
@@ -406,6 +424,7 @@ namespace LevelEditor
                 new List<Object>(), //Interactable items
                 new List<Object>(), //Collectable items
                 new List<Object>(), //Enemie items
+                new List<Object>(), //Decoratable items
             };
             for (int _itemIndex = 0; _itemIndex < Enum.GetNames(typeof(ItemCategories)).Length; _itemIndex++)
             {
