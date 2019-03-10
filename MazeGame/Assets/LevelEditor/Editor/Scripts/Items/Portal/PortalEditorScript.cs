@@ -8,6 +8,8 @@ namespace LevelEditor.Items.Portal
     [CustomEditor(typeof(Game.Items.Portal.Portal))]
     public class PortalEditorScript : Editor, Item, ItemButtonInteraction
     {
+        public bool ItemSet;    //is the item set with values
+
         public void OnEnable()
         {
             Game.Items.Portal.Portal portal = (Game.Items.Portal.Portal)target;
@@ -36,6 +38,11 @@ namespace LevelEditor.Items.Portal
         public void RemoveItem()
         {
 
+        }
+
+        public bool CheckStatus()
+        {
+            return ItemSet;
         }
 
         public void AddButton()

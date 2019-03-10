@@ -301,66 +301,6 @@ namespace LevelEditor
             GUILayout.EndVertical();
             GUILayout.EndHorizontal();
         }
-        public static void ReCalculateNodes()
-        {
-            //create sub nodes for the new maze cube
-            for (int i = 0; i < AllMazeCubes.Count; i++)
-            {
-                foreach (var direction in Helper.Vector3Directions)
-                {
-                    bool flag = false;
-                    for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
-                    {
-                        if (Vector3.Distance(AllMazeCubes[i].transform.GetChild(j).transform.forward, direction) < 0.01f)
-                        {
-                            flag = true;
-                            break;
-                        }
-                    }
-
-                    if (!flag)
-                    {
-                        GameObject node = new GameObject();
-
-                        node.AddComponent<Game.Maze.Node>();
-                        node.GetComponent<Game.Maze.Node>().parentCube_pos = AllMazeCubes[i].transform.position;
-
-                        node.transform.parent = AllMazeCubes[i].transform;
-                        node.transform.position = AllMazeCubes[i].transform.position + direction * 0.5f;
-                        node.transform.forward = direction;
-                    }
-                }
-
-                RaycastHit hit;
-                foreach (var node_offset in Helper.Vector3Directions)
-                {
-                    if (Physics.Raycast(AllMazeCubes[i].transform.position, node_offset, out hit, 1f)) //checks if there is any other maze cube in the direction
-                    {
-                        for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
-                        {
-                            if (Vector3.Distance(AllMazeCubes[i].transform.GetChild(j).transform.forward, node_offset) < 0.01f)
-                            {
-                                DestroyImmediate(AllMazeCubes[i].transform.GetChild(j).gameObject);
-                                break;
-                            }
-                        }
-                    }
-                }
-
-
-            }
-
-            for (int i = 0; i < AllMazeCubes.Count; i++)
-            {
-                for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
-                {
-                    if (AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>() != null)
-                    {
-                        AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>().ReCalculateNeighbourInterations();
-                    }
-                }
-            }
-        }
 
         public void DrawCustomMazeButtons(int index)
         {
@@ -498,7 +438,6 @@ namespace LevelEditor
             SceneView.lastActiveSceneView.FrameSelected();
         }
 
-
         public static void SetMazeParent()
         {
 
@@ -561,19 +500,65 @@ namespace LevelEditor
             }
         }
 
-        public static List<GameObject> GetSurfaceMazeCubes()
+        public static void ReCalculateNodes()
         {
-            List<GameObject> surfaceMazeCubes = new List<GameObject>();
+            //create sub nodes for the new maze cube
+            for (int i = 0; i < AllMazeCubes.Count; i++)
+            {
+                foreach (var direction in Helper.Vector3Directions)
+                {
+                    bool flag = false;
+                    for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
+                    {
+                        if (Vector3.Distance(AllMazeCubes[i].transform.GetChild(j).transform.forward, direction) < 0.01f)
+                        {
+                            flag = true;
+                            break;
+                        }
+                    }
+
+                    if (!flag)
+                    {
+                        GameObject node = new GameObject();
+
+                        node.AddComponent<Game.Maze.Node>();
+                        node.GetComponent<Game.Maze.Node>().parentCube_pos = AllMazeCubes[i].transform.position;
+
+                        node.transform.parent = AllMazeCubes[i].transform;
+                        node.transform.position = AllMazeCubes[i].transform.position + direction * 0.5f;
+                        node.transform.forward = direction;
+                    }
+                }
+
+                RaycastHit hit;
+                foreach (var node_offset in Helper.Vector3Directions)
+                {
+                    if (Physics.Raycast(AllMazeCubes[i].transform.position, node_offset, out hit, 1f)) //checks if there is any other maze cube in the direction
+                    {
+                        for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
+                        {
+                            if (Vector3.Distance(AllMazeCubes[i].transform.GetChild(j).transform.forward, node_offset) < 0.01f)
+                            {
+                                DestroyImmediate(AllMazeCubes[i].transform.GetChild(j).gameObject);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+
+            }
 
             for (int i = 0; i < AllMazeCubes.Count; i++)
             {
-                if (AllMazeCubes[i].transform.childCount != 0)
+                for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
                 {
-                    surfaceMazeCubes.Add(AllMazeCubes[i]);
+                    if (AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>() != null)
+                    {
+                        AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>().ReCalculateNeighbourInterations();
+                    }
                 }
             }
-
-            return surfaceMazeCubes;
         }
 
         public void ResetPaths()
@@ -934,6 +919,35 @@ namespace LevelEditor
                 }
             }
         }
+
+        public static List<GameObject> GetSurfaceMazeCubes()
+        {
+            List<GameObject> surfaceMazeCubes = new List<GameObject>();
+
+            for (int i = 0; i < AllMazeCubes.Count; i++)
+            {
+                if (AllMazeCubes[i].transform.childCount != 0)
+                {
+                    surfaceMazeCubes.Add(AllMazeCubes[i]);
+                }
+            }
+
+            return surfaceMazeCubes;
+        }
+
+        public static List<List<GameObject>> GetMazeItems()
+        {
+            List<List<GameObject>> allMazeItems = new List<List<GameObject>>();
+            for (int _itemType = 0; _itemType < TypesOfItems.Count; _itemType++)
+            {
+                for (int i = 0; i < AllItems[_itemType].Count; i++)
+                {
+                    //TODO: check if the item is set
+                    //TODO: add the item to allMazeItems
+                }                    
+            }
+            return allMazeItems;
+        }
     }
 
     public class Helper
@@ -955,6 +969,8 @@ namespace LevelEditor
         void AddItem();     //adds the item to the item list
         void EditItem();    //the user can edit the properties of the item
         void RemoveItem();  //removes the item from the item list
+
+        bool CheckStatus(); //returns true if the item serializable field values are set
     }
     public interface ItemButtonInteraction
     {

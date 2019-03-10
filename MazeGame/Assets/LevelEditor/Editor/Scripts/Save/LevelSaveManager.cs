@@ -16,7 +16,7 @@ namespace LevelEditor.Save
             state = new SaveState();
 
             //getting the data of the current maze
-            state.m = new List<Maze_data>();
+            state.m = new List<MazeData>();
 
             for (int i = 0; i < LevelEditor.Mazes.childCount; i++)
             {
@@ -26,12 +26,21 @@ namespace LevelEditor.Save
                 LevelEditor.RenderPaths();
 
                 List<GameObject> surfaceMazeCubes = LevelEditor.GetSurfaceMazeCubes();
-                Maze_data maze_data = new Maze_data();
-                maze_data.c = new List<MazeCube_data>();
+                MazeData maze_data = new MazeData();
+                maze_data.c = new List<MazeCubeData>();
 
+                List<List<GameObject>> allItems = LevelEditor.GetMazeItems();
+                
+                //adding all the item data
+                for(int _itemType = 0; _itemType < allItems.Count; _itemType++)
+                {
+                    //TODO call convertToSerializable() for each item
+                }
+
+                //adding all the node data 
                 for (int j = 0; j < surfaceMazeCubes.Count; j++)
                 {
-                    MazeCube_data mcn = new MazeCube_data();
+                    MazeCubeData mcn = new MazeCubeData();
                     mcn.ConvertToSavable(surfaceMazeCubes[j]);
                     maze_data.c.Add(mcn);
                 }
@@ -55,21 +64,24 @@ namespace LevelEditor.Save
     public class SaveState
     {
         //list of all the maze cubes along with its list of attached nodes
-        public List<Maze_data> m;
+        public List<MazeData> m;
     }
 
     [System.Serializable]
-    public class Maze_data
+    public class MazeData
     {
+        //maze cube data
         public int x;
         public int y;
         public int z;
+        public List<MazeCubeData> c;
 
-        public List<MazeCube_data> c;
+        //item data
+        public List<Game.Items.Portal.SerializablePortalData> p;    //the list of all portals on the maze
     }
 
     [System.Serializable]
-    public class MazeCube_data
+    public class MazeCubeData
     {
         //maze cube transform
         public int x;
@@ -96,4 +108,7 @@ namespace LevelEditor.Save
             }
         }
     }
+
+    //TODO: create save feature for items
+    //itemType:itemIndex:serializedData
 }
