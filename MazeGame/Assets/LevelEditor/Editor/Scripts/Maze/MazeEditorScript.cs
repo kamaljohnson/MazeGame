@@ -10,7 +10,7 @@ namespace LevelEditor.Maze
     [CustomEditor(typeof(Maze_e))]
     public class MazeEditorScript : Editor
     {
-        public Maze_e maze = new Maze_e();
+        public Maze_e maze;
 
         public static Game.Maze.Node startNode;
         public static Game.Maze.Node endNode;
@@ -20,9 +20,11 @@ namespace LevelEditor.Maze
         public void OnEnable()
         {
             maze = (Maze_e)target;
-            LevelEditor.SetMazeParent();
-            LevelEditor.ReCalculateNodes();
-            LevelEditor.RenderPaths();
+            if (LevelEditor.Mazes != null)
+            {
+                LevelEditor.SetMazeParent();
+                LevelEditor.ReCalculateNodes();
+            }
 
             startNode = null;
             endNode = null;
@@ -37,22 +39,22 @@ namespace LevelEditor.Maze
             {
                 switch (LevelEditor.editorMode)
                 {
-                    case LevelEditor.Modes.MAZE_BODY:
+                    case Modes.MAZE_BODY:
                         Tools.current = Tool.None;
                         CreateBlockCreationHandle(maze.transform.GetChild(i).gameObject);
                         break;
-                    case LevelEditor.Modes.MAZE_LAYOUT:
+                    case Modes.MAZE_LAYOUT:
                         Tools.current = Tool.None;
                         CreateMazeStructureHandle(maze.transform.GetChild(i).gameObject);
                         break;
-                    case LevelEditor.Modes.ITEMS:
+                    case Modes.ITEMS:
                         Tools.current = Tool.None;
                         break;
-                    case LevelEditor.Modes.MAZE_POS:
+                    case Modes.MAZE_POS:
                         Tools.current = Tool.None;
                         CreateSetMazePositionHandle();
                         break;
-                    case LevelEditor.Modes.MAZE_PIVOT:
+                    case Modes.MAZE_PIVOT:
                         Tools.current = Tool.None;
                         CreateSetMazePivotHandle();
                         break;
@@ -63,7 +65,7 @@ namespace LevelEditor.Maze
         public void CreateBlockCreationHandle(GameObject mazeCube)
         {
             RaycastHit hit;
-            foreach (var offset in LevelEditor.Vector3Directions)
+            foreach (var offset in Helper.Vector3Directions)
             {
                 if (!Physics.Raycast(mazeCube.transform.position, offset, out hit, 1f))
                 {

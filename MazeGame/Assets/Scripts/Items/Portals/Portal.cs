@@ -12,8 +12,9 @@ namespace Game.Items.Portal
             InActive
         };
 
-        public bool IsCheckpoint;
-        public string PortalName;     //format: "levelname mazeID portalID
+        public Vector3 portalPos;
+        public bool IsCheckpoint;     //is the portal acting as a checkpoint
+        public string PortalName;     //name format: "levelname mazeID portalID
         public string DestinationPortalName;
         
         private int portalID;
