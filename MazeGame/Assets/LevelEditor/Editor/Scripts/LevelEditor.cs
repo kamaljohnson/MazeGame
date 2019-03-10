@@ -7,50 +7,56 @@ using Object = UnityEngine.Object;
 
 namespace LevelEditor
 {
+    public enum Modes
+    {
+        MAZE_BODY,      //maze body editing mode
+        MAZE_LAYOUT,    //maze structure editing mode
+        ITEMS,          //add and delete items on the maze
+        MAZE_POS,       //can set the position of the maze
+        MAZE_PIVOT,     //set the pivot of the maze
+    }
+
+    public enum ItemCategories
+    {
+        Path,                   // [ICE, FIRE]
+        Interactable,           // [PORTAL, LASER, SPIKES, GATES, BRIDGE]
+        Collectable,            // [COIN, DIAMOND, COLLECTION POINT]
+        Enemie,                 // [GUARDIAN, KNIGHT, HAMMER]
+    }
+
     public class LevelEditor : EditorWindow
     {
-        public static List<Vector3> Vector3Directions = new List<Vector3>()
-    {
-        Vector3.forward,
-        Vector3.back,
-        Vector3.up,
-        Vector3.down,
-        Vector3.right,
-        Vector3.left,
-    };
 
-        public enum Modes
-        {
-            MAZE_BODY,      //maze body editing mode
-            MAZE_LAYOUT,    //maze structure editing mode
-            ITEMS,          //add and delete items on the maze
-            MAZE_PIVOT,     //set the pivot of the maze
-        }
-
-        public static GameObject CurrentMaze;
         public static Transform Mazes;
+        public static GameObject CurrentMaze;
 
-        public string mazeCubesFilePath;
-        public string mazeWallsFilePath;
+        //path of the prefabs
+        public string MazeCubesFilePath;
+        public string MazeWallsFilePath;
+        public string ItemFilePath;
 
+        //reference of corresponding prefabs
         public static List<Object> TypesOfMazeCubes = new List<Object>();
         public static List<Object> TypesOfMazeWalls = new List<Object>();
+        public static List<List<Object>> TypesOfItems = new List<List<Object>>();
         private int TotalNumberOFMazeCubeTypes;
         private int TotalNumbetOfMazeWallTypes;
         public static Object currentMazeCubePrefab;
         public static Object currentMazeWallPrefab;
+        public static Object currentItemPrefab;
 
-        private Vector2 prefabScrollViewValue = Vector2.zero;
-        private int currentObjectPickerWindowID;
-
-
-        public static Modes editorMode;
-        public static bool mazeEditingActivated = false;
-        public static bool inactiveNodesEditing = false;
-
-        [HideInInspector]
+        //actual list of gameobject in the scene
         public static List<GameObject> AllMazeCubes = new List<GameObject>();
         public static List<GameObject> AllMazeWalls = new List<GameObject>();
+        public static List<List<GameObject>> AllItems = new List<List<GameObject>>();
+
+        #region local variables
+        private Vector2 prefabScrollViewValue = Vector2.zero;
+        private ItemCategories currentItemCatgory;
+        #endregion
+
+        public static Modes editorMode;
+        public static bool inactiveNodesEditing = false;
 
         [MenuItem("Window/LevelEditor")]
         public static void ShowWindow()
@@ -63,10 +69,12 @@ namespace LevelEditor
         void OnEnable()
         {
             TotalNumberOFMazeCubeTypes = 0;
-            TypesOfMazeCubes = new List<Object>();
-            mazeCubesFilePath = "Assets/LevelEditor/Prefabs/MazeCubes/MazeCube 1";
-            mazeWallsFilePath = "Assets/LevelEditor/Prefabs/MazeWalls/MazeWall 1";
+
+            MazeCubesFilePath = "Assets/LevelEditor/Prefabs/MazeCubes/MazeCube 1";
+            MazeWallsFilePath = "Assets/LevelEditor/Prefabs/MazeWalls/MazeWall 1";
+            ItemFilePath = "Assets/LevelEditor/Prefabs/Items/";
             AddMazePrefabs();
+            AddItemPrefabs();
         }
 
         void OnGUI()
@@ -81,57 +89,120 @@ namespace LevelEditor
             GUILayout.EndHorizontal();
             GUILayout.Space(10);
 
-            GUILayout.BeginHorizontal();
-            GUILayout.Label("Maze Cubes");
-            GUILayout.Label("Maze Walls");
-            GUILayout.EndHorizontal();
-
-            prefabScrollViewValue = GUILayout.BeginScrollView(prefabScrollViewValue);
-            if (currentMazeCubePrefab == null && TotalNumberOFMazeCubeTypes > 0)
+            if (editorMode == Modes.ITEMS)
             {
-                currentMazeCubePrefab = TypesOfMazeCubes[0];
-            }
+                prefabScrollViewValue = GUILayout.BeginScrollView(prefabScrollViewValue, GUI.skin.scrollView);
+                GUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                GUIStyle _style = new GUIStyle();
+                _style.fontSize = 15;
+                GUILayout.Label("ITEMS", _style);
+                GUILayout.FlexibleSpace();
+                GUILayout.EndHorizontal();
+                //display all the items available
+                GUILayout.BeginVertical();
+                for (int _typeIndex = 0; _typeIndex < TypesOfItems.Count; _typeIndex++)
+                {
+                    GUILayout.BeginVertical();
+                    GUILayout.Label(Enum.GetName(typeof(ItemCategories), (ItemCategories)_typeIndex));
+                    for (int _itemIndex = 0; _itemIndex < TypesOfItems[_typeIndex].Count;)
+                    {
+                        int _horizontalStackingLimit = 4;
+                        GUILayout.BeginHorizontal();
+                        for (int k = 0; k < _horizontalStackingLimit; k++)
+                        {
+                            DrawCustomItemButtons(_typeIndex, _itemIndex);
+                            _itemIndex++;
+                            if (_itemIndex == TypesOfItems[_typeIndex].Count && k < _horizontalStackingLimit)
+                            {
+                                GUILayout.FlexibleSpace();
+                                break;
+                            }
+                        }
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
+                }
+                if(GUILayout.Button("Create Item", GUILayout.Height(30)))
+                {
 
-            int largestCollection = Mathf.Max(TotalNumberOFMazeCubeTypes, TotalNumbetOfMazeWallTypes);
-            for (int i = 0; i < largestCollection; i++)
+                }
+                if (GUILayout.Button("Refresh", GUILayout.Height(30)))
+                {
+                    AddItemPrefabs();
+                }
+
+                EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+
+                GUILayout.EndVertical();
+                //display all the items in the scene
+                GUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                GUILayout.Label("ADDED ITEMS", _style);
+                GUILayout.FlexibleSpace();
+                GUILayout.EndHorizontal();
+                GUILayout.BeginVertical();
+                for (int _typeIndex = 0; _typeIndex < AllItems.Count; _typeIndex++)
+                {
+                    GUILayout.BeginVertical();
+                    GUILayout.Label(Enum.GetName(typeof(ItemCategories), (ItemCategories)_typeIndex));
+                    for (int _itemIndex = 0; _itemIndex < AllItems[_typeIndex].Count;)
+                    {
+                        DrawCustomItemButtons(_typeIndex, _itemIndex);
+
+                        _itemIndex++;
+                    }
+                    GUILayout.EndVertical();
+                }
+                GUILayout.EndVertical();
+                GUILayout.EndScrollView();
+            }
+            else
             {
                 GUILayout.BeginHorizontal();
-                if (i < TotalNumberOFMazeCubeTypes)
-                {
-                    DrawCustomMazeButtons(i);
-                }
-                else
-                {
-                    GUILayout.FlexibleSpace();
-                }
-
-                if (i < TotalNumbetOfMazeWallTypes)
-                {
-                    DrawCustomMazeWallButtons(i);
-                }
-                else
-                {
-                    GUILayout.FlexibleSpace();
-                }
-
+                GUILayout.Label("Maze Cubes");
+                GUILayout.Label("Maze Walls");
                 GUILayout.EndHorizontal();
+
+                prefabScrollViewValue = GUILayout.BeginScrollView(prefabScrollViewValue, GUI.skin.scrollView);
+                if (currentMazeCubePrefab == null && TotalNumberOFMazeCubeTypes > 0)
+                {
+                    currentMazeCubePrefab = TypesOfMazeCubes[0];
+                }
+                int largestCollection = Mathf.Max(TotalNumberOFMazeCubeTypes, TotalNumbetOfMazeWallTypes);
+                for (int i = 0; i < largestCollection; i++)
+                {
+                    GUILayout.BeginHorizontal();
+                    if (i < TotalNumberOFMazeCubeTypes)
+                    {
+                        DrawCustomMazeButtons(i);
+                    }
+                    else
+                    {
+                        GUILayout.FlexibleSpace();
+                    }
+
+                    if (i < TotalNumbetOfMazeWallTypes)
+                    {
+                        DrawCustomMazeWallButtons(i);
+                    }
+                    else
+                    {
+                        GUILayout.FlexibleSpace();
+                    }
+                    GUILayout.EndHorizontal();
+                }
+
+                if (GUILayout.Button("Refresh", GUILayout.Height(40)))
+                {
+                    AddMazePrefabs();
+                }
+                GUILayout.EndScrollView();
             }
 
-            GUILayout.BeginHorizontal();
-            GUILayout.FlexibleSpace();
-            if (GUILayout.Button("Refresh"))
-            {
-                AddMazePrefabs();
-            }
-            GUILayout.FlexibleSpace();
-            GUILayout.EndHorizontal();
-
-            GUILayout.EndScrollView();
-
-            GUILayout.Space(40);
+            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 
             GUILayout.BeginHorizontal();
-
             GUILayout.BeginVertical();
             int _size = 80;
             if (Mazes == null)
@@ -141,7 +212,7 @@ namespace LevelEditor
                     SetMazeHolder();
                 }
             }
-            else if (Selection.activeGameObject != null && Selection.activeGameObject.GetComponent<Maze_e>() == null)
+            else if (Selection.activeGameObject != null && Selection.activeGameObject.GetComponent<Maze.Maze_e>() == null)
             {
                 if (GUILayout.Button("Initialize Maze", GUILayout.Height(_size)))
                 {
@@ -153,47 +224,37 @@ namespace LevelEditor
             if (CurrentMaze != null)
             {
                 editorMode = (Modes)EditorGUILayout.EnumPopup("", editorMode);
-
-                if (editorMode == Modes.MAZE_BODY)
+                switch (editorMode)
                 {
-                    if (!mazeEditingActivated)
-                    {
+                    case Modes.MAZE_BODY:
                         ReCalculateAllMazeCubes();
                         ReCalculateNodes();
-                        mazeEditingActivated = true;
-                    }
-                }
-                else
-                {
-                    mazeEditingActivated = false;
-                }
-
-                if (editorMode == Modes.MAZE_LAYOUT)
-                {
-                    if (!mazeEditingActivated)
-                    {
+                        break;
+                    case Modes.MAZE_LAYOUT:
                         ReCalculateAllMazeCubes();
                         ReCalculateNodes();
-                        mazeEditingActivated = true;
-                    }
 
-                    inactiveNodesEditing = GUILayout.Toggle(inactiveNodesEditing, "set inactive nodes");
+                        inactiveNodesEditing = GUILayout.Toggle(inactiveNodesEditing, "set inactive nodes");
 
-                    if (GUILayout.Button("reset paths"))
-                    {
-                        if (!EditorUtility.DisplayDialog("Warning!!", "Resetting the maze layout will delete the current progress completely", "Cancel", "Reset"))
+                        if (GUILayout.Button("reset paths"))
                         {
-                            ResetPaths();
-                            ReCalculateNodes();
-                            RenderPaths();
-                        }
+                            if (!EditorUtility.DisplayDialog("Warning!!", "Resetting the maze layout will delete the current progress completely", "Cancel", "Reset"))
+                            {
+                                ResetPaths();
+                                ReCalculateNodes();
+                            }
 
-                    }
+                        }
+                        break;
+                    case Modes.ITEMS:
+                        break;
+                    case Modes.MAZE_POS:
+
+                        break;
+                    default:
+                        break;
                 }
-                else
-                {
-                    mazeEditingActivated = false;
-                }
+
             }
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Save", GUILayout.Height(30)))
@@ -226,7 +287,7 @@ namespace LevelEditor
             //create sub nodes for the new maze cube
             for (int i = 0; i < AllMazeCubes.Count; i++)
             {
-                foreach (var direction in Vector3Directions)
+                foreach (var direction in Helper.Vector3Directions)
                 {
                     bool flag = false;
                     for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
@@ -252,7 +313,7 @@ namespace LevelEditor
                 }
 
                 RaycastHit hit;
-                foreach (var node_offset in Vector3Directions)
+                foreach (var node_offset in Helper.Vector3Directions)
                 {
                     if (Physics.Raycast(AllMazeCubes[i].transform.position, node_offset, out hit, 1f)) //checks if there is any other maze cube in the direction
                     {
@@ -315,28 +376,45 @@ namespace LevelEditor
             }
         }
 
+        public void DrawCustomItemButtons(int typeIndex, int itemIndex)
+        {
+            GUILayout.BeginVertical();
+            bool selected = currentItemPrefab == TypesOfItems[typeIndex][itemIndex];
+
+            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfItems[typeIndex][itemIndex]);
+
+            GUIContent buttonContent = new GUIContent(previewImage);
+
+            bool isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button, GUILayout.Height(75), GUILayout.Width(75));
+            if (isToggleDown)
+            {
+                currentItemPrefab = TypesOfItems[typeIndex][itemIndex];
+            }
+            GUILayout.Label(TypesOfItems[typeIndex][itemIndex].name);
+            GUILayout.EndVertical();
+        }
+
         public void AddMazePrefabs()
         {
             TypesOfMazeCubes = new List<Object>();
-            TypesOfMazeWalls = new List<Object>();
             TypesOfMazeWalls = new List<Object>();
 
             TotalNumberOFMazeCubeTypes = 0;
             TotalNumbetOfMazeWallTypes = 0;
 
-            int i = Int32.Parse(mazeCubesFilePath.Split(' ')[1]);
+            int i = Int32.Parse(MazeCubesFilePath.Split(' ')[1]);
 
             int n = 30;
             do
             {
-                if (AssetDatabase.LoadAssetAtPath(mazeCubesFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)))
+                if (AssetDatabase.LoadAssetAtPath(MazeCubesFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)))
                 {
-                    TypesOfMazeCubes.Add(AssetDatabase.LoadAssetAtPath(mazeCubesFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
+                    TypesOfMazeCubes.Add(AssetDatabase.LoadAssetAtPath(MazeCubesFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
                     TotalNumberOFMazeCubeTypes++;
                 }
-                if (AssetDatabase.LoadAssetAtPath(mazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)))
+                if (AssetDatabase.LoadAssetAtPath(MazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)))
                 {
-                    TypesOfMazeWalls.Add(AssetDatabase.LoadAssetAtPath(mazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
+                    TypesOfMazeWalls.Add(AssetDatabase.LoadAssetAtPath(MazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
                     TotalNumbetOfMazeWallTypes++;
                 }
                 i++;
@@ -345,6 +423,37 @@ namespace LevelEditor
 
             currentMazeCubePrefab = TypesOfMazeCubes[0];
             currentMazeWallPrefab = TypesOfMazeWalls[0];
+        }
+
+        public void AddItemPrefabs()
+        {
+            TypesOfItems = new List<List<Object>> {
+                new List<Object>(), //Path items
+                new List<Object>(), //Interactable items
+                new List<Object>(), //Collectable items
+                new List<Object>(), //Enemie items
+            };
+
+            for (int _itemIndex = 0; _itemIndex < Enum.GetNames(typeof(ItemCategories)).Length; _itemIndex++)
+            {
+                int n = 0;
+                do
+                {
+                    Object _itemObject = AssetDatabase.LoadAssetAtPath(ItemFilePath + Enum.GetName(typeof(ItemCategories), (ItemCategories)_itemIndex) + "/" + n.ToString() + ".prefab", typeof(Object));
+                    if (_itemObject != null)
+                    {
+                        TypesOfItems[_itemIndex].Add(_itemObject);
+                        Debug.Log(ItemFilePath + Enum.GetName(typeof(ItemCategories), (ItemCategories)_itemIndex) + "/" + n.ToString() + ".prefab");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    n++;
+                } while (n < 30);
+            }
+            currentItemPrefab = TypesOfItems[0][0];
+
         }
 
         public static void SetMazeHolder()
@@ -379,9 +488,9 @@ namespace LevelEditor
                 }
 
 
-                if (CurrentMaze.GetComponent<Maze_e>() == null)
+                if (CurrentMaze.GetComponent<Maze.Maze_e>() == null)
                 {
-                    CurrentMaze.AddComponent<Maze_e>();
+                    CurrentMaze.AddComponent<Maze.Maze_e>();
                 }
 
                 ReCalculateAllMazeCubes();
@@ -414,9 +523,6 @@ namespace LevelEditor
                 }
 
                 AllMazeCubes.Add(CurrentMaze.transform.GetChild(i).gameObject);
-                /*if (Maze.transform.GetChild(i).gameObject.GetComponent<MazeCube>() != null)
-                {
-                }*/
             }
 
             foreach (var o in tempList)
@@ -798,5 +904,32 @@ namespace LevelEditor
                 }
             }
         }
+    }
+
+    public class Helper
+    {
+        public static List<Vector3> Vector3Directions = new List<Vector3>()
+        {
+            Vector3.forward,
+            Vector3.back,
+            Vector3.up,
+            Vector3.down,
+            Vector3.right,
+            Vector3.left,
+        };
+    }
+
+    public interface Item
+    {
+        void Init();    //creates an item and initialises it
+        void AddItem();     //adds the item to the item list
+        void EditItem();    //the user can edit the properties of the item
+        void RemoveItem();  //removes the item from the item list
+    }
+    public interface ItemButtonInteraction
+    {
+        void AddButton();       //creates a button which can interact with the item
+        void EditButton();      //the user can edit the properties of the button and its interaction
+        void RemoveButton(int buttonID);    //removes the button with buttonID
     }
 }
