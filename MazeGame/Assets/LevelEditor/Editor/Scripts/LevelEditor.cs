@@ -69,7 +69,6 @@ namespace LevelEditor
         void OnEnable()
         {
             TotalNumberOFMazeCubeTypes = 0;
-
             MazeCubesFilePath = "Assets/LevelEditor/Prefabs/MazeCubes/MazeCube 1";
             MazeWallsFilePath = "Assets/LevelEditor/Prefabs/MazeWalls/MazeWall 1";
             ItemFilePath = "Assets/LevelEditor/Prefabs/Items/";
@@ -123,7 +122,7 @@ namespace LevelEditor
                     }
                     GUILayout.EndVertical();
                 }
-                if(GUILayout.Button("Create Item", GUILayout.Height(30)))
+                if (GUILayout.Button("Create Item", GUILayout.Height(30)))
                 {
 
                 }
@@ -131,30 +130,15 @@ namespace LevelEditor
                 {
                     AddItemPrefabs();
                 }
-
-                EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-
                 GUILayout.EndVertical();
+                EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
                 //display all the items in the scene
                 GUILayout.BeginHorizontal();
                 GUILayout.FlexibleSpace();
                 GUILayout.Label("ADDED ITEMS", _style);
                 GUILayout.FlexibleSpace();
                 GUILayout.EndHorizontal();
-                GUILayout.BeginVertical();
-                for (int _typeIndex = 0; _typeIndex < AllItems.Count; _typeIndex++)
-                {
-                    GUILayout.BeginVertical();
-                    GUILayout.Label(Enum.GetName(typeof(ItemCategories), (ItemCategories)_typeIndex));
-                    for (int _itemIndex = 0; _itemIndex < AllItems[_typeIndex].Count;)
-                    {
-                        DrawCustomItemButtons(_typeIndex, _itemIndex);
-
-                        _itemIndex++;
-                    }
-                    GUILayout.EndVertical();
-                }
-                GUILayout.EndVertical();
+                //display all the items available
                 GUILayout.EndScrollView();
             }
             else
@@ -199,9 +183,7 @@ namespace LevelEditor
                 }
                 GUILayout.EndScrollView();
             }
-
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-
             GUILayout.BeginHorizontal();
             GUILayout.BeginVertical();
             int _size = 80;
@@ -254,7 +236,6 @@ namespace LevelEditor
                     default:
                         break;
                 }
-
             }
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Save", GUILayout.Height(30)))
@@ -281,7 +262,6 @@ namespace LevelEditor
             GUILayout.EndVertical();
             GUILayout.EndHorizontal();
         }
-
         public static void ReCalculateNodes()
         {
             //create sub nodes for the new maze cube
@@ -336,12 +316,6 @@ namespace LevelEditor
                 for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
                 {
                     AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>().ReCalculateNeighbourInterations();
-                }
-
-                if (AllMazeCubes[i].transform.childCount == 0)
-                {
-                    //DestroyImmediate(AllMazeCubes[i].gameObject);
-                    //AllMazeCubes.RemoveAt(i);
                 }
             }
         }
@@ -433,7 +407,6 @@ namespace LevelEditor
                 new List<Object>(), //Collectable items
                 new List<Object>(), //Enemie items
             };
-
             for (int _itemIndex = 0; _itemIndex < Enum.GetNames(typeof(ItemCategories)).Length; _itemIndex++)
             {
                 int n = 0;

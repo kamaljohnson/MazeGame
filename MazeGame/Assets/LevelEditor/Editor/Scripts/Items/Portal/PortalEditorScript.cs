@@ -12,7 +12,6 @@ namespace LevelEditor.Items.Portal
 
     public class PortalEditingWindow : EditorWindow, Item, ItemButtonInteraction
     {
-
         public void OnGUI()      //the sub editor window for the corresponding item
         {
             GUILayout.Label("Portal editing");
