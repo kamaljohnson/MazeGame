@@ -144,7 +144,6 @@ namespace LevelEditor
                 
                 for (int _itemType = 0; _itemType < Enum.GetNames(typeof(ItemCategories)).Length; _itemType++)
                 {
-                    //bool isToggleDown = GUILayout.Toggle(currentItemCatgoryToggled, GUILayout.Label(Enum.GetName(typeof(ItemCategories), currentItemCatgoryToggled)), GUI.skin.button, GUILayout.Height(35), GUILayout.Width(35));
                     GUIStyle _toggleButtonStyleNormal = null;
                     GUIStyle _toggleButtonStyleToggled = null;
 
@@ -153,10 +152,31 @@ namespace LevelEditor
                     _toggleButtonStyleToggled.normal.background = _toggleButtonStyleToggled.active.background;
 
                     bool _isToggled = _itemType == (int)currentItemCatgoryToggled;
+                    GUILayout.BeginVertical();
                     if (GUILayout.Button(Enum.GetName(typeof(ItemCategories), (ItemCategories)_itemType), _isToggled ? _toggleButtonStyleToggled : _toggleButtonStyleNormal, GUILayout.Height(25)))
                     {
                         currentItemCatgoryToggled = (ItemCategories)_itemType;
                     }
+                    if (_itemType == (int)currentItemCatgoryToggled)
+                    {
+                        for (int _itemIndex = 0; _itemIndex < AllItems[(int)currentItemCatgoryToggled].Count; _itemIndex++)
+                        {
+                            GUILayout.BeginHorizontal();
+                            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfItems[(int)currentItemCatgoryToggled][(int)currentItemCatgoryToggled]);
+                            GUIContent buttonContent = new GUIContent(previewImage);
+                            GUILayout.Toggle(false, buttonContent, GUI.skin.box, GUILayout.Height(20), GUILayout.Width(20));
+                            if (GUILayout.Button("Edit", GUILayout.Height(20)))
+                            {
+
+                            }
+                            if (GUILayout.Button("Remove", GUILayout.Height(20)))
+                            {
+
+                            }
+                            GUILayout.EndHorizontal();
+                        }
+                    }
+                    GUILayout.EndVertical();
                 }
                 GUILayout.EndVertical();
                 //display all the items available
@@ -426,6 +446,15 @@ namespace LevelEditor
                 new List<Object>(), //Enemie items
                 new List<Object>(), //Decoratable items
             };
+            AllItems = new List<List<GameObject>>
+            {
+                new List<GameObject>(), //Path items
+                new List<GameObject>(), //Interactable items
+                new List<GameObject>(), //Collectable items
+                new List<GameObject>(), //Enemie items
+                new List<GameObject>(), //Decoratable items
+            };
+
             for (int _itemIndex = 0; _itemIndex < Enum.GetNames(typeof(ItemCategories)).Length; _itemIndex++)
             {
                 int n = 0;
