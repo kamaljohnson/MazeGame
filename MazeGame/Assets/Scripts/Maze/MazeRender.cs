@@ -3,9 +3,9 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
 
-namespace Game.Maze
+namespace Game
 {
-    public class MazeRender : MonoBehaviour
+    public class LevelCreator : MonoBehaviour
     {
         public Transform MazeHolder;
 
@@ -16,20 +16,21 @@ namespace Game.Maze
 
         public void Awake()
         {
-            Render();
+            LoadLevel();
             GameObject playerCube = Instantiate(PlayerCube);
             playerCube.GetComponent<Player.Movement>().SetParentMaze(MazeHolder.GetChild(0).gameObject);
         }
 
-        public void Render()
+        public void LoadLevel()
         {
             string levelName = SceneManager.GetActiveScene().name;
-            SaveState state = Load(levelName);
+            SaveState state = LoadLevelDataFromFile(levelName);
+            
             //calculating the render data from the path data
             for(int i = 0; i < state.m.Count; i++)  //for each maze
             {
                 GameObject _maze = new GameObject();
-                _maze.AddComponent<MazeRotator>();
+                _maze.AddComponent<Maze.MazeRotator>();
                 _maze.transform.parent = MazeHolder;
                 _maze.transform.position = new Vector3(
                     state.m[i].x,
@@ -58,19 +59,23 @@ namespace Game.Maze
                             state.m[i].c[j].nl[k].w
                             );
                         _node.transform.localPosition += _node.transform.forward * 0.5f;
-                        _node.gameObject.AddComponent<Node>();
+                        _node.gameObject.AddComponent<Maze.Node>();
 
-                        Node _tempNode = state.m[i].c[j].nl[k].GetNode();
+                        Maze.Node _tempNode = state.m[i].c[j].nl[k].GetNode();
                         _tempNode.parentCube_pos = _cube.transform.position;
                         
-                        _node.gameObject.GetComponent<Node>().SetNodeFromNode(_tempNode, _cube.transform.position);
-                        _node.gameObject.GetComponent<Node>().CalculateRenderNodePath();
+                        _node.gameObject.GetComponent<Maze.Node>().SetNodeFromNode(_tempNode, _cube.transform.position);
+                        _node.gameObject.GetComponent<Maze.Node>().CalculateRenderNodePath();
                     }
                     _cube.SetActive(false);
                 }
             }
 
-            //drawing the maze with the render data
+            /*
+            *Creates individual blocks of the maze walls using the render_* data from the nodes
+            * 
+            */
+
             for (int i = 0; i < MazeHolder.childCount; i++)     //for each maze
             {
                 Transform _maze = MazeHolder.GetChild(i);
@@ -79,9 +84,10 @@ namespace Game.Maze
                     Transform _cube = _maze.GetChild(j);
                     _cube.gameObject.SetActive(true);
 
+                    
                     for (int k = 0; k < _cube.childCount; k++)      //for each node
                     {
-                        Node node = _cube.GetChild(k).GetComponent<Node>();
+                        Maze.Node node = _cube.GetChild(k).GetComponent<Maze.Node>();
 
                         float offset = 1 / 2f - 1 / 12f;
                         float height_offset = 1 / 12f;
@@ -93,7 +99,6 @@ namespace Game.Maze
                         float c_size = 1 / 6f;
                         float h_size = 1 / 6f;
 
-                        //rendering walls
                         if (node.r_render)
                         {
                             GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab, node.transform.position + node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -407,7 +412,7 @@ namespace Game.Maze
             }
         }
 
-        public SaveState Load(string levelName)
+        public SaveState LoadLevelDataFromFile(string levelName)
         {
             string directory = Application.streamingAssetsPath + "/Levels/" + levelName;
             SaveState state;
@@ -454,7 +459,7 @@ namespace Game.Maze
         public int z;
 
         //the list of nodes the cube has
-        public List<SavableNode> nl;
+        public List<Maze.SavableNode> nl;
 
         public void ConvertToSavable(GameObject mace_cube)
         {
@@ -462,12 +467,12 @@ namespace Game.Maze
             y = (int)mace_cube.transform.position.y;
             z = (int)mace_cube.transform.position.z;
 
-            nl = new List<SavableNode>();
+            nl = new List<Maze.SavableNode>();
             for (int j = 0; j < mace_cube.transform.childCount; j++)
             {
-                SavableNode sn = new SavableNode();
+                Maze.SavableNode sn = new Maze.SavableNode();
 
-                sn.ConvertToSavable(mace_cube.transform.GetChild(j).GetComponent<Node>());
+                sn.ConvertToSavable(mace_cube.transform.GetChild(j).GetComponent<Maze.Node>());
                 nl.Add(sn);
             }
         }

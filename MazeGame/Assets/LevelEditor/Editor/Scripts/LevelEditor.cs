@@ -37,15 +37,15 @@ namespace LevelEditor
         public string ItemFilePath;
 
         //reference of corresponding prefabs
-        public static List<Object> TypesOfMazeCubes = new List<Object>();
-        public static List<Object> TypesOfMazeWalls = new List<Object>();
-        public static List<List<Object>> TypesOfItems = new List<List<Object>>();
-        private int TotalNumberOFMazeCubeTypes;
-        private int TotalNumbetOfMazeWallTypes;
-        public static Object currentMazeCubePrefab;
-        public static Object currentMazeWallPrefab;
-        public static Object currentItemPrefab;
-        public static ItemCategories currentItemType;
+        private static List<Object> _typesOfMazeCubes;
+        private static List<Object> TypesOfMazeWalls;
+        private static List<List<Object>> TypesOfItems;
+        private int _totalNumberOfMazeCubeTypes;
+        private int _totalNumbetOfMazeWallTypes;
+        public static Object CurrentMazeCubePrefab;
+        public static Object CurrentMazeWallPrefab;
+        public static Object CurrentItemPrefab;
+        public static ItemCategories CurrentItemType;
 
         //actual list of gameobject in the scene
         public static List<GameObject> AllMazeCubes = new List<GameObject>();
@@ -53,12 +53,12 @@ namespace LevelEditor
         public static List<List<GameObject>> AllItems = new List<List<GameObject>>();
 
         #region local variables
-        private Vector2 prefabScrollViewValue = Vector2.zero;
-        private ItemCategories currentItemCatgoryToggled;
+        private Vector2 _prefabScrollViewValue = Vector2.zero;
+        private ItemCategories _currentItemCatgoryToggled;
         #endregion
 
-        public static Modes editorMode;
-        public static bool inactiveNodesEditing = false;
+        public static Modes EditorMode;
+        public static bool InactiveNodesEditing = false;
 
         [MenuItem("Window/LevelEditor")]
         public static void ShowWindow()
@@ -68,9 +68,9 @@ namespace LevelEditor
             window.title = "Level Editor";
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
-            TotalNumberOFMazeCubeTypes = 0;
+            _totalNumberOfMazeCubeTypes = 0;
             MazeCubesFilePath = "Assets/LevelEditor/Prefabs/MazeCubes/MazeCube 1";
             MazeWallsFilePath = "Assets/LevelEditor/Prefabs/MazeWalls/MazeWall 1";
             ItemFilePath = "Assets/LevelEditor/Prefabs/Items/";
@@ -78,12 +78,12 @@ namespace LevelEditor
             AddItemPrefabs();
         }
 
-        void OnGUI()
+        private void OnGUI()
         {
             GUILayout.Space(10);
             GUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
-            GUIStyle style = new GUIStyle();
+            var style = new GUIStyle();
             style.fontSize = 20;
             GUILayout.Label("LEVEL EDITOR", style);
             GUILayout.FlexibleSpace();
@@ -93,9 +93,9 @@ namespace LevelEditor
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 
 
-            if (editorMode == Modes.ITEMS)
+            if (EditorMode == Modes.ITEMS)
             {
-                prefabScrollViewValue = GUILayout.BeginScrollView(prefabScrollViewValue, GUI.skin.scrollView);
+                _prefabScrollViewValue = GUILayout.BeginScrollView(_prefabScrollViewValue, GUI.skin.scrollView);
                 GUILayout.BeginHorizontal();
                 GUILayout.FlexibleSpace();
                 GUIStyle _style = new GUIStyle();
@@ -144,25 +144,25 @@ namespace LevelEditor
                 
                 for (int _itemType = 0; _itemType < Enum.GetNames(typeof(ItemCategories)).Length; _itemType++)
                 {
-                    GUIStyle _toggleButtonStyleNormal = null;
-                    GUIStyle _toggleButtonStyleToggled = null;
+                    GUIStyle toggleButtonStyleNormal;
+                    GUIStyle toggleButtonStyleToggled;
 
-                    _toggleButtonStyleNormal = "Button";
-                    _toggleButtonStyleToggled = new GUIStyle(_toggleButtonStyleNormal);
-                    _toggleButtonStyleToggled.normal.background = _toggleButtonStyleToggled.active.background;
+                    toggleButtonStyleNormal = "Button";
+                    toggleButtonStyleToggled = new GUIStyle(toggleButtonStyleNormal);
+                    toggleButtonStyleToggled.normal.background = toggleButtonStyleToggled.active.background;
 
-                    bool _isToggled = _itemType == (int)currentItemCatgoryToggled;
+                    bool _isToggled = _itemType == (int)_currentItemCatgoryToggled;
                     GUILayout.BeginVertical();
-                    if (GUILayout.Button(Enum.GetName(typeof(ItemCategories), (ItemCategories)_itemType), _isToggled ? _toggleButtonStyleToggled : _toggleButtonStyleNormal, GUILayout.Height(25)))
+                    if (GUILayout.Button(Enum.GetName(typeof(ItemCategories), (ItemCategories)_itemType), _isToggled ? toggleButtonStyleToggled : toggleButtonStyleNormal, GUILayout.Height(25)))
                     {
-                        currentItemCatgoryToggled = (ItemCategories)_itemType;
+                        _currentItemCatgoryToggled = (ItemCategories)_itemType;
                     }
-                    if (_itemType == (int)currentItemCatgoryToggled)
+                    if (_itemType == (int)_currentItemCatgoryToggled)
                     {
-                        for (int _itemIndex = 0; _itemIndex < AllItems[(int)currentItemCatgoryToggled].Count; _itemIndex++)
+                        for (int itemIndex = 0; itemIndex < AllItems[(int)_currentItemCatgoryToggled].Count; itemIndex++)
                         {
                             GUILayout.BeginHorizontal();
-                            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfItems[(int)currentItemCatgoryToggled][(int)currentItemCatgoryToggled]);
+                            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfItems[(int)_currentItemCatgoryToggled][(int)_currentItemCatgoryToggled]);
                             GUIContent buttonContent = new GUIContent(previewImage);
                             GUILayout.Toggle(false, buttonContent, GUI.skin.box, GUILayout.Height(20), GUILayout.Width(20));
                             if (GUILayout.Button("Edit", GUILayout.Height(20)))
@@ -189,16 +189,16 @@ namespace LevelEditor
                 GUILayout.Label("Maze Walls");
                 GUILayout.EndHorizontal();
 
-                prefabScrollViewValue = GUILayout.BeginScrollView(prefabScrollViewValue, GUI.skin.scrollView);
-                if (currentMazeCubePrefab == null && TotalNumberOFMazeCubeTypes > 0)
+                _prefabScrollViewValue = GUILayout.BeginScrollView(_prefabScrollViewValue, GUI.skin.scrollView);
+                if (CurrentMazeCubePrefab == null && _totalNumberOfMazeCubeTypes > 0)
                 {
-                    currentMazeCubePrefab = TypesOfMazeCubes[0];
+                    CurrentMazeCubePrefab = _typesOfMazeCubes[0];
                 }
-                int largestCollection = Mathf.Max(TotalNumberOFMazeCubeTypes, TotalNumbetOfMazeWallTypes);
+                int largestCollection = Mathf.Max(_totalNumberOfMazeCubeTypes, _totalNumbetOfMazeWallTypes);
                 for (int i = 0; i < largestCollection; i++)
                 {
                     GUILayout.BeginHorizontal();
-                    if (i < TotalNumberOFMazeCubeTypes)
+                    if (i < _totalNumberOfMazeCubeTypes)
                     {
                         DrawCustomMazeButtons(i);
                     }
@@ -207,7 +207,7 @@ namespace LevelEditor
                         GUILayout.FlexibleSpace();
                     }
 
-                    if (i < TotalNumbetOfMazeWallTypes)
+                    if (i < _totalNumbetOfMazeWallTypes)
                     {
                         DrawCustomMazeWallButtons(i);
                     }
@@ -246,21 +246,21 @@ namespace LevelEditor
             GUILayout.BeginVertical();
             if (CurrentMaze != null)
             {
-                Modes _tempMode = (Modes)EditorGUILayout.EnumPopup("", editorMode);
-                if(_tempMode != editorMode)
+                Modes _tempMode = (Modes)EditorGUILayout.EnumPopup("", EditorMode);
+                if(_tempMode != EditorMode)
                 {
-                    editorMode = _tempMode;
+                    EditorMode = _tempMode;
                     ReCalculateAllMazeCubes();
                     ReCalculateNodes();
                 }
 
-                switch (editorMode)
+                switch (EditorMode)
                 {
                     case Modes.MAZE_BODY:
                         break;
                     case Modes.MAZE_LAYOUT:
 
-                        inactiveNodesEditing = GUILayout.Toggle(inactiveNodesEditing, "set inactive nodes");
+                        InactiveNodesEditing = GUILayout.Toggle(InactiveNodesEditing, "set inactive nodes");
 
                         if (GUILayout.Button("reset paths"))
                         {
@@ -284,7 +284,7 @@ namespace LevelEditor
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Save", GUILayout.Height(30)))
             {
-                Save.LevelSaveManager sm = ScriptableObject.CreateInstance<Save.LevelSaveManager>();
+                Save.LevelSaveManager sm = CreateInstance<Save.LevelSaveManager>();
                 sm.Save();
             }
             GUILayout.EndHorizontal();
@@ -301,82 +301,78 @@ namespace LevelEditor
             GUILayout.EndVertical();
             GUILayout.EndHorizontal();
         }
-
+        
         public void DrawCustomMazeButtons(int index)
         {
-            bool selected = currentMazeCubePrefab == TypesOfMazeCubes[index];
+            bool selected = CurrentMazeCubePrefab == _typesOfMazeCubes[index];
 
-            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfMazeCubes[index]);
+            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)_typesOfMazeCubes[index]);
 
             GUIContent buttonContent = new GUIContent(previewImage);
 
             bool isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button, GUILayout.Height(125), GUILayout.Width(125));
             if (isToggleDown)
             {
-                currentMazeCubePrefab = TypesOfMazeCubes[index];
+                CurrentMazeCubePrefab = _typesOfMazeCubes[index];
             }
         }
 
         public void DrawCustomMazeWallButtons(int index)
         {
-            bool selected = currentMazeWallPrefab == TypesOfMazeWalls[index];
-
-            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfMazeWalls[index]);
-
-            GUIContent buttonContent = new GUIContent(previewImage);
-
-            bool isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button, GUILayout.Height(125), GUILayout.Width(125));
+            var selected = CurrentMazeWallPrefab == TypesOfMazeWalls[index];
+            var previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfMazeWalls[index]);
+            var buttonContent = new GUIContent(previewImage);
+            var isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button, GUILayout.Height(125), GUILayout.Width(125));
+            
             if (isToggleDown)
             {
-                currentMazeWallPrefab = TypesOfMazeWalls[index];
+                CurrentMazeWallPrefab = TypesOfMazeWalls[index];
             }
         }
 
         public void DrawCustomItemButtons(int typeIndex, int itemIndex)
         {
-            bool selected = currentItemPrefab == TypesOfItems[typeIndex][itemIndex];
+            var selected = CurrentItemPrefab == TypesOfItems[typeIndex][itemIndex];
+            var previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfItems[typeIndex][itemIndex]);
+            var buttonContent = new GUIContent(previewImage);
 
-            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfItems[typeIndex][itemIndex]);
-
-            GUIContent buttonContent = new GUIContent(previewImage);
-
-            bool isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button, GUILayout.Height(35), GUILayout.Width(35));
+            var isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button, GUILayout.Height(35), GUILayout.Width(35));
             if (isToggleDown)
             {
-                currentItemPrefab = TypesOfItems[typeIndex][itemIndex];
-                currentItemType = (ItemCategories)typeIndex;
+                CurrentItemPrefab = TypesOfItems[typeIndex][itemIndex];
+                CurrentItemType = (ItemCategories)typeIndex;
             }
         }
 
         public void AddMazePrefabs()
         {
-            TypesOfMazeCubes = new List<Object>();
+            _typesOfMazeCubes = new List<Object>();
             TypesOfMazeWalls = new List<Object>();
 
-            TotalNumberOFMazeCubeTypes = 0;
-            TotalNumbetOfMazeWallTypes = 0;
+            _totalNumberOfMazeCubeTypes = 0;
+            _totalNumbetOfMazeWallTypes = 0;
 
-            int i = Int32.Parse(MazeCubesFilePath.Split(' ')[1]);
+            var i = int.Parse(MazeCubesFilePath.Split(' ')[1]);
 
-            int n = 30;
+            var n = 30;
             do
             {
                 if (AssetDatabase.LoadAssetAtPath(MazeCubesFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)))
                 {
-                    TypesOfMazeCubes.Add(AssetDatabase.LoadAssetAtPath(MazeCubesFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
-                    TotalNumberOFMazeCubeTypes++;
+                    _typesOfMazeCubes.Add(AssetDatabase.LoadAssetAtPath(MazeCubesFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
+                    _totalNumberOfMazeCubeTypes++;
                 }
                 if (AssetDatabase.LoadAssetAtPath(MazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)))
                 {
                     TypesOfMazeWalls.Add(AssetDatabase.LoadAssetAtPath(MazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
-                    TotalNumbetOfMazeWallTypes++;
+                    _totalNumbetOfMazeWallTypes++;
                 }
                 i++;
                 n--;
             } while (n > 0);
 
-            currentMazeCubePrefab = TypesOfMazeCubes[0];
-            currentMazeWallPrefab = TypesOfMazeWalls[0];
+            CurrentMazeCubePrefab = _typesOfMazeCubes[0];
+            CurrentMazeWallPrefab = TypesOfMazeWalls[0];
         }
 
         public void AddItemPrefabs()
@@ -397,15 +393,15 @@ namespace LevelEditor
                 new List<GameObject>(), //Decoratable items
             };
 
-            for (int _itemIndex = 0; _itemIndex < Enum.GetNames(typeof(ItemCategories)).Length; _itemIndex++)
+            for (var itemIndex = 0; itemIndex < Enum.GetNames(typeof(ItemCategories)).Length; itemIndex++)
             {
                 int n = 0;
                 do
                 {
-                    Object _itemObject = AssetDatabase.LoadAssetAtPath(ItemFilePath + Enum.GetName(typeof(ItemCategories), (ItemCategories)_itemIndex) + "/" + n.ToString() + ".prefab", typeof(Object));
-                    if (_itemObject != null)
+                    Object itemObject = AssetDatabase.LoadAssetAtPath(ItemFilePath + Enum.GetName(typeof(ItemCategories), (ItemCategories)itemIndex) + "/" + n.ToString() + ".prefab", typeof(Object));
+                    if (itemObject != null)
                     {
-                        TypesOfItems[_itemIndex].Add(_itemObject);
+                        TypesOfItems[itemIndex].Add(itemObject);
                     }
                     else
                     {
@@ -414,7 +410,7 @@ namespace LevelEditor
                     n++;
                 } while (n < 30);
             }
-            currentItemPrefab = TypesOfItems[0][0];
+            CurrentItemPrefab = TypesOfItems[0][0];
 
         }
 
@@ -425,8 +421,8 @@ namespace LevelEditor
                 Mazes = Selection.activeTransform;
                 if (Mazes == null)
                 {
-                    GameObject _tempMazesGameobject = new GameObject();
-                    Mazes = _tempMazesGameobject.transform;
+                    GameObject tempMazesGameobject = new GameObject();
+                    Mazes = tempMazesGameobject.transform;
                 }
             }
 
@@ -444,8 +440,8 @@ namespace LevelEditor
             CurrentMaze = Selection.activeGameObject;
             if (CurrentMaze == null)
             {
-                GameObject _tempMazesGameobject = new GameObject();
-                CurrentMaze = _tempMazesGameobject;
+                GameObject tempMazesGameobject = new GameObject();
+                CurrentMaze = tempMazesGameobject;
             }
             CurrentMaze.name = "Maze" + Mazes.childCount.ToString();
             
@@ -454,7 +450,7 @@ namespace LevelEditor
             Selection.SetActiveObjectWithContext(CurrentMaze, CurrentMaze);
             SceneView.lastActiveSceneView.FrameSelected();
 
-            if (currentMazeCubePrefab == null)
+            if (CurrentMazeCubePrefab == null)
             {
                 Debug.LogError("MazeCube prefab not assigned");
                 return;
@@ -470,9 +466,28 @@ namespace LevelEditor
 
             if (AllMazeCubes.Count == 0)
             {
-                GameObject obj = Instantiate((GameObject)currentMazeCubePrefab, CurrentMaze.transform);
+                GameObject obj = Instantiate((GameObject)CurrentMazeCubePrefab, CurrentMaze.transform);
                 AllMazeCubes.Add(obj);
             }
+        }
+
+        public static void ReCalculateAllItems()
+        {
+            var allMazeItems = new List<List<GameObject>>();
+            
+            for(var itemType = 0; itemType < AllItems.Count; itemType++)
+            {
+                for(var itemIndex = 0; itemIndex < AllItems[itemType].Count; itemIndex++)
+                {
+                    allMazeItems.Add(null);
+                    if(AllItems[itemType][itemIndex] != null)
+                    {
+                        allMazeItems[itemType].Add(AllItems[itemType][itemIndex]);
+                    }
+                }
+            }
+            AllItems = new List<List<GameObject>>();
+            AllItems = allMazeItems;
         }
 
         public static void ReCalculateAllMazeCubes()
@@ -609,7 +624,7 @@ namespace LevelEditor
                     //rendering walls
                     if (node.r_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab, node.transform.position + node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab, node.transform.position + node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                         tempobj.name = "r";
@@ -617,7 +632,7 @@ namespace LevelEditor
                     }
                     if (node.l_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab, node.transform.position - node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab, node.transform.position - node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                         tempobj.name = "l";
@@ -625,7 +640,7 @@ namespace LevelEditor
                     }
                     if (node.u_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab, node.transform.position + node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab, node.transform.position + node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                         tempobj.name = "u";
@@ -633,7 +648,7 @@ namespace LevelEditor
                     }
                     if (node.d_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab, node.transform.position - node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab, node.transform.position - node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                         tempobj.name = "d";
@@ -643,7 +658,7 @@ namespace LevelEditor
                     //rendering corner
                     if (node.ru_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + (node.transform.right + node.transform.up) * offset +
                             node.transform.forward * height_offset, node.transform.rotation, node.transform);
                         tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
@@ -652,7 +667,7 @@ namespace LevelEditor
                     }
                     if (node.rd_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + (node.transform.right - node.transform.up) * offset +
                             node.transform.forward * height_offset, node.transform.rotation, node.transform);
                         tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
@@ -661,7 +676,7 @@ namespace LevelEditor
                     }
                     if (node.lu_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + (-node.transform.right + node.transform.up) * offset +
                             node.transform.forward * height_offset, node.transform.rotation, node.transform);
                         tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
@@ -670,7 +685,7 @@ namespace LevelEditor
                     }
                     if (node.ld_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + (-node.transform.right - node.transform.up) * offset +
                             node.transform.forward * height_offset, node.transform.rotation, node.transform);
                         tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
@@ -681,7 +696,7 @@ namespace LevelEditor
                     //rendering external edges
                     if (node.er_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab, node.transform.position + node.transform.right * external_offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab, node.transform.position + node.transform.right * external_offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
                         tempobj.name = "er";
@@ -690,7 +705,7 @@ namespace LevelEditor
 
                     if (node.el_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position - node.transform.right * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
@@ -701,7 +716,7 @@ namespace LevelEditor
 
                     if (node.eu_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + node.transform.up * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
@@ -712,7 +727,7 @@ namespace LevelEditor
 
                     if (node.ed_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position - node.transform.up * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
@@ -723,7 +738,7 @@ namespace LevelEditor
 
                     if (node.ir_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + node.transform.right * internal_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
@@ -734,7 +749,7 @@ namespace LevelEditor
 
                     if (node.il_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position - node.transform.right * internal_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
@@ -745,7 +760,7 @@ namespace LevelEditor
 
                     if (node.iu_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + node.transform.up * internal_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
@@ -756,7 +771,7 @@ namespace LevelEditor
 
                     if (node.id_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position - node.transform.up * internal_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
@@ -767,7 +782,7 @@ namespace LevelEditor
 
                     if (node.eru_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
                             (node.transform.right * external_offset + node.transform.up * offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -780,7 +795,7 @@ namespace LevelEditor
 
                     if (node.erd_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
                             (node.transform.right * external_offset - node.transform.up * offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -793,7 +808,7 @@ namespace LevelEditor
 
                     if (node.elu_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
                             (-node.transform.right * external_offset + node.transform.up * offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -806,7 +821,7 @@ namespace LevelEditor
 
                     if (node.eld_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
                             (-node.transform.right * external_offset - node.transform.up * offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -819,7 +834,7 @@ namespace LevelEditor
 
                     if (node.eur_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
                             (node.transform.right * offset + node.transform.up * external_offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -832,7 +847,7 @@ namespace LevelEditor
 
                     if (node.eul_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
                             (-node.transform.right * offset + node.transform.up * external_offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -845,7 +860,7 @@ namespace LevelEditor
 
                     if (node.edr_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
                             (node.transform.right * offset - node.transform.up * external_offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -858,7 +873,7 @@ namespace LevelEditor
 
                     if (node.edl_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
                             (-node.transform.right * offset - node.transform.up * external_offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -870,7 +885,7 @@ namespace LevelEditor
 
                     if (node.eeru_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
                             (node.transform.right + node.transform.up) * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -882,7 +897,7 @@ namespace LevelEditor
 
                     if (node.eerd_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
                             (node.transform.right - node.transform.up) * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -894,7 +909,7 @@ namespace LevelEditor
 
                     if (node.eelu_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
                             (-node.transform.right + node.transform.up) * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -906,7 +921,7 @@ namespace LevelEditor
 
                     if (node.eeld_render)
                     {
-                        GameObject tempobj = (GameObject)Instantiate(currentMazeWallPrefab,
+                        GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
                             (-node.transform.right - node.transform.up) * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -937,10 +952,12 @@ namespace LevelEditor
 
         public static List<List<GameObject>> GetMazeItems()
         {
+            ReCalculateAllItems();
+
             List<List<GameObject>> allMazeItems = new List<List<GameObject>>();
-            for (int _itemType = 0; _itemType < TypesOfItems.Count; _itemType++)
+            for (int itemType = 0; itemType < TypesOfItems.Count; itemType++)
             {
-                for (int i = 0; i < AllItems[_itemType].Count; i++)
+                for (int i = 0; i < AllItems[itemType].Count; i++)
                 {
                     //TODO: check if the item is set
                     //TODO: add the item to allMazeItems
@@ -963,15 +980,16 @@ namespace LevelEditor
         };
     }
 
-    public interface Item
+    public interface ITem
     {
-        void Init();    //creates an item and initialises it
-        void AddItem();     //adds the item to the item list
+        void Init();        //creates an item and initialises it
+        void AddItem();     //adds the item to the item list in the LevelEditor script
         void EditItem();    //the user can edit the properties of the item
         void RemoveItem();  //removes the item from the item list
 
-        bool CheckStatus(); //returns true if the item serializable field values are set
+        bool CheckValuesSet(); //returns true if the item serializable field values are set
     }
+    
     public interface ItemButtonInteraction
     {
         void AddButton();       //creates a button which can interact with the item

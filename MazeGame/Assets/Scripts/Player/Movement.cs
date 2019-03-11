@@ -9,7 +9,7 @@ namespace Game.Player
         public Transform PlayerCube;
         public PlayerInput Input;
 
-        public float stepSize = 1 / 3f;
+        public float StepSize = 1 / 3f;
 
         public Transform RightAnchor;
         public Transform LeftAnchor;
@@ -17,19 +17,18 @@ namespace Game.Player
         public Transform BackAnchor;
 
         public float Speed = 400f;
-        private float tempAngleRotated;
-        private float angleRotated;
+        private float _tempAngleRotated;
         
-        private Direction movementDirection;
-        private Direction tempMovementDirection;
-        private bool movementSnapped_full;
-        private bool movementSnapped_half;
-        private int snapCount;
+        private Direction _movementDirection;
+        private Direction _tempMovementDirection;
+        private bool _movementSnappedFull;
+        private bool _movementSnappedHalf;
+        private int _snapCount;
 
-        private bool atVerticalDownEdge;
-        private bool atVerticalUpEdge;
+        private bool _atVerticalDownEdge;
+        private bool _atVerticalUpEdge;
         
-        private bool atJunction;
+        private bool _atJunction;
 
         public List<bool> PlayerRayCastData = new List<bool>()
         {
@@ -39,34 +38,18 @@ namespace Game.Player
             false,    //back raycast data
             false,    //down raycast data
         };
-        private List<Vector3> DirectionRotation = new List<Vector3>()
-        {
-            new Vector3(0, 0, -1),    //right axis rotation
-            new Vector3(0, 0, 1),     //left axis rotation
-            new Vector3(1, 0, 0),     //forward axis rotation
-            new Vector3(-1, 0, 0),    //back axis rotation
-        };
-        private List<Vector3> DirectionVector = new List<Vector3>()
-        {
-            new Vector3(1, 0, 0),        //right direction vector
-            new Vector3(-1, 0, 0),       //left direction vector
-            new Vector3(0, 0, 1),        //forward direction vector
-            new Vector3(0, 0, -1),       //back direction vector
-            new Vector3(0, -1, 0),       //down direction vector
-            new Vector3(0, 1, 0),        //up direction vector
-        };
         
         public void Start()
         {
-            movementSnapped_full = true;
-            movementSnapped_half = true;
-            snapCount = 0;
-            atJunction = true;
-            movementDirection = Direction.None;
-            tempMovementDirection = Direction.None;
+            _movementSnappedFull = true;
+            _movementSnappedHalf = true;
+            _snapCount = 0;
+            _atJunction = true;
+            _movementDirection = Direction.None;
+            _tempMovementDirection = Direction.None;
 
-            atVerticalUpEdge = false;
-            atVerticalDownEdge = false;
+            _atVerticalUpEdge = false;
+            _atVerticalDownEdge = false;
         }
 
         public void Update()
@@ -76,177 +59,177 @@ namespace Game.Player
 
             HandleInput();
 
-            if(movementSnapped_full)
+            if(_movementSnappedFull)
             {
                 CheckJunction();
                 IntermediateMove();
             }
 
-            if (atJunction)
+            if (_atJunction)
             {
                 UpdateMoveableDirections();
             }
             
-            if(!atJunction)
+            if(!_atJunction)
             {
                 Move();
             }
         }
-      
-        public void HandleInput()
+
+        private void HandleInput()
         {
             Direction tempdirection = Input.GetInputDirection();
             if (tempdirection != Direction.None)
             {
-                tempMovementDirection = tempdirection;
-            }
-        }
-        
-        public void UpdateMoveableDirections()
-        {
-            if(tempMovementDirection == Direction.None)
-                return;
-            if (tempMovementDirection == movementDirection)
-            {
-                movementDirection = Direction.None;
-                tempMovementDirection = Direction.None;
-                atJunction = true;
-                return;
-            }
-            
-            if (!PlayerRayCastData[(int) tempMovementDirection])
-            {
-                movementDirection = tempMovementDirection;
-                tempMovementDirection = Direction.None;
-                atJunction = false;
+                _tempMovementDirection = tempdirection;
             }
         }
 
-        public void IntermediateMove()
+        private void UpdateMoveableDirections()
         {
-            if (tempMovementDirection == Direction.None)
+            if(_tempMovementDirection == Direction.None)
+                return;
+            if (_tempMovementDirection == _movementDirection)
+            {
+                _movementDirection = Direction.None;
+                _tempMovementDirection = Direction.None;
+                _atJunction = true;
+                return;
+            }
+            
+            if (!PlayerRayCastData[(int) _tempMovementDirection])
+            {
+                _movementDirection = _tempMovementDirection;
+                _tempMovementDirection = Direction.None;
+                _atJunction = false;
+            }
+        }
+
+        private void IntermediateMove()
+        {
+            if (_tempMovementDirection == Direction.None)
             {
                 return;
             }
             
-            if (tempMovementDirection != movementDirection)
+            if (_tempMovementDirection != _movementDirection)
             {
-                if (tempMovementDirection == Direction.Right && movementDirection == Direction.Left)
+                if (_tempMovementDirection == Direction.Right && _movementDirection == Direction.Left)
                 {
-                    movementDirection = tempMovementDirection;
-                    tempMovementDirection = Direction.None;
+                    _movementDirection = _tempMovementDirection;
+                    _tempMovementDirection = Direction.None;
                 }
-                else if (tempMovementDirection == Direction.Left && movementDirection == Direction.Right)
+                else if (_tempMovementDirection == Direction.Left && _movementDirection == Direction.Right)
                 {
-                    movementDirection = tempMovementDirection;
-                    tempMovementDirection = Direction.None;
+                    _movementDirection = _tempMovementDirection;
+                    _tempMovementDirection = Direction.None;
                 }
-                else if (tempMovementDirection == Direction.Forward && movementDirection == Direction.Back)
+                else if (_tempMovementDirection == Direction.Forward && _movementDirection == Direction.Back)
                 {
-                    movementDirection = tempMovementDirection;
-                    tempMovementDirection = Direction.None;
+                    _movementDirection = _tempMovementDirection;
+                    _tempMovementDirection = Direction.None;
                 }
-                else if (tempMovementDirection == Direction.Back && movementDirection == Direction.Forward)
+                else if (_tempMovementDirection == Direction.Back && _movementDirection == Direction.Forward)
                 {
-                    movementDirection = tempMovementDirection;
-                    tempMovementDirection = Direction.None;
+                    _movementDirection = _tempMovementDirection;
+                    _tempMovementDirection = Direction.None;
                 }
             }
         }
-        
-        public void CheckJunction()
+
+        private void CheckJunction()
         {
             //getting the raycast data
-            Color _color;
-
+            Color color;
+            RaycastHit hit;
+            
             //right raycast data
-            PlayerRayCastData[(int) Direction.Right] = Physics.Raycast(transform.position + DirectionVector[(int)Direction.Down] * 0.01f, DirectionVector[(int)Direction.Right], out RaycastHit hit, stepSize + 0.1f * stepSize);
-            if(PlayerRayCastData[(int) Direction.Right]){_color = Color.red;}else{_color = Color.green;}
-            Debug.DrawRay(transform.position + DirectionVector[(int)Direction.Down] * 0.01f, transform.right * (stepSize + 0.1f * stepSize), _color);
+            PlayerRayCastData[(int) Direction.Right] = Physics.Raycast(transform.position + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Right], out hit, StepSize + 0.1f * StepSize);
+            if(PlayerRayCastData[(int) Direction.Right]){color = Color.red;}else{color = Color.green;}
+            Debug.DrawRay(transform.position + Helper.DirectionVector[(int)Direction.Down] * 0.01f, transform.right * (StepSize + 0.1f * StepSize), color);
 
             //left raycast data
-            PlayerRayCastData[(int) Direction.Left] = Physics.Raycast(transform.position + DirectionVector[(int)Direction.Down] * 0.01f, DirectionVector[(int)Direction.Left], out hit, stepSize + 0.1f * stepSize);
-            if(PlayerRayCastData[(int) Direction.Left]){_color = Color.red;}else{_color = Color.green;}
-            Debug.DrawRay(transform.position + DirectionVector[(int)Direction.Down] * 0.01f, -transform.right * (stepSize + 0.1f * stepSize), _color);
+            PlayerRayCastData[(int) Direction.Left] = Physics.Raycast(transform.position + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Left], out hit, StepSize + 0.1f * StepSize);
+            if(PlayerRayCastData[(int) Direction.Left]){color = Color.red;}else{color = Color.green;}
+            Debug.DrawRay(transform.position + Helper.DirectionVector[(int)Direction.Down] * 0.01f, -transform.right * (StepSize + 0.1f * StepSize), color);
             
             //forward raycast data
-            PlayerRayCastData[(int) Direction.Forward] = Physics.Raycast(transform.position + DirectionVector[(int)Direction.Down] * 0.01f, DirectionVector[(int)Direction.Forward], out hit, stepSize + 0.1f * stepSize);
-            if(PlayerRayCastData[(int) Direction.Forward]){_color = Color.red;}else{_color = Color.green;}
-            Debug.DrawRay(transform.position + DirectionVector[(int)Direction.Down] * 0.01f, transform.forward * (stepSize + 0.1f * stepSize), _color);
+            PlayerRayCastData[(int) Direction.Forward] = Physics.Raycast(transform.position + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Forward], out hit, StepSize + 0.1f * StepSize);
+            if(PlayerRayCastData[(int) Direction.Forward]){color = Color.red;}else{color = Color.green;}
+            Debug.DrawRay(transform.position + Helper.DirectionVector[(int)Direction.Down] * 0.01f, transform.forward * (StepSize + 0.1f * StepSize), color);
             
             //back raycast data
-            PlayerRayCastData[(int) Direction.Back] = Physics.Raycast(transform.position + DirectionVector[(int)Direction.Down] * 0.01f, DirectionVector[(int)Direction.Back], out hit, stepSize + 0.1f * stepSize);
-            if(PlayerRayCastData[(int) Direction.Back]){_color = Color.red;}else{_color = Color.green;}
-            Debug.DrawRay(transform.position + DirectionVector[(int)Direction.Down] * 0.01f, -transform.forward * (stepSize + 0.1f * stepSize) , _color);
+            PlayerRayCastData[(int) Direction.Back] = Physics.Raycast(transform.position + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Back], out hit, StepSize + 0.1f * StepSize);
+            if(PlayerRayCastData[(int) Direction.Back]){color = Color.red;}else{color = Color.green;}
+            Debug.DrawRay(transform.position + Helper.DirectionVector[(int)Direction.Down] * 0.01f, -transform.forward * (StepSize + 0.1f * StepSize) , color);
             
             
             //checking if the there is a new path in the perpendicular dirction of travel
-            switch (movementDirection)
+            switch (_movementDirection)
             {
                 case Direction.Right:
                     if (PlayerRayCastData[(int) Direction.Right] ||
                         !PlayerRayCastData[(int) Direction.Forward] || !PlayerRayCastData[(int) Direction.Back])
                     {
-                        atJunction = true;
+                        _atJunction = true;
                     }
                     break;
                 case Direction.Left:
                     if (PlayerRayCastData[(int) Direction.Left] ||
                         !PlayerRayCastData[(int) Direction.Forward] || !PlayerRayCastData[(int) Direction.Back])
                     {
-                        atJunction = true;
+                        _atJunction = true;
                     }
                     break;
                 case Direction.Forward:
                     if (PlayerRayCastData[(int) Direction.Forward] ||
                         !PlayerRayCastData[(int) Direction.Right] || !PlayerRayCastData[(int) Direction.Left])
                     {
-                        atJunction = true;
+                        _atJunction = true;
                     }break;
                 case Direction.Back:
                     if (PlayerRayCastData[(int) Direction.Back] ||
                         !PlayerRayCastData[(int) Direction.Right] || !PlayerRayCastData[(int) Direction.Left])
                     {
-                        atJunction = true;
+                        _atJunction = true;
                     }
                     break;
                 case Direction.None:
-                    atJunction = true;
+                    _atJunction = true;
                     break;
             }
         }
-        
-        public void Move()
+
+        private void Move()
         {
             float deltaAngle = Speed * Time.deltaTime;
-            switch (movementDirection)
+            switch (_movementDirection)
             {
                 case Direction.Right:
-                    PlayerCube.RotateAround(RightAnchor.position, -transform.forward * stepSize, deltaAngle);
+                    PlayerCube.RotateAround(RightAnchor.position, -transform.forward * StepSize, deltaAngle);
                     break;
                 case Direction.Left:
-                    PlayerCube.RotateAround(LeftAnchor.position, transform.forward * stepSize, deltaAngle);
+                    PlayerCube.RotateAround(LeftAnchor.position, transform.forward * StepSize, deltaAngle);
                     break;
                 case Direction.Forward:
-                    PlayerCube.RotateAround(ForwardAnchor.position, transform.right * stepSize, deltaAngle);
+                    PlayerCube.RotateAround(ForwardAnchor.position, transform.right * StepSize, deltaAngle);
                     break;
                 case Direction.Back:
-                    PlayerCube.RotateAround(BackAnchor.position, -transform.right * stepSize, deltaAngle);
+                    PlayerCube.RotateAround(BackAnchor.position, -transform.right * StepSize, deltaAngle);
                     break;
             }
 
-            tempAngleRotated += deltaAngle;
-            angleRotated += deltaAngle;
+            _tempAngleRotated += deltaAngle;
             
-            if (tempAngleRotated >= 90)
+            if (_tempAngleRotated >= 90)
             {
 
                 if (!CheckGroundUnderneath())
                 {
-                    PlayerCube.localEulerAngles = DirectionRotation[(int) movementDirection] * 90;
-                    PlayerCube.localPosition = DirectionVector[(int) movementDirection] * stepSize;
+                    PlayerCube.localEulerAngles = Helper.DirectionRotation[(int) _movementDirection] * 90;
+                    PlayerCube.localPosition = Helper.DirectionVector[(int) _movementDirection] * StepSize;
 
-                    switch (movementDirection)
+                    switch (_movementDirection)
                     {
                         case Direction.Right:
                             ParentMaze.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, Speed);
@@ -262,59 +245,58 @@ namespace Game.Player
                             break;
                     }
                     
-                    atVerticalDownEdge = true;
+                    _atVerticalDownEdge = true;
                 }
                 else
                 {                   
-                    if (atVerticalDownEdge)
+                    if (_atVerticalDownEdge)
                     {
-                        transform.position += DirectionVector[(int) Direction.Up] * stepSize;
-                        transform.eulerAngles += DirectionRotation[(int) movementDirection] * 90;
-                        atVerticalDownEdge = false;
+                        transform.position += Helper.DirectionVector[(int) Direction.Up] * StepSize;
+                        transform.eulerAngles += Helper.DirectionRotation[(int) _movementDirection] * 90;
+                        _atVerticalDownEdge = false;
                     }
 
-                    transform.position += DirectionVector[(int) movementDirection] * stepSize;
+                    transform.position += Helper.DirectionVector[(int) _movementDirection] * StepSize;
                     transform.eulerAngles = Vector3.zero;
                     
-                    if (snapCount == 2)
+                    if (_snapCount == 2)
                     {
-                        movementSnapped_full = true;
-                        snapCount = 0;
+                        _movementSnappedFull = true;
+                        _snapCount = 0;
                     }
                     else
                     {
-                        snapCount++;
+                        _snapCount++;
                     }
 
                    
                     PlayerCube.localPosition = Vector3.zero;
                     PlayerCube.localEulerAngles = Vector3.zero;
 
-                    movementSnapped_half = true;
-                    angleRotated = 0;
+                    _movementSnappedHalf = true;
                 }
                 
-                tempAngleRotated = 0;
+                _tempAngleRotated = 0;
             }
             else
             {
-                movementSnapped_half = false;
-                movementSnapped_full = false;
+                _movementSnappedHalf = false;
+                _movementSnappedFull = false;
             }
 
-            if (movementSnapped_half && !movementSnapped_full)
+            if (_movementSnappedHalf && !_movementSnappedFull)
             {
                 if (CheckWallInfront())
                 {
-                    atVerticalUpEdge = true;
-                    snapCount++;
+                    _atVerticalUpEdge = true;
+                    _snapCount++;
                     
-                    transform.eulerAngles -= DirectionRotation[(int) movementDirection] * 90;
+                    transform.eulerAngles -= Helper.DirectionRotation[(int) _movementDirection] * 90;
                     
                     PlayerCube.localPosition = Vector3.zero;
                     PlayerCube.localEulerAngles = Vector3.zero;
                     
-                    switch (movementDirection)
+                    switch (_movementDirection)
                     {
                         case Direction.Right:
                             ParentMaze.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, Speed);
@@ -334,24 +316,26 @@ namespace Game.Player
             
         }
 
-        public bool CheckWallInfront()
+        private bool CheckWallInfront()
         {
-            Color _color;
-
-            PlayerRayCastData[(int)movementDirection] = Physics.Raycast(PlayerCube.position + DirectionVector[(int)Direction.Down] * 0.01f, DirectionVector[(int)movementDirection], out RaycastHit hit, stepSize + 0.1f * stepSize);
-            if (PlayerRayCastData[(int) movementDirection]){_color = new Color(1f, 0.8f, 0.36f);}else{_color = new Color(0.6f, 0.84f, 1f);}
-            Debug.DrawRay(PlayerCube.position + DirectionVector[(int)Direction.Down] * 0.01f, -DirectionVector[(int)movementDirection] * (stepSize + 0.1f * stepSize), _color);
+            Color color;
+            RaycastHit hit;
             
-            return PlayerRayCastData[(int)movementDirection];
+            PlayerRayCastData[(int)_movementDirection] = Physics.Raycast(PlayerCube.position + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)_movementDirection], out hit, StepSize + 0.1f * StepSize);
+            if (PlayerRayCastData[(int) _movementDirection]){color = new Color(1f, 0.8f, 0.36f);}else{color = new Color(0.6f, 0.84f, 1f);}
+            Debug.DrawRay(PlayerCube.position + Helper.DirectionVector[(int)Direction.Down] * 0.01f, -Helper.DirectionVector[(int)_movementDirection] * (StepSize + 0.1f * StepSize), color);
+            
+            return PlayerRayCastData[(int)_movementDirection];
         }
 
-        public bool CheckGroundUnderneath()
+        private bool CheckGroundUnderneath()
         {
-            Color _color;
-
-            PlayerRayCastData[(int)Direction.Down] = Physics.Raycast(PlayerCube.position + DirectionVector[(int)Direction.Down] * 0.01f, DirectionVector[(int)Direction.Down], out RaycastHit hit, stepSize + 0.1f * stepSize);
-            if (PlayerRayCastData[(int) Direction.Down]){_color = Color.red;}else{_color = Color.green;}
-            Debug.DrawRay(PlayerCube.position + DirectionVector[(int)Direction.Down] * 0.01f, DirectionVector[(int)Direction.Up] * (stepSize + 0.1f * stepSize), _color);
+            Color color;
+            RaycastHit hit;
+            
+            PlayerRayCastData[(int)Direction.Down] = Physics.Raycast(PlayerCube.position + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Down], out hit, StepSize + 0.1f * StepSize);
+            if (PlayerRayCastData[(int) Direction.Down]){color = Color.red;}else{color = Color.green;}
+            Debug.DrawRay(PlayerCube.position + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Up] * (StepSize + 0.1f * StepSize), color);
         
             
             return PlayerRayCastData[(int)Direction.Down];
@@ -359,8 +343,8 @@ namespace Game.Player
 
         public void SetParentMaze(GameObject Maze)
         {
-            this.ParentMaze = Maze;
-            transform.parent= this.ParentMaze.transform;
+            ParentMaze = Maze;
+            transform.parent = ParentMaze.transform;
         }
     }
 }

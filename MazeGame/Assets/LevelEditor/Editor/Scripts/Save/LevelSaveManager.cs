@@ -34,7 +34,7 @@ namespace LevelEditor.Save
                 //adding all the item data
                 for(int _itemType = 0; _itemType < allItems.Count; _itemType++)
                 {
-                    //TODO call convertToSerializable() for each item
+                    //TODO call ConvertToSerializable() for each item
                 }
 
                 //adding all the node data 
@@ -77,7 +77,7 @@ namespace LevelEditor.Save
         public List<MazeCubeData> c;
 
         //item data
-        public List<Game.Items.Portal.SerializablePortalData> p;    //the list of all portals on the maze
+        public List<Game.Items.Interactable.Portal.SerializableItem> p;    //the list of all portals on the maze
     }
 
     [System.Serializable]

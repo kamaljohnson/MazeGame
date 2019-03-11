@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace LevelEditor.Items.Portal
+namespace LevelEditor.Items.Interactable.Portal
 {
-    [CustomEditor(typeof(Game.Items.Portal.Portal))]
-    public class PortalEditorScript : Editor, Item, ItemButtonInteraction
+    /*Scene editor script for editing portals
+     * 
+     */
+    [CustomEditor(typeof(Game.Items.Interactable.Portal.Portal))]
+    public class PortalEditorScript : Editor, ITem, ItemButtonInteraction
     {
         public bool ItemSet;    //is the item set with values
 
         public void OnEnable()
         {
-            Game.Items.Portal.Portal portal = (Game.Items.Portal.Portal)target;
+            Game.Items.Interactable.Portal.Portal portal = (Game.Items.Interactable.Portal.Portal)target;
         }
 
         public void OnSceneGUI()
@@ -40,7 +43,7 @@ namespace LevelEditor.Items.Portal
 
         }
 
-        public bool CheckStatus()
+        public bool CheckValuesSet()
         {
             return ItemSet;
         }

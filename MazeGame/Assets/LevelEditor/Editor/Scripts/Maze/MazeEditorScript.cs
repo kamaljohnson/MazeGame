@@ -38,7 +38,7 @@ namespace LevelEditor.Maze
 
             for (int i = 0; i < maze.transform.childCount; i++)
             {
-                switch (LevelEditor.editorMode)
+                switch (LevelEditor.EditorMode)
                 {
                     case Modes.MAZE_BODY:
                         Tools.current = Tool.None;
@@ -76,7 +76,7 @@ namespace LevelEditor.Maze
                     Handles.zTest = UnityEngine.Rendering.CompareFunction.LessEqual;
                     if (Handles.Button(mazeCube.transform.position + (offset * 0.55f), Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
                     {
-                        GameObject obj = Instantiate((GameObject)LevelEditor.currentMazeCubePrefab, mazeCube.transform.position + offset, mazeCube.transform.localRotation, mazeCube.transform.parent);
+                        GameObject obj = Instantiate((GameObject)LevelEditor.CurrentMazeCubePrefab, mazeCube.transform.position + offset, mazeCube.transform.localRotation, mazeCube.transform.parent);
 
                         Selection.SetActiveObjectWithContext(obj, obj);
                         SceneView.lastActiveSceneView.FrameSelected();
@@ -138,7 +138,7 @@ namespace LevelEditor.Maze
 
                 if (Handles.Button(node.transform.position, Quaternion.Euler(node.transform.eulerAngles), 0.15f, 0.15f, Handles.SphereCap))
                 {
-                    if (!LevelEditor.inactiveNodesEditing)
+                    if (!LevelEditor.InactiveNodesEditing)
                     {
                         endNode = node;
 
@@ -195,13 +195,13 @@ namespace LevelEditor.Maze
                     Handles.zTest = UnityEngine.Rendering.CompareFunction.LessEqual;
                     if (Handles.Button(mazeCube.transform.position + (offset * 0.55f), Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
                     {
-                        GameObject obj = Instantiate((GameObject)LevelEditor.currentItemPrefab, mazeCube.transform.position + offset, mazeCube.transform.localRotation, mazeCube.transform);
+                        GameObject obj = Instantiate((GameObject)LevelEditor.CurrentItemPrefab, mazeCube.transform.position + offset, mazeCube.transform.localRotation, mazeCube.transform);
                         obj.transform.up = offset;
                         Selection.SetActiveObjectWithContext(obj, obj);
                         SceneView.lastActiveSceneView.FrameSelected();
                         Selection.SetActiveObjectWithContext(LevelEditor.CurrentMaze, LevelEditor.CurrentMaze);
 
-                        LevelEditor.AllItems[(int)LevelEditor.currentItemType].Add(obj);
+                        LevelEditor.AllItems[(int)LevelEditor.CurrentItemType].Add(obj);
                     }
                 }
             }
@@ -226,7 +226,7 @@ namespace LevelEditor.Maze
             Vector3 newTargetPosition = Handles.PositionHandle(maze.transform.position, maze.transform.rotation);
             if (EditorGUI.EndChangeCheck())
             {
-                if (Vector3.Distance(newTargetPosition, maze.transform.position) == 1)
+                if (Vector3.Distance(newTargetPosition, maze.transform.position) == 0.5f)
                 {
                     for (int i = 0; i < maze.transform.childCount; i++)
                     {

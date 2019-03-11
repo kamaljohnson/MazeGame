@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Game.Items.Portal
+namespace Game.Items.Interactable.Portal
 {
     public class Portal : MonoBehaviour, Interactables
     {
-        public bool IsCheckpoint;               //is the portal acting as a checkpoint
+        public bool IsCheckpoint;                //is the portal acting as a checkpoint
         private string PortalName;               //name format: "levelID:mazeID:portalID"
         private string DestinationPortalName;    //name format: "levelID:mazeID:portalID"
 
@@ -24,7 +24,7 @@ namespace Game.Items.Portal
     }
 
     [SerializeField]
-    public class SerializablePortalData
+    public class SerializableItem
     {
         public int c;   //IsCheckpoint
 
@@ -32,7 +32,7 @@ namespace Game.Items.Portal
         public int m;   //MazeID
         public int l;   //LevelID
 
-        public void ConvertToSerializableData(Portal portal)
+        public void ConvertToSerializable(Portal portal)
         {
             c = (portal.IsCheckpoint ? 1 : 0);
 
