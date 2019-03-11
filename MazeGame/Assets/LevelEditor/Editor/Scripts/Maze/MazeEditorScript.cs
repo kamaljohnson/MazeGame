@@ -10,25 +10,32 @@ namespace LevelEditor.Maze
     [CustomEditor(typeof(Maze_e))]
     public class MazeEditorScript : Editor
     {
-        public Maze_e maze;
+        public Maze_e Maze;
 
-        public static Game.Maze.Node startNode;
-        public static Game.Maze.Node endNode;
+        public static Game.Maze.Node StartNode;
+        public static Game.Maze.Node EndNode;
 
-        private bool pathCreationStarted = false;
+        private bool _pathCreationStarted = false;
 
         public void OnEnable()
         {
-            maze = (Maze_e)target;
+            Maze = (Maze_e)target;
+            LevelEditor.CurrentMaze = Maze.gameObject;
             if (LevelEditor.Mazes != null)
             {
-                LevelEditor.SetMazeParent();
+                Selection.SetActiveObjectWithContext(Maze, Maze);
+                SceneView.lastActiveSceneView.FrameSelected();
+                if (Maze.transform.parent != LevelEditor.Mazes)
+                {
+                    LevelEditor.SetMazeParent();
+                }
+                
                 LevelEditor.ReCalculateAllMazeCubes();
                 LevelEditor.ReCalculateNodes();
             }
 
-            startNode = null;
-            endNode = null;
+            StartNode = null;
+            EndNode = null;
 
         }
 
@@ -36,21 +43,21 @@ namespace LevelEditor.Maze
         {
             //itrate through all the children of type mazecube and display the handle button as needed
 
-            for (int i = 0; i < maze.transform.childCount; i++)
+            for (int i = 0; i < Maze.transform.childCount; i++)
             {
                 switch (LevelEditor.EditorMode)
                 {
                     case Modes.MAZE_BODY:
                         Tools.current = Tool.None;
-                        CreateBlockCreationHandle(maze.transform.GetChild(i).gameObject);
+                        CreateBlockCreationHandle(Maze.transform.GetChild(i).gameObject);
                         break;
                     case Modes.MAZE_LAYOUT:
                         Tools.current = Tool.None;
-                        CreateMazeStructureHandle(maze.transform.GetChild(i).gameObject);
+                        CreateMazeStructureHandle(Maze.transform.GetChild(i).gameObject);
                         break;
                     case Modes.ITEMS:
                         Tools.current = Tool.None;
-                        CreateItemCreationHandle(maze.transform.GetChild(i).gameObject);
+                        CreateItemCreationHandle(Maze.transform.GetChild(i).gameObject);
                         break;
                     case Modes.MAZE_POS:
                         Tools.current = Tool.None;
@@ -64,7 +71,7 @@ namespace LevelEditor.Maze
             }
         }
 
-        public void CreateBlockCreationHandle(GameObject mazeCube)
+        private void CreateBlockCreationHandle(GameObject mazeCube)
         {
             RaycastHit hit;
             foreach (var offset in Helper.Vector3Directions)
@@ -88,40 +95,41 @@ namespace LevelEditor.Maze
             }
         }
 
-        public void CreateMazeStructureHandle(GameObject mazeCube)
+        private void CreateMazeStructureHandle(GameObject mazeCube)
         {
             RaycastHit hit;
             for (int i = 0; i < mazeCube.transform.childCount; i++)
             {
                 Game.Maze.Node node = mazeCube.transform.GetChild(i).gameObject.GetComponent<Game.Maze.Node>();
-
+                if (node == null)
+                    break;
+                
                 Handles.zTest = UnityEngine.Rendering.CompareFunction.Less;
-
 
                 Handles.color = Color.black;
 
-                if (node.right_path)
+                if (node.RightPath)
                 {
                     Handles.DrawAAPolyLine(Texture2D.whiteTexture, 10, node.transform.position + node.transform.forward * 0.01f,
                         node.transform.position + node.transform.forward * 0.01f + node.transform.right * 0.52f);
                 }
-                if (node.left_path)
+                if (node.LeftPath)
                 {
                     Handles.DrawAAPolyLine(Texture2D.whiteTexture, 10, node.transform.position + node.transform.forward * 0.01f,
                         node.transform.position + node.transform.forward * 0.01f - node.transform.right * 0.52f);
                 }
-                if (node.up_path)
+                if (node.UpPath)
                 {
                     Handles.DrawAAPolyLine(Texture2D.whiteTexture, 10, node.transform.position + node.transform.forward * 0.01f,
                         node.transform.position + node.transform.forward * 0.01f + node.transform.up * 0.52f);
                 }
-                if (node.down_path)
+                if (node.DownPath)
                 {
                     Handles.DrawAAPolyLine(Texture2D.whiteTexture, 10, node.transform.position + node.transform.forward * 0.01f,
                         node.transform.position + node.transform.forward * 0.01f - node.transform.up * 0.52f);
                 }
 
-                if (startNode != node)
+                if (StartNode != node)
                 {
                     Handles.color = new Color(0.99f, 0.99f, 1f);
                 }
@@ -140,13 +148,13 @@ namespace LevelEditor.Maze
                 {
                     if (!LevelEditor.InactiveNodesEditing)
                     {
-                        endNode = node;
+                        EndNode = node;
 
 
-                        if (startNode != null)
+                        if (StartNode != null)
                         {
-                            startNode.CalculatePathDirection(endNode);
-                            endNode.CalculatePathDirection(startNode);
+                            StartNode.CalculatePathDirection(EndNode);
+                            EndNode.CalculatePathDirection(StartNode);
                         }
                         else
                         {
@@ -154,15 +162,15 @@ namespace LevelEditor.Maze
                             LevelEditor.ReCalculateAllMazeCubes();
                         }
 
-                        if (startNode == endNode)
+                        if (StartNode == EndNode)
                         {
-                            startNode = null;
-                            endNode = null;
+                            StartNode = null;
+                            EndNode = null;
                         }
                         else
                         {
-                            endNode = null;
-                            startNode = node;
+                            EndNode = null;
+                            StartNode = node;
                         }
 
                     }
@@ -176,14 +184,14 @@ namespace LevelEditor.Maze
                         else
                         {
                             node.inactive = false;
-                            startNode = node;
+                            StartNode = node;
                         }
                     }
                 }
             }
         }
 
-        public void CreateItemCreationHandle(GameObject mazeCube)
+        private void CreateItemCreationHandle(GameObject mazeCube)
         {
             RaycastHit hit;
             foreach (var offset in Helper.Vector3Directions)
@@ -197,9 +205,9 @@ namespace LevelEditor.Maze
                     {
                         GameObject obj = Instantiate((GameObject)LevelEditor.CurrentItemPrefab, mazeCube.transform.position + offset, mazeCube.transform.localRotation, mazeCube.transform);
                         obj.transform.up = offset;
+                        obj.GetComponent<Collider>().enabled = false;
                         Selection.SetActiveObjectWithContext(obj, obj);
                         SceneView.lastActiveSceneView.FrameSelected();
-                        Selection.SetActiveObjectWithContext(LevelEditor.CurrentMaze, LevelEditor.CurrentMaze);
 
                         LevelEditor.AllItems[(int)LevelEditor.CurrentItemType].Add(obj);
                     }
@@ -207,32 +215,32 @@ namespace LevelEditor.Maze
             }
         }
 
-        public void CreateSetMazePositionHandle()
+        private void CreateSetMazePositionHandle()
         {
             EditorGUI.BeginChangeCheck();
-            Vector3 newTargetPosition = Handles.PositionHandle(maze.transform.position, maze.transform.rotation);
+            Vector3 newTargetPosition = Handles.PositionHandle(Maze.transform.position, Maze.transform.rotation);
             if (EditorGUI.EndChangeCheck())
             {
-                if (Vector3.Distance(newTargetPosition, maze.transform.position) == 1)
+                if (Vector3.Distance(newTargetPosition, Maze.transform.position) == 1)
                 {
-                    maze.transform.position = newTargetPosition;
+                    Maze.transform.position = newTargetPosition;
                 }
             }
         }
 
-        public void CreateSetMazePivotHandle()
+        private void CreateSetMazePivotHandle()
         {
             EditorGUI.BeginChangeCheck();
-            Vector3 newTargetPosition = Handles.PositionHandle(maze.transform.position, maze.transform.rotation);
+            Vector3 newTargetPosition = Handles.PositionHandle(Maze.transform.position, Maze.transform.rotation);
             if (EditorGUI.EndChangeCheck())
             {
-                if (Vector3.Distance(newTargetPosition, maze.transform.position) == 0.5f)
+                if (Vector3.Distance(newTargetPosition, Maze.transform.position) == 0.5f)
                 {
-                    for (int i = 0; i < maze.transform.childCount; i++)
+                    for (int i = 0; i < Maze.transform.childCount; i++)
                     {
-                        maze.transform.GetChild(i).position -= newTargetPosition - maze.transform.position;
+                        Maze.transform.GetChild(i).position -= newTargetPosition - Maze.transform.position;
                     }
-                    maze.transform.position = newTargetPosition;
+                    Maze.transform.position = newTargetPosition;
                 }
             }
         }

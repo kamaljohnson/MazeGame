@@ -292,8 +292,8 @@ namespace LevelEditor
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Render", GUILayout.Height(30)))
             {
-                Maze.MazeEditorScript.endNode = null;
-                Maze.MazeEditorScript.startNode = null;
+                Maze.MazeEditorScript.EndNode = null;
+                Maze.MazeEditorScript.StartNode = null;
                 RenderPaths();
             }
             GUILayout.EndHorizontal();
@@ -436,14 +436,13 @@ namespace LevelEditor
 
         public static void SetMazeParent()
         {
-
             CurrentMaze = Selection.activeGameObject;
             if (CurrentMaze == null)
             {
                 GameObject tempMazesGameobject = new GameObject();
                 CurrentMaze = tempMazesGameobject;
             }
-            CurrentMaze.name = "Maze" + Mazes.childCount.ToString();
+            CurrentMaze.name = "Maze " + Mazes.childCount.ToString();
             
             CurrentMaze.transform.parent = Mazes;
 
@@ -537,7 +536,7 @@ namespace LevelEditor
                         GameObject node = new GameObject();
 
                         node.AddComponent<Game.Maze.Node>();
-                        node.GetComponent<Game.Maze.Node>().parentCube_pos = AllMazeCubes[i].transform.position;
+                        node.GetComponent<Game.Maze.Node>().ParentCubePos = AllMazeCubes[i].transform.position;
 
                         node.transform.parent = AllMazeCubes[i].transform;
                         node.transform.position = AllMazeCubes[i].transform.position + direction * 0.5f;
@@ -601,7 +600,8 @@ namespace LevelEditor
                 for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
                 {
                     Game.Maze.Node node = AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>();
-
+                    if (node == null)
+                        break;
                     node.CalculateRenderNodePath();
                 }
             }
@@ -622,7 +622,7 @@ namespace LevelEditor
                     float h_size = 1 / 6f;
 
                     //rendering walls
-                    if (node.r_render)
+                    if (node.Rrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab, node.transform.position + node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
@@ -630,7 +630,7 @@ namespace LevelEditor
                         tempobj.name = "r";
                         AllMazeWalls.Add(tempobj);
                     }
-                    if (node.l_render)
+                    if (node.Lrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab, node.transform.position - node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
@@ -638,7 +638,7 @@ namespace LevelEditor
                         tempobj.name = "l";
                         AllMazeWalls.Add(tempobj);
                     }
-                    if (node.u_render)
+                    if (node.Urender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab, node.transform.position + node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
@@ -646,7 +646,7 @@ namespace LevelEditor
                         tempobj.name = "u";
                         AllMazeWalls.Add(tempobj);
                     }
-                    if (node.d_render)
+                    if (node.Drender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab, node.transform.position - node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
@@ -656,7 +656,7 @@ namespace LevelEditor
                     }
 
                     //rendering corner
-                    if (node.ru_render)
+                    if (node.RUrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + (node.transform.right + node.transform.up) * offset +
@@ -665,7 +665,7 @@ namespace LevelEditor
                         tempobj.name = "ru";
                         AllMazeWalls.Add(tempobj);
                     }
-                    if (node.rd_render)
+                    if (node.RDrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + (node.transform.right - node.transform.up) * offset +
@@ -674,7 +674,7 @@ namespace LevelEditor
                         tempobj.name = "rd";
                         AllMazeWalls.Add(tempobj);
                     }
-                    if (node.lu_render)
+                    if (node.LUrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + (-node.transform.right + node.transform.up) * offset +
@@ -683,7 +683,7 @@ namespace LevelEditor
                         tempobj.name = "lu";
                         AllMazeWalls.Add(tempobj);
                     }
-                    if (node.ld_render)
+                    if (node.LDrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + (-node.transform.right - node.transform.up) * offset +
@@ -694,7 +694,7 @@ namespace LevelEditor
                     }
 
                     //rendering external edges
-                    if (node.er_render)
+                    if (node.ERrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab, node.transform.position + node.transform.right * external_offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
@@ -703,7 +703,7 @@ namespace LevelEditor
                         AllMazeWalls.Add(tempobj);
                     }
 
-                    if (node.el_render)
+                    if (node.ELrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position - node.transform.right * external_offset +
@@ -714,7 +714,7 @@ namespace LevelEditor
                         AllMazeWalls.Add(tempobj);
                     }
 
-                    if (node.eu_render)
+                    if (node.EUrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + node.transform.up * external_offset +
@@ -725,7 +725,7 @@ namespace LevelEditor
                         AllMazeWalls.Add(tempobj);
                     }
 
-                    if (node.ed_render)
+                    if (node.EDrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position - node.transform.up * external_offset +
@@ -736,7 +736,7 @@ namespace LevelEditor
                         AllMazeWalls.Add(tempobj);
                     }
 
-                    if (node.ir_render)
+                    if (node.IRrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + node.transform.right * internal_offset +
@@ -747,7 +747,7 @@ namespace LevelEditor
                         AllMazeWalls.Add(tempobj);
                     }
 
-                    if (node.il_render)
+                    if (node.ILrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position - node.transform.right * internal_offset +
@@ -758,7 +758,7 @@ namespace LevelEditor
                         AllMazeWalls.Add(tempobj);
                     }
 
-                    if (node.iu_render)
+                    if (node.IUrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position + node.transform.up * internal_offset +
@@ -769,7 +769,7 @@ namespace LevelEditor
                         AllMazeWalls.Add(tempobj);
                     }
 
-                    if (node.id_render)
+                    if (node.IDrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position - node.transform.up * internal_offset +
@@ -780,7 +780,7 @@ namespace LevelEditor
                         AllMazeWalls.Add(tempobj);
                     }
 
-                    if (node.eru_render)
+                    if (node.ERUrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
@@ -793,7 +793,7 @@ namespace LevelEditor
 
                     }
 
-                    if (node.erd_render)
+                    if (node.ERDrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
@@ -806,7 +806,7 @@ namespace LevelEditor
 
                     }
 
-                    if (node.elu_render)
+                    if (node.ELUrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
@@ -819,7 +819,7 @@ namespace LevelEditor
 
                     }
 
-                    if (node.eld_render)
+                    if (node.ELDrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
@@ -832,7 +832,7 @@ namespace LevelEditor
 
                     }
 
-                    if (node.eur_render)
+                    if (node.EURrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
@@ -845,7 +845,7 @@ namespace LevelEditor
 
                     }
 
-                    if (node.eul_render)
+                    if (node.EULrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
@@ -858,7 +858,7 @@ namespace LevelEditor
 
                     }
 
-                    if (node.edr_render)
+                    if (node.EDRrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
@@ -871,7 +871,7 @@ namespace LevelEditor
 
                     }
 
-                    if (node.edl_render)
+                    if (node.EDLrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
@@ -883,7 +883,7 @@ namespace LevelEditor
                         AllMazeWalls.Add(tempobj);
                     }
 
-                    if (node.eeru_render)
+                    if (node.EERUrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
@@ -895,7 +895,7 @@ namespace LevelEditor
                         AllMazeWalls.Add(tempobj);
                     }
 
-                    if (node.eerd_render)
+                    if (node.EERDrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
@@ -907,7 +907,7 @@ namespace LevelEditor
                         AllMazeWalls.Add(tempobj);
                     }
 
-                    if (node.eelu_render)
+                    if (node.EELUrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +
@@ -919,7 +919,7 @@ namespace LevelEditor
                         AllMazeWalls.Add(tempobj);
                     }
 
-                    if (node.eeld_render)
+                    if (node.EELDrender)
                     {
                         GameObject tempobj = (GameObject)Instantiate(CurrentMazeWallPrefab,
                             node.transform.position +

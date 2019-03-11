@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 namespace LevelEditor.Items.Interactable.Portal
 {
@@ -12,15 +13,25 @@ namespace LevelEditor.Items.Interactable.Portal
     public class PortalEditorScript : Editor, ITem, ItemButtonInteraction
     {
         public bool ItemSet;    //is the item set with values
-
+        private Game.Items.Interactable.Portal.Portal _portal;
+        
         public void OnEnable()
         {
-            Game.Items.Interactable.Portal.Portal portal = (Game.Items.Interactable.Portal.Portal)target;
+            _portal = (Game.Items.Interactable.Portal.Portal)target;
+            _portal.name = "Portal";
+            _portal.LevelId = int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]);
+            _portal.MazeId = int.Parse(Selection.activeGameObject.transform.parent.name.Split(' ')[1]);
+            _portal.PortalName = $"{_portal.LevelId.ToString()}:{_portal.MazeId.ToString()}:{_portal.PortalId.ToString()}";
+            if (_portal.DestinationPortalName == "")
+            {
+                _portal.DestinationPortalName = "levelID:mazeID:portalID";
+            }
+//            Selection.SetActiveObjectWithContext(LevelEditor.CurrentMaze, LevelEditor.CurrentMaze);
         }
 
         public void OnSceneGUI()
         {
-            Debug.Log("portal editing activated");
+            
         }
 
         public void Init()

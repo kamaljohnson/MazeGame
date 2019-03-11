@@ -5,13 +5,15 @@ namespace Game.Items.Interactable.Portal
     public class Portal : MonoBehaviour, Interactables
     {
         public bool IsCheckpoint;                //is the portal acting as a checkpoint
-        private string PortalName;               //name format: "levelID:mazeID:portalID"
-        private string DestinationPortalName;    //name format: "levelID:mazeID:portalID"
+        public string PortalName;               //name format: "levelID:mazeID:portalID"
+        public string DestinationPortalName;    //name format: "levelID:mazeID:portalID"
 
-        public int portalID;                   //0, 1, 2 ..etc [0 => level start location/portal]
-        public int mazeID;                     //0, 1, 2 ..etc [0 => initial maze]
-        public int levelID;                    //0, 1, 2 ..etc [level 1, level 2 ...]
+        [Tooltip("set this to 0 if start positoin")]
+        public int PortalId;                   //0, 1, 2 ..etc [0 => level start location/portal]
+        public int LevelId;
+        public int MazeId;
 
+        
         public void CheckpointSaveGameState()   //saves the entier state of the game for checkpoint reference
         {
 
@@ -34,11 +36,11 @@ namespace Game.Items.Interactable.Portal
 
         public void ConvertToSerializable(Portal portal)
         {
-            c = (portal.IsCheckpoint ? 1 : 0);
+            c = portal.IsCheckpoint ? 1 : 0;
 
-            p = portal.portalID;
-            m = portal.mazeID;
-            l = portal.levelID;
+            p = portal.PortalId;
+            m = portal.MazeId;
+            l = portal.LevelId;
         }
 
         public Portal ConvertToPortal()
@@ -46,9 +48,9 @@ namespace Game.Items.Interactable.Portal
             Portal portal = new Portal();
             portal.IsCheckpoint = (c == 1);
 
-            portal.portalID = p;
-            portal.mazeID = m;
-            portal.levelID = l;
+            portal.PortalId = p;
+            portal.MazeId = m;
+            portal.LevelId = l;
 
             return portal;
         }

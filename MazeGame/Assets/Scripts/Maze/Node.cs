@@ -5,145 +5,145 @@ namespace Game.Maze
 {
     public class Node : MonoBehaviour
     {
-        public Vector3 parentCube_pos;
-        public Vector3 nodeTransform_pos;
-        public Vector3 nodeTransform_rot;
+        public Vector3 ParentCubePos;
+        public Vector3 NodeTransformPos;
+        public Vector3 NodeTransformRot;
 
         public bool inactive;
 
         //path status
-        public bool right_path;
-        public bool left_path;
-        public bool up_path;
-        public bool down_path;
+        public bool RightPath;
+        public bool LeftPath;
+        public bool UpPath;
+        public bool DownPath;
 
         //neighbour hood node status
-        public Node right_node;
-        public Node left_node;
-        public Node up_node;
-        public Node down_node;
+        public Node RightNode;
+        public Node LeftNode;
+        public Node UpNode;
+        public Node DownNode;
 
         //rendering status
         //sides
-        public bool r_render;
-        public bool l_render;
-        public bool u_render;
-        public bool d_render;
+        public bool Rrender;
+        public bool Lrender;
+        public bool Urender;
+        public bool Drender;
         //corners
-        public bool ru_render;
-        public bool rd_render;
-        public bool lu_render;
-        public bool ld_render;
+        public bool RUrender;
+        public bool RDrender;
+        public bool LUrender;
+        public bool LDrender;
 
-        public bool er_render;
-        public bool el_render;
-        public bool eu_render;
-        public bool ed_render;
+        public bool ERrender;
+        public bool ELrender;
+        public bool EUrender;
+        public bool EDrender;
 
-        public bool ir_render;
-        public bool il_render;
-        public bool iu_render;
-        public bool id_render;
+        public bool IRrender;
+        public bool ILrender;
+        public bool IUrender;
+        public bool IDrender;
 
-        public bool eru_render;
-        public bool erd_render;
-        public bool elu_render;
-        public bool eld_render;
+        public bool ERUrender;
+        public bool ERDrender;
+        public bool ELUrender;
+        public bool ELDrender;
 
-        public bool eur_render;
-        public bool eul_render;
-        public bool edr_render;
-        public bool edl_render;
+        public bool EURrender;
+        public bool EULrender;
+        public bool EDRrender;
+        public bool EDLrender;
 
-        public bool eeru_render;
-        public bool eerd_render;
-        public bool eelu_render;
-        public bool eeld_render;
+        public bool EERUrender;
+        public bool EERDrender;
+        public bool EELUrender;
+        public bool EELDrender;
 
-        public void SetNodeFromNode(Node node, Vector3 parentCube_pos)
+        public void SetNodeFromNode(Node node, Vector3 parentCubePos)
         {
-            right_path = node.right_path;
-            left_path = node.left_path;
-            up_path = node.up_path;
-            down_path = node.down_path;
+            RightPath = node.RightPath;
+            LeftPath = node.LeftPath;
+            UpPath = node.UpPath;
+            DownPath = node.DownPath;
 
-            this.parentCube_pos = parentCube_pos;
-            nodeTransform_pos = transform.position;
-            nodeTransform_rot = transform.eulerAngles;
+            ParentCubePos = parentCubePos;
+            NodeTransformPos = transform.position;
+            NodeTransformRot = transform.eulerAngles;
         }
 
         public void Start()
         {
-            parentCube_pos = -transform.forward;
+            ParentCubePos = -transform.forward;
         }
 
         public void ReCalculateNeighbourInterations()
         {
-            right_path = (right_node != null);
-            left_path = (left_node != null);
-            up_path = (up_node != null);
-            down_path = (down_node != null);
+            RightPath = (RightNode != null);
+            LeftPath = (LeftNode != null);
+            UpPath = (UpNode != null);
+            DownPath = (DownNode != null);
         }
 
         public void CalculatePathDirection(Node other)
         {
 
             if (Vector3.Distance(other.transform.position, transform.position + transform.right) < 0.01f ||
-                Vector3.Distance(other.transform.position, parentCube_pos + transform.right * 0.5f) < 0.01f ||
+                Vector3.Distance(other.transform.position, ParentCubePos + transform.right * 0.5f) < 0.01f ||
                 Vector3.Distance(other.transform.position, transform.position + (transform.forward + transform.right) * .5f) < 0.01f)
             {
                 if (!other.inactive && !inactive)
                 {
-                    right_path = !right_path;
+                    RightPath = !RightPath;
                 }
                 else
                 {
-                    right_path = true;
+                    RightPath = true;
                 }
-                right_node = other;
+                RightNode = other;
             }
             if (Vector3.Distance(other.transform.position, transform.position - transform.right) < 0.01f ||
-                Vector3.Distance(other.transform.position, parentCube_pos - transform.right * 0.5f) < 0.01f ||
+                Vector3.Distance(other.transform.position, ParentCubePos - transform.right * 0.5f) < 0.01f ||
                 Vector3.Distance(other.transform.position, transform.position + (transform.forward - transform.right) * .5f) < 0.01f)
             {
 
                 if (!other.inactive && !inactive)
                 {
-                    left_path = !left_path;
+                    LeftPath = !LeftPath;
                 }
                 else
                 {
-                    left_path = true;
+                    LeftPath = true;
                 }
-                left_node = other;
+                LeftNode = other;
             }
             if (Vector3.Distance(other.transform.position, transform.position + transform.up) < 0.01f ||
-                Vector3.Distance(other.transform.position, parentCube_pos + transform.up * 0.5f) < 0.01f ||
+                Vector3.Distance(other.transform.position, ParentCubePos + transform.up * 0.5f) < 0.01f ||
                 Vector3.Distance(other.transform.position, transform.position + (transform.forward + transform.up) * .5f) < 0.01f)
             {
                 if (!other.inactive && !inactive)
                 {
-                    up_path = !up_path;
+                    UpPath = !UpPath;
                 }
                 else
                 {
-                    up_path = true;
+                    UpPath = true;
                 }
-                up_node = other;
+                UpNode = other;
             }
             if (Vector3.Distance(other.transform.position, transform.position - transform.up) < 0.01f ||
-                Vector3.Distance(other.transform.position, parentCube_pos - transform.up * 0.5f) < 0.01f ||
+                Vector3.Distance(other.transform.position, ParentCubePos - transform.up * 0.5f) < 0.01f ||
                 Vector3.Distance(other.transform.position, transform.position + (transform.forward - transform.up) * .5f) < 0.01f)
             {
                 if (!other.inactive && !inactive)
                 {
-                    down_path = !down_path;
+                    DownPath = !DownPath;
                 }
                 else
                 {
-                    down_path = true;
+                    DownPath = true;
                 }
-                down_node = other;
+                DownNode = other;
             }
         }
 
@@ -151,177 +151,177 @@ namespace Game.Maze
         {
             RaycastHit hit;
 
-            r_render = false;
-            l_render = false;
-            u_render = false;
-            d_render = false;
+            Rrender = false;
+            Lrender = false;
+            Urender = false;
+            Drender = false;
 
-            ru_render = false;
-            rd_render = false;
-            lu_render = false;
-            ld_render = false;
+            RUrender = false;
+            RDrender = false;
+            LUrender = false;
+            LDrender = false;
 
-            er_render = false;
-            el_render = false;
-            eu_render = false;
-            ed_render = false;
+            ERrender = false;
+            ELrender = false;
+            EUrender = false;
+            EDrender = false;
 
-            ir_render = false;
-            il_render = false;
-            iu_render = false;
-            id_render = false;
+            IRrender = false;
+            ILrender = false;
+            IUrender = false;
+            IDrender = false;
 
-            eru_render = false;
-            erd_render = false;
-            elu_render = false;
-            eld_render = false;
+            ERUrender = false;
+            ERDrender = false;
+            ELUrender = false;
+            ELDrender = false;
 
-            eur_render = false;
-            eul_render = false;
-            edr_render = false;
-            edl_render = false;
+            EURrender = false;
+            EULrender = false;
+            EDRrender = false;
+            EDLrender = false;
 
-            eeru_render = false;
-            eerd_render = false;
-            eelu_render = false;
-            eeld_render = false;
+            EERUrender = false;
+            EERDrender = false;
+            EELUrender = false;
+            EELDrender = false;
 
 
             if (!inactive)
             {
-                r_render = !right_path;
-                l_render = !left_path;
-                u_render = !up_path;
-                d_render = !down_path;
+                Rrender = !RightPath;
+                Lrender = !LeftPath;
+                Urender = !UpPath;
+                Drender = !DownPath;
 
-                rd_render = true;
-                ru_render = true;
-                ld_render = true;
-                lu_render = true;
+                RDrender = true;
+                RUrender = true;
+                LDrender = true;
+                LUrender = true;
             }
             else
             {
-                if (!Physics.Raycast(parentCube_pos, transform.right, out hit, 1))
+                if (!Physics.Raycast(ParentCubePos, transform.right, out hit, 1))
                 {
-                    if (r_render)
+                    if (Rrender)
                     {
-                        ru_render = true;
-                        rd_render = true;
-                        er_render = true;
+                        RUrender = true;
+                        RDrender = true;
+                        ERrender = true;
                     }
                 }
-                if (!Physics.Raycast(parentCube_pos, -transform.right, out hit, 1))
+                if (!Physics.Raycast(ParentCubePos, -transform.right, out hit, 1))
                 {
-                    if (l_render)
+                    if (Lrender)
                     {
-                        lu_render = true;
-                        ld_render = true;
-                        el_render = true;
+                        LUrender = true;
+                        LDrender = true;
+                        ELrender = true;
                     }
                 }
-                if (!Physics.Raycast(parentCube_pos, transform.up, out hit, 1))
+                if (!Physics.Raycast(ParentCubePos, transform.up, out hit, 1))
                 {
-                    if (u_render)
+                    if (Urender)
                     {
-                        ru_render = true;
-                        lu_render = true;
-                        eu_render = true;
+                        RUrender = true;
+                        LUrender = true;
+                        EUrender = true;
                     }
                 }
-                if (!Physics.Raycast(parentCube_pos, -transform.up, out hit, 1))
+                if (!Physics.Raycast(ParentCubePos, -transform.up, out hit, 1))
                 {
-                    if (d_render)
+                    if (Drender)
                     {
-                        rd_render = true;
-                        ld_render = true;
-                        ed_render = true;
+                        RDrender = true;
+                        LDrender = true;
+                        EDrender = true;
                     }
                 }
             }
 
-            if (!Physics.Raycast(parentCube_pos, transform.right * 0.6f, out hit, 0.5f))
+            if (!Physics.Raycast(ParentCubePos, transform.right * 0.6f, out hit, 0.5f))
             {
-                eru_render = true;
-                erd_render = true;
-                if (r_render)
+                ERUrender = true;
+                ERDrender = true;
+                if (Rrender)
                 {
-                    er_render = true;
+                    ERrender = true;
                 }
             }
             if (Physics.Raycast(transform.position + transform.forward * 0.1f, transform.right * 0.6f, out hit, 0.9f))
             {
-                if (r_render)
+                if (Rrender)
                 {
-                    ir_render = true;
+                    IRrender = true;
                 }
             }
 
-            if (!Physics.Raycast(parentCube_pos, -transform.right * 0.6f, out hit, 0.5f))
+            if (!Physics.Raycast(ParentCubePos, -transform.right * 0.6f, out hit, 0.5f))
             {
-                elu_render = true;
-                eld_render = true;
-                if (l_render)
+                ELUrender = true;
+                ELDrender = true;
+                if (Lrender)
                 {
-                    el_render = true;
+                    ELrender = true;
                 }
             }
             if (Physics.Raycast(transform.position + transform.forward * 0.1f, -transform.right * 0.6f, out hit, 0.9f))
             {
-                if (l_render)
+                if (Lrender)
                 {
-                    il_render = true;
+                    ILrender = true;
                 }
             }
 
-            if (!Physics.Raycast(parentCube_pos, transform.up * 0.6f, out hit, 0.5f))
+            if (!Physics.Raycast(ParentCubePos, transform.up * 0.6f, out hit, 0.5f))
             {
-                eur_render = true;
-                eul_render = true;
-                if (u_render)
+                EURrender = true;
+                EULrender = true;
+                if (Urender)
                 {
-                    eu_render = true;
+                    EUrender = true;
                 }
             }
             if (Physics.Raycast(transform.position + transform.forward * 0.1f, transform.up * 0.6f, out hit, 0.9f))
             {
-                if (u_render)
+                if (Urender)
                 {
-                    iu_render = true;
+                    IUrender = true;
                 }
             }
 
-            if (!Physics.Raycast(parentCube_pos, -transform.up * 0.6f, out hit, 0.5f))
+            if (!Physics.Raycast(ParentCubePos, -transform.up * 0.6f, out hit, 0.5f))
             {
-                edr_render = true;
-                edl_render = true;
-                if (d_render)
+                EDRrender = true;
+                EDLrender = true;
+                if (Drender)
                 {
-                    ed_render = true;
+                    EDrender = true;
                 }
             }
             if (Physics.Raycast(transform.position + transform.forward * 0.1f, -transform.up * 0.6f, out hit, 0.9f))
             {
-                if (d_render)
+                if (Drender)
                 {
-                    id_render = true;
+                    IDrender = true;
                 }
             }
 
-            if (eru_render && eur_render)
+            if (ERUrender && EURrender)
             {
-                eeru_render = true;
+                EERUrender = true;
             }
-            if (elu_render && eul_render)
+            if (ELUrender && EULrender)
             {
-                eelu_render = true;
+                EELUrender = true;
             }
-            if (erd_render && edr_render)
+            if (ERDrender && EDRrender)
             {
-                eerd_render = true;
+                EERDrender = true;
             }
-            if (eld_render && edl_render)
+            if (ELDrender && EDLrender)
             {
-                eeld_render = true;
+                EELDrender = true;
             }
         }
 
@@ -329,51 +329,51 @@ namespace Game.Maze
         {
             inactive = false;
 
-            right_path = false;
-            left_path = false;
-            up_path = false;
-            down_path = false;
+            RightPath = false;
+            LeftPath = false;
+            UpPath = false;
+            DownPath = false;
 
-            right_node = null;
-            left_node = null;
-            up_node = null;
-            down_node = null;
+            RightNode = null;
+            LeftNode = null;
+            UpNode = null;
+            DownNode = null;
 
 
-            r_render = false;
-            l_render = false;
-            u_render = false;
-            d_render = false;
+            Rrender = false;
+            Lrender = false;
+            Urender = false;
+            Drender = false;
 
-            ru_render = false;
-            rd_render = false;
-            lu_render = false;
-            ld_render = false;
+            RUrender = false;
+            RDrender = false;
+            LUrender = false;
+            LDrender = false;
 
-            er_render = false;
-            el_render = false;
-            eu_render = false;
-            ed_render = false;
+            ERrender = false;
+            ELrender = false;
+            EUrender = false;
+            EDrender = false;
 
-            ir_render = false;
-            il_render = false;
-            iu_render = false;
-            id_render = false;
+            IRrender = false;
+            ILrender = false;
+            IUrender = false;
+            IDrender = false;
 
-            eru_render = false;
-            erd_render = false;
-            elu_render = false;
-            eld_render = false;
+            ERUrender = false;
+            ERDrender = false;
+            ELUrender = false;
+            ELDrender = false;
 
-            eur_render = false;
-            eul_render = false;
-            edr_render = false;
-            edl_render = false;
+            EURrender = false;
+            EULrender = false;
+            EDRrender = false;
+            EDLrender = false;
 
-            eeru_render = false;
-            eerd_render = false;
-            eelu_render = false;
-            eeld_render = false;
+            EERUrender = false;
+            EERDrender = false;
+            EELUrender = false;
+            EELDrender = false;
         }
     }
 
@@ -403,10 +403,10 @@ namespace Game.Maze
             v = (int)(node.transform.eulerAngles.y);
             w = (int)(node.transform.eulerAngles.z);
 
-            r = node.right_path ? 1 : 0;
-            l = node.left_path ? 1 : 0;
-            f = node.up_path ? 1 : 0;
-            b = node.down_path ? 1 : 0;
+            r = node.RightPath ? 1 : 0;
+            l = node.LeftPath ? 1 : 0;
+            f = node.UpPath ? 1 : 0;
+            b = node.DownPath ? 1 : 0;
         }
 
         public Node GetNode()
@@ -415,12 +415,12 @@ namespace Game.Maze
 
             node.inactive = (i == 1);
 
-            node.nodeTransform_rot = new Vector3(u, v, w);
+            node.NodeTransformRot = new Vector3(u, v, w);
 
-            node.right_path = (r == 1);
-            node.left_path = (l == 1);
-            node.up_path = (f == 1);
-            node.down_path = (b == 1);
+            node.RightPath = (r == 1);
+            node.LeftPath = (l == 1);
+            node.UpPath = (f == 1);
+            node.DownPath = (b == 1);
 
             return node;
         }
