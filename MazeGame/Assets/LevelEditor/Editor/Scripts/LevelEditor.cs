@@ -433,7 +433,7 @@ namespace LevelEditor
             Selection.SetActiveObjectWithContext(Mazes, Mazes);
             SceneView.lastActiveSceneView.FrameSelected();
         }
-
+        
         public static void SetMazeParent()
         {
             CurrentMaze = Selection.activeGameObject;
@@ -445,6 +445,7 @@ namespace LevelEditor
             CurrentMaze.name = "Maze " + Mazes.childCount.ToString();
             
             CurrentMaze.transform.parent = Mazes;
+            CurrentMaze.transform.position = Vector3.zero;
 
             Selection.SetActiveObjectWithContext(CurrentMaze, CurrentMaze);
             SceneView.lastActiveSceneView.FrameSelected();

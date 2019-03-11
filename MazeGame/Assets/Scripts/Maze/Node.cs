@@ -87,10 +87,9 @@ namespace Game.Maze
 
         public void CalculatePathDirection(Node other)
         {
-
-            if (Vector3.Distance(other.transform.position, transform.position + transform.right) < 0.01f ||
-                Vector3.Distance(other.transform.position, ParentCubePos + transform.right * 0.5f) < 0.01f ||
-                Vector3.Distance(other.transform.position, transform.position + (transform.forward + transform.right) * .5f) < 0.01f)
+            if (Vector3.Distance(other.transform.position, transform.position + transform.right) < 0.1f ||
+                Vector3.Distance(other.transform.position, ParentCubePos + transform.right * 0.5f) < 0.1f ||
+                Vector3.Distance(other.transform.position, transform.position + (transform.forward + transform.right) * .5f) < 0.1f)
             {
                 if (!other.inactive && !inactive)
                 {
@@ -102,11 +101,10 @@ namespace Game.Maze
                 }
                 RightNode = other;
             }
-            if (Vector3.Distance(other.transform.position, transform.position - transform.right) < 0.01f ||
-                Vector3.Distance(other.transform.position, ParentCubePos - transform.right * 0.5f) < 0.01f ||
-                Vector3.Distance(other.transform.position, transform.position + (transform.forward - transform.right) * .5f) < 0.01f)
+            if (Vector3.Distance(other.transform.position, transform.position - transform.right) < 0.1f ||
+                Vector3.Distance(other.transform.position, ParentCubePos - transform.right * 0.5f) < 0.1f ||
+                Vector3.Distance(other.transform.position, transform.position + (transform.forward - transform.right) * .5f) < 0.1f)
             {
-
                 if (!other.inactive && !inactive)
                 {
                     LeftPath = !LeftPath;
@@ -117,9 +115,9 @@ namespace Game.Maze
                 }
                 LeftNode = other;
             }
-            if (Vector3.Distance(other.transform.position, transform.position + transform.up) < 0.01f ||
-                Vector3.Distance(other.transform.position, ParentCubePos + transform.up * 0.5f) < 0.01f ||
-                Vector3.Distance(other.transform.position, transform.position + (transform.forward + transform.up) * .5f) < 0.01f)
+            if (Vector3.Distance(other.transform.position, transform.position + transform.up) < 0.1f ||
+                Vector3.Distance(other.transform.position, ParentCubePos + transform.up * 0.5f) < 0.1f ||
+                Vector3.Distance(other.transform.position, transform.position + (transform.forward + transform.up) * .5f) < 0.1f)
             {
                 if (!other.inactive && !inactive)
                 {
@@ -131,9 +129,9 @@ namespace Game.Maze
                 }
                 UpNode = other;
             }
-            if (Vector3.Distance(other.transform.position, transform.position - transform.up) < 0.01f ||
-                Vector3.Distance(other.transform.position, ParentCubePos - transform.up * 0.5f) < 0.01f ||
-                Vector3.Distance(other.transform.position, transform.position + (transform.forward - transform.up) * .5f) < 0.01f)
+            if (Vector3.Distance(other.transform.position, transform.position - transform.up) < 0.1f ||
+                Vector3.Distance(other.transform.position, ParentCubePos - transform.up * 0.5f) < 0.1f ||
+                Vector3.Distance(other.transform.position, transform.position + (transform.forward - transform.up) * .5f) < 0.1f)
             {
                 if (!other.inactive && !inactive)
                 {

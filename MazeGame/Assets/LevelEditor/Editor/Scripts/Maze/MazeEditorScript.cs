@@ -21,6 +21,7 @@ namespace LevelEditor.Maze
         {
             Maze = (Maze_e)target;
             LevelEditor.CurrentMaze = Maze.gameObject;
+            LevelEditor.CurrentMaze.GetComponent<Maze.Maze_e>().ID = LevelEditor.CurrentMaze.name.Split(' ')[1];
             if (LevelEditor.Mazes != null)
             {
                 Selection.SetActiveObjectWithContext(Maze, Maze);
@@ -159,7 +160,7 @@ namespace LevelEditor.Maze
                         else
                         {
                             Debug.Log("new path started");
-                            LevelEditor.ReCalculateAllMazeCubes();
+                            //LevelEditor.ReCalculateAllMazeCubes();
                         }
 
                         if (StartNode == EndNode)
@@ -224,6 +225,18 @@ namespace LevelEditor.Maze
                 if (Vector3.Distance(newTargetPosition, Maze.transform.position) == 1)
                 {
                     Maze.transform.position = newTargetPosition;
+                    for (int i = 0; i < Maze.transform.childCount; i++)
+                    {
+                        Transform cube = Maze.transform.GetChild(i);
+                        for (int j = 0; j < cube.childCount; j++)
+                        {
+                            Transform node = cube.GetChild(j);
+                            if (node.GetComponent<Game.Maze.Node>() != null)
+                            {
+                                node.GetComponent<Game.Maze.Node>().ParentCubePos = cube.transform.position;
+                            }
+                        }
+                    }
                 }
             }
         }
