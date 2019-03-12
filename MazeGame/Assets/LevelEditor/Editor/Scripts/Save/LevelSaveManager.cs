@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,8 +10,8 @@ namespace LevelEditor.Save
     public class LevelSaveManager : Editor
     {
         public SaveState state;
-
         public void Save()
+
         {
             string Directory = Application.streamingAssetsPath + "/Levels/" + "level " + SceneManager.GetActiveScene().name.Split(' ')[1];
             state = new SaveState();
@@ -29,12 +30,30 @@ namespace LevelEditor.Save
                 MazeData maze_data = new MazeData();
                 maze_data.c = new List<MazeCubeData>();
 
-                List<List<GameObject>> allItems = LevelEditor.GetMazeItems();
+                List<List<GameObject>> allItems = LevelEditor.GetAllMazeItems();
                 
                 //adding all the item data
-                for(int _itemType = 0; _itemType < allItems.Count; _itemType++)
+                for(int itemType = 0; itemType < allItems.Count; itemType++)
                 {
-                    //TODO call ConvertToSerializable() for each item
+                    for (int itemIndex = 0; itemIndex < allItems[itemType].Count; itemIndex++)
+                    {
+                        //TODO call ConvertToSerializable() for each item
+                        switch ((ItemCategories)itemIndex)
+                        {
+                            case ItemCategories.Path:
+                                break;
+                            case ItemCategories.Interactable:
+                                break;
+                            case ItemCategories.Collectable:
+                                break;
+                            case ItemCategories.Enemie:
+                                break;
+                            case ItemCategories.Decoratable:
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+                    }
                 }
 
                 //adding all the node data 

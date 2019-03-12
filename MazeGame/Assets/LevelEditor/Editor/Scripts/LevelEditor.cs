@@ -954,7 +954,11 @@ namespace LevelEditor
             return surfaceMazeCubes;
         }
 
-        public static List<List<GameObject>> GetMazeItems()
+        /*
+         *returs a list of maze items whose values are properly set
+         * 
+         */
+        public static List<List<GameObject>> GetAllMazeItems()
         {
             ReCalculateAllItems();
 
