@@ -63,6 +63,7 @@ namespace LevelEditor.Items.Interactable.Portal
 
         public void RemoveItem()
         {
+            Debug.Log("removing the item");
             LevelEditor.AllItems[(int) ItemCategories.Interactable].Remove(_portal.gameObject);
             DestroyImmediate(_portal.gameObject);
         }

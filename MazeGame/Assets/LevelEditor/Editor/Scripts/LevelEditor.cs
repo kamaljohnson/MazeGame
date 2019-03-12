@@ -164,11 +164,8 @@ namespace LevelEditor
                             GUILayout.Toggle(false, buttonContent, GUI.skin.box, GUILayout.Height(20), GUILayout.Width(20));
                             if (GUILayout.Button("Edit", GUILayout.Height(20)))
                             {
-                                
-                            }
-                            if (GUILayout.Button("Remove", GUILayout.Height(20)))
-                            {
-                                AllItems[itemType][itemIndex].GetComponent<ITem>().RemoveItem();
+                                Selection.SetActiveObjectWithContext(AllItems[itemType][itemIndex], AllItems[itemType][itemIndex]);
+                                SceneView.lastActiveSceneView.FrameSelected();
                             }
                             GUILayout.EndHorizontal();
                         }

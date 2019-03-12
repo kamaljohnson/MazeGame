@@ -207,9 +207,6 @@ namespace LevelEditor.Maze
                         GameObject obj = Instantiate((GameObject)LevelEditor.CurrentItemPrefab, mazeCube.transform.position + offset, mazeCube.transform.localRotation, mazeCube.transform);
                         obj.transform.up = offset;
                         obj.GetComponent<Collider>().enabled = false;
-                        Selection.SetActiveObjectWithContext(obj, obj);
-                        SceneView.lastActiveSceneView.FrameSelected();
-
                         LevelEditor.AllItems[(int)LevelEditor.CurrentItemType].Add(obj);
                     }
                 }
