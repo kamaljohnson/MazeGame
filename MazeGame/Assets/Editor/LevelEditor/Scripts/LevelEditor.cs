@@ -958,20 +958,48 @@ namespace LevelEditor
          *returs a list of maze items whose values are properly set
          * 
          */
-        public static List<List<GameObject>> GetAllMazeItems()
+        public static void GetAllMazeItems(out List<List<GameObject>> allMazeItems)
         {
             ReCalculateAllItems();
-
-            List<List<GameObject>> allMazeItems = new List<List<GameObject>>();
+            allMazeItems = new List<List<GameObject>>();
             for (int itemType = 0; itemType < TypesOfItems.Count; itemType++)
             {
+                allMazeItems.Add(new List<GameObject>());
                 for (int i = 0; i < AllItems[itemType].Count; i++)
                 {
                     //TODO: check if the item is set
                     //TODO: add the item to allMazeItems
-                }                    
+                    switch ((ItemCategories)itemType)
+                    {
+                        case ItemCategories.Path:
+                            break;
+                        case ItemCategories.Interactable:
+                            Debug.Log(AllItems[itemType][i].name);
+                            switch (AllItems[itemType][i].name)
+                            {
+                                case "Portal":
+                                    Debug.Log("portal");
+                                    if (AllItems[itemType][i].GetComponent<Game.Items.Interactable.Portal.Portal>()
+                                        .ItemSet)
+                                    {
+                                        allMazeItems[itemType].Add(AllItems[itemType][i]);
+                                        Debug.Log("item added to list");
+                                    }
+                                    break;
+                                    
+                            }
+                            break;
+                        case ItemCategories.Collectable:
+                            break;
+                        case ItemCategories.Enemie:
+                            break;
+                        case ItemCategories.Decoratable:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                }
             }
-            return allMazeItems;
         }
     }
 

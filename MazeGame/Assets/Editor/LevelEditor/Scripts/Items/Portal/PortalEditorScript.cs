@@ -12,7 +12,6 @@ namespace LevelEditor.Items.Interactable.Portal
     [CustomEditor(typeof(Game.Items.Interactable.Portal.Portal))]
     public class PortalEditorScript : Editor, ITem, ItemButtonInteraction
     {
-        public bool ItemSet;    //is the item set with values
         private Game.Items.Interactable.Portal.Portal _portal;
         
         private void OnEnable()
@@ -49,6 +48,8 @@ namespace LevelEditor.Items.Interactable.Portal
             {
                 _portal.DestinationPortalName = "levelID:mazeID:portalID";
             }
+
+            _portal.ItemSet = true;
         }
 
         public void AddItem()
@@ -70,7 +71,7 @@ namespace LevelEditor.Items.Interactable.Portal
 
         public bool CheckValuesSet()
         {
-            return ItemSet;
+            return true;
         }
 
         public void AddButton()

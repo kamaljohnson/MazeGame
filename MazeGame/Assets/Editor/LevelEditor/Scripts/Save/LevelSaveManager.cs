@@ -9,15 +9,15 @@ namespace LevelEditor.Save
 {
     public class LevelSaveManager : Editor
     {
-        public SaveState state;
+        public SaveState State;
         public void Save()
 
         {
-            string Directory = Application.streamingAssetsPath + "/Levels/" + "level " + SceneManager.GetActiveScene().name.Split(' ')[1];
-            state = new SaveState();
+            var directory = Application.streamingAssetsPath + "/Levels/" + "level " + SceneManager.GetActiveScene().name.Split(' ')[1];
+            State = new SaveState();
 
             //getting the data of the current maze
-            state.m = new List<MazeData>();
+            State.m = new List<MazeData>();
 
             for (int i = 0; i < LevelEditor.Mazes.childCount; i++)
             {
@@ -26,23 +26,33 @@ namespace LevelEditor.Save
                 LevelEditor.ReCalculateNodes();
                 LevelEditor.RenderPaths();
 
-                List<GameObject> surfaceMazeCubes = LevelEditor.GetSurfaceMazeCubes();
-                MazeData maze_data = new MazeData();
-                maze_data.c = new List<MazeCubeData>();
-
-                List<List<GameObject>> allItems = LevelEditor.GetAllMazeItems();
+                var surfaceMazeCubes = LevelEditor.GetSurfaceMazeCubes();
+                var mazeData = new MazeData();
+                mazeData.c = new List<MazeCubeData>();
+                mazeData.p = new List<Game.Items.Interactable.Portal.SerializableItem>();
+                
+                List<List<GameObject>> allItems;
+                LevelEditor.GetAllMazeItems(out allItems);
                 
                 //adding all the item data
-                for(int itemType = 0; itemType < allItems.Count; itemType++)
+                for(var itemType = 0; itemType < allItems.Count; itemType++)
                 {
-                    for (int itemIndex = 0; itemIndex < allItems[itemType].Count; itemIndex++)
+                    for (var itemIndex = 0; itemIndex < allItems[itemType].Count; itemIndex++)
                     {
                         //TODO call ConvertToSerializable() for each item
-                        switch ((ItemCategories)itemIndex)
+                        switch ((ItemCategories)itemType)
                         {
                             case ItemCategories.Path:
                                 break;
                             case ItemCategories.Interactable:
+                                switch (allItems[itemType][itemIndex].name)
+                                {
+                                    case "Portal":
+                                        var serializedData = new Game.Items.Interactable.Portal.SerializableItem();
+                                        serializedData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Interactable.Portal.Portal>());
+                                        mazeData.p.Add(serializedData);
+                                        break;
+                                }
                                 break;
                             case ItemCategories.Collectable:
                                 break;
@@ -61,21 +71,21 @@ namespace LevelEditor.Save
                 {
                     MazeCubeData mcn = new MazeCubeData();
                     mcn.ConvertToSavable(surfaceMazeCubes[j]);
-                    maze_data.c.Add(mcn);
+                    mazeData.c.Add(mcn);
                 }
-                state.m.Add(maze_data);
+                State.m.Add(mazeData);
             }
 
             Debug.Log("SAVE REPORT");
-            for (int i = 0; i < state.m.Count; i++)
+            for (int i = 0; i < State.m.Count; i++)
             {
-                Debug.Log("MAZE " + (i + 1) + " : " + state.m[i].c.Count + " CUBES");
+                Debug.Log("MAZE " + (i + 1) + " : " + State.m[i].c.Count + " CUBES");
             }
 
             string jsonString;
-            jsonString = JsonUtility.ToJson(state);
+            jsonString = JsonUtility.ToJson(State);
             Debug.Log(jsonString);
-            File.WriteAllText(Directory, jsonString);
+            File.WriteAllText(directory, jsonString);
         }
     }
 
@@ -120,10 +130,11 @@ namespace LevelEditor.Save
             for (int j = 0; j < mace_cube.transform.childCount; j++)
             {
                 Game.Maze.SavableNode sn = new Game.Maze.SavableNode();
-
-                sn.ConvertToSavable(mace_cube.transform.GetChild(j).GetComponent<Game.Maze.Node>());
-
-                nl.Add(sn);
+                if (mace_cube.transform.GetChild(j).GetComponent<Game.Maze.Node>() != null)
+                {
+                    sn.ConvertToSavable(mace_cube.transform.GetChild(j).GetComponent<Game.Maze.Node>());
+                    nl.Add(sn);
+                }
             }
         }
     }

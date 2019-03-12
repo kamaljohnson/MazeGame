@@ -376,7 +376,7 @@ namespace Game.Maze
     }
 
 
-    [System.Serializable]
+    [Serializable]
     public class SavableNode
     {
         //inactivity
