@@ -2,7 +2,7 @@
 
 namespace Game.Items.Interactable.Portal
 {
-    public class Portal : MonoBehaviour, Interactables
+    public class Portal : MonoBehaviour, IInteractables, IItems
     {
         public bool IsCheckpoint;                //is the portal acting as a checkpoint
         public string PortalName;               //name format: "levelID:mazeID:portalID"
@@ -22,6 +22,11 @@ namespace Game.Items.Interactable.Portal
         public void GoToPortalDestination()     //teleports the player to the destination portal
         {
 
+        }
+
+        public ItemCategories GetItemType()
+        {
+            return ItemCategories.Interactable;
         }
     }
 

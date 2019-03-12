@@ -58,7 +58,7 @@ namespace LevelEditor
         #endregion
 
         public static Modes EditorMode;
-        public static bool InactiveNodesEditing = false;
+        public static bool InactiveNodeEditing;
 
         [MenuItem("Window/LevelEditor")]
         public static void ShowWindow()
@@ -142,22 +142,19 @@ namespace LevelEditor
                 GUILayout.EndHorizontal();
                 GUILayout.BeginVertical();
                 
-                for (int _itemType = 0; _itemType < Enum.GetNames(typeof(ItemCategories)).Length; _itemType++)
+                for (int itemType = 0; itemType < Enum.GetNames(typeof(ItemCategories)).Length; itemType++)
                 {
-                    GUIStyle toggleButtonStyleNormal;
-                    GUIStyle toggleButtonStyleToggled;
-
-                    toggleButtonStyleNormal = "Button";
-                    toggleButtonStyleToggled = new GUIStyle(toggleButtonStyleNormal);
+                    GUIStyle toggleButtonStyleNormal = "Button";
+                    var toggleButtonStyleToggled = new GUIStyle(toggleButtonStyleNormal);
                     toggleButtonStyleToggled.normal.background = toggleButtonStyleToggled.active.background;
 
-                    bool _isToggled = _itemType == (int)_currentItemCatgoryToggled;
+                    bool isToggled = itemType == (int)_currentItemCatgoryToggled;
                     GUILayout.BeginVertical();
-                    if (GUILayout.Button(Enum.GetName(typeof(ItemCategories), (ItemCategories)_itemType), _isToggled ? toggleButtonStyleToggled : toggleButtonStyleNormal, GUILayout.Height(25)))
+                    if (GUILayout.Button(Enum.GetName(typeof(ItemCategories), (ItemCategories)itemType), isToggled ? toggleButtonStyleToggled : toggleButtonStyleNormal, GUILayout.Height(25)))
                     {
-                        _currentItemCatgoryToggled = (ItemCategories)_itemType;
+                        _currentItemCatgoryToggled = (ItemCategories)itemType;
                     }
-                    if (_itemType == (int)_currentItemCatgoryToggled)
+                    if (itemType == (int)_currentItemCatgoryToggled)
                     {
                         for (int itemIndex = 0; itemIndex < AllItems[(int)_currentItemCatgoryToggled].Count; itemIndex++)
                         {
@@ -167,11 +164,11 @@ namespace LevelEditor
                             GUILayout.Toggle(false, buttonContent, GUI.skin.box, GUILayout.Height(20), GUILayout.Width(20));
                             if (GUILayout.Button("Edit", GUILayout.Height(20)))
                             {
-
+                                
                             }
                             if (GUILayout.Button("Remove", GUILayout.Height(20)))
                             {
-
+                                AllItems[itemType][itemIndex].GetComponent<ITem>().RemoveItem();
                             }
                             GUILayout.EndHorizontal();
                         }
@@ -242,62 +239,66 @@ namespace LevelEditor
                     SetMazeParent();
                 }
             }
-            GUILayout.EndVertical();
-            GUILayout.BeginVertical();
-            if (CurrentMaze != null)
+            else
             {
-                Modes _tempMode = (Modes)EditorGUILayout.EnumPopup("", EditorMode);
-                if(_tempMode != EditorMode)
+
+                GUILayout.EndVertical();
+                GUILayout.BeginVertical();
+                if (CurrentMaze != null)
                 {
-                    EditorMode = _tempMode;
-                    ReCalculateAllMazeCubes();
-                    ReCalculateNodes();
-                }
+                    Modes _tempMode = (Modes) EditorGUILayout.EnumPopup("", EditorMode);
+                    if (_tempMode != EditorMode)
+                    {
+                        EditorMode = _tempMode;
+                        ReCalculateAllMazeCubes();
+                        ReCalculateNodes();
+                    }
 
-                switch (EditorMode)
-                {
-                    case Modes.MAZE_BODY:
-                        break;
-                    case Modes.MAZE_LAYOUT:
+                    switch (EditorMode)
+                    {
+                        case Modes.MAZE_BODY:
+                            break;
+                        case Modes.MAZE_LAYOUT:
 
-                        InactiveNodesEditing = GUILayout.Toggle(InactiveNodesEditing, "set inactive nodes");
+                            InactiveNodeEditing = GUILayout.Toggle(InactiveNodeEditing, "set inactive nodes");
 
-                        if (GUILayout.Button("reset paths"))
-                        {
-                            if (!EditorUtility.DisplayDialog("Warning!!", "Resetting the maze layout will delete the current progress completely", "Cancel", "Reset"))
+                            if (GUILayout.Button("reset paths"))
                             {
-                                ResetPaths();
-                                ReCalculateNodes();
+                                if (!EditorUtility.DisplayDialog("Warning!!",
+                                    "Resetting the maze layout will delete the current progress completely", "Cancel",
+                                    "Reset"))
+                                {
+                                    ResetPaths();
+                                    ReCalculateNodes();
+                                }
                             }
-
-                        }
-                        break;
-                    case Modes.ITEMS:
-                        break;
-                    case Modes.MAZE_POS:
-
-                        break;
-                    default:
-                        break;
+                            break;
+                        case Modes.ITEMS:
+                            ReCalculateAllItems();
+                            break;
+                    }
                 }
-            }
-            GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Save", GUILayout.Height(30)))
-            {
-                Save.LevelSaveManager sm = CreateInstance<Save.LevelSaveManager>();
-                sm.Save();
-            }
-            GUILayout.EndHorizontal();
 
-            GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Render", GUILayout.Height(30)))
-            {
-                Maze.MazeEditorScript.EndNode = null;
-                Maze.MazeEditorScript.StartNode = null;
-                RenderPaths();
-            }
-            GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                if (GUILayout.Button("Save", GUILayout.Height(30)))
+                {
+                    Save.LevelSaveManager sm = CreateInstance<Save.LevelSaveManager>();
+                    sm.Save();
+                }
 
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                if (GUILayout.Button("Render", GUILayout.Height(30)))
+                {
+                    Maze.MazeEditorScript.EndNode = null;
+                    Maze.MazeEditorScript.StartNode = null;
+                    RenderPaths();
+                }
+
+                GUILayout.EndHorizontal();
+
+            }
             GUILayout.EndVertical();
             GUILayout.EndHorizontal();
         }
@@ -473,21 +474,24 @@ namespace LevelEditor
 
         public static void ReCalculateAllItems()
         {
-            var allMazeItems = new List<List<GameObject>>();
-            
-            for(var itemType = 0; itemType < AllItems.Count; itemType++)
+            AllItems = new List<List<GameObject>>();
+            for (int i = 0; i < Enum.GetNames(typeof(ItemCategories)).Length; i++)
             {
-                for(var itemIndex = 0; itemIndex < AllItems[itemType].Count; itemIndex++)
+                AllItems.Add(new List<GameObject>());
+            }
+            
+            for (int i = 0; i < CurrentMaze.transform.childCount; i++)
+            {
+                Transform cube = CurrentMaze.transform.GetChild(i);
+                for (int j = 0; j < cube.childCount; j++)
                 {
-                    allMazeItems.Add(null);
-                    if(AllItems[itemType][itemIndex] != null)
+                    Game.Items.IItems item = cube.GetChild(j).GetComponent<Game.Items.IItems>();
+                    if (item != null)    //i.e this is an item
                     {
-                        allMazeItems[itemType].Add(AllItems[itemType][itemIndex]);
+                        AllItems[(int)item.GetItemType()].Add(cube.GetChild(j).gameObject);
                     }
                 }
             }
-            AllItems = new List<List<GameObject>>();
-            AllItems = allMazeItems;
         }
 
         public static void ReCalculateAllMazeCubes()
@@ -611,7 +615,9 @@ namespace LevelEditor
                 for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
                 {
                     Game.Maze.Node node = AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>();
-
+                    if (node == null)
+                        break;
+                    
                     float offset = 1 / 2f - 1 / 12f;
                     float height_offset = 1 / 12f;
 

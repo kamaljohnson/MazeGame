@@ -147,7 +147,7 @@ namespace LevelEditor.Maze
 
                 if (Handles.Button(node.transform.position, Quaternion.Euler(node.transform.eulerAngles), 0.15f, 0.15f, Handles.SphereCap))
                 {
-                    if (!LevelEditor.InactiveNodesEditing)
+                    if (!LevelEditor.InactiveNodeEditing)
                     {
                         EndNode = node;
 
