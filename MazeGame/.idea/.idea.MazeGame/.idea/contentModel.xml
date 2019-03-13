@@ -10,8 +10,8 @@
           <e p="outline shader 1.shader" t="Include" />
           <e p="outline shader.shader" t="Include" />
         </e>
-        <e p="Editor" t="Include">
-          <e p="LevelEditor" t="Include">
+        <e p="LevelEditor" t="Include">
+          <e p="Editor" t="Include">
             <e p="Scripts" t="Include">
               <e p="Items" t="Include">
                 <e p="Portal" t="Include">
@@ -37,9 +37,9 @@
             </e>
           </e>
           <e p="Maze" t="Include">
+            <e p="LevelCreator.cs" t="Include" />
             <e p="Maze_e.cs" t="Include" />
             <e p="MazeCube.cs" t="Include" />
-            <e p="MazeRender.cs" t="Include" />
             <e p="MazeRotator.cs" t="Include" />
             <e p="Node.cs" t="Include" />
           </e>

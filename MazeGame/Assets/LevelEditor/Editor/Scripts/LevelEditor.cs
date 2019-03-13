@@ -71,9 +71,9 @@ namespace LevelEditor
         private void OnEnable()
         {
             _totalNumberOfMazeCubeTypes = 0;
-            MazeCubesFilePath = "Assets/Editor/LevelEditor/Prefabs/MazeCubes/MazeCube 1";
-            MazeWallsFilePath = "Assets/Editor/LevelEditor/Prefabs/MazeWalls/MazeWall 1";
-            ItemFilePath = "Assets/Editor/LevelEditor/Prefabs/Items/";
+            MazeCubesFilePath = "Assets/LevelEditor/Prefabs/MazeCubes/MazeCube 1";
+            MazeWallsFilePath = "Assets/LevelEditor/Prefabs/MazeWalls/MazeWall 1";
+            ItemFilePath = "Assets/LevelEditor/Prefabs/Items/";
             AddMazePrefabs();
             AddItemPrefabs();
         }
