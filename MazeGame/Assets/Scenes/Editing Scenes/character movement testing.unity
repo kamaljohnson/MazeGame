@@ -869,46 +869,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 4, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 1
-  up_path: 0
-  down_path: 0
-  right_node: {fileID: 29892959}
-  left_node: {fileID: 221870981}
-  up_node: {fileID: 0}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 0
-  u_render: 1
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 1
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 1
-  eerd_render: 1
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &12329477
 Transform:
   m_ObjectHideFlags: 0
@@ -1059,46 +1059,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 4, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 419981542}
-  down_node: {fileID: 0}
-  r_render: 1
-  l_render: 1
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 1
-  eld_render: 1
-  eur_render: 0
-  eul_render: 0
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 1
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &17655886
 Transform:
   m_ObjectHideFlags: 0
@@ -1363,46 +1363,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 1, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 1809538682}
-  down_node: {fileID: 751595812}
-  r_render: 1
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 1
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &29097264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,46 +1523,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 4, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 116674888}
-  left_node: {fileID: 0}
-  up_node: {fileID: 12329476}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 1
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &29892960
 Transform:
   m_ObjectHideFlags: 0
@@ -1894,46 +1894,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 2, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 221870981}
-  left_node: {fileID: 0}
-  up_node: {fileID: 0}
-  down_node: {fileID: 1903227380}
-  r_render: 0
-  l_render: 1
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 1
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &42934370
 Transform:
   m_ObjectHideFlags: 0
@@ -2842,46 +2842,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 0, z: 2}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 0}
-  left_node: {fileID: 213074735}
-  up_node: {fileID: 1477176159}
-  down_node: {fileID: 0}
-  r_render: 1
-  l_render: 0
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 0
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 0
-  eul_render: 0
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 1
-  eelu_render: 0
-  eeld_render: 1
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &67636030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,46 +2911,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 0
-  down_path: 0
-  right_node: {fileID: 1232040813}
-  left_node: {fileID: 0}
-  up_node: {fileID: 0}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 1
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 0
-  eul_render: 0
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 1
-  eelu_render: 0
-  eeld_render: 1
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &67636032
 Transform:
   m_ObjectHideFlags: 0
@@ -3449,46 +3449,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 1, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 465310777}
-  down_node: {fileID: 341759035}
-  r_render: 1
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 0
-  eld_render: 0
-  eur_render: 0
-  eul_render: 0
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &92424861
 Transform:
   m_ObjectHideFlags: 0
@@ -3876,36 +3876,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100052676}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &100219088
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 100219089}
-  m_Layer: 0
-  m_Name: left
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &100219089
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100219088}
-  m_LocalRotation: {x: 0.000000042146837, y: -0.7071068, z: -0.000000042146837, w: 0.7071068}
-  m_LocalPosition: {x: -0.50000006, y: -0.4999997, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 160163819}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &102068193
 GameObject:
   m_ObjectHideFlags: 0
@@ -4481,46 +4451,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 4, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 1
-  up_path: 0
-  down_path: 0
-  right_node: {fileID: 1534629884}
-  left_node: {fileID: 29892959}
-  up_node: {fileID: 0}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 0
-  u_render: 1
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &116674889
 Transform:
   m_ObjectHideFlags: 0
@@ -4602,46 +4572,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 2, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 1
-  up_path: 0
-  down_path: 0
-  right_node: {fileID: 1024854676}
-  left_node: {fileID: 751595812}
-  up_node: {fileID: 0}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 0
-  u_render: 1
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 1
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &119086461
 GameObject:
   m_ObjectHideFlags: 0
@@ -5779,46 +5749,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 1, y: 1, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 1809538682}
-  down_node: {fileID: 1110055706}
-  r_render: 1
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 1
-  il_render: 1
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &159881116
 Transform:
   m_ObjectHideFlags: 0
@@ -5844,101 +5814,6 @@ Transform:
   - {fileID: 137285989}
   m_Father: {fileID: 2066039408}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &160163813
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 160163819}
-  - component: {fileID: 160163818}
-  - component: {fileID: 160163817}
-  - component: {fileID: 160163816}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &160163816
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160163813}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &160163817
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160163813}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 11cd662ffde47b347ba083630c7673ef, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &160163818
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160163813}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &160163819
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160163813}
-  m_LocalRotation: {x: -0, y: -0, z: 1.086419e-19, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-  m_Children:
-  - {fileID: 507927956}
-  - {fileID: 937035719}
-  - {fileID: 100219089}
-  - {fileID: 383685390}
-  m_Father: {fileID: 1196464878}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &165195518
 GameObject:
@@ -7817,46 +7692,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 0, z: 2}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 1
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 1872248620}
-  left_node: {fileID: 341759035}
-  up_node: {fileID: 66964423}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 0
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 1
-  eerd_render: 1
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &213939829
 GameObject:
   m_ObjectHideFlags: 0
@@ -8068,46 +7943,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 3, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 1
-  up_path: 0
-  down_path: 0
-  right_node: {fileID: 12329476}
-  left_node: {fileID: 42934369}
-  up_node: {fileID: 0}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 0
-  u_render: 1
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 1
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &221870982
 Transform:
   m_ObjectHideFlags: 0
@@ -8527,46 +8402,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 1758671377}
-  left_node: {fileID: 0}
-  up_node: {fileID: 301640412}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 1
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 1
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 1
-  eerd_render: 1
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &227614887
 Transform:
   m_ObjectHideFlags: 0
@@ -10281,46 +10156,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 1, z: 0}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 540646370}
-  down_node: {fileID: 227614886}
-  r_render: 1
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 1
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &301640413
 Transform:
   m_ObjectHideFlags: 0
@@ -11407,46 +11282,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 213074735}
-  left_node: {fileID: 0}
-  up_node: {fileID: 92424860}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 1
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &343059542
 GameObject:
   m_ObjectHideFlags: 0
@@ -11590,46 +11465,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 1025412809}
-  down_node: {fileID: 850594280}
-  r_render: 1
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 1
-  eld_render: 1
-  eur_render: 0
-  eul_render: 0
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &356547706
 GameObject:
   m_ObjectHideFlags: 0
@@ -12478,46 +12353,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 2, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 0}
-  down_node: {fileID: 911296269}
-  r_render: 1
-  l_render: 1
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 0
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &372856177
 Transform:
   m_ObjectHideFlags: 0
@@ -13001,36 +12876,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 376629926}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &383685389
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 383685390}
-  m_Layer: 0
-  m_Name: forward
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &383685390
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 383685389}
-  m_LocalRotation: {x: -4.804265e-21, y: 1, z: 0.000000059604645, w: 6.475562e-27}
-  m_LocalPosition: {x: 0, y: -0.49999976, z: 0.49999982}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 160163819}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &386734613
 GameObject:
   m_ObjectHideFlags: 0
@@ -14061,46 +13906,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 4, y: 1, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 1505769574}
-  left_node: {fileID: 0}
-  up_node: {fileID: 0}
-  down_node: {fileID: 17655885}
-  r_render: 0
-  l_render: 1
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 1
-  eld_render: 1
-  eur_render: 0
-  eul_render: 0
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &419981543
 Transform:
   m_ObjectHideFlags: 0
@@ -15171,46 +15016,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 1107016872}
-  up_node: {fileID: 0}
-  down_node: {fileID: 92424860}
-  r_render: 1
-  l_render: 0
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 0
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &465310778
 Transform:
   m_ObjectHideFlags: 0
@@ -16450,46 +16295,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 4, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 1
-  up_path: 0
-  down_path: 0
-  right_node: {fileID: 1136430322}
-  left_node: {fileID: 1505328346}
-  up_node: {fileID: 0}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 0
-  u_render: 1
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 0
-  eld_render: 0
-  eur_render: 0
-  eul_render: 0
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 1
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &486388574
 Transform:
   m_ObjectHideFlags: 0
@@ -17062,36 +16907,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507547030}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &507927955
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 507927956}
-  m_Layer: 0
-  m_Name: back
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &507927956
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507927955}
-  m_LocalRotation: {x: -4.804265e-21, y: 1, z: 0.000000059604645, w: 6.475562e-27}
-  m_LocalPosition: {x: 0, y: -0.5, z: -0.5000005}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 160163819}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &508339776
 GameObject:
   m_ObjectHideFlags: 0
@@ -18122,46 +17937,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 2, z: 0}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 0}
-  down_node: {fileID: 301640412}
-  r_render: 1
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &540646371
 Transform:
   m_ObjectHideFlags: 0
@@ -18706,46 +18521,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 2, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 0
-  down_path: 0
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 0}
-  down_node: {fileID: 0}
-  r_render: 1
-  l_render: 1
-  u_render: 1
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 1
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 1
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &554238326
 GameObject:
   m_ObjectHideFlags: 0
@@ -21505,46 +21320,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 4, y: 1, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 0}
-  left_node: {fileID: 1263534782}
-  up_node: {fileID: 2043518893}
-  down_node: {fileID: 0}
-  r_render: 1
-  l_render: 0
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 0
-  eld_render: 0
-  eur_render: 0
-  eul_render: 0
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &629494216
 Transform:
   m_ObjectHideFlags: 0
@@ -24327,46 +24142,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 1, z: 0}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 2095172531}
-  up_node: {fileID: 1107016872}
-  down_node: {fileID: 1067099778}
-  r_render: 1
-  l_render: 0
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &693762850
 Transform:
   m_ObjectHideFlags: 0
@@ -26810,46 +26625,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 1, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 118399295}
-  left_node: {fileID: 0}
-  up_node: {fileID: 2114214361}
-  down_node: {fileID: 28397814}
-  r_render: 0
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &752214042
 GameObject:
   m_ObjectHideFlags: 0
@@ -30687,46 +30502,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 0}
-  left_node: {fileID: 1067099778}
-  up_node: {fileID: 344723368}
-  down_node: {fileID: 0}
-  r_render: 1
-  l_render: 0
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 0
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 0
-  eul_render: 0
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 1
-  eelu_render: 0
-  eeld_render: 1
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &852742791
 GameObject:
   m_ObjectHideFlags: 0
@@ -33668,46 +33483,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 2, y: 1, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 372856176}
-  down_node: {fileID: 1347835531}
-  r_render: 1
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &911296270
 Transform:
   m_ObjectHideFlags: 0
@@ -34731,36 +34546,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934314370}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &937035718
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 937035719}
-  m_Layer: 0
-  m_Name: right
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &937035719
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 937035718}
-  m_LocalRotation: {x: 0.000000042146837, y: 0.7071068, z: 0.000000042146837, w: 0.7071068}
-  m_LocalPosition: {x: 0.4999997, y: -0.50000006, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 160163819}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &940789385
 GameObject:
   m_ObjectHideFlags: 0
@@ -37355,46 +37140,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 1232040813}
-  left_node: {fileID: 0}
-  up_node: {fileID: 0}
-  down_node: {fileID: 1477176159}
-  r_render: 0
-  l_render: 1
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1023654997
 Transform:
   m_ObjectHideFlags: 0
@@ -37482,46 +37267,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 3, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 1
-  up_path: 0
-  down_path: 0
-  right_node: {fileID: 1309741481}
-  left_node: {fileID: 118399295}
-  up_node: {fileID: 0}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 0
-  u_render: 1
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 1
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 1
-  eerd_render: 1
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &1025412807
 GameObject:
   m_ObjectHideFlags: 0
@@ -37581,46 +37366,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 0, z: 2}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 1704772628}
-  left_node: {fileID: 0}
-  up_node: {fileID: 0}
-  down_node: {fileID: 344723368}
-  r_render: 0
-  l_render: 1
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &1026831928
 GameObject:
   m_ObjectHideFlags: 0
@@ -38953,46 +38738,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 693762849}
-  down_node: {fileID: 850594280}
-  r_render: 1
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 1
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &1068878756
 GameObject:
   m_ObjectHideFlags: 0
@@ -40296,46 +40081,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 2, z: 0}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 465310777}
-  left_node: {fileID: 0}
-  up_node: {fileID: 0}
-  down_node: {fileID: 693762849}
-  r_render: 0
-  l_render: 1
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1107016873
 Transform:
   m_ObjectHideFlags: 0
@@ -40483,46 +40268,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 1, y: 1, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 1588472933}
-  left_node: {fileID: 0}
-  up_node: {fileID: 159881115}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 1
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1110055707
 Transform:
   m_ObjectHideFlags: 0
@@ -41254,46 +41039,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 4, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 0}
-  left_node: {fileID: 486388573}
-  up_node: {fileID: 1473334457}
-  down_node: {fileID: 0}
-  r_render: 1
-  l_render: 0
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 0
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 0
-  eul_render: 0
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 1
-  eelu_render: 0
-  eeld_render: 1
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &1139881001
 GameObject:
   m_ObjectHideFlags: 0
@@ -42857,74 +42642,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192309020}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1196464875
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1196464878}
-  - component: {fileID: 1196464877}
-  - component: {fileID: 1196464876}
-  m_Layer: 0
-  m_Name: Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1196464876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196464875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee45fe7347dfb7c4291e5ae07d1177ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Maze: {fileID: 340097884}
-  PlayerCube: {fileID: 160163819}
-  Input: {fileID: 1196464877}
-  stepSize: 0.33333334
-  RightAnchor: {fileID: 937035719}
-  LeftAnchor: {fileID: 100219089}
-  ForwardAnchor: {fileID: 383685390}
-  BackAnchor: {fileID: 507927956}
-  Speed: 400
-  PlayerRayCastData: 0000000000
---- !u!114 &1196464877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196464875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9836e15ed268191489c204a27460c56f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputs: 00000000
---- !u!4 &1196464878
+--- !u!4 &1196464878 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2022343881705598184, guid: ceb9df77486c83742947c8c7894825c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 2022343882832852486}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196464875}
-  m_LocalRotation: {x: 0.0000004917383, y: -2.2093438e-13, z: -0.00000016391279, w: 1}
-  m_LocalPosition: {x: -2, y: 1.67, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 160163819}
-  m_Father: {fileID: 340097884}
-  m_RootOrder: 49
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1207755572
 GameObject:
   m_ObjectHideFlags: 0
@@ -43773,46 +43496,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 0}
-  left_node: {fileID: 1023654996}
-  up_node: {fileID: 67636031}
-  down_node: {fileID: 0}
-  r_render: 1
-  l_render: 0
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 1
-  eru_render: 0
-  erd_render: 0
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1232040814
 Transform:
   m_ObjectHideFlags: 0
@@ -44532,46 +44255,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 3, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 1347835531}
-  left_node: {fileID: 0}
-  up_node: {fileID: 1505769574}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 1
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 1
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &1257923349
 GameObject:
   m_ObjectHideFlags: 0
@@ -44692,46 +44415,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 3, y: 1, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 629494215}
-  left_node: {fileID: 0}
-  up_node: {fileID: 0}
-  down_node: {fileID: 1505328346}
-  r_render: 0
-  l_render: 1
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1263534783
 Transform:
   m_ObjectHideFlags: 0
@@ -45246,7 +44969,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 0}
+  m_BackGroundColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -45262,7 +44985,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -46322,46 +46045,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 4, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 0
-  down_path: 0
-  right_node: {fileID: 0}
-  left_node: {fileID: 1024854676}
-  up_node: {fileID: 0}
-  down_node: {fileID: 0}
-  r_render: 1
-  l_render: 0
-  u_render: 1
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 0
-  eu_render: 1
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 1
-  eerd_render: 1
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1309741482
 Transform:
   m_ObjectHideFlags: 0
@@ -47176,46 +46899,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 2, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 0}
-  left_node: {fileID: 1256752113}
-  up_node: {fileID: 911296269}
-  down_node: {fileID: 0}
-  r_render: 1
-  l_render: 0
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &1353350102
 GameObject:
   m_ObjectHideFlags: 0
@@ -50261,46 +49984,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 3, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 1
-  up_path: 0
-  down_path: 0
-  right_node: {fileID: 2043518893}
-  left_node: {fileID: 1903227380}
-  up_node: {fileID: 0}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 0
-  u_render: 1
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1456214744
 Transform:
   m_ObjectHideFlags: 0
@@ -51081,46 +50804,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 4, y: 1, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 0}
-  down_node: {fileID: 1136430322}
-  r_render: 1
-  l_render: 1
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 1
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 0
-  eul_render: 0
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1473334458
 Transform:
   m_ObjectHideFlags: 0
@@ -51450,46 +51173,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 1, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 1023654996}
-  down_node: {fileID: 66964423}
-  r_render: 1
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 1
-  eld_render: 1
-  eur_render: 0
-  eul_render: 0
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1477176160
 Transform:
   m_ObjectHideFlags: 0
@@ -52387,46 +52110,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 2, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 0
-  down_path: 0
-  right_node: {fileID: 0}
-  left_node: {fileID: 2114214361}
-  up_node: {fileID: 0}
-  down_node: {fileID: 0}
-  r_render: 1
-  l_render: 0
-  u_render: 1
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &1501041089
 GameObject:
   m_ObjectHideFlags: 0
@@ -52756,46 +52479,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 3, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 486388573}
-  left_node: {fileID: 0}
-  up_node: {fileID: 1263534782}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 1
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 1
-  eerd_render: 1
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &1505730175
 GameObject:
   m_ObjectHideFlags: 0
@@ -52916,46 +52639,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 3, y: 1, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 419981542}
-  up_node: {fileID: 1534629884}
-  down_node: {fileID: 1256752113}
-  r_render: 1
-  l_render: 0
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1505769575
 Transform:
   m_ObjectHideFlags: 0
@@ -53371,46 +53094,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 3, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 116674888}
-  up_node: {fileID: 0}
-  down_node: {fileID: 1505769574}
-  r_render: 1
-  l_render: 0
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1534629885
 Transform:
   m_ObjectHideFlags: 0
@@ -54828,46 +54551,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 2, y: 1, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 0}
-  left_node: {fileID: 1110055706}
-  up_node: {fileID: 1903227380}
-  down_node: {fileID: 0}
-  r_render: 1
-  l_render: 0
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1588472934
 Transform:
   m_ObjectHideFlags: 0
@@ -58893,46 +58616,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 0, z: 2}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 1
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 2114214361}
-  left_node: {fileID: 1872248620}
-  up_node: {fileID: 0}
-  down_node: {fileID: 1025412809}
-  r_render: 0
-  l_render: 0
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 1
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &1713428330
 GameObject:
   m_ObjectHideFlags: 0
@@ -59417,46 +59140,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 2, z: 0}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 0}
-  down_node: {fileID: 2095172531}
-  r_render: 1
-  l_render: 1
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 1
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1726578047
 Transform:
   m_ObjectHideFlags: 0
@@ -60932,46 +60655,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 1
-  down_path: 0
-  right_node: {fileID: 0}
-  left_node: {fileID: 227614886}
-  up_node: {fileID: 2095172531}
-  down_node: {fileID: 0}
-  r_render: 1
-  l_render: 0
-  u_render: 0
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 0
-  eu_render: 0
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 1
-  eerd_render: 1
-  eelu_render: 1
-  eeld_render: 1
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &1766731004
 GameObject:
   m_ObjectHideFlags: 0
@@ -62381,46 +62104,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 1, y: 1, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 0
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 0}
-  up_node: {fileID: 159881115}
-  down_node: {fileID: 28397814}
-  r_render: 1
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 1
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1809538683
 Transform:
   m_ObjectHideFlags: 0
@@ -64436,46 +64159,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 0, z: 2}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 1
-  up_path: 0
-  down_path: 0
-  right_node: {fileID: 1704772628}
-  left_node: {fileID: 213074735}
-  up_node: {fileID: 0}
-  down_node: {fileID: 0}
-  r_render: 0
-  l_render: 0
-  u_render: 1
-  d_render: 1
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 1
-  ed_render: 1
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 1
-  eerd_render: 1
-  eelu_render: 1
-  eeld_render: 1
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &1877365092
 GameObject:
   m_ObjectHideFlags: 0
@@ -65428,46 +65151,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 2, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 1456214743}
-  left_node: {fileID: 0}
-  up_node: {fileID: 42934369}
-  down_node: {fileID: 1588472933}
-  r_render: 0
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &1903227381
 Transform:
   m_ObjectHideFlags: 0
@@ -70885,46 +70608,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 4, y: 2, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 0
-  left_path: 1
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 0}
-  left_node: {fileID: 1456214743}
-  up_node: {fileID: 0}
-  down_node: {fileID: 629494215}
-  r_render: 1
-  l_render: 0
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 1
-  el_render: 0
-  eu_render: 1
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &2043518894
 Transform:
   m_ObjectHideFlags: 0
@@ -72908,46 +72631,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 0, y: 1, z: 0}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 0
-  up_path: 1
-  down_path: 1
-  right_node: {fileID: 693762849}
-  left_node: {fileID: 0}
-  up_node: {fileID: 1726578046}
-  down_node: {fileID: 1758671377}
-  r_render: 0
-  l_render: 1
-  u_render: 0
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 1
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 1
-  erd_render: 1
-  elu_render: 1
-  eld_render: 1
-  eur_render: 1
-  eul_render: 1
-  edr_render: 0
-  edl_render: 0
-  eeru_render: 1
-  eerd_render: 0
-  eelu_render: 1
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!4 &2095172532
 Transform:
   m_ObjectHideFlags: 0
@@ -73756,46 +73479,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cbb52c20c0e7045aebb2869e9bf12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCube_pos: {x: 1, y: 0, z: 1}
-  nodeTransform_pos: {x: 0, y: 0, z: 0}
-  nodeTransform_rot: {x: 0, y: 0, z: 0}
+  ParentCubePos: {x: 0, y: 0, z: 0}
+  NodeTransformPos: {x: 0, y: 0, z: 0}
+  NodeTransformRot: {x: 0, y: 0, z: 0}
   inactive: 0
-  right_path: 1
-  left_path: 1
-  up_path: 0
-  down_path: 1
-  right_node: {fileID: 1499134368}
-  left_node: {fileID: 1704772628}
-  up_node: {fileID: 0}
-  down_node: {fileID: 751595812}
-  r_render: 0
-  l_render: 0
-  u_render: 1
-  d_render: 0
-  ru_render: 1
-  rd_render: 1
-  lu_render: 1
-  ld_render: 1
-  er_render: 0
-  el_render: 0
-  eu_render: 0
-  ed_render: 0
-  ir_render: 0
-  il_render: 0
-  iu_render: 0
-  id_render: 0
-  eru_render: 0
-  erd_render: 0
-  elu_render: 0
-  eld_render: 0
-  eur_render: 1
-  eul_render: 1
-  edr_render: 1
-  edl_render: 1
-  eeru_render: 0
-  eerd_render: 0
-  eelu_render: 0
-  eeld_render: 0
+  RightPath: 0
+  LeftPath: 0
+  UpPath: 0
+  DownPath: 0
+  RightNode: {fileID: 0}
+  LeftNode: {fileID: 0}
+  UpNode: {fileID: 0}
+  DownNode: {fileID: 0}
+  Rrender: 0
+  Lrender: 0
+  Urender: 0
+  Drender: 0
+  RUrender: 0
+  RDrender: 0
+  LUrender: 0
+  LDrender: 0
+  ERrender: 0
+  ELrender: 0
+  EUrender: 0
+  EDrender: 0
+  IRrender: 0
+  ILrender: 0
+  IUrender: 0
+  IDrender: 0
+  ERUrender: 0
+  ERDrender: 0
+  ELUrender: 0
+  ELDrender: 0
+  EURrender: 0
+  EULrender: 0
+  EDRrender: 0
+  EDLrender: 0
+  EERUrender: 0
+  EERDrender: 0
+  EELUrender: 0
+  EELDrender: 0
 --- !u!1 &2117242277
 GameObject:
   m_ObjectHideFlags: 0
@@ -74797,3 +74520,77 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143259041}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &2022343882832852486
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 340097884}
+    m_Modifications:
+    - target: {fileID: 2022343881705598189, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022343881705598184, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022343881705598184, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022343881705598184, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022343881705598184, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0000004917383
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022343881705598184, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -2.2093438e-13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022343881705598184, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00000016391279
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022343881705598184, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022343881705598184, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022343881705598184, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022343881705598184, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022343881705598184, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022343881705598186, guid: ceb9df77486c83742947c8c7894825c6,
+        type: 3}
+      propertyPath: ParentMaze
+      value: 
+      objectReference: {fileID: 340097882}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ceb9df77486c83742947c8c7894825c6, type: 3}

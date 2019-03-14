@@ -62,12 +62,15 @@ namespace Game.Player
             if(_movementSnappedFull)
             {
                 CheckJunction();
-                IntermediateMove();
             }
 
             if (_atJunction)
             {
                 UpdateMoveableDirections();
+            }
+            else if(_movementSnappedFull)
+            {
+                IntermediateMove();
             }
             
             if(!_atJunction)
@@ -89,6 +92,7 @@ namespace Game.Player
         {
             if(_tempMovementDirection == Direction.None)
                 return;
+            
             if (_tempMovementDirection == _movementDirection)
             {
                 _movementDirection = Direction.None;
@@ -341,9 +345,9 @@ namespace Game.Player
             return PlayerRayCastData[(int)Direction.Down];
         }
 
-        public void SetParentMaze(GameObject Maze)
+        public void SetParentMaze(GameObject maze)
         {
-            ParentMaze = Maze;
+            ParentMaze = maze;
             transform.parent = ParentMaze.transform;
         }
     }

@@ -22,7 +22,7 @@ namespace LevelEditor
         Interactable,           // [PORTAL, LASER, SPIKES, GATES, BRIDGE]
         Collectable,            // [COIN, DIAMOND, COLLECTION POINT]
         Enemie,                 // [GUARDIAN, KNIGHT, HAMMER]
-        Decoratable,           // [PLANT_01, FOUNTAIN, ...]
+        Decoratable,            // [PLANT_01, FOUNTAIN, ...]
     }
 
     public class LevelEditor : EditorWindow

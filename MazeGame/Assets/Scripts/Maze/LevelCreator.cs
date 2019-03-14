@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Game.Maze;
 using UnityEngine.SceneManagement;
 
 namespace Game
@@ -17,57 +18,57 @@ namespace Game
         public void Awake()
         {
             LoadLevel();
-            GameObject playerCube = Instantiate(PlayerCube);
+            var playerCube = Instantiate(PlayerCube);
             playerCube.GetComponent<Player.Movement>().SetParentMaze(MazeHolder.GetChild(0).gameObject);
         }
 
-        public void LoadLevel()
+        private void LoadLevel()
         {
-            string levelName = SceneManager.GetActiveScene().name;
-            SaveState state = LoadLevelDataFromFile(levelName);
+            var levelName = SceneManager.GetActiveScene().name;
+            var state = LoadLevelDataFromFile(levelName);
             
             //calculating the render data from the path data
-            for(int i = 0; i < state.m.Count; i++)  //for each maze
+            foreach (var maze in state.m)
             {
-                GameObject _maze = new GameObject();
-                _maze.AddComponent<Maze.MazeRotator>();
-                _maze.transform.parent = MazeHolder;
-                _maze.transform.position = new Vector3(
-                    state.m[i].x,
-                    state.m[i].y,
-                    state.m[i].z
+                var tempMaze = new GameObject();
+                tempMaze.AddComponent<Maze.MazeRotator>();
+                tempMaze.transform.parent = MazeHolder;
+                tempMaze.transform.position = new Vector3(
+                    maze.x,
+                    maze.y,
+                    maze.z
+                );
+
+                foreach (var cube in maze.c)
+                {
+                    var tempCube = Instantiate(MazeCube);
+                    tempCube.transform.parent = tempMaze.transform;
+                    tempCube.transform.position = new Vector3(
+                        cube.x,
+                        cube.y,  
+                        cube.z
                     );
 
-                for (int j = 0; j < state.m[i].c.Count; j++)    //for each cube
-                {
-                    GameObject _cube = Instantiate(MazeCube);
-                    _cube.transform.parent = _maze.transform;
-                    _cube.transform.position = new Vector3(
-                        state.m[i].c[j].x,
-                        state.m[i].c[j].y,  
-                        state.m[i].c[j].z
-                        );
-
-                    for (int k = 0; k < state.m[i].c[j].nl.Count; k++)  //for each node
+                    foreach (var node in cube.nl)
                     {
-                        GameObject _node= new GameObject();
-                        _node.transform.parent = _cube.transform;
-                        _node.transform.localPosition = Vector3.zero;
-                        _node.transform.eulerAngles = new Vector3(
-                            state.m[i].c[j].nl[k].u,
-                            state.m[i].c[j].nl[k].v,
-                            state.m[i].c[j].nl[k].w
-                            );
-                        _node.transform.localPosition += _node.transform.forward * 0.5f;
-                        _node.gameObject.AddComponent<Maze.Node>();
+                        var tempNode= new GameObject();
+                        tempNode.transform.parent = tempCube.transform;
+                        tempNode.transform.localPosition = Vector3.zero;
+                        tempNode.transform.eulerAngles = new Vector3(
+                            node.u,
+                            node.v,
+                            node.w
+                        );
+                        tempNode.transform.localPosition += tempNode.transform.forward * 0.5f;
+                        tempNode.gameObject.AddComponent<Maze.Node>();
 
-                        Maze.Node _tempNode = state.m[i].c[j].nl[k].GetNode();
-                        _tempNode.ParentCubePos = _cube.transform.position;
+                        Maze.Node tempNodeObj = node.GetNode();
+                        tempNodeObj.ParentCubePos = tempCube.transform.position;
                         
-                        _node.gameObject.GetComponent<Maze.Node>().SetNodeFromNode(_tempNode, _cube.transform.position);
-                        _node.gameObject.GetComponent<Maze.Node>().CalculateRenderNodePath();
+                        tempNode.gameObject.GetComponent<Maze.Node>().SetNodeFromNode(tempNodeObj, tempCube.transform.position);
+                        tempNode.gameObject.GetComponent<Maze.Node>().CalculateRenderNodePath();
                     }
-                    _cube.SetActive(false);
+                    tempCube.SetActive(false);
                 }
             }
 
@@ -142,7 +143,7 @@ namespace Game
                             tempobj.name = "ru";
                             tempobj.transform.parent = node.transform;
                         }
-                        if (node.ERDrender)
+                        if (node.RDrender)
                         {
                             GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
                                 node.transform.position + (node.transform.right - node.transform.up) * offset +
@@ -235,7 +236,7 @@ namespace Game
                             tempobj.transform.parent = node.transform;
                         }
 
-                        if (node.LUrender)
+                        if (node.IUrender)
                         {
                             GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
                                 node.transform.position + node.transform.up * internal_offset +
@@ -429,6 +430,7 @@ namespace Game
             {
                 jsonString = File.ReadAllText(directory);
             }
+            Debug.Log(jsonString);
             state = JsonUtility.FromJson<SaveState>(jsonString);
             return state;
         }
