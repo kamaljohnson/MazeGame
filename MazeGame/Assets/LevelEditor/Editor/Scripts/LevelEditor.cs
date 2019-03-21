@@ -290,7 +290,7 @@ namespace LevelEditor
                 {
                     Maze.MazeEditorScript.EndNode = null;
                     Maze.MazeEditorScript.StartNode = null;
-                    ReCalculateNodes();
+//                    ReCalculateNodes();
                     RenderPaths();
                 }
 
@@ -507,7 +507,6 @@ namespace LevelEditor
                         tempList.Add(CurrentMaze.transform.GetChild(i).GetChild(j).GetChild(k).gameObject);
                     }
                 }
-
                 AllMazeCubes.Add(CurrentMaze.transform.GetChild(i).gameObject);
             }
 

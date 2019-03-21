@@ -21,9 +21,8 @@ namespace LevelEditor.Save
             for (var i = 0; i < LevelEditor.Mazes.childCount; i++)
             {
                 LevelEditor.CurrentMaze = LevelEditor.Mazes.GetChild(i).gameObject;
-                LevelEditor.ReCalculateAllMazeCubes();
+                /*LevelEditor.ReCalculateAllMazeCubes();
                 LevelEditor.ReCalculateNodes();
-                /*LevelEditor.ReCalculateAllItems();
                 LevelEditor.RenderPaths();*/
 
                 Debug.Log(LevelEditor.AllMazeCubes.Count.ToString());

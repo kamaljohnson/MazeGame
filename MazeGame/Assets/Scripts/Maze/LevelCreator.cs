@@ -116,7 +116,7 @@ namespace Game
                     
                     for (int k = 0; k < _cube.childCount; k++)      //for each node
                     {
-                        Maze.Node node = _cube.GetChild(k).GetComponent<Maze.Node>();
+                        Maze.Node node = _cube.GetChild(k).GetComponent<Node>();
 
                         float offset = 1 / 2f - 1 / 12f;
                         float height_offset = 1 / 12f;
@@ -130,7 +130,7 @@ namespace Game
 
                         if (node.Rrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab, node.transform.position + node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                            GameObject tempobj = Instantiate(MazeWallPrefab, node.transform.position + node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                             tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                             tempobj.name = "r";
@@ -138,7 +138,7 @@ namespace Game
                         }
                         if (node.Lrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab, node.transform.position - node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                            GameObject tempobj = Instantiate(MazeWallPrefab, node.transform.position - node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                             tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                             tempobj.name = "l";
@@ -146,7 +146,7 @@ namespace Game
                         }
                         if (node.Urender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab, node.transform.position + node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                            GameObject tempobj = Instantiate(MazeWallPrefab, node.transform.position + node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                             tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                             tempobj.name = "u";
@@ -154,7 +154,7 @@ namespace Game
                         }
                         if (node.Drender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab, node.transform.position - node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                            GameObject tempobj = Instantiate(MazeWallPrefab, node.transform.position - node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                             tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                             tempobj.name = "d";
@@ -164,7 +164,7 @@ namespace Game
                         //rendering corner
                         if (node.RUrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position + (node.transform.right + node.transform.up) * offset +
                                 node.transform.forward * height_offset, node.transform.rotation, node.transform);
                             tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
@@ -173,7 +173,7 @@ namespace Game
                         }
                         if (node.RDrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position + (node.transform.right - node.transform.up) * offset +
                                 node.transform.forward * height_offset, node.transform.rotation, node.transform);
                             tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
@@ -182,7 +182,7 @@ namespace Game
                         }
                         if (node.LUrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position + (-node.transform.right + node.transform.up) * offset +
                                 node.transform.forward * height_offset, node.transform.rotation, node.transform);
                             tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
@@ -191,7 +191,7 @@ namespace Game
                         }
                         if (node.LDrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position + (-node.transform.right - node.transform.up) * offset +
                                 node.transform.forward * height_offset, node.transform.rotation, node.transform);
                             tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
@@ -202,7 +202,7 @@ namespace Game
                         //rendering external edges
                         if (node.ERrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab, node.transform.position + node.transform.right * external_offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                            GameObject tempobj = Instantiate(MazeWallPrefab, node.transform.position + node.transform.right * external_offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                             tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
                             tempobj.name = "er";
@@ -211,7 +211,7 @@ namespace Game
 
                         if (node.ELrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position - node.transform.right * external_offset +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
@@ -222,7 +222,7 @@ namespace Game
 
                         if (node.EUrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position + node.transform.up * external_offset +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
@@ -233,7 +233,7 @@ namespace Game
 
                         if (node.EDrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position - node.transform.up * external_offset +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
@@ -244,7 +244,7 @@ namespace Game
 
                         if (node.IRrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position + node.transform.right * internal_offset +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
@@ -255,7 +255,7 @@ namespace Game
 
                         if (node.ILrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position - node.transform.right * internal_offset +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
@@ -266,7 +266,7 @@ namespace Game
 
                         if (node.IUrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position + node.transform.up * internal_offset +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
@@ -277,7 +277,7 @@ namespace Game
 
                         if (node.IDrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position - node.transform.up * internal_offset +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
@@ -288,7 +288,7 @@ namespace Game
 
                         if (node.ERUrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position +
                                 (node.transform.right * external_offset + node.transform.up * offset) +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -301,7 +301,7 @@ namespace Game
 
                         if (node.ERDrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position +
                                 (node.transform.right * external_offset - node.transform.up * offset) +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -314,7 +314,7 @@ namespace Game
 
                         if (node.ELUrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position +
                                 (-node.transform.right * external_offset + node.transform.up * offset) +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -327,7 +327,7 @@ namespace Game
 
                         if (node.ELDrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position +
                                 (-node.transform.right * external_offset - node.transform.up * offset) +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -340,7 +340,7 @@ namespace Game
 
                         if (node.EURrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position +
                                 (node.transform.right * offset + node.transform.up * external_offset) +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -353,7 +353,7 @@ namespace Game
 
                         if (node.EULrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position +
                                 (-node.transform.right * offset + node.transform.up * external_offset) +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -366,7 +366,7 @@ namespace Game
 
                         if (node.EDRrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position +
                                 (node.transform.right * offset - node.transform.up * external_offset) +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -379,7 +379,7 @@ namespace Game
 
                         if (node.EDLrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position +
                                 (-node.transform.right * offset - node.transform.up * external_offset) +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -391,7 +391,7 @@ namespace Game
 
                         if (node.EERUrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position +
                                 (node.transform.right + node.transform.up) * external_offset +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -403,7 +403,7 @@ namespace Game
 
                         if (node.EERDrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position +
                                 (node.transform.right - node.transform.up) * external_offset +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -415,7 +415,7 @@ namespace Game
 
                         if (node.EELUrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position +
                                 (-node.transform.right + node.transform.up) * external_offset +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -427,7 +427,7 @@ namespace Game
 
                         if (node.EELDrender)
                         {
-                            GameObject tempobj = (GameObject)Instantiate(MazeWallPrefab,
+                            GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position +
                                 (-node.transform.right - node.transform.up) * external_offset +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
@@ -447,12 +447,14 @@ namespace Game
             SaveState state;
 
             string jsonString;
-            if (Application.platform == RuntimePlatform.Android)
+            if(Application.platform == RuntimePlatform.Android)
             {
+                Debug.Log("loading old state");
                 WWW reader = new WWW(directory);
                 while (!reader.isDone) { }
 
                 jsonString = reader.text;
+                Debug.Log("loading complete : " + jsonString + " from :" + directory);
             }
             else
             {
