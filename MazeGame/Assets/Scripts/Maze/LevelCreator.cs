@@ -98,6 +98,7 @@ namespace Game
                         playerCube.GetComponent<Player.Movement>().SetParentMaze(MazeHolder.GetChild(tempPortal.GetComponent<Portal>().MazeId).gameObject);
                         playerCube.transform.position = tempPortal.transform.position - tempPortal.transform.up * tempPortal.transform.localScale.y * 0.5f + playerCube.transform.up * 1/6f;
                         playerCube.transform.eulerAngles = tempPortal.transform.eulerAngles;
+                        tempPortal.SetActive(false);
                     }
                 }
             }
@@ -111,13 +112,15 @@ namespace Game
                 for (int j = 0; j < _maze.childCount; j++)    //for each cube
                 {
                     Transform _cube = _maze.GetChild(j);
-                    _cube.gameObject.SetActive(true);
+                    if(_cube.CompareTag("MazeCube"))
+                        _cube.gameObject.SetActive(true);
 
-                    
                     for (int k = 0; k < _cube.childCount; k++)      //for each node
                     {
-                        Maze.Node node = _cube.GetChild(k).GetComponent<Node>();
-
+                        Node node = _cube.GetChild(k).GetComponent<Node>();
+                        if (node == null)
+                            break;
+                        
                         float offset = 1 / 2f - 1 / 12f;
                         float height_offset = 1 / 12f;
 
