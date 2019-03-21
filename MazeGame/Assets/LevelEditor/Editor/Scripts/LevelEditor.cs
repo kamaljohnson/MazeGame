@@ -9,20 +9,20 @@ namespace LevelEditor
 {
     public enum Modes
     {
-        MAZE_BODY,      //maze body editing mode
-        MAZE_LAYOUT,    //maze structure editing mode
-        ITEMS,          //add and delete items on the maze
-        MAZE_POS,       //can set the position of the maze
-        MAZE_PIVOT,     //set the pivot of the maze
+        MazeBody,      //maze body editing mode
+        MazeLayout,    //maze structure editing mode
+        Items,          //add and delete items on the maze
+        MazePos,       //can set the position of the maze
+        MazePivot,     //set the pivot of the maze
     }
 
     public enum ItemCategories
     {
-        Path,                   // [ICE, FIRE]
-        Interactable,           // [PORTAL, LASER, SPIKES, GATES, BRIDGE]
-        Collectable,            // [COIN, DIAMOND, COLLECTION POINT]
-        Enemie,                 // [GUARDIAN, KNIGHT, HAMMER]
-        Decoratable,            // [PLANT_01, FOUNTAIN, ...]
+        Path,           //[ICE, FIRE]
+        Interactable,   //[PORTAL, LASER, SPIKES, GATES, BRIDGE]
+        Collectable,    //[COIN, DIAMOND, COLLECTION POINT]
+        Enemie,         //[GUARDIAN, KNIGHT, HAMMER]
+        Decoratable,    //[PLANT_01, FOUNTAIN, ...]
     }
 
     public class LevelEditor : EditorWindow
@@ -38,10 +38,10 @@ namespace LevelEditor
 
         //reference of corresponding prefabs
         private static List<Object> _typesOfMazeCubes;
-        private static List<Object> TypesOfMazeWalls;
-        private static List<List<Object>> TypesOfItems;
+        private static List<Object> _typesOfMazeWalls;
+        private static List<List<Object>> _typesOfItems;
         private int _totalNumberOfMazeCubeTypes;
-        private int _totalNumbetOfMazeWallTypes;
+        private int _totalNumberOfMazeWallTypes;
         public static Object CurrentMazeCubePrefab;
         public static Object CurrentMazeWallPrefab;
         public static Object CurrentItemPrefab;
@@ -93,23 +93,23 @@ namespace LevelEditor
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 
 
-            if (EditorMode == Modes.ITEMS)
+            if (EditorMode == Modes.Items)
             {
                 _prefabScrollViewValue = GUILayout.BeginScrollView(_prefabScrollViewValue, GUI.skin.scrollView);
                 GUILayout.BeginHorizontal();
                 GUILayout.FlexibleSpace();
-                GUIStyle _style = new GUIStyle();
+                var _style = new GUIStyle();
                 _style.fontSize = 15;
                 GUILayout.Label("ITEMS", _style);
                 GUILayout.FlexibleSpace();
                 GUILayout.EndHorizontal();
                 //display all the items available
                 GUILayout.BeginVertical();
-                for (int _typeIndex = 0; _typeIndex < TypesOfItems.Count; _typeIndex++)
+                for (int _typeIndex = 0; _typeIndex < _typesOfItems.Count; _typeIndex++)
                 {
                     GUILayout.BeginVertical();
                     GUILayout.Label(Enum.GetName(typeof(ItemCategories), (ItemCategories)_typeIndex));
-                    for (int _itemIndex = 0; _itemIndex < TypesOfItems[_typeIndex].Count;)
+                    for (int _itemIndex = 0; _itemIndex < _typesOfItems[_typeIndex].Count;)
                     {
                         int _horizontalStackingLimit = 6;
                         GUILayout.BeginHorizontal();
@@ -117,7 +117,7 @@ namespace LevelEditor
                         {
                             DrawCustomItemButtons(_typeIndex, _itemIndex);
                             _itemIndex++;
-                            if (_itemIndex == TypesOfItems[_typeIndex].Count && k < _horizontalStackingLimit)
+                            if (_itemIndex == _typesOfItems[_typeIndex].Count && k < _horizontalStackingLimit)
                             {
                                 GUILayout.FlexibleSpace();
                                 break;
@@ -159,7 +159,7 @@ namespace LevelEditor
                         for (int itemIndex = 0; itemIndex < AllItems[(int)_currentItemCatgoryToggled].Count; itemIndex++)
                         {
                             GUILayout.BeginHorizontal();
-                            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfItems[(int)_currentItemCatgoryToggled][(int)_currentItemCatgoryToggled]);
+                            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)_typesOfItems[(int)_currentItemCatgoryToggled][(int)_currentItemCatgoryToggled]);
                             GUIContent buttonContent = new GUIContent(previewImage);
                             GUILayout.Toggle(false, buttonContent, GUI.skin.box, GUILayout.Height(20), GUILayout.Width(20));
                             if (GUILayout.Button("Edit", GUILayout.Height(20)))
@@ -188,7 +188,7 @@ namespace LevelEditor
                 {
                     CurrentMazeCubePrefab = _typesOfMazeCubes[0];
                 }
-                int largestCollection = Mathf.Max(_totalNumberOfMazeCubeTypes, _totalNumbetOfMazeWallTypes);
+                int largestCollection = Mathf.Max(_totalNumberOfMazeCubeTypes, _totalNumberOfMazeWallTypes);
                 for (int i = 0; i < largestCollection; i++)
                 {
                     GUILayout.BeginHorizontal();
@@ -201,7 +201,7 @@ namespace LevelEditor
                         GUILayout.FlexibleSpace();
                     }
 
-                    if (i < _totalNumbetOfMazeWallTypes)
+                    if (i < _totalNumberOfMazeWallTypes)
                     {
                         DrawCustomMazeWallButtons(i);
                     }
@@ -243,19 +243,19 @@ namespace LevelEditor
                 GUILayout.BeginVertical();
                 if (CurrentMaze != null)
                 {
-                    Modes _tempMode = (Modes) EditorGUILayout.EnumPopup("", EditorMode);
-                    if (_tempMode != EditorMode)
+                    Modes tempMode = (Modes) EditorGUILayout.EnumPopup("", EditorMode);
+                    if (tempMode != EditorMode)
                     {
-                        EditorMode = _tempMode;
+                        EditorMode = tempMode;
                         ReCalculateAllMazeCubes();
                         ReCalculateNodes();
                     }
 
                     switch (EditorMode)
                     {
-                        case Modes.MAZE_BODY:
+                        case Modes.MazeBody:
                             break;
-                        case Modes.MAZE_LAYOUT:
+                        case Modes.MazeLayout:
 
                             InactiveNodeEditing = GUILayout.Toggle(InactiveNodeEditing, "set inactive nodes");
 
@@ -270,7 +270,7 @@ namespace LevelEditor
                                 }
                             }
                             break;
-                        case Modes.ITEMS:
+                        case Modes.Items:
                             ReCalculateAllItems();
                             break;
                     }
@@ -290,6 +290,7 @@ namespace LevelEditor
                 {
                     Maze.MazeEditorScript.EndNode = null;
                     Maze.MazeEditorScript.StartNode = null;
+                    ReCalculateNodes();
                     RenderPaths();
                 }
 
@@ -317,27 +318,27 @@ namespace LevelEditor
 
         public void DrawCustomMazeWallButtons(int index)
         {
-            var selected = CurrentMazeWallPrefab == TypesOfMazeWalls[index];
-            var previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfMazeWalls[index]);
+            var selected = CurrentMazeWallPrefab == _typesOfMazeWalls[index];
+            var previewImage = AssetPreview.GetAssetPreview((GameObject)_typesOfMazeWalls[index]);
             var buttonContent = new GUIContent(previewImage);
             var isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button, GUILayout.Height(125), GUILayout.Width(125));
             
             if (isToggleDown)
             {
-                CurrentMazeWallPrefab = TypesOfMazeWalls[index];
+                CurrentMazeWallPrefab = _typesOfMazeWalls[index];
             }
         }
 
         public void DrawCustomItemButtons(int typeIndex, int itemIndex)
         {
-            var selected = CurrentItemPrefab == TypesOfItems[typeIndex][itemIndex];
-            var previewImage = AssetPreview.GetAssetPreview((GameObject)TypesOfItems[typeIndex][itemIndex]);
+            var selected = CurrentItemPrefab == _typesOfItems[typeIndex][itemIndex];
+            var previewImage = AssetPreview.GetAssetPreview((GameObject)_typesOfItems[typeIndex][itemIndex]);
             var buttonContent = new GUIContent(previewImage);
 
             var isToggleDown = GUILayout.Toggle(selected, buttonContent, GUI.skin.button, GUILayout.Height(35), GUILayout.Width(35));
             if (isToggleDown)
             {
-                CurrentItemPrefab = TypesOfItems[typeIndex][itemIndex];
+                CurrentItemPrefab = _typesOfItems[typeIndex][itemIndex];
                 CurrentItemType = (ItemCategories)typeIndex;
             }
         }
@@ -345,10 +346,10 @@ namespace LevelEditor
         public void AddMazePrefabs()
         {
             _typesOfMazeCubes = new List<Object>();
-            TypesOfMazeWalls = new List<Object>();
+            _typesOfMazeWalls = new List<Object>();
 
             _totalNumberOfMazeCubeTypes = 0;
-            _totalNumbetOfMazeWallTypes = 0;
+            _totalNumberOfMazeWallTypes = 0;
 
             var i = int.Parse(MazeCubesFilePath.Split(' ')[1]);
 
@@ -362,20 +363,20 @@ namespace LevelEditor
                 }
                 if (AssetDatabase.LoadAssetAtPath(MazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)))
                 {
-                    TypesOfMazeWalls.Add(AssetDatabase.LoadAssetAtPath(MazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
-                    _totalNumbetOfMazeWallTypes++;
+                    _typesOfMazeWalls.Add(AssetDatabase.LoadAssetAtPath(MazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
+                    _totalNumberOfMazeWallTypes++;
                 }
                 i++;
                 n--;
             } while (n > 0);
 
             CurrentMazeCubePrefab = _typesOfMazeCubes[0];
-            CurrentMazeWallPrefab = TypesOfMazeWalls[0];
+            CurrentMazeWallPrefab = _typesOfMazeWalls[0];
         }
 
         public void AddItemPrefabs()
         {
-            TypesOfItems = new List<List<Object>> {
+            _typesOfItems = new List<List<Object>> {
                 new List<Object>(), //Path items
                 new List<Object>(), //Interactable items
                 new List<Object>(), //Collectable items
@@ -399,7 +400,7 @@ namespace LevelEditor
                     Object itemObject = AssetDatabase.LoadAssetAtPath(ItemFilePath + Enum.GetName(typeof(ItemCategories), (ItemCategories)itemIndex) + "/" + n.ToString() + ".prefab", typeof(Object));
                     if (itemObject != null)
                     {
-                        TypesOfItems[itemIndex].Add(itemObject);
+                        _typesOfItems[itemIndex].Add(itemObject);
                     }
                     else
                     {
@@ -408,7 +409,7 @@ namespace LevelEditor
                     n++;
                 } while (n < 30);
             }
-            CurrentItemPrefab = TypesOfItems[0][0];
+            CurrentItemPrefab = _typesOfItems[0][0];
 
         }
 
@@ -607,6 +608,7 @@ namespace LevelEditor
                     node.CalculateRenderNodePath();
                 }
             }
+                        
             for (int i = 0; i < AllMazeCubes.Count; i++)
             {
                 for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
@@ -962,7 +964,7 @@ namespace LevelEditor
         {
             ReCalculateAllItems();
             allMazeItems = new List<List<GameObject>>();
-            for (int itemType = 0; itemType < TypesOfItems.Count; itemType++)
+            for (int itemType = 0; itemType < _typesOfItems.Count; itemType++)
             {
                 allMazeItems.Add(new List<GameObject>());
                 for (int i = 0; i < AllItems[itemType].Count; i++)
@@ -1018,10 +1020,10 @@ namespace LevelEditor
 
     public interface ITem
     {
-        void Init();        //creates an item and initialises it
-        void AddItem();     //adds the item to the item list in the LevelEditor script
-        void EditItem();    //the user can edit the properties of the item
-        void RemoveItem();  //removes the item from the item list
+        void Init();            //creates an item and initialises it
+        void AddItem();         //adds the item to the item list in the LevelEditor script
+        void EditItem();        //the user can edit the properties of the item
+        void RemoveItem();      //removes the item from the item list
 
         bool CheckValuesSet(); //returns true if the item serializable field values are set
     }

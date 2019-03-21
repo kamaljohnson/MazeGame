@@ -48,23 +48,23 @@ namespace LevelEditor.Maze
             {
                 switch (LevelEditor.EditorMode)
                 {
-                    case Modes.MAZE_BODY:
+                    case Modes.MazeBody:
                         Tools.current = Tool.None;
                         CreateBlockCreationHandle(Maze.transform.GetChild(i).gameObject);
                         break;
-                    case Modes.MAZE_LAYOUT:
+                    case Modes.MazeLayout:
                         Tools.current = Tool.None;
                         CreateMazeStructureHandle(Maze.transform.GetChild(i).gameObject);
                         break;
-                    case Modes.ITEMS:
+                    case Modes.Items:
                         Tools.current = Tool.None;
                         CreateItemCreationHandle(Maze.transform.GetChild(i).gameObject);
                         break;
-                    case Modes.MAZE_POS:
+                    case Modes.MazePos:
                         Tools.current = Tool.None;
                         CreateSetMazePositionHandle();
                         break;
-                    case Modes.MAZE_PIVOT:
+                    case Modes.MazePivot:
                         Tools.current = Tool.None;
                         CreateSetMazePivotHandle();
                         break;

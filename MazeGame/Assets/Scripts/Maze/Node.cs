@@ -382,7 +382,7 @@ namespace Game.Maze
         //inactivity
         public int i;
 
-        //node transfomr rotation
+        //node transform rotation
         public int u;
         public int v;
         public int w;
@@ -397,9 +397,10 @@ namespace Game.Maze
         {
             i = node.inactive ? 1 : 0;
 
-            u = (int)(node.transform.eulerAngles.x);
-            v = (int)(node.transform.eulerAngles.y);
-            w = (int)(node.transform.eulerAngles.z);
+            var eulerAngles = node.transform.eulerAngles;
+            u = (int)eulerAngles.x;
+            v = (int)eulerAngles.y;
+            w = (int)eulerAngles.z;
 
             r = node.RightPath ? 1 : 0;
             l = node.LeftPath ? 1 : 0;

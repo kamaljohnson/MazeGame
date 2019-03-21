@@ -11,13 +11,23 @@ namespace Game.Items.Interactable.Portal
         public string PortalName;               //name format: "levelID:mazeID:portalID"
         public string DestinationPortalName;    //name format: "levelID:mazeID:portalID"
 
-        [Tooltip("set this to 0 if start positoin")]
+        [Tooltip("set this to 0 if start position")]
         public int PortalId;                   //0, 1, 2 ..etc [0 => level start location/portal]
         public int LevelId;
         public int MazeId;
 
+        public void SetPortalValues(Portal portal)
+        {
+            IsCheckpoint = portal.IsCheckpoint;
+            PortalName = portal.PortalName;
+            DestinationPortalName = portal.DestinationPortalName;
+
+            PortalId = portal.PortalId;
+            LevelId = portal.LevelId;
+            MazeId = portal.MazeId;
+        }
         
-        public void CheckpointSaveGameState()   //saves the entier state of the game for checkpoint reference
+        public void CheckpointSaveGameState()   //saves the entire state of the game for checkpoint reference
         {
 
         }
@@ -36,6 +46,14 @@ namespace Game.Items.Interactable.Portal
     [Serializable]
     public class SerializableItem
     {
+        public int x;
+        public int y;
+        public int z;
+
+        public int u;
+        public int v;
+        public int w;
+        
         public int c;   //IsCheckpoint
 
         public int p;   //PortalID
@@ -44,6 +62,17 @@ namespace Game.Items.Interactable.Portal
 
         public void ConvertToSerializable(Portal portal)
         {
+            var transform = portal.transform;
+            var position = transform.position;
+            x = (int)position.x;
+            y = (int)position.y;
+            z = (int)position.z;
+
+            var eulerAngles = transform.eulerAngles;
+            u = (int) eulerAngles.x;
+            v = (int) eulerAngles.y;
+            w = (int) eulerAngles.z;
+            
             c = portal.IsCheckpoint ? 1 : 0;
 
             p = portal.PortalId;
@@ -51,7 +80,7 @@ namespace Game.Items.Interactable.Portal
             l = portal.LevelId;
         }
 
-        public Portal ConvertToPortal()
+        public Portal GetPortal()
         {
             Portal portal = new Portal();
             portal.IsCheckpoint = (c == 1);

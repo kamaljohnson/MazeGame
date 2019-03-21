@@ -11,7 +11,6 @@ namespace LevelEditor.Save
     {
         public SaveState State;
         public void Save()
-
         {
             var directory = Application.streamingAssetsPath + "/Levels/" + "level " + SceneManager.GetActiveScene().name.Split(' ')[1];
             State = new SaveState();
@@ -19,12 +18,15 @@ namespace LevelEditor.Save
             //getting the data of the current maze
             State.m = new List<MazeData>();
 
-            for (int i = 0; i < LevelEditor.Mazes.childCount; i++)
+            for (var i = 0; i < LevelEditor.Mazes.childCount; i++)
             {
                 LevelEditor.CurrentMaze = LevelEditor.Mazes.GetChild(i).gameObject;
                 LevelEditor.ReCalculateAllMazeCubes();
                 LevelEditor.ReCalculateNodes();
-                LevelEditor.RenderPaths();
+                /*LevelEditor.ReCalculateAllItems();
+                LevelEditor.RenderPaths();*/
+
+                Debug.Log(LevelEditor.AllMazeCubes.Count.ToString());
 
                 var surfaceMazeCubes = LevelEditor.GetSurfaceMazeCubes();
                 var mazeData = new MazeData();

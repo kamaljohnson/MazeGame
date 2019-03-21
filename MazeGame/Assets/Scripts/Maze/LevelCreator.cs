@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Game.Items.Interactable.Portal;
 using Game.Maze;
 using UnityEngine.SceneManagement;
 
@@ -12,14 +13,17 @@ namespace Game
 
         public GameObject MazeCube;
         public GameObject MazeWallPrefab;
+        public GameObject PortalPrefab;
 
         public GameObject PlayerCube;
+        private Vector3 _playerStartPosition;
 
         public void Awake()
         {
             LoadLevel();
-            var playerCube = Instantiate(PlayerCube);
-            playerCube.GetComponent<Player.Movement>().SetParentMaze(MazeHolder.GetChild(0).gameObject);
+            /*
+             * TODO: make the maze with the portal 0 as the maze holder for the player
+             */
         }
 
         private void LoadLevel()
@@ -62,21 +66,45 @@ namespace Game
                         tempNode.transform.localPosition += tempNode.transform.forward * 0.5f;
                         tempNode.gameObject.AddComponent<Maze.Node>();
 
-                        Maze.Node tempNodeObj = node.GetNode();
+                        Node tempNodeObj = node.GetNode();
                         tempNodeObj.ParentCubePos = tempCube.transform.position;
                         
                         tempNode.gameObject.GetComponent<Maze.Node>().SetNodeFromNode(tempNodeObj, tempCube.transform.position);
                         tempNode.gameObject.GetComponent<Maze.Node>().CalculateRenderNodePath();
                     }
+                    
                     tempCube.SetActive(false);
+                }
+
+                foreach (var portal in maze.p)
+                {
+                    var tempPortal= Instantiate(PortalPrefab);
+                    
+                    tempPortal.transform.parent = tempMaze.transform;
+                    tempPortal.transform.position = new Vector3(
+                        portal.x,
+                        portal.y,
+                        portal.z
+                        );                    
+                    tempPortal.transform.eulerAngles = new Vector3(
+                        portal.u,
+                        portal.v,
+                        portal.w
+                    );
+                    tempPortal.GetComponent<Portal>().SetPortalValues(portal.GetPortal());
+                    if (tempPortal.GetComponent<Portal>().PortalId == 0)
+                    {
+                        var playerCube = Instantiate(PlayerCube);
+                        playerCube.GetComponent<Player.Movement>().SetParentMaze(MazeHolder.GetChild(tempPortal.GetComponent<Portal>().MazeId).gameObject);
+                        playerCube.transform.position = tempPortal.transform.position - tempPortal.transform.up * tempPortal.transform.localScale.y * 0.5f + playerCube.transform.up * 1/6f;
+                        playerCube.transform.eulerAngles = tempPortal.transform.eulerAngles;
+                    }
                 }
             }
 
             /*
             *Creates individual blocks of the maze walls using the render_* data from the nodes
-            * 
             */
-
             for (int i = 0; i < MazeHolder.childCount; i++)     //for each maze
             {
                 Transform _maze = MazeHolder.GetChild(i);
@@ -440,43 +468,30 @@ namespace Game
     public class SaveState
     {
         //list of all the maze cubes along with its list of attached nodes
-        public List<Maze_data> m;
+        public List<MazeData> m;
     }
 
     [System.Serializable]
-    public class Maze_data
+    public class MazeData
     {
-        public List<MazeCube_data> c;
+        public List<MazeCubeData> c;
         public int x;
         public int y;
         public int z;
+
+        //item data
+        public List<Items.Interactable.Portal.SerializableItem> p;    //the list of all portals on the maze
     }
 
     [System.Serializable]
-    public class MazeCube_data
+    public class MazeCubeData
     {
         //maze cube transform
         public int x;
         public int y;
         public int z;
-
+        
         //the list of nodes the cube has
-        public List<Maze.SavableNode> nl;
-
-        public void ConvertToSavable(GameObject mace_cube)
-        {
-            x = (int)mace_cube.transform.position.x;
-            y = (int)mace_cube.transform.position.y;
-            z = (int)mace_cube.transform.position.z;
-
-            nl = new List<Maze.SavableNode>();
-            for (int j = 0; j < mace_cube.transform.childCount; j++)
-            {
-                Maze.SavableNode sn = new Maze.SavableNode();
-
-                sn.ConvertToSavable(mace_cube.transform.GetChild(j).GetComponent<Maze.Node>());
-                nl.Add(sn);
-            }
-        }
+        public List<SavableNode> nl;
     }
 }
