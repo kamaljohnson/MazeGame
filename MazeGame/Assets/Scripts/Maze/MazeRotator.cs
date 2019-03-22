@@ -29,7 +29,7 @@ namespace Game.Maze
                 IsRotating = false;
                 angle = 0;
             }
-            yield return new WaitForSeconds(seconds: 90 / step);
+            yield return new WaitForSeconds(90 / step);
         }
 
         public void Rotate(Vector3 direction, float speed)

@@ -35,7 +35,7 @@ namespace Game
             foreach (var maze in state.m)
             {
                 var tempMaze = new GameObject();
-                tempMaze.AddComponent<Maze.MazeRotator>();
+                tempMaze.AddComponent<MazeRotator>();
                 tempMaze.transform.parent = MazeHolder;
                 tempMaze.transform.position = new Vector3(
                     maze.x,
@@ -55,7 +55,7 @@ namespace Game
 
                     foreach (var node in cube.nl)
                     {
-                        var tempNode= new GameObject();
+                        var tempNode = new GameObject();
                         tempNode.transform.parent = tempCube.transform;
                         tempNode.transform.localPosition = Vector3.zero;
                         tempNode.transform.eulerAngles = new Vector3(
@@ -452,18 +452,15 @@ namespace Game
             string jsonString;
             if(Application.platform == RuntimePlatform.Android)
             {
-                Debug.Log("loading old state");
                 WWW reader = new WWW(directory);
                 while (!reader.isDone) { }
 
                 jsonString = reader.text;
-                Debug.Log("loading complete : " + jsonString + " from :" + directory);
             }
             else
             {
                 jsonString = File.ReadAllText(directory);
             }
-            Debug.Log(jsonString);
             state = JsonUtility.FromJson<SaveState>(jsonString);
             return state;
         }

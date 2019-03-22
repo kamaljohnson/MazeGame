@@ -56,7 +56,6 @@ namespace Game.Player
         {
             if (ParentMaze.GetComponent<Maze.MazeRotator>().IsRotating)    //no calculations will be made or applied while the maze is rotating
                 return;
-
             HandleInput();
 
             if(_movementSnappedFull)
@@ -227,7 +226,6 @@ namespace Game.Player
             
             if (_tempAngleRotated >= 90)
             {
-
                 if (!CheckGroundUnderneath())
                 {
                     PlayerCube.localEulerAngles = Helper.DirectionRotation[(int) _movementDirection] * 90;
