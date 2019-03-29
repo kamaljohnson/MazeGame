@@ -184,7 +184,6 @@ namespace Game.Maze
             EELUrender = false;
             EELDrender = false;
 
-
             if (!inactive)
             {
                 Rrender = !RightPath;
@@ -246,13 +245,13 @@ namespace Game.Maze
                     ERrender = true;
                 }
             }
-            if (Physics.Raycast(transform.position + transform.forward * 0.1f, transform.right * 0.6f, out hit, 0.9f))
+/*            if (Physics.Raycast(transform.position + transform.forward * 0.1f, transform.right * 0.6f, out hit, 0.9f))
             {
                 if (Rrender)
                 {
                     IRrender = true;
                 }
-            }
+            }*/
 
             if (!Physics.Raycast(ParentCubePos, -transform.right * 0.6f, out hit, 0.5f))
             {
@@ -263,13 +262,13 @@ namespace Game.Maze
                     ELrender = true;
                 }
             }
-            if (Physics.Raycast(transform.position + transform.forward * 0.1f, -transform.right * 0.6f, out hit, 0.9f))
+/*            if (Physics.Raycast(transform.position + transform.forward * 0.1f, -transform.right * 0.6f, out hit, 0.9f))
             {
                 if (Lrender)
                 {
                     ILrender = true;
                 }
-            }
+            }*/
 
             if (!Physics.Raycast(ParentCubePos, transform.up * 0.6f, out hit, 0.5f))
             {
@@ -280,13 +279,13 @@ namespace Game.Maze
                     EUrender = true;
                 }
             }
-            if (Physics.Raycast(transform.position + transform.forward * 0.1f, transform.up * 0.6f, out hit, 0.9f))
+/*            if (Physics.Raycast(transform.position + transform.forward * 0.1f, transform.up * 0.6f, out hit, 0.9f))
             {
                 if (Urender)
                 {
                     IUrender = true;
                 }
-            }
+            }*/
 
             if (!Physics.Raycast(ParentCubePos, -transform.up * 0.6f, out hit, 0.5f))
             {
@@ -297,6 +296,7 @@ namespace Game.Maze
                     EDrender = true;
                 }
             }
+/*
             if (Physics.Raycast(transform.position + transform.forward * 0.1f, -transform.up * 0.6f, out hit, 0.9f))
             {
                 if (Drender)
@@ -304,6 +304,7 @@ namespace Game.Maze
                     IDrender = true;
                 }
             }
+*/
 
             if (ERUrender && EURrender)
             {

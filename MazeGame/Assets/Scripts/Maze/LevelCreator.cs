@@ -21,7 +21,6 @@ namespace Game
         public void Awake()
         {
             LoadLevel();
-            
         }
 
         private void LoadLevel()
@@ -245,14 +244,14 @@ namespace Game
                             tempobj.transform.parent = node.transform;
                         }
 
-                        if (node.IRrender)
+                        /*if (node.IRrender)
                         {
                             GameObject tempobj = Instantiate(MazeWallPrefab,
                                 node.transform.position + node.transform.right * internal_offset +
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                             tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
-                            tempobj.name = "er";
+                            tempobj.name = "ir";
                             tempobj.transform.parent = node.transform;
                         }
 
@@ -263,7 +262,7 @@ namespace Game
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                             tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
-                            tempobj.name = "el";
+                            tempobj.name = "il";
                             tempobj.transform.parent = node.transform;
                         }
 
@@ -274,7 +273,7 @@ namespace Game
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                             tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
-                            tempobj.name = "eu";
+                            tempobj.name = "iu";
                             tempobj.transform.parent = node.transform;
                         }
 
@@ -285,9 +284,10 @@ namespace Game
                                 node.transform.forward * height_offset, Quaternion.identity, node.transform);
                             tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                             tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
-                            tempobj.name = "ed";
+                            tempobj.name = "id";
                             tempobj.transform.parent = node.transform;
                         }
+*/
 
                         if (node.ERUrender)
                         {
