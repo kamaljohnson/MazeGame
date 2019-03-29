@@ -17,6 +17,12 @@ namespace Game.Player
             false     //back
         };
 
+        public List<bool> CameraOrientationInput = new List<bool>
+        {
+            false,    //right
+            false     //left
+        };
+        
         private Vector3 _firstTouchPos;
         private Vector3 _lastTouchPos;
 
@@ -30,7 +36,26 @@ namespace Game.Player
             HandleKeyboardInput();
             HandleTouchInput();
         }
-        
+
+        /*
+         * returns the change in the camera orientation
+         */
+        public Direction GetCameraOrientationDirection()
+        {
+            if (CameraOrientationInput[(int) Direction.Right])
+            {
+                return Direction.Right;
+            }
+            if (CameraOrientationInput[(int) Direction.Left])
+            {
+                return Direction.Left;
+            }
+            return Direction.None;
+        }
+
+        /*
+         * returns the movement direction of the swipe input
+         */
         public Direction GetInputDirection()
         {
             if (Inputs[(int) Direction.Right])

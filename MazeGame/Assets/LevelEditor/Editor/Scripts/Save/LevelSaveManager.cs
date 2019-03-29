@@ -29,6 +29,11 @@ namespace LevelEditor.Save
 
                 var surfaceMazeCubes = LevelEditor.GetSurfaceMazeCubes();
                 var mazeData = new MazeData();
+                var position = LevelEditor.CurrentMaze.transform.position;
+                mazeData.x = (int)position.x;
+                mazeData.y = (int)position.y;
+                mazeData.z = (int)position.z;
+                
                 mazeData.c = new List<MazeCubeData>();
                 mazeData.p = new List<Game.Items.Interactable.Portal.SerializableItem>();
                 

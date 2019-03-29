@@ -21,9 +21,7 @@ namespace Game
         public void Awake()
         {
             LoadLevel();
-            /*
-             * TODO: make the maze with the portal 0 as the maze holder for the player
-             */
+            
         }
 
         private void LoadLevel()
@@ -42,6 +40,7 @@ namespace Game
                     maze.y,
                     maze.z
                 );
+                tempMaze.gameObject.name = "Maze";
 
                 foreach (var cube in maze.c)
                 {
@@ -52,7 +51,8 @@ namespace Game
                         cube.y,  
                         cube.z
                     );
-
+                    tempCube.gameObject.name = "Cube";
+                    
                     foreach (var node in cube.nl)
                     {
                         var tempNode = new GameObject();
