@@ -99,8 +99,8 @@ namespace Game
                         playerCube.transform.eulerAngles = tempPortal.transform.eulerAngles;
                         tempPortal.SetActive(false);
 
-                        GameManager.PlayerCubeTransfomr = playerCube.transform;
-                        GameManager.CurrentMazeTransfomr = MazeHolder.GetChild(tempPortal.GetComponent<Portal>().MazeId);
+                        GameManager.PlayerCubeTransform = playerCube.transform;
+                        GameManager.CurrentMazeTransform = MazeHolder.GetChild(tempPortal.GetComponent<Portal>().MazeId);
                     }
                 }
                 

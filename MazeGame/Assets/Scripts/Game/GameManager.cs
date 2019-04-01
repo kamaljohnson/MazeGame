@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static Transform CurrentMazeTransfomr;
-    public static Transform PlayerCubeTransfomr;
+    public static Transform CurrentMazeTransform;
+    public static Transform PlayerCubeTransform;
 }
