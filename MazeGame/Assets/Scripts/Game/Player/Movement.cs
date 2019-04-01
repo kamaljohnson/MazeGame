@@ -81,7 +81,7 @@ namespace Game.Player
 
         private void HandleInput()
         {
-            Direction tempdirection = Input.GetInputDirection();
+            Direction tempdirection = Input.GetInputPlayerMovementDirection();
             if (tempdirection != Direction.None)
             {
                 _tempMovementDirection = tempdirection;

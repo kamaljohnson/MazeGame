@@ -72,11 +72,6 @@ namespace Game.Maze
             NodeTransformRot = transform.eulerAngles;
         }
 
-        public void Start()
-        {
-            ParentCubePos = -transform.forward;
-        }
-
         public void ReCalculateNeighbourInterations()
         {
             RightPath = (RightNode != null);

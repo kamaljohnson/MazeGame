@@ -40,39 +40,39 @@ namespace Game
                     maze.z
                 );
                 tempMaze.gameObject.name = "Maze";
-
+                
+                var tempMazeCubes = new List<GameObject>();
                 foreach (var cube in maze.c)
                 {
-                    var tempCube = Instantiate(MazeCube);
-                    tempCube.transform.parent = tempMaze.transform;
+                    var tempCube = Instantiate(MazeCube, tempMaze.transform, true);
                     tempCube.transform.position = new Vector3(
                         cube.x,
                         cube.y,  
                         cube.z
                     );
-                    tempCube.gameObject.name = "Cube";
-                    
+                    tempCube.gameObject.name = "Cube";     
+                    tempMazeCubes.Add(tempCube);
+                }    
+                var i = 0;
+                foreach (var cube in maze.c)
+                {
                     foreach (var node in cube.nl)
                     {
                         var tempNode = new GameObject();
-                        tempNode.transform.parent = tempCube.transform;
-                        tempNode.transform.localPosition = Vector3.zero;
+                        tempNode.transform.parent = tempMazeCubes[i].transform;
                         tempNode.transform.eulerAngles = new Vector3(
                             node.u,
                             node.v,
                             node.w
                         );
-                        tempNode.transform.localPosition += tempNode.transform.forward * 0.5f;
-                        tempNode.gameObject.AddComponent<Maze.Node>();
+                        tempNode.transform.localPosition = tempNode.transform.forward * 0.5f;
+                        tempNode.gameObject.AddComponent<Node>();
 
-                        Node tempNodeObj = node.GetNode();
-                        tempNodeObj.ParentCubePos = tempCube.transform.position;
-                        
-                        tempNode.gameObject.GetComponent<Maze.Node>().SetNodeFromNode(tempNodeObj, tempCube.transform.position);
-                        tempNode.gameObject.GetComponent<Maze.Node>().CalculateRenderNodePath();
+                        var tempNodeObj = node.GetNode();
+                        tempNode.gameObject.GetComponent<Node>().SetNodeFromNode(tempNodeObj, tempMazeCubes[i].transform.position);
+                        tempNode.gameObject.GetComponent<Node>().CalculateRenderNodePath();
                     }
-                    
-                    tempCube.SetActive(false);
+                    i++;
                 }
 
                 foreach (var portal in maze.p)
@@ -100,11 +100,13 @@ namespace Game
                         tempPortal.SetActive(false);
                     }
                 }
+                
             }
 
             /*
             *Creates individual blocks of the maze walls using the render_* data from the nodes
             */
+            
             for (int i = 0; i < MazeHolder.childCount; i++)     //for each maze
             {
                 Transform _maze = MazeHolder.GetChild(i);
@@ -112,8 +114,8 @@ namespace Game
                 {
                     Transform _cube = _maze.GetChild(j);
                     if(_cube.CompareTag("MazeCube"))
-                        _cube.gameObject.SetActive(true);
-
+                        _cube.gameObject.SetActive(true);       
+                    
                     for (int k = 0; k < _cube.childCount; k++)      //for each node
                     {
                         Node node = _cube.GetChild(k).GetComponent<Node>();
@@ -442,6 +444,7 @@ namespace Game
                     }
                 }
             }
+            
         }
 
         public SaveState LoadLevelDataFromFile(string levelName)

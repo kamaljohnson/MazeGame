@@ -31,24 +31,29 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="GameManager.cs" t="Include" />
-          <e p="Helper.cs" t="Include" />
-          <e p="Items" t="Include">
-            <e p="Items.cs" t="Include" />
-            <e p="Portals" t="Include">
-              <e p="Portal.cs" t="Include" />
+          <e p="Game" t="Include">
+            <e p="Camera" t="Include">
+              <e p="CameraMovement.cs" t="Include" />
             </e>
-          </e>
-          <e p="Maze" t="Include">
-            <e p="LevelCreator.cs" t="Include" />
-            <e p="Maze_e.cs" t="Include" />
-            <e p="MazeCube.cs" t="Include" />
-            <e p="MazeRotator.cs" t="Include" />
-            <e p="Node.cs" t="Include" />
-          </e>
-          <e p="Player" t="Include">
-            <e p="Movement.cs" t="Include" />
-            <e p="PlayerInput.cs" t="Include" />
+            <e p="GameManager.cs" t="Include" />
+            <e p="Helper.cs" t="Include" />
+            <e p="Items" t="Include">
+              <e p="Items.cs" t="Include" />
+              <e p="Portals" t="Include">
+                <e p="Portal.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Maze" t="Include">
+              <e p="LevelCreator.cs" t="Include" />
+              <e p="Maze_e.cs" t="Include" />
+              <e p="MazeCube.cs" t="Include" />
+              <e p="MazeRotator.cs" t="Include" />
+              <e p="Node.cs" t="Include" />
+            </e>
+            <e p="Player" t="Include">
+              <e p="Movement.cs" t="Include" />
+              <e p="PlayerInput.cs" t="Include" />
+            </e>
           </e>
         </e>
       </e>

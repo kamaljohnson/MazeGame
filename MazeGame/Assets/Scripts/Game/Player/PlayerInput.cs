@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 
-namespace Game.Player
+namespace Game
 {
     public class PlayerInput : MonoBehaviour
     {
@@ -33,8 +33,8 @@ namespace Game.Player
         {
             ResetInputs();
             
-            HandleKeyboardInput();
-            HandleTouchInput();
+            HandleKeyboardInputs();
+            HandleTouchInputs();
         }
 
         /*
@@ -56,7 +56,7 @@ namespace Game.Player
         /*
          * returns the movement direction of the swipe input
          */
-        public Direction GetInputDirection()
+        public Direction GetInputPlayerMovementDirection()
         {
             if (Inputs[(int) Direction.Right])
             {
@@ -77,7 +77,12 @@ namespace Game.Player
             return Direction.None;
         }
 
-        private void HandleKeyboardInput()
+        public Direction GetInputCameraOrientationChangeDirection()
+        {
+            return Direction.None;
+        }
+
+        private void HandleKeyboardInputs()
         {
             if (Input.GetKey(KeyCode.D))
             {
@@ -97,7 +102,7 @@ namespace Game.Player
             }
         }
         
-        private void HandleTouchInput()
+        private void HandleTouchInputs()
         {
             if (Input.touchCount == 1) // user is touching the screen with a single touch
             {
