@@ -8,15 +8,16 @@ namespace Game
 {
     public class PlayerInput : MonoBehaviour
     {
-        
-        public List<bool> Inputs = new List<bool>
+        [HideInInspector]
+        public List<bool> PlayerMovementInputs = new List<bool>
         {
             false,    //right
             false,    //left
             false,    //forward
             false     //back
         };
-
+        
+        [HideInInspector]
         public List<bool> CameraOrientationInput = new List<bool>
         {
             false,    //right
@@ -26,8 +27,12 @@ namespace Game
         private Vector3 _firstTouchPos;
         private Vector3 _lastTouchPos;
 
+        [Header("Player Movement Input")]
         public float TouchOffDragDistance;
         public float TouchOnDragDistance;
+
+        [Header("Camera Orientation Input")]
+        public float TouchDragDistanceCameraOrientation;
         
         public void Update()
         {
@@ -58,27 +63,22 @@ namespace Game
          */
         public Direction GetInputPlayerMovementDirection()
         {
-            if (Inputs[(int) Direction.Right])
+            if (PlayerMovementInputs[(int) Direction.Right])
             {
                 return Direction.Right;
             }
-            if (Inputs[(int) Direction.Left])
+            if (PlayerMovementInputs[(int) Direction.Left])
             {
                 return Direction.Left;
             }
-            if (Inputs[(int) Direction.Forward])
+            if (PlayerMovementInputs[(int) Direction.Forward])
             {
                 return Direction.Forward;
             }
-            if (Inputs[(int) Direction.Back])
+            if (PlayerMovementInputs[(int) Direction.Back])
             {
                 return Direction.Back;
             }
-            return Direction.None;
-        }
-
-        public Direction GetInputCameraOrientationChangeDirection()
-        {
             return Direction.None;
         }
 
@@ -86,19 +86,28 @@ namespace Game
         {
             if (Input.GetKey(KeyCode.D))
             {
-                Inputs[(int)Direction.Right] = true;
+                PlayerMovementInputs[(int)Direction.Right] = true;
             }
             if (Input.GetKey(KeyCode.A))
             {
-                Inputs[(int)Direction.Left] = true;
+                PlayerMovementInputs[(int)Direction.Left] = true;
             }
             if (Input.GetKey(KeyCode.W))
             {
-                Inputs[(int)Direction.Forward] = true;
+                PlayerMovementInputs[(int)Direction.Forward] = true;
             }
             if (Input.GetKey(KeyCode.S))
             {
-                Inputs[(int)Direction.Back] = true;
+                PlayerMovementInputs[(int)Direction.Back] = true;
+            }
+            
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                CameraOrientationInput[(int) Direction.Right] = true;
+            }
+            if(Input.GetKeyDown(KeyCode.Q))
+            {
+                CameraOrientationInput[(int) Direction.Left] = true;
             }
         }
         
@@ -128,19 +137,19 @@ namespace Game
                             */
                             if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
                             {
-                                Inputs[(int)Direction.Forward] = true;
+                                PlayerMovementInputs[(int)Direction.Forward] = true;
                             }
                             if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
                             {   
-                                Inputs[(int)Direction.Back] = true;
+                                PlayerMovementInputs[(int)Direction.Back] = true;
                             }
                             if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
                             {   
-                                Inputs[(int)Direction.Left] = true;
+                                PlayerMovementInputs[(int)Direction.Left] = true;
                             }
                             if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
                             {   
-                                Inputs[(int)Direction.Right] = true;
+                                PlayerMovementInputs[(int)Direction.Right] = true;
                             }
                             _firstTouchPos = _lastTouchPos;
                         }
@@ -157,19 +166,19 @@ namespace Game
                              */
                             if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
                             {
-                                Inputs[(int)Direction.Forward] = true;
+                                PlayerMovementInputs[(int)Direction.Forward] = true;
                             }
                             if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
                             {   
-                                Inputs[(int)Direction.Back] = true;
+                                PlayerMovementInputs[(int)Direction.Back] = true;
                             }
                             if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
                             {   
-                                Inputs[(int)Direction.Left] = true;
+                                PlayerMovementInputs[(int)Direction.Left] = true;
                             }
                             if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
                             {   
-                                Inputs[(int)Direction.Right] = true;
+                                PlayerMovementInputs[(int)Direction.Right] = true;
                             }
                         }
 
@@ -180,9 +189,14 @@ namespace Game
 
         private void ResetInputs()
         {
-            for (var i = 0; i < Inputs.Count; i++)
+            for (var i = 0; i < PlayerMovementInputs.Count; i++)
             {
-                Inputs[i] = false;
+                PlayerMovementInputs[i] = false;
+            }
+
+            for (var i = 0; i < CameraOrientationInput.Count; i++)
+            {
+                CameraOrientationInput[i] = false;
             }
         }
     }

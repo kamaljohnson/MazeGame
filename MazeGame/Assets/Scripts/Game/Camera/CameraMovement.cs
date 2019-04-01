@@ -8,9 +8,14 @@ namespace Game.Camera
     {
         public PlayerInput Input;
         public Transform CameraTransform;
-        public Transform CameraPivotMazeTransform;
         
+        private Transform CameraPivotMazeTransform;
         private Direction CameraChangeDirection;
+
+        public void Start()
+        {
+            CameraChangeDirection = Direction.None;
+        }
 
         public void Update()
         {
@@ -23,7 +28,7 @@ namespace Game.Camera
         
         private void HandleInput()
         {
-            var tempDirection = Input.GetInputCameraOrientationChangeDirection();
+            var tempDirection = Input.GetCameraOrientationDirection();
             if (tempDirection != Direction.None)
             {
                 CameraChangeDirection = tempDirection;
@@ -32,14 +37,16 @@ namespace Game.Camera
 
         private void ChangeOrientation()
         {
+            CameraPivotMazeTransform = GameManager.CurrentMazeTransfomr;
+            
             switch (CameraChangeDirection)
             {
                 case Direction.Right:
-                    CameraTransform.RotateAround(CameraPivotMazeTransform.position, Vector3.up, 90);
+                    CameraTransform.RotateAround(CameraPivotMazeTransform.position, Vector3.up, 45);
                     CameraChangeDirection = Direction.None;
                     break;
                 case Direction.Left:
-                    CameraTransform.RotateAround(CameraPivotMazeTransform.position, Vector3.up, -90);
+                    CameraTransform.RotateAround(CameraPivotMazeTransform.position, Vector3.up, -45);
                     CameraChangeDirection = Direction.None;
                     break;
             }
