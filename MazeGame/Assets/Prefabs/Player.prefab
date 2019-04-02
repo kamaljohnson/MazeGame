@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2022343881705598184}
-  - component: {fileID: 2022343881705598187}
   - component: {fileID: 2022343881705598186}
+  - component: {fileID: 2022343881705598187}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -33,21 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2022343881705598187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2022343881705598189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9836e15ed268191489c204a27460c56f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Inputs: 00000000
-  TouchOffDragDistance: 100
-  TouchOnDragDistance: 200
 --- !u!114 &2022343881705598186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +55,23 @@ MonoBehaviour:
   BackAnchor: {fileID: 2022343882928941970}
   Speed: 500
   PlayerRayCastData: 0000000000
+--- !u!114 &2022343881705598187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022343881705598189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9836e15ed268191489c204a27460c56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerMovementInputs: 00000000
+  CameraOrientationInput: 0000
+  TouchOffDragScreenPercent: 8
+  TouchOnDragScreenPercent: 5
+  TouchDragScreenPercentCameraOrientation: 20
 --- !u!1 &2022343882501894592
 GameObject:
   m_ObjectHideFlags: 0

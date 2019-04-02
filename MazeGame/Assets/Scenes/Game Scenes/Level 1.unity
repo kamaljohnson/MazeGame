@@ -122,9 +122,9 @@ GameObject:
   m_Component:
   - component: {fileID: 376491486}
   - component: {fileID: 376491485}
+  - component: {fileID: 376491484}
   - component: {fileID: 376491488}
   - component: {fileID: 376491487}
-  - component: {fileID: 376491484}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -190,7 +190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 376491483}
   m_LocalRotation: {x: 0.26239306, y: -0.36694765, z: 0.10869481, w: 0.8858244}
-  m_LocalPosition: {x: 1.91, y: 3.2, z: -1.91}
+  m_LocalPosition: {x: 3.26, y: 4.44, z: -3.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -210,9 +210,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerMovementInputs: 00000000
   CameraOrientationInput: 0000
-  TouchOffDragDistance: 20
-  TouchOnDragDistance: 30
-  TouchDragDistanceCameraOrientation: 100
+  TouchOffDragScreenPercent: 8
+  TouchOnDragScreenPercent: 5
+  TouchDragScreenPercentCameraOrientation: 20
 --- !u!114 &376491488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Input: {fileID: 376491487}
   CameraTransform: {fileID: 376491486}
-  RotationSpeed: 20
+  RotationStep: 5
 --- !u!1 &1473853398
 GameObject:
   m_ObjectHideFlags: 0

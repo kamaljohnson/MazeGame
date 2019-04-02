@@ -6,4 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static Transform CurrentMazeTransform;
     public static Transform PlayerCubeTransform;
+
+    public void Start()
+    {
+        Screen.orientation = ScreenOrientation.Portrait;
+    }
 }

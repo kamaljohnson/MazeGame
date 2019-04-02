@@ -28,12 +28,31 @@ namespace Game
         private Vector3 _lastTouchPos;
 
         [Header("Player Movement Input")]
-        public float TouchOffDragDistance;
-        public float TouchOnDragDistance;
+        public float TouchOffDragScreenPercent;
+        public float TouchOnDragScreenPercent;
+        private float TouchOffDragDistance;
+        private float TouchOnDragDistance;
 
-        [Header("Camera Orientation Input")]
-        public float TouchDragDistanceCameraOrientation;
-        
+        [Header("Camera Orientation Input")] 
+        public float TouchDragScreenPercentCameraOrientation;
+        private float TouchDragDistanceCameraOrientation;
+
+        public void Start()
+        {
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                TouchOnDragDistance = Screen.height * TouchOnDragScreenPercent/100;
+                TouchOffDragDistance = Screen.height * TouchOffDragDistance/100;
+                TouchDragDistanceCameraOrientation = Screen.height * TouchDragScreenPercentCameraOrientation/100;
+            }
+            else
+            {
+                TouchOnDragDistance = 10;
+                TouchOffDragDistance = 10;
+                TouchDragDistanceCameraOrientation = 10;
+            }
+        }
+
         public void Update()
         {
             ResetInputs();
@@ -129,7 +148,7 @@ namespace Game
                      */
                     case TouchPhase.Moved:
                         _lastTouchPos = touch.position;
-                        //Check if drag distance is greater than 20% of the screen height
+                        //Check if drag distance is greater than touchOnDragDistance
                         if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > TouchOnDragDistance || Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > TouchOnDragDistance)    //its a drag
                         {
                             /* check if the drag is vertical or horizontal
@@ -158,7 +177,7 @@ namespace Game
                     case TouchPhase.Ended:
                         _lastTouchPos = touch.position;  //last touch position. Ommitted if you use list
     
-                        //Check if drag distance is greater than 20% of the screen height
+                        //Check if drag distance is greater than touchOffDragDistance
                         if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > TouchOffDragDistance || Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > TouchOffDragDistance)    //its a drag
                         {
                             /* check if the drag is vertical or horizontal
