@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 namespace Game
@@ -27,6 +28,8 @@ namespace Game
         private Vector3 _firstTouchPos;
         private Vector3 _lastTouchPos;
 
+        public float ScreenPartitionPercentage;
+        
         [Header("Player Movement Input")]
         public float TouchOffDragScreenPercent;
         public float TouchOnDragScreenPercent;
@@ -36,6 +39,8 @@ namespace Game
         [Header("Camera Orientation Input")] 
         public float TouchDragScreenPercentCameraOrientation;
         private float TouchDragDistanceCameraOrientation;
+
+        private bool upperPartitionInteraction;
 
         public void Start()
         {
@@ -135,73 +140,118 @@ namespace Game
             if (Input.touchCount == 1) // user is touching the screen with a single touch
             {
                 var touch = Input.GetTouch(0); // get the touch
-                switch (touch.phase)
+                
+                //checking in which part of the screen the touch lies
+                if (touch.phase == TouchPhase.Began)
                 {
-                    //check for the first touch
-                    case TouchPhase.Began:
-                        _firstTouchPos = touch.position;
-                        _lastTouchPos = touch.position;
-                        break;
-                    /*
-                     *the _lastTuchPos is updated
-                     *it also handles the onScreenTouch drag input
-                     */
-                    case TouchPhase.Moved:
-                        _lastTouchPos = touch.position;
-                        //Check if drag distance is greater than touchOnDragDistance
-                        if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > TouchOnDragDistance || Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > TouchOnDragDistance)    //its a drag
-                        {
-                            /* check if the drag is vertical or horizontal
-                             *
-                            */
-                            if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
-                            {
-                                PlayerMovementInputs[(int)Direction.Forward] = true;
-                            }
-                            if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
-                            {   
-                                PlayerMovementInputs[(int)Direction.Back] = true;
-                            }
-                            if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
-                            {   
-                                PlayerMovementInputs[(int)Direction.Left] = true;
-                            }
-                            if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
-                            {   
-                                PlayerMovementInputs[(int)Direction.Right] = true;
-                            }
-                            _firstTouchPos = _lastTouchPos;
-                        }
-                        break;
-                    //check if the finger is removed from the screen
-                    case TouchPhase.Ended:
-                        _lastTouchPos = touch.position;  //last touch position. Ommitted if you use list
-    
-                        //Check if drag distance is greater than touchOffDragDistance
-                        if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > TouchOffDragDistance || Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > TouchOffDragDistance)    //its a drag
-                        {
-                            /* check if the drag is vertical or horizontal
-                             *
-                             */
-                            if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
-                            {
-                                PlayerMovementInputs[(int)Direction.Forward] = true;
-                            }
-                            if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
-                            {   
-                                PlayerMovementInputs[(int)Direction.Back] = true;
-                            }
-                            if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
-                            {   
-                                PlayerMovementInputs[(int)Direction.Left] = true;
-                            }
-                            if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
-                            {   
-                                PlayerMovementInputs[(int)Direction.Right] = true;
-                            }
-                        }
+                    upperPartitionInteraction = touch.position.y >= Screen.height * ScreenPartitionPercentage / 100;
+                    _firstTouchPos = touch.position;
+                    _lastTouchPos = touch.position;
+                }
 
-                        break;
+                if (upperPartitionInteraction)
+                {
+                    Debug.Log("in upper part of the screen");
+                    switch (touch.phase)
+                    {
+                        /*
+                         *the _lastTuchPos is updated
+                         *it also handles the onScreenTouch drag input
+                         */
+                        case TouchPhase.Moved:
+                            _lastTouchPos = touch.position;
+                            //Check if drag distance is greater than touchOnDragDistance
+                            if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > TouchOnDragDistance ||
+                                Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > TouchOnDragDistance) //its a drag
+                            {
+                                /* check if the drag is vertical or horizontal
+                                 *
+                                */
+                                if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
+                                {
+                                    PlayerMovementInputs[(int) Direction.Forward] = true;
+                                }
+
+                                if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
+                                {
+                                    PlayerMovementInputs[(int) Direction.Back] = true;
+                                }
+
+                                if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
+                                {
+                                    PlayerMovementInputs[(int) Direction.Left] = true;
+                                }
+
+                                if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
+                                {
+                                    PlayerMovementInputs[(int) Direction.Right] = true;
+                                }
+
+                                _firstTouchPos = _lastTouchPos;
+                            }
+
+                            break;
+                        //check if the finger is removed from the screen
+                        case TouchPhase.Ended:
+                            _lastTouchPos = touch.position;
+
+                            //Check if drag distance is greater than touchOffDragDistance
+                            if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > TouchOffDragDistance ||
+                                Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > TouchOffDragDistance) //its a drag
+                            {
+                                /* check if the drag is vertical or horizontal
+                                 *
+                                 */
+                                if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
+                                {
+                                    PlayerMovementInputs[(int) Direction.Forward] = true;
+                                }
+
+                                if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
+                                {
+                                    PlayerMovementInputs[(int) Direction.Back] = true;
+                                }
+
+                                if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
+                                {
+                                    PlayerMovementInputs[(int) Direction.Left] = true;
+                                }
+
+                                if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
+                                {
+                                    PlayerMovementInputs[(int) Direction.Right] = true;
+                                }
+                            }
+
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("in lower part of the screen");
+                    switch (touch.phase)
+                    {
+                        //check if the finger is removed from the screen
+                        case TouchPhase.Ended:
+                            _lastTouchPos = touch.position; 
+
+                            //Check if drag distance is greater than touchOffDragDistance
+                            if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > TouchDragDistanceCameraOrientation ||
+                                Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > TouchDragDistanceCameraOrientation) //its a drag
+                            {
+                                if (_lastTouchPos.x - _firstTouchPos.x < 0)
+                                {
+                                    CameraOrientationInput[(int) Direction.Left] = true;
+                                }
+
+                                if (_lastTouchPos.x - _firstTouchPos.x > 0)
+                                {
+                                    CameraOrientationInput[(int) Direction.Right] = true;
+                                }
+                            }
+
+                            break;
+                    }
                 }
             }
         }
