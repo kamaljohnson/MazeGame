@@ -8,14 +8,14 @@ namespace Game.Camera
     {
         public PlayerInput Input;
         public Transform CameraTransform;
-        public float RotationSpeed;
+        public float RotationStep;
         
         private Transform cameraPivotMazeTransform;
         private Direction tempChangeDirection;
         private Direction changeDirection;
 
         private bool isChangingOrientation;
-        private float rotationAngle;
+        private float angle;
         
         public void Start()
         {
@@ -38,7 +38,7 @@ namespace Game.Camera
 
             if (isChangingOrientation)
             {
-                ChangeOrientation();
+                StartCoroutine(nameof(ChangeOrientation));
             }
         }
         
@@ -51,19 +51,16 @@ namespace Game.Camera
             }
         }
 
-        private void ChangeOrientation()
+        private IEnumerator ChangeOrientation()
         {
-            float tempRotationAngle = Time.deltaTime;
-            CameraTransform.RotateAround(cameraPivotMazeTransform.position, Vector3.up, (changeDirection == Direction.Right ? 1: -1 ) * tempRotationAngle * RotationSpeed);
-            rotationAngle += tempRotationAngle * RotationSpeed;
-
-            
-            if (rotationAngle > 90)
+            CameraTransform.RotateAround(cameraPivotMazeTransform.position, Vector3.up, (changeDirection == Direction.Right ? 1 : -1) * RotationStep);
+            angle += RotationStep;
+            if (angle == 90)
             {
-                CameraTransform.eulerAngles = new Vector3((int)CameraTransform.eulerAngles.x, (int)CameraTransform.eulerAngles.y, (int)CameraTransform.eulerAngles.z);
                 isChangingOrientation = false;
-                rotationAngle = 0;
+                angle = 0;
             }
+            yield return new WaitForSeconds(90 / RotationStep);
         }
     }
 }
