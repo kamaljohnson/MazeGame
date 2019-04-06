@@ -9,7 +9,7 @@ namespace Game.Player
         public Transform PlayerCube;
         public PlayerInput Input;
 
-        public float StepSize = 1 / 3f;
+        public float StepSize;
 
         public Transform RightAnchor;
         public Transform LeftAnchor;
@@ -41,6 +41,7 @@ namespace Game.Player
         
         public void Start()
         {
+            StepSize = PlayerCube.transform.lossyScale.x;
             _movementSnappedFull = true;
             _movementSnappedHalf = true;
             _snapCount = 0;

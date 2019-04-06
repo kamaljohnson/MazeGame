@@ -11,7 +11,7 @@ namespace Game
     {
         public Transform MazeHolder;
 
-        public GameObject MazeCube;
+        public GameObject MazeCubePrefab;
         public GameObject MazeWallPrefab;
         public GameObject PortalPrefab;
 
@@ -61,7 +61,7 @@ namespace Game
                 var tempMazeCubes = new List<GameObject>();
                 foreach (var cube in maze.c)
                 {
-                    var tempCube = Instantiate(MazeCube, mazeCubes.transform, true);
+                    var tempCube = Instantiate(MazeCubePrefab, mazeCubes.transform, true);
                     tempCube.transform.position = new Vector3(
                         cube.x,
                         cube.y,  
@@ -424,12 +424,14 @@ namespace Game
                 /*
                  * combining all the cube meshes to mazeCubes
                  * combining all the wall meshes to mazeWalls
-                 * 
                  */
                 CombineMeshes(_cubes.gameObject);
+                _cubes.gameObject.GetComponent<Renderer>().material = MazeCubePrefab.GetComponent<Renderer>().sharedMaterial;
                 CombineMeshes(_walls.gameObject);
+                _walls.gameObject.GetComponent<Renderer>().material = MazeWallPrefab.GetComponent<Renderer>().sharedMaterial;
+
             }
-            
+            MazeHolder.transform.localScale = Vector3.one * 3; 
         }
 
         public void CombineMeshes(GameObject parentGameObject)
@@ -443,7 +445,6 @@ namespace Game
                 combine[i].mesh = meshFilters[i].sharedMesh;
                 combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
                 meshFilters[i].gameObject.SetActive(false);
-
                 i++;
             }
             parentGameObject.GetComponent<MeshFilter>().mesh = new Mesh();
