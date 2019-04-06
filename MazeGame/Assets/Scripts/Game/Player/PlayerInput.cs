@@ -42,8 +42,11 @@ namespace Game
 
         private bool upperPartitionInteraction;
 
+        private int rotationCount;
+
         public void Start()
         {
+            rotationCount = 0;
             if (Application.platform == RuntimePlatform.Android)
             {
                 TouchOnDragDistance = Screen.height * TouchOnDragScreenPercent/100;
@@ -71,11 +74,11 @@ namespace Game
          */
         public Direction GetCameraOrientationDirection()
         {
-            if (CameraOrientationInput[(int) Direction.Right])
+            if (CameraOrientationInput[0])
             {
                 return Direction.Right;
             }
-            if (CameraOrientationInput[(int) Direction.Left])
+            if (CameraOrientationInput[1])
             {
                 return Direction.Left;
             }
@@ -87,19 +90,19 @@ namespace Game
          */
         public Direction GetInputPlayerMovementDirection()
         {
-            if (PlayerMovementInputs[(int) Direction.Right])
+            if (PlayerMovementInputs[((int) Direction.Right + rotationCount)%4])
             {
                 return Direction.Right;
             }
-            if (PlayerMovementInputs[(int) Direction.Left])
+            if (PlayerMovementInputs[((int) Direction.Left + rotationCount)%4])
             {
                 return Direction.Left;
             }
-            if (PlayerMovementInputs[(int) Direction.Forward])
+            if (PlayerMovementInputs[((int) Direction.Forward + rotationCount)%4])
             {
                 return Direction.Forward;
             }
-            if (PlayerMovementInputs[(int) Direction.Back])
+            if (PlayerMovementInputs[((int) Direction.Back + rotationCount)%4])
             {
                 return Direction.Back;
             }
@@ -127,11 +130,23 @@ namespace Game
             
             if(Input.GetKeyDown(KeyCode.E))
             {
-                CameraOrientationInput[(int) Direction.Right] = true;
+                CameraOrientationInput[0] = true;
+                rotationCount++;
             }
             if(Input.GetKeyDown(KeyCode.Q))
             {
-                CameraOrientationInput[(int) Direction.Left] = true;
+                CameraOrientationInput[1] = true;
+                rotationCount--;
+            }
+
+            if (rotationCount > 3)
+            {
+                rotationCount = 0;
+            }
+
+            if (rotationCount < 0)
+            {
+                rotationCount = 3;
             }
         }
         
@@ -148,7 +163,9 @@ namespace Game
                     _firstTouchPos = touch.position;
                     _lastTouchPos = touch.position;
                 }
-
+                
+                Debug.Log("Partition Interaction : " + (upperPartitionInteraction ? "upper": "lower"));
+                
                 if (upperPartitionInteraction)
                 {
                     Debug.Log("in upper part of the screen");
@@ -241,12 +258,24 @@ namespace Game
                             {
                                 if (_lastTouchPos.x - _firstTouchPos.x < 0)
                                 {
-                                    CameraOrientationInput[(int) Direction.Left] = true;
+                                    CameraOrientationInput[1] = true;
+                                    rotationCount--;
                                 }
 
                                 if (_lastTouchPos.x - _firstTouchPos.x > 0)
                                 {
-                                    CameraOrientationInput[(int) Direction.Right] = true;
+                                    CameraOrientationInput[0] = true;
+                                    rotationCount++;
+                                }
+                                
+                                if (rotationCount > 3)
+                                {
+                                    rotationCount = 0;
+                                }
+
+                                if (rotationCount < 0)
+                                {
+                                    rotationCount = 3;
                                 }
                             }
 

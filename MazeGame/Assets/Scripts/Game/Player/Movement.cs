@@ -232,7 +232,7 @@ namespace Game.Player
                 {
                     PlayerCube.localEulerAngles = Helper.DirectionRotation[(int) _movementDirection] * 90;
 //                    PlayerCube.localPosition = Helper.DirectionVector[(int) _movementDirection] * StepSize;
-
+                    
                     switch (_movementDirection)
                     {
                         case Direction.Right:
