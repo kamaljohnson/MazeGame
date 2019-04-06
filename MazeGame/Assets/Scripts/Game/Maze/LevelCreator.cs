@@ -431,7 +431,7 @@ namespace Game
                 _walls.gameObject.GetComponent<Renderer>().material = MazeWallPrefab.GetComponent<Renderer>().sharedMaterial;
 
             }
-            MazeHolder.transform.localScale = Vector3.one * 3; 
+            MazeHolder.transform.localScale = Vector3.one * 5; 
         }
 
         public void CombineMeshes(GameObject parentGameObject)

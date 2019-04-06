@@ -231,7 +231,7 @@ namespace Game.Player
                 if (!CheckGroundUnderneath())
                 {
                     PlayerCube.localEulerAngles = Helper.DirectionRotation[(int) _movementDirection] * 90;
-                    PlayerCube.localPosition = Helper.DirectionVector[(int) _movementDirection] * StepSize;
+//                    PlayerCube.localPosition = Helper.DirectionVector[(int) _movementDirection] * StepSize;
 
                     switch (_movementDirection)
                     {
