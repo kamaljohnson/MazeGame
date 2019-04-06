@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee4efecc-e02f-4994-b058-543737c4b600" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MazeGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MazeGame/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Maze/LevelCreator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Maze/LevelCreator.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -350,53 +349,58 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Game/Maze/LevelCreator.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="129" column="37" lean-forward="true" selection-start-line="129" selection-start-column="37" selection-end-line="129" selection-end-column="37" />
+            <state relative-caret-position="306">
+              <caret line="453" lean-forward="true" selection-start-line="453" selection-end-line="453" />
               <folding>
-                <marker date="1554529478551" expanded="false" signature="6:159" ph="..." />
-                <marker date="1554529478551" expanded="true" signature="175:23146" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="223:22421" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="499:544" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="578:21758" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="826:4878" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="1793:2146" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="2222:3234" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="2290:3191" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="3282:4847" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="4023:4829" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="4892:5005" ph="/* Creates individual blocks of the maze walls using the render_* data from the nodes ... */" />
-                <marker date="1554529478551" expanded="true" signature="5098:21735" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="5359:21664" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="5938:6481" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="6519:7062" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="7100:7640" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="7678:8218" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="8297:8838" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="8877:9418" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="9457:9999" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="10038:10580" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="10667:11220" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="11260:11869" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="11909:12515" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="12555:13161" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="13202:13870" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="13911:14579" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="14620:15289" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="15330:15999" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="16040:16709" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="16750:17420" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="17461:18130" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="18171:18840" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="18882:19541" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="19583:20242" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="20284:20944" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="20986:21646" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="21824:22415" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="22048:22211" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="22228:22314" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="22475:22595" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="22648:22892" ph="{...}" />
-                <marker date="1554529478551" expanded="true" signature="22949:23144" ph="{...}" />
+                <marker date="1554531051726" expanded="false" signature="6:159" ph="..." />
+                <marker date="1554531051726" expanded="true" signature="175:24972" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="223:24247" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="499:544" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="578:22675" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="736:816" ph="/* calculating the render data from the path data ... */" />
+                <marker date="1554531051726" expanded="true" signature="858:5224" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="2141:2494" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="2570:3582" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="2638:3539" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="3630:5193" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="4371:5175" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="5238:5449" ph="/* Creates individual blocks of the maze walls using the render_* data from the nodes ... */" />
+                <marker date="1554531051726" expanded="true" signature="5529:22652" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="5797:5897" ph="/* ... */" />
+                <marker date="1554531051726" expanded="false" signature="5978:22283" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="6557:7100" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="7138:7681" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="7719:8259" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="8297:8837" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="8916:9457" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="9496:10037" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="10076:10618" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="10657:11199" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="11286:11839" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="11879:12488" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="12528:13134" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="13174:13780" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="13821:14489" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="14530:15198" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="15239:15908" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="15949:16618" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="16659:17328" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="17369:18039" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="18080:18749" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="18790:19459" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="19501:20160" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="20202:20861" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="20903:21563" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="21605:22265" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="22372:22538" ph="/* ... */" />
+                <marker date="1554531051726" expanded="true" signature="22739:23584" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="22992:23247" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="23650:24241" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="23874:24037" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="24054:24140" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="24301:24421" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="24474:24718" ph="{...}" />
+                <marker date="1554531051726" expanded="true" signature="24775:24970" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -670,12 +674,12 @@
       <workItem from="1553837833601" duration="8904000" />
       <workItem from="1554011155466" duration="20495000" />
       <workItem from="1554305484636" duration="891000" />
-      <workItem from="1554527393837" duration="2077000" />
+      <workItem from="1554527393837" duration="3647000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105349000" />
+    <option name="totallyTimeSpent" value="106919000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1414,53 +1418,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Game/Maze/LevelCreator.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="129" column="37" lean-forward="true" selection-start-line="129" selection-start-column="37" selection-end-line="129" selection-end-column="37" />
+        <state relative-caret-position="306">
+          <caret line="453" lean-forward="true" selection-start-line="453" selection-end-line="453" />
           <folding>
-            <marker date="1554529478551" expanded="false" signature="6:159" ph="..." />
-            <marker date="1554529478551" expanded="true" signature="175:23146" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="223:22421" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="499:544" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="578:21758" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="826:4878" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="1793:2146" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="2222:3234" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="2290:3191" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="3282:4847" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="4023:4829" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="4892:5005" ph="/* Creates individual blocks of the maze walls using the render_* data from the nodes ... */" />
-            <marker date="1554529478551" expanded="true" signature="5098:21735" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="5359:21664" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="5938:6481" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="6519:7062" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="7100:7640" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="7678:8218" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="8297:8838" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="8877:9418" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="9457:9999" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="10038:10580" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="10667:11220" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="11260:11869" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="11909:12515" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="12555:13161" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="13202:13870" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="13911:14579" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="14620:15289" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="15330:15999" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="16040:16709" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="16750:17420" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="17461:18130" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="18171:18840" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="18882:19541" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="19583:20242" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="20284:20944" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="20986:21646" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="21824:22415" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="22048:22211" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="22228:22314" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="22475:22595" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="22648:22892" ph="{...}" />
-            <marker date="1554529478551" expanded="true" signature="22949:23144" ph="{...}" />
+            <marker date="1554531051726" expanded="false" signature="6:159" ph="..." />
+            <marker date="1554531051726" expanded="true" signature="175:24972" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="223:24247" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="499:544" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="578:22675" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="736:816" ph="/* calculating the render data from the path data ... */" />
+            <marker date="1554531051726" expanded="true" signature="858:5224" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="2141:2494" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="2570:3582" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="2638:3539" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="3630:5193" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="4371:5175" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="5238:5449" ph="/* Creates individual blocks of the maze walls using the render_* data from the nodes ... */" />
+            <marker date="1554531051726" expanded="true" signature="5529:22652" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="5797:5897" ph="/* ... */" />
+            <marker date="1554531051726" expanded="false" signature="5978:22283" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="6557:7100" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="7138:7681" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="7719:8259" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="8297:8837" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="8916:9457" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="9496:10037" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="10076:10618" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="10657:11199" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="11286:11839" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="11879:12488" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="12528:13134" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="13174:13780" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="13821:14489" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="14530:15198" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="15239:15908" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="15949:16618" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="16659:17328" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="17369:18039" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="18080:18749" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="18790:19459" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="19501:20160" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="20202:20861" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="20903:21563" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="21605:22265" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="22372:22538" ph="/* ... */" />
+            <marker date="1554531051726" expanded="true" signature="22739:23584" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="22992:23247" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="23650:24241" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="23874:24037" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="24054:24140" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="24301:24421" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="24474:24718" ph="{...}" />
+            <marker date="1554531051726" expanded="true" signature="24775:24970" ph="{...}" />
           </folding>
         </state>
       </provider>

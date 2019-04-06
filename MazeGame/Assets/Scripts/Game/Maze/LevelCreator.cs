@@ -47,11 +47,17 @@ namespace Game
                 tempMaze.name = "Maze";
                 mazeCubes.transform.parent = tempMaze.transform;
                 mazeCubes.name = "Cubes";
+                mazeCubes.AddComponent<MeshFilter>();
+                mazeCubes.AddComponent<MeshRenderer>();
+                mazeCubes.AddComponent<MeshCollider>();
                 mazeNodes.transform.parent = tempMaze.transform;
                 mazeNodes.name = "Nodes";
                 mazeWalls.transform.parent = tempMaze.transform;
                 mazeWalls.name = "Walls";
-                
+                mazeWalls.AddComponent<MeshFilter>();
+                mazeWalls.AddComponent<MeshRenderer>();
+                mazeWalls.AddComponent<MeshCollider>();
+
                 var tempMazeCubes = new List<GameObject>();
                 foreach (var cube in maze.c)
                 {
@@ -118,13 +124,20 @@ namespace Game
             }
 
             /*
-            * Creates individual blocks of the maze walls using the render_* data from the nodes
-            */
+             * Creates individual blocks of the maze walls using the render_* data from the nodes
+             * Combining all the wall meshes
+             * Combining all the body cube meshes
+             */
             for (int i = 0; i < MazeHolder.childCount; i++)     //for each maze
             {
                 Transform _maze = MazeHolder.GetChild(i);
+                Transform _cubes = _maze.GetChild(0);
                 Transform _nodes = _maze.GetChild(1);
                 Transform _walls = _maze.GetChild(2);
+                
+                /*
+                 * creating the walls and adding them to the walls gameObject
+                 */
                 for (int k = 0; k < _nodes.childCount; k++)      //for each node
                 {
                     Node node = _nodes.GetChild(k).GetComponent<Node>();
@@ -407,8 +420,36 @@ namespace Game
                     }
                 }
                 Destroy(_maze.GetChild(1).gameObject);
+                
+                /*
+                 * combining all the cube meshes to mazeCubes
+                 * combining all the wall meshes to mazeWalls
+                 * 
+                 */
+                CombineMeshes(_cubes.gameObject);
+                CombineMeshes(_walls.gameObject);
             }
             
+        }
+
+        public void CombineMeshes(GameObject parentGameObject)
+        {
+            var meshFilters = parentGameObject.GetComponentsInChildren<MeshFilter>();
+            var combine = new CombineInstance[meshFilters.Length];
+
+            var i = 0;
+            while (i < meshFilters.Length)
+            {
+                combine[i].mesh = meshFilters[i].sharedMesh;
+                combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
+                meshFilters[i].gameObject.SetActive(false);
+
+                i++;
+            }
+            parentGameObject.GetComponent<MeshFilter>().mesh = new Mesh();
+            parentGameObject.GetComponent<MeshFilter>().mesh.CombineMeshes(combine);
+            parentGameObject.SetActive(true);
+            parentGameObject.GetComponent<MeshCollider>().sharedMesh = parentGameObject.GetComponent<MeshFilter>().mesh;
         }
 
         public SaveState LoadLevelDataFromFile(string levelName)
