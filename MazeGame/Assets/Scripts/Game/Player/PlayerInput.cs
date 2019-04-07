@@ -159,6 +159,7 @@ namespace Game
                 //checking in which part of the screen the touch lies
                 if (touch.phase == TouchPhase.Began)
                 {
+                    Debug.Log("touch input began");
                     upperPartitionInteraction = touch.position.y >= Screen.height * ScreenPartitionPercentage / 100;
                     _firstTouchPos = touch.position;
                     _lastTouchPos = touch.position;
@@ -168,7 +169,6 @@ namespace Game
                 
                 if (upperPartitionInteraction)
                 {
-                    Debug.Log("in upper part of the screen");
                     switch (touch.phase)
                     {
                         /*
@@ -245,7 +245,6 @@ namespace Game
                 }
                 else
                 {
-                    Debug.Log("in lower part of the screen");
                     switch (touch.phase)
                     {
                         //check if the finger is removed from the screen
@@ -259,13 +258,13 @@ namespace Game
                                 if (_lastTouchPos.x - _firstTouchPos.x < 0)
                                 {
                                     CameraOrientationInput[1] = true;
-                                    rotationCount--;
+                                    rotationCount++;
                                 }
 
                                 if (_lastTouchPos.x - _firstTouchPos.x > 0)
                                 {
                                     CameraOrientationInput[0] = true;
-                                    rotationCount++;
+                                    rotationCount--;
                                 }
                                 
                                 if (rotationCount > 3)
