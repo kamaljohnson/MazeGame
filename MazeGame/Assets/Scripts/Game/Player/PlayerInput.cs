@@ -258,13 +258,13 @@ namespace Game
                                 if (_lastTouchPos.x - _firstTouchPos.x < 0)
                                 {
                                     CameraOrientationInput[1] = true;
-                                    rotationCount++;
+                                    rotationCount--;
                                 }
 
                                 if (_lastTouchPos.x - _firstTouchPos.x > 0)
                                 {
                                     CameraOrientationInput[0] = true;
-                                    rotationCount--;
+                                    rotationCount++;
                                 }
                                 
                                 if (rotationCount > 3)
