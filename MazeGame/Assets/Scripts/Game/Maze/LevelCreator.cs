@@ -3,19 +3,21 @@ using UnityEngine;
 using System.IO;
 using Game.Items.Interactable.Portal;
 using Game.Maze;
+using Game.Player;
 using UnityEngine.SceneManagement;
 
 namespace Game
 {
     public class LevelCreator : MonoBehaviour
     {
-        public Transform MazeHolder;
+        public Transform mazeHolder;
 
-        public GameObject MazeCubePrefab;
-        public GameObject MazeWallPrefab;
-        public GameObject PortalPrefab;
+        public GameObject mazeCubePrefab;
+        public GameObject mazeWallPrefab;
+        public GameObject portalPrefab;
 
-        public GameObject PlayerCube;
+        public GameObject playerCube;
+        public GameObject inputManager;
         private Vector3 _playerStartPosition;
 
         public void Awake()
@@ -38,7 +40,7 @@ namespace Game
                 var mazeNodes = new GameObject();
                 var mazeWalls = new GameObject();
                 tempMaze.AddComponent<MazeRotator>();
-                tempMaze.transform.parent = MazeHolder;
+                tempMaze.transform.parent = mazeHolder;
                 tempMaze.transform.position = new Vector3(
                     maze.x,
                     maze.y,
@@ -61,7 +63,7 @@ namespace Game
                 var tempMazeCubes = new List<GameObject>();
                 foreach (var cube in maze.c)
                 {
-                    var tempCube = Instantiate(MazeCubePrefab, mazeCubes.transform, true);
+                    var tempCube = Instantiate(mazeCubePrefab, mazeCubes.transform, true);
                     tempCube.transform.position = new Vector3(
                         cube.x,
                         cube.y,  
@@ -94,9 +96,8 @@ namespace Game
 
                 foreach (var portal in maze.p)
                 {
-                    var tempPortal= Instantiate(PortalPrefab);
-                    
-                    tempPortal.transform.parent = tempMaze.transform;
+                    var tempPortal= Instantiate(portalPrefab, tempMaze.transform, true);
+
                     tempPortal.transform.position = new Vector3(
                         portal.x,
                         portal.y,
@@ -110,14 +111,15 @@ namespace Game
                     tempPortal.GetComponent<Portal>().SetPortalValues(portal.GetPortal());
                     if (tempPortal.GetComponent<Portal>().PortalId == 0)
                     {
-                        var playerCube = Instantiate(PlayerCube);
-                        playerCube.GetComponent<Player.Movement>().SetParentMaze(MazeHolder.GetChild(tempPortal.GetComponent<Portal>().MazeId).gameObject);
+                        var playerCube = Instantiate(this.playerCube);
+                        playerCube.GetComponent<Movement>().Input = inputManager.GetComponent<PlayerInput>();
+                        playerCube.GetComponent<Movement>().SetParentMaze(mazeHolder.GetChild(tempPortal.GetComponent<Portal>().MazeId).gameObject);
                         playerCube.transform.position = tempPortal.transform.position - tempPortal.transform.up * tempPortal.transform.localScale.y * 0.5f + playerCube.transform.up * 1/6f;
                         playerCube.transform.eulerAngles = tempPortal.transform.eulerAngles;
                         tempPortal.SetActive(false);
 
                         GameManager.PlayerCubeTransform = playerCube.transform;
-                        GameManager.CurrentMazeTransform = MazeHolder.GetChild(tempPortal.GetComponent<Portal>().MazeId);
+                        GameManager.CurrentMazeTransform = mazeHolder.GetChild(tempPortal.GetComponent<Portal>().MazeId);
                     }
                 }
                 
@@ -128,19 +130,19 @@ namespace Game
              * Combining all the wall meshes
              * Combining all the body cube meshes
              */
-            for (int i = 0; i < MazeHolder.childCount; i++)     //for each maze
+            for (int i = 0; i < mazeHolder.childCount; i++)     //for each maze
             {
-                Transform _maze = MazeHolder.GetChild(i);
-                Transform _cubes = _maze.GetChild(0);
-                Transform _nodes = _maze.GetChild(1);
-                Transform _walls = _maze.GetChild(2);
+                Transform maze = mazeHolder.GetChild(i);
+                Transform cubes = maze.GetChild(0);
+                Transform nodes = maze.GetChild(1);
+                Transform walls = maze.GetChild(2);
                 
                 /*
                  * creating the walls and adding them to the walls gameObject
                  */
-                for (int k = 0; k < _nodes.childCount; k++)      //for each node
+                for (int k = 0; k < nodes.childCount; k++)      //for each node
                 {
-                    Node node = _nodes.GetChild(k).GetComponent<Node>();
+                    Node node = nodes.GetChild(k).GetComponent<Node>();
                     if (node == null)
                         break;
                     
@@ -148,7 +150,6 @@ namespace Game
                     float height_offset = 1 / 12f;
 
                     float external_offset = 1 / 2f + 1 / 12f;
-                    float internal_offset = 1 / 2f - 1 / 12f;
 
                     float w_size = 4 / 6f;
                     float c_size = 1 / 6f;
@@ -156,282 +157,282 @@ namespace Game
 
                     if (node.Rrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab, node.transform.position + node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                        GameObject tempobj = Instantiate(mazeWallPrefab, node.transform.position + node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                         tempobj.name = "r";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
                     if (node.Lrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab, node.transform.position - node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                        GameObject tempobj = Instantiate(mazeWallPrefab, node.transform.position - node.transform.right * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                         tempobj.name = "l";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
                     if (node.Urender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab, node.transform.position + node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                        GameObject tempobj = Instantiate(mazeWallPrefab, node.transform.position + node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                         tempobj.name = "u";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
                     if (node.Drender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab, node.transform.position - node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                        GameObject tempobj = Instantiate(mazeWallPrefab, node.transform.position - node.transform.up * offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                         tempobj.name = "d";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
 
                     //rendering corner
                     if (node.RUrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position + (node.transform.right + node.transform.up) * offset +
                             node.transform.forward * height_offset, node.transform.rotation, node.transform);
                         tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
                         tempobj.name = "ru";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
                     if (node.RDrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position + (node.transform.right - node.transform.up) * offset +
                             node.transform.forward * height_offset, node.transform.rotation, node.transform);
                         tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
                         tempobj.name = "rd";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
                     if (node.LUrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position + (-node.transform.right + node.transform.up) * offset +
                             node.transform.forward * height_offset, node.transform.rotation, node.transform);
                         tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
                         tempobj.name = "lu";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
                     if (node.LDrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position + (-node.transform.right - node.transform.up) * offset +
                             node.transform.forward * height_offset, node.transform.rotation, node.transform);
                         tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
                         tempobj.name = "ld";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
 
                     //rendering external edges
                     if (node.ERrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab, node.transform.position + node.transform.right * external_offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
+                        GameObject tempobj = Instantiate(mazeWallPrefab, node.transform.position + node.transform.right * external_offset + node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
                         tempobj.name = "er";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
 
                     if (node.ELrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position - node.transform.right * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
                         tempobj.name = "el";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
 
                     if (node.EUrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position + node.transform.up * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
                         tempobj.name = "eu";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
 
                     if (node.EDrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position - node.transform.up * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                         tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
                         tempobj.name = "ed";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
 
                     if (node.ERUrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position +
                             (node.transform.right * external_offset + node.transform.up * offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
                         tempobj.transform.localEulerAngles = new Vector3(0, 0, 0);
                         tempobj.name = "eru";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
 
                     }
 
                     if (node.ERDrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position +
                             (node.transform.right * external_offset - node.transform.up * offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
                         tempobj.transform.localEulerAngles = new Vector3(0, 0, 0);
                         tempobj.name = "erd";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
 
                     }
 
                     if (node.ELUrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position +
                             (-node.transform.right * external_offset + node.transform.up * offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
                         tempobj.transform.localEulerAngles = new Vector3(0, 0, 0);
                         tempobj.name = "elu";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
 
                     }
 
                     if (node.ELDrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position +
                             (-node.transform.right * external_offset - node.transform.up * offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
                         tempobj.transform.localEulerAngles = new Vector3(0, 0, 0);
                         tempobj.name = "eld";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
 
                     }
 
                     if (node.EURrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position +
                             (node.transform.right * offset + node.transform.up * external_offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
                         tempobj.transform.localEulerAngles = new Vector3(0, 0, 90);
                         tempobj.name = "eur";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
 
                     }
 
                     if (node.EULrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position +
                             (-node.transform.right * offset + node.transform.up * external_offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
                         tempobj.transform.localEulerAngles = new Vector3(0, 0, 90);
                         tempobj.name = "eul";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
 
                     }
 
                     if (node.EDRrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position +
                             (node.transform.right * offset - node.transform.up * external_offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
                         tempobj.transform.localEulerAngles = new Vector3(0, 0, 90);
                         tempobj.name = "edr";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
 
                     }
 
                     if (node.EDLrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position +
                             (-node.transform.right * offset - node.transform.up * external_offset) +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
                         tempobj.transform.localEulerAngles = new Vector3(0, 0, 90);
                         tempobj.name = "edl";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
 
                     if (node.EERUrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position +
                             (node.transform.right + node.transform.up) * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localScale = new Vector3(h_size, h_size, h_size);
                         tempobj.transform.localEulerAngles = new Vector3(0, 0, 0);
                         tempobj.name = "eeru";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
 
                     if (node.EERDrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position +
                             (node.transform.right - node.transform.up) * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localScale = new Vector3(h_size, h_size, h_size);
                         tempobj.transform.localEulerAngles = new Vector3(0, 0, 0);
                         tempobj.name = "eerd";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
 
                     if (node.EELUrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position +
                             (-node.transform.right + node.transform.up) * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localScale = new Vector3(h_size, h_size, h_size);
                         tempobj.transform.localEulerAngles = new Vector3(0, 0, 0);
                         tempobj.name = "eelu";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
 
                     if (node.EELDrender)
                     {
-                        GameObject tempobj = Instantiate(MazeWallPrefab,
+                        GameObject tempobj = Instantiate(mazeWallPrefab,
                             node.transform.position +
                             (-node.transform.right - node.transform.up) * external_offset +
                             node.transform.forward * height_offset, Quaternion.identity, node.transform);
                         tempobj.transform.localScale = new Vector3(h_size, h_size, h_size);
                         tempobj.transform.localEulerAngles = new Vector3(0, 0, 0);
                         tempobj.name = "eeld";
-                        tempobj.transform.parent = _walls.transform;
+                        tempobj.transform.parent = walls.transform;
                     }
                 }
-                Destroy(_maze.GetChild(1).gameObject);
+                Destroy(maze.GetChild(1).gameObject);
                 
                 /*
                  * combining all the cube meshes to mazeCubes
                  * combining all the wall meshes to mazeWalls
                  */
-                CombineMeshes(_cubes.gameObject);
-                _cubes.gameObject.GetComponent<Renderer>().material = MazeCubePrefab.GetComponent<Renderer>().sharedMaterial;
-                CombineMeshes(_walls.gameObject);
-                _walls.gameObject.GetComponent<Renderer>().material = MazeWallPrefab.GetComponent<Renderer>().sharedMaterial;
+                CombineMeshes(cubes.gameObject);
+                cubes.gameObject.GetComponent<Renderer>().material = mazeCubePrefab.GetComponent<Renderer>().sharedMaterial;
+                CombineMeshes(walls.gameObject);
+                walls.gameObject.GetComponent<Renderer>().material = mazeWallPrefab.GetComponent<Renderer>().sharedMaterial;
 
             }
-            MazeHolder.transform.localScale = Vector3.one * 5; 
+            mazeHolder.transform.localScale = Vector3.one * 5; 
         }
 
         public void CombineMeshes(GameObject parentGameObject)

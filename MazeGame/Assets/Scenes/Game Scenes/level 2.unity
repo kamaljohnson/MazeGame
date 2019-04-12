@@ -112,6 +112,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &285057482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 285057484}
+  - component: {fileID: 285057483}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &285057483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285057482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9836e15ed268191489c204a27460c56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovementInputs: 00000000
+  cameraOrientationInput: 0000
+  screenPartitionPercentage: 8
+  touchOffDragScreenPercent: 10
+  touchOnDragScreenPercent: 15
+  touchDragScreenPercentCameraOrientation: 15
+--- !u!4 &285057484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285057482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.1123047, y: 25.887451, z: -15.622559}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &376491483
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +173,6 @@ GameObject:
   - component: {fileID: 376491485}
   - component: {fileID: 376491484}
   - component: {fileID: 376491488}
-  - component: {fileID: 376491487}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -197,24 +245,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 33, y: -45.003002, z: 0}
---- !u!114 &376491487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 376491483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9836e15ed268191489c204a27460c56f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMovementInputs: 00000000
-  cameraOrientationInput: 0000
-  screenPartitionPercentage: 8
-  touchOffDragScreenPercent: 10
-  touchOnDragScreenPercent: 15
-  touchDragScreenPercentCameraOrientation: 15
 --- !u!114 &376491488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,9 +257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ca13372d3ace140bbca4d252ba85fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 376491487}
+  input: {fileID: 285057483}
   cameraTransform: {fileID: 376491486}
-  rotationStep: 0
+  rotationStep: 5
 --- !u!1 &1473853398
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,15 +289,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2398b7281d1023f4f8fed78a24e4a00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MazeHolder: {fileID: 1751839973}
-  MazeCubePrefab: {fileID: 7763595628925981771, guid: 420f0eaae81264c42894dab6e953dc90,
+  mazeHolder: {fileID: 1751839973}
+  mazeCubePrefab: {fileID: 7763595628925981771, guid: 420f0eaae81264c42894dab6e953dc90,
     type: 3}
-  MazeWallPrefab: {fileID: 9074127498958625112, guid: 5ab13af2d115e4b499e1852dc9375212,
+  mazeWallPrefab: {fileID: 9074127498958625112, guid: 5ab13af2d115e4b499e1852dc9375212,
     type: 3}
-  PortalPrefab: {fileID: 7763595628925981771, guid: bb70f902deaa2c6489b5fccc5f9b4eeb,
+  portalPrefab: {fileID: 7763595628925981771, guid: bb70f902deaa2c6489b5fccc5f9b4eeb,
     type: 3}
-  PlayerCube: {fileID: 2022343881705598189, guid: ceb9df77486c83742947c8c7894825c6,
+  playerCube: {fileID: 2022343881705598189, guid: ceb9df77486c83742947c8c7894825c6,
     type: 3}
+  inputManager: {fileID: 285057482}
 --- !u!4 &1473853400
 Transform:
   m_ObjectHideFlags: 0
