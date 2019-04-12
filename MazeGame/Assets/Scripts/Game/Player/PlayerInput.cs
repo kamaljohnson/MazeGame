@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
@@ -10,7 +6,7 @@ namespace Game
     public class PlayerInput : MonoBehaviour
     {
         [HideInInspector]
-        public List<bool> PlayerMovementInputs = new List<bool>
+        public List<bool> playerMovementInputs = new List<bool>
         {
             false,    //right
             false,    //left
@@ -19,7 +15,7 @@ namespace Game
         };
         
         [HideInInspector]
-        public List<bool> CameraOrientationInput = new List<bool>
+        public List<bool> cameraOrientationInput = new List<bool>
         {
             false,    //right
             false     //left
@@ -28,36 +24,36 @@ namespace Game
         private Vector3 _firstTouchPos;
         private Vector3 _lastTouchPos;
 
-        public float ScreenPartitionPercentage;
+        public float screenPartitionPercentage;
         
         [Header("Player Movement Input")]
-        public float TouchOffDragScreenPercent;
-        public float TouchOnDragScreenPercent;
-        private float TouchOffDragDistance;
-        private float TouchOnDragDistance;
+        public float touchOffDragScreenPercent;
+        public float touchOnDragScreenPercent;
+        private float _touchOffDragDistance;
+        private float _touchOnDragDistance;
 
         [Header("Camera Orientation Input")] 
-        public float TouchDragScreenPercentCameraOrientation;
-        private float TouchDragDistanceCameraOrientation;
+        public float touchDragScreenPercentCameraOrientation;
+        private float _touchDragDistanceCameraOrientation;
 
-        private bool upperPartitionInteraction;
+        private bool _upperPartitionInteraction;
 
-        private int rotationCount;
+        public static int RotationCount;
 
         public void Start()
         {
-            rotationCount = 0;
+            RotationCount = 0;
             if (Application.platform == RuntimePlatform.Android)
             {
-                TouchOnDragDistance = Screen.height * TouchOnDragScreenPercent/100;
-                TouchOffDragDistance = Screen.height * TouchOffDragDistance/100;
-                TouchDragDistanceCameraOrientation = Screen.height * TouchDragScreenPercentCameraOrientation/100;
+                _touchOnDragDistance = Screen.height * touchOnDragScreenPercent/100;
+                _touchOffDragDistance = Screen.height * _touchOffDragDistance/100;
+                _touchDragDistanceCameraOrientation = Screen.height * touchDragScreenPercentCameraOrientation/100;
             }
             else
             {
-                TouchOnDragDistance = 10;
-                TouchOffDragDistance = 10;
-                TouchDragDistanceCameraOrientation = 10;
+                _touchOnDragDistance = 10;
+                _touchOffDragDistance = 10;
+                _touchDragDistanceCameraOrientation = 10;
             }
         }
 
@@ -74,11 +70,11 @@ namespace Game
          */
         public Direction GetCameraOrientationDirection()
         {
-            if (CameraOrientationInput[0])
+            if (cameraOrientationInput[0])
             {
                 return Direction.Right;
             }
-            if (CameraOrientationInput[1])
+            if (cameraOrientationInput[1])
             {
                 return Direction.Left;
             }
@@ -90,19 +86,19 @@ namespace Game
          */
         public Direction GetInputPlayerMovementDirection()
         {
-            if (PlayerMovementInputs[((int) Direction.Right + rotationCount)%4])
+            if (playerMovementInputs[((int) Direction.Right + RotationCount)%4])
             {
                 return Direction.Right;
             }
-            if (PlayerMovementInputs[((int) Direction.Left + rotationCount)%4])
+            if (playerMovementInputs[((int) Direction.Left + RotationCount)%4])
             {
                 return Direction.Left;
             }
-            if (PlayerMovementInputs[((int) Direction.Forward + rotationCount)%4])
+            if (playerMovementInputs[((int) Direction.Forward + RotationCount)%4])
             {
                 return Direction.Forward;
             }
-            if (PlayerMovementInputs[((int) Direction.Back + rotationCount)%4])
+            if (playerMovementInputs[((int) Direction.Back + RotationCount)%4])
             {
                 return Direction.Back;
             }
@@ -113,40 +109,28 @@ namespace Game
         {
             if (Input.GetKey(KeyCode.D))
             {
-                PlayerMovementInputs[(int)Direction.Right] = true;
+                playerMovementInputs[(int)Direction.Right] = true;
             }
             if (Input.GetKey(KeyCode.A))
             {
-                PlayerMovementInputs[(int)Direction.Left] = true;
+                playerMovementInputs[(int)Direction.Left] = true;
             }
             if (Input.GetKey(KeyCode.W))
             {
-                PlayerMovementInputs[(int)Direction.Forward] = true;
+                playerMovementInputs[(int)Direction.Forward] = true;
             }
             if (Input.GetKey(KeyCode.S))
             {
-                PlayerMovementInputs[(int)Direction.Back] = true;
+                playerMovementInputs[(int)Direction.Back] = true;
             }
             
             if(Input.GetKeyDown(KeyCode.E))
             {
-                CameraOrientationInput[0] = true;
-                rotationCount++;
+                cameraOrientationInput[0] = true;
             }
             if(Input.GetKeyDown(KeyCode.Q))
             {
-                CameraOrientationInput[1] = true;
-                rotationCount--;
-            }
-
-            if (rotationCount > 3)
-            {
-                rotationCount = 0;
-            }
-
-            if (rotationCount < 0)
-            {
-                rotationCount = 3;
+                cameraOrientationInput[1] = true;
             }
         }
         
@@ -160,14 +144,14 @@ namespace Game
                 if (touch.phase == TouchPhase.Began)
                 {
                     Debug.Log("touch input began");
-                    upperPartitionInteraction = touch.position.y >= Screen.height * ScreenPartitionPercentage / 100;
+                    _upperPartitionInteraction = touch.position.y >= Screen.height * screenPartitionPercentage / 100;
                     _firstTouchPos = touch.position;
                     _lastTouchPos = touch.position;
                 }
                 
-                Debug.Log("Partition Interaction : " + (upperPartitionInteraction ? "upper": "lower"));
+                Debug.Log("Partition Interaction : " + (_upperPartitionInteraction ? "upper": "lower"));
                 
-                if (upperPartitionInteraction)
+                if (_upperPartitionInteraction)
                 {
                     switch (touch.phase)
                     {
@@ -178,30 +162,30 @@ namespace Game
                         case TouchPhase.Moved:
                             _lastTouchPos = touch.position;
                             //Check if drag distance is greater than touchOnDragDistance
-                            if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > TouchOnDragDistance ||
-                                Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > TouchOnDragDistance) //its a drag
+                            if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > _touchOnDragDistance ||
+                                Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > _touchOnDragDistance) //its a drag
                             {
                                 /* check if the drag is vertical or horizontal
                                  *
                                 */
                                 if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
                                 {
-                                    PlayerMovementInputs[(int) Direction.Forward] = true;
+                                    playerMovementInputs[(int) Direction.Forward] = true;
                                 }
 
                                 if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
                                 {
-                                    PlayerMovementInputs[(int) Direction.Back] = true;
+                                    playerMovementInputs[(int) Direction.Back] = true;
                                 }
 
                                 if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
                                 {
-                                    PlayerMovementInputs[(int) Direction.Left] = true;
+                                    playerMovementInputs[(int) Direction.Left] = true;
                                 }
 
                                 if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
                                 {
-                                    PlayerMovementInputs[(int) Direction.Right] = true;
+                                    playerMovementInputs[(int) Direction.Right] = true;
                                 }
 
                                 _firstTouchPos = _lastTouchPos;
@@ -213,30 +197,30 @@ namespace Game
                             _lastTouchPos = touch.position;
 
                             //Check if drag distance is greater than touchOffDragDistance
-                            if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > TouchOffDragDistance ||
-                                Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > TouchOffDragDistance) //its a drag
+                            if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > _touchOffDragDistance ||
+                                Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > _touchOffDragDistance) //its a drag
                             {
                                 /* check if the drag is vertical or horizontal
                                  *
                                  */
                                 if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
                                 {
-                                    PlayerMovementInputs[(int) Direction.Forward] = true;
+                                    playerMovementInputs[(int) Direction.Forward] = true;
                                 }
 
                                 if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
                                 {
-                                    PlayerMovementInputs[(int) Direction.Back] = true;
+                                    playerMovementInputs[(int) Direction.Back] = true;
                                 }
 
                                 if (_lastTouchPos.x - _firstTouchPos.x < 0 && _lastTouchPos.y - _firstTouchPos.y > 0)
                                 {
-                                    PlayerMovementInputs[(int) Direction.Left] = true;
+                                    playerMovementInputs[(int) Direction.Left] = true;
                                 }
 
                                 if (_lastTouchPos.x - _firstTouchPos.x > 0 && _lastTouchPos.y - _firstTouchPos.y < 0)
                                 {
-                                    PlayerMovementInputs[(int) Direction.Right] = true;
+                                    playerMovementInputs[(int) Direction.Right] = true;
                                 }
                             }
 
@@ -252,29 +236,17 @@ namespace Game
                             _lastTouchPos = touch.position; 
 
                             //Check if drag distance is greater than touchOffDragDistance
-                            if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > TouchDragDistanceCameraOrientation ||
-                                Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > TouchDragDistanceCameraOrientation) //its a drag
+                            if (Mathf.Abs(_lastTouchPos.x - _firstTouchPos.x) > _touchDragDistanceCameraOrientation ||
+                                Mathf.Abs(_lastTouchPos.y - _firstTouchPos.y) > _touchDragDistanceCameraOrientation) //its a drag
                             {
                                 if (_lastTouchPos.x - _firstTouchPos.x < 0)
                                 {
-                                    CameraOrientationInput[1] = true;
-                                    rotationCount--;
+                                    cameraOrientationInput[1] = true;
                                 }
 
                                 if (_lastTouchPos.x - _firstTouchPos.x > 0)
                                 {
-                                    CameraOrientationInput[0] = true;
-                                    rotationCount++;
-                                }
-                                
-                                if (rotationCount > 3)
-                                {
-                                    rotationCount = 0;
-                                }
-
-                                if (rotationCount < 0)
-                                {
-                                    rotationCount = 3;
+                                    cameraOrientationInput[0] = true;
                                 }
                             }
 
@@ -286,14 +258,14 @@ namespace Game
 
         private void ResetInputs()
         {
-            for (var i = 0; i < PlayerMovementInputs.Count; i++)
+            for (var i = 0; i < playerMovementInputs.Count; i++)
             {
-                PlayerMovementInputs[i] = false;
+                playerMovementInputs[i] = false;
             }
 
-            for (var i = 0; i < CameraOrientationInput.Count; i++)
+            for (var i = 0; i < cameraOrientationInput.Count; i++)
             {
-                CameraOrientationInput[i] = false;
+                cameraOrientationInput[i] = false;
             }
         }
     }

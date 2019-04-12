@@ -6,37 +6,47 @@ namespace Game.Camera
 {
     public class CameraMovement : MonoBehaviour
     {
-        public PlayerInput Input;
-        public Transform CameraTransform;
-        public float RotationStep;
+        public PlayerInput input;
+        public Transform cameraTransform;
+        public float rotationStep;
         
-        private Transform cameraPivotMazeTransform;
-        private Direction tempChangeDirection;
-        private Direction changeDirection;
+        private Transform _cameraPivotMazeTransform;
+        private Direction _tempChangeDirection;
+        private Direction _changeDirection;
 
-        private bool isChangingOrientation;
-        private float angle;
+        private bool _isChangingOrientation;
+        private float _angle;
         
         public void Start()
         {
-            changeDirection = Direction.None;
-            tempChangeDirection = Direction.None;
-            isChangingOrientation = false;
+            _changeDirection = Direction.None;
+            _tempChangeDirection = Direction.None;
+            _isChangingOrientation = false;
         }
 
         public void Update()
         {
             HandleInput();
-            if (tempChangeDirection != Direction.None && !isChangingOrientation)
+            if (_tempChangeDirection != Direction.None && !_isChangingOrientation)
             {
-                changeDirection = tempChangeDirection;
-                tempChangeDirection = Direction.None;
+                PlayerInput.RotationCount += _tempChangeDirection == Direction.Right ? 1: -1;
+                if (PlayerInput.RotationCount > 3)
+                {
+                    PlayerInput.RotationCount = 0;
+                }
+
+                if (PlayerInput.RotationCount < 0)
+                {
+                    PlayerInput.RotationCount = 3;
+                }
+                _changeDirection = _tempChangeDirection;
+                _tempChangeDirection = Direction.None;
                 
-                cameraPivotMazeTransform = GameManager.CurrentMazeTransform;
-                isChangingOrientation = true;
+                _cameraPivotMazeTransform = GameManager.CurrentMazeTransform;
+                _isChangingOrientation = true;
             }
 
-            if (isChangingOrientation)
+            if (_isChangingOrientation)
             {
                 StartCoroutine(nameof(ChangeOrientation));
             }
@@ -44,23 +54,23 @@ namespace Game.Camera
         
         private void HandleInput()
         {
-            var tempDirection = Input.GetCameraOrientationDirection();
+            var tempDirection = input.GetCameraOrientationDirection();
             if (tempDirection != Direction.None)
             {
-                tempChangeDirection = tempDirection;
+                _tempChangeDirection = tempDirection;
             }
         }
 
         private IEnumerator ChangeOrientation()
         {
-            CameraTransform.RotateAround(cameraPivotMazeTransform.position, Vector3.up, (changeDirection == Direction.Right ? 1 : -1) * RotationStep);
-            angle += RotationStep;
-            if (angle == 90)
+            cameraTransform.RotateAround(_cameraPivotMazeTransform.position, Vector3.up, (_changeDirection == Direction.Right ? 1 : -1) * rotationStep);
+            _angle += rotationStep;
+            if (_angle == 90)
             {
-                isChangingOrientation = false;
-                angle = 0;
+                _isChangingOrientation = false;
+                _angle = 0;
             }
-            yield return new WaitForSeconds(90 / RotationStep);
+            yield return new WaitForSeconds(90 / rotationStep);
         }
     }
 }
