@@ -41,15 +41,15 @@ namespace LevelEditor.Items.Interactable.Portal
         {
             _portal = (Game.Items.Interactable.Portal.Portal)target;
             _portal.name = "Portal";
-            _portal.LevelId = int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]);
-            _portal.MazeId = int.Parse(Selection.activeGameObject.transform.parent.name.Split(' ')[1]);
-            _portal.PortalName = $"{_portal.LevelId.ToString()}:{_portal.MazeId.ToString()}:{_portal.PortalId.ToString()}";
-            if (_portal.DestinationPortalName == "")
+            _portal.levelId = int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]);
+            _portal.mazeId = int.Parse(Selection.activeGameObject.transform.parent.name.Split(' ')[1]);
+            _portal.portalName = $"{_portal.levelId.ToString()}:{_portal.mazeId.ToString()}:{_portal.portalId.ToString()}";
+            if (_portal.destinationPortalName == "")
             {
-                _portal.DestinationPortalName = "levelID:mazeID:portalID";
+                _portal.destinationPortalName = "levelID:mazeID:portalID";
             }
 
-            _portal.ItemSet = true;
+            _portal.itemSet = true;
         }
 
         public void AddItem()

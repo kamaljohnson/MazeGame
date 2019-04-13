@@ -32,9 +32,9 @@ namespace LevelEditor
         public static GameObject CurrentMaze;
 
         //path of the prefabs
-        public string MazeCubesFilePath;
-        public string MazeWallsFilePath;
-        public string ItemFilePath;
+        public string mazeCubesFilePath;
+        public string mazeWallsFilePath;
+        public string itemFilePath;
 
         //reference of corresponding prefabs
         private static List<Object> _typesOfMazeCubes;
@@ -71,9 +71,9 @@ namespace LevelEditor
         private void OnEnable()
         {
             _totalNumberOfMazeCubeTypes = 0;
-            MazeCubesFilePath = "Assets/LevelEditor/Prefabs/MazeCubes/MazeCube 1";
-            MazeWallsFilePath = "Assets/LevelEditor/Prefabs/MazeWalls/MazeWall 1";
-            ItemFilePath = "Assets/LevelEditor/Prefabs/Items/";
+            mazeCubesFilePath = "Assets/LevelEditor/Prefabs/MazeCubes/MazeCube 1";
+            mazeWallsFilePath = "Assets/LevelEditor/Prefabs/MazeWalls/MazeWall 1";
+            itemFilePath = "Assets/LevelEditor/Prefabs/Items/";
             AddMazePrefabs();
             AddItemPrefabs();
         }
@@ -105,19 +105,19 @@ namespace LevelEditor
                 GUILayout.EndHorizontal();
                 //display all the items available
                 GUILayout.BeginVertical();
-                for (int _typeIndex = 0; _typeIndex < _typesOfItems.Count; _typeIndex++)
+                for (int typeIndex = 0; typeIndex < _typesOfItems.Count; typeIndex++)
                 {
                     GUILayout.BeginVertical();
-                    GUILayout.Label(Enum.GetName(typeof(ItemCategories), (ItemCategories)_typeIndex));
-                    for (int _itemIndex = 0; _itemIndex < _typesOfItems[_typeIndex].Count;)
+                    GUILayout.Label(Enum.GetName(typeof(ItemCategories), (ItemCategories)typeIndex));
+                    for (int itemIndex = 0; itemIndex < _typesOfItems[typeIndex].Count;)
                     {
                         int _horizontalStackingLimit = 6;
                         GUILayout.BeginHorizontal();
                         for (int k = 0; k < _horizontalStackingLimit; k++)
                         {
-                            DrawCustomItemButtons(_typeIndex, _itemIndex);
-                            _itemIndex++;
-                            if (_itemIndex == _typesOfItems[_typeIndex].Count && k < _horizontalStackingLimit)
+                            DrawCustomItemButtons(typeIndex, itemIndex);
+                            itemIndex++;
+                            if (itemIndex == _typesOfItems[typeIndex].Count && k < _horizontalStackingLimit)
                             {
                                 GUILayout.FlexibleSpace();
                                 break;
@@ -351,19 +351,19 @@ namespace LevelEditor
             _totalNumberOfMazeCubeTypes = 0;
             _totalNumberOfMazeWallTypes = 0;
 
-            var i = int.Parse(MazeCubesFilePath.Split(' ')[1]);
+            var i = int.Parse(mazeCubesFilePath.Split(' ')[1]);
 
             var n = 30;
             do
             {
-                if (AssetDatabase.LoadAssetAtPath(MazeCubesFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)))
+                if (AssetDatabase.LoadAssetAtPath(mazeCubesFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)))
                 {
-                    _typesOfMazeCubes.Add(AssetDatabase.LoadAssetAtPath(MazeCubesFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
+                    _typesOfMazeCubes.Add(AssetDatabase.LoadAssetAtPath(mazeCubesFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
                     _totalNumberOfMazeCubeTypes++;
                 }
-                if (AssetDatabase.LoadAssetAtPath(MazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)))
+                if (AssetDatabase.LoadAssetAtPath(mazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)))
                 {
-                    _typesOfMazeWalls.Add(AssetDatabase.LoadAssetAtPath(MazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
+                    _typesOfMazeWalls.Add(AssetDatabase.LoadAssetAtPath(mazeWallsFilePath.Split(' ')[0] + " " + i.ToString() + ".prefab", typeof(Object)));
                     _totalNumberOfMazeWallTypes++;
                 }
                 i++;
@@ -397,7 +397,7 @@ namespace LevelEditor
                 int n = 0;
                 do
                 {
-                    Object itemObject = AssetDatabase.LoadAssetAtPath(ItemFilePath + Enum.GetName(typeof(ItemCategories), (ItemCategories)itemIndex) + "/" + n.ToString() + ".prefab", typeof(Object));
+                    Object itemObject = AssetDatabase.LoadAssetAtPath(itemFilePath + Enum.GetName(typeof(ItemCategories), (ItemCategories)itemIndex) + "/" + n.ToString() + ".prefab", typeof(Object));
                     if (itemObject != null)
                     {
                         _typesOfItems[itemIndex].Add(itemObject);
@@ -981,7 +981,7 @@ namespace LevelEditor
                                 case "Portal":
                                     Debug.Log("portal");
                                     if (AllItems[itemType][i].GetComponent<Game.Items.Interactable.Portal.Portal>()
-                                        .ItemSet)
+                                        .itemSet)
                                     {
                                         allMazeItems[itemType].Add(AllItems[itemType][i]);
                                         Debug.Log("item added to list");

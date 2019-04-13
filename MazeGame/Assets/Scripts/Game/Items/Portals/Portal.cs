@@ -5,26 +5,26 @@ namespace Game.Items.Interactable.Portal
 {
     public class Portal : MonoBehaviour, IInteractables, IItems
     {
-        public bool ItemSet;    //is the item set with values
+        public bool itemSet;    //is the item set with values
         
-        public bool IsCheckpoint;                //is the portal acting as a checkpoint
-        public string PortalName;               //name format: "levelID:mazeID:portalID"
-        public string DestinationPortalName;    //name format: "levelID:mazeID:portalID"
+        public bool isCheckpoint;                //is the portal acting as a checkpoint
+        public string portalName;               //name format: "levelID:mazeID:portalID"
+        public string destinationPortalName;    //name format: "levelID:mazeID:portalID"
 
         [Tooltip("set this to 0 if start position")]
-        public int PortalId;                   //0, 1, 2 ..etc [0 => level start location/portal]
-        public int LevelId;
-        public int MazeId;
+        public int portalId;                   //0, 1, 2 ..etc [0 => level start location/portal]
+        public int levelId;
+        public int mazeId;
 
         public void SetPortalValues(Portal portal)
         {
-            IsCheckpoint = portal.IsCheckpoint;
-            PortalName = portal.PortalName;
-            DestinationPortalName = portal.DestinationPortalName;
+            isCheckpoint = portal.isCheckpoint;
+            portalName = portal.portalName;
+            destinationPortalName = portal.destinationPortalName;
 
-            PortalId = portal.PortalId;
-            LevelId = portal.LevelId;
-            MazeId = portal.MazeId;
+            portalId = portal.portalId;
+            levelId = portal.levelId;
+            mazeId = portal.mazeId;
         }
         
         public void CheckpointSaveGameState()   //saves the entire state of the game for checkpoint reference
@@ -73,21 +73,21 @@ namespace Game.Items.Interactable.Portal
             v = (int) eulerAngles.y;
             w = (int) eulerAngles.z;
             
-            c = portal.IsCheckpoint ? 1 : 0;
+            c = portal.isCheckpoint ? 1 : 0;
 
-            p = portal.PortalId;
-            m = portal.MazeId;
-            l = portal.LevelId;
+            p = portal.portalId;
+            m = portal.mazeId;
+            l = portal.levelId;
         }
 
         public Portal GetPortal()
         {
             Portal portal = new Portal();
-            portal.IsCheckpoint = (c == 1);
+            portal.isCheckpoint = (c == 1);
 
-            portal.PortalId = p;
-            portal.MazeId = m;
-            portal.LevelId = l;
+            portal.portalId = p;
+            portal.mazeId = m;
+            portal.levelId = l;
 
             return portal;
         }
