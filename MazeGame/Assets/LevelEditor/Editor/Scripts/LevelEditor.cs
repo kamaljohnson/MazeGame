@@ -290,7 +290,7 @@ namespace LevelEditor
                 {
                     Maze.MazeEditorScript.EndNode = null;
                     Maze.MazeEditorScript.StartNode = null;
-//                    ReCalculateNodes();
+                    ReCalculateNodes();
                     RenderPaths();
                 }
 
