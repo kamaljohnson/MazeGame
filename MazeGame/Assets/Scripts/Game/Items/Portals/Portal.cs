@@ -16,6 +16,8 @@ namespace Game.Items.Interactable.Portal
         public int levelId;
         public int mazeId;
 
+        public static int CurrentCheckpointPortalId;
+        
         public void SetPortalValues(Portal portal)
         {
             isCheckpoint = portal.isCheckpoint;

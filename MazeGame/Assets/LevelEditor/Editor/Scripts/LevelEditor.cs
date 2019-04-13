@@ -579,12 +579,17 @@ namespace LevelEditor
 
         public void ResetPaths()
         {
+            ReCalculateAllMazeCubes();
+            ReCalculateNodes();
             Debug.Log("the path is reset");
             for (int i = 0; i < AllMazeCubes.Count; i++)
             {
                 for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
                 {
-                    AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>().Reset();
+                    if (AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>() != null)
+                    {
+                        AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>().Reset();
+                    }
                 }
             }
         }

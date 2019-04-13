@@ -109,8 +109,9 @@ namespace Game
                         portal.w
                     );
                     tempPortal.GetComponent<Portal>().SetPortalValues(portal.GetPortal());
-                    if (tempPortal.GetComponent<Portal>().portalId == 0)
+                    if (tempPortal.GetComponent<Portal>().portalId == 0)    //the starting of the maze
                     {
+                        Portal.CurrentCheckpointPortalId = 0;
                         var playerCube = Instantiate(this.playerCube);
                         playerCube.GetComponent<Movement>().Input = inputManager.GetComponent<PlayerInput>();
                         playerCube.GetComponent<Movement>().SetParentMaze(mazeHolder.GetChild(tempPortal.GetComponent<Portal>().mazeId).gameObject);
