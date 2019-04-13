@@ -9,14 +9,14 @@ namespace LevelEditor.Save
 {
     public class LevelSaveManager : Editor
     {
-        public SaveState State;
+        public SaveState state;
         public void Save()
         {
             var directory = Application.streamingAssetsPath + "/Levels/" + "level " + SceneManager.GetActiveScene().name.Split(' ')[1];
-            State = new SaveState();
+            state = new SaveState();
 
             //getting the data of the current maze
-            State.m = new List<MazeData>();
+            state.m = new List<MazeData>();
 
             for (var i = 0; i < LevelEditor.Mazes.childCount; i++)
             {
@@ -79,17 +79,17 @@ namespace LevelEditor.Save
                     mcn.ConvertToSavable(surfaceMazeCubes[j]);
                     mazeData.c.Add(mcn);
                 }
-                State.m.Add(mazeData);
+                state.m.Add(mazeData);
             }
 
             Debug.Log("SAVE REPORT");
-            for (int i = 0; i < State.m.Count; i++)
+            for (int i = 0; i < state.m.Count; i++)
             {
-                Debug.Log("MAZE " + (i + 1) + " : " + State.m[i].c.Count + " CUBES");
+                Debug.Log("MAZE " + (i + 1) + " : " + state.m[i].c.Count + " CUBES");
             }
 
             string jsonString;
-            jsonString = JsonUtility.ToJson(State);
+            jsonString = JsonUtility.ToJson(state);
             Debug.Log(jsonString);
             File.WriteAllText(directory, jsonString);
         }

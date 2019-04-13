@@ -113,7 +113,7 @@ namespace Game
                     {
                         Portal.CurrentCheckpointPortalId = 0;
                         var playerCube = Instantiate(this.playerCube);
-                        playerCube.GetComponent<Movement>().Input = inputManager.GetComponent<PlayerInput>();
+                        playerCube.GetComponent<Movement>().input = inputManager.GetComponent<PlayerInput>();
                         playerCube.GetComponent<Movement>().SetParentMaze(mazeHolder.GetChild(tempPortal.GetComponent<Portal>().mazeId).gameObject);
                         playerCube.transform.position = tempPortal.transform.position - tempPortal.transform.up * tempPortal.transform.localScale.y * 0.5f + playerCube.transform.up * 1/6f;
                         playerCube.transform.eulerAngles = tempPortal.transform.eulerAngles;
