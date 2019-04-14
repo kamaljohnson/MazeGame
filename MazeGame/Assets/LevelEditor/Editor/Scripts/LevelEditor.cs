@@ -20,6 +20,7 @@ namespace LevelEditor
     {
         Path,           //[ICE, FIRE]
         Interactable,   //[PORTAL, LASER, SPIKES, GATES, BRIDGE]
+        Activator,     //[BUTTON]
         Collectable,    //[COIN, DIAMOND, COLLECTION POINT]
         Enemie,         //[GUARDIAN, KNIGHT, HAMMER]
         Decoratable,    //[PLANT_01, FOUNTAIN, ...]
@@ -379,6 +380,7 @@ namespace LevelEditor
             _typesOfItems = new List<List<Object>> {
                 new List<Object>(), //Path items
                 new List<Object>(), //Interactable items
+                new List<Object>(), //Activator items
                 new List<Object>(), //Collectable items
                 new List<Object>(), //Enemie items
                 new List<Object>(), //Decoratable items
@@ -387,6 +389,7 @@ namespace LevelEditor
             {
                 new List<GameObject>(), //Path items
                 new List<GameObject>(), //Interactable items
+                new List<GameObject>(), //Activator items
                 new List<GameObject>(), //Collectable items
                 new List<GameObject>(), //Enemie items
                 new List<GameObject>(), //Decoratable items

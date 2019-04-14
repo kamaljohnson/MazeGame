@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
+using UnityEngine.UI;
 
 namespace LevelEditor.Save
 {
@@ -36,6 +37,7 @@ namespace LevelEditor.Save
                 
                 mazeData.c = new List<MazeCubeData>();
                 mazeData.p = new List<Game.Items.Interactable.Portal.SerializableItem>();
+                mazeData.b = new List<Game.Items.Activators.Button.SerializableItem>();
                 
                 List<List<GameObject>> allItems;
                 LevelEditor.GetAllMazeItems(out allItems);
@@ -57,6 +59,16 @@ namespace LevelEditor.Save
                                         var serializedData = new Game.Items.Interactable.Portal.SerializableItem();
                                         serializedData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Interactable.Portal.Portal>());
                                         mazeData.p.Add(serializedData);
+                                        break;
+                                }
+                                break;
+                            case ItemCategories.Activator:
+                                switch (allItems[itemType][itemIndex].name)
+                                {
+                                    case "Button":
+                                        var serializedData = new Game.Items.Activators.Button.SerializableItem();
+                                        serializedData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Activators.Button.Button>());
+                                        mazeData.b.Add(serializedData);
                                         break;
                                 }
                                 break;
@@ -113,6 +125,7 @@ namespace LevelEditor.Save
 
         //item data
         public List<Game.Items.Interactable.Portal.SerializableItem> p;    //the list of all portals on the maze
+        public List<Game.Items.Activators.Button.SerializableItem> b;    //the list of all portals on the maze
     }
 
     [System.Serializable]

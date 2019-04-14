@@ -64,4 +64,12 @@ namespace Game.Items.Activators.Button
             }
         }
     }
+
+    public class SerializableItem
+    {
+        public void ConvertToSerializable(Button button)
+        {
+            
+        }
+    }
 }
