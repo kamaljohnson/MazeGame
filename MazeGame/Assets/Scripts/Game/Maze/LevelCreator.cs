@@ -23,6 +23,7 @@ namespace Game
         public void Awake()
         {
             LoadLevel();
+            GameManager.Gamestate = GameManager.GameStates.Playing;
         }
 
         private void LoadLevel()

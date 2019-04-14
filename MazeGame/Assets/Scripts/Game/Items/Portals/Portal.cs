@@ -36,6 +36,11 @@ namespace Game.Items.Interactable.Portal
         public void ActivatePortalEvent()
         {
             Debug.Log("the portal event is activated");
+            if (portalId == -1)
+            {
+                Debug.Log("level completed");
+                GameManager.Gamestate = GameManager.GameStates.LevelComplete;
+            }
             if (isCheckpoint)
             {
                 CheckpointSaveGameState();
