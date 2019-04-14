@@ -8,6 +8,7 @@ namespace Game.Items
     {
         Path,                   // [ICE, FIRE]
         Interactable,           // [PORTAL, LASER, SPIKES, GATES, BRIDGE]
+        Activators,             // [BUTTON]
         Collectable,            // [COIN, DIAMOND, COLLECTION POINT]
         Enemie,                 // [GUARDIAN, KNIGHT, HAMMER]
         Decoratable,           // [PLANT_01, FOUNTAIN, ...]
@@ -20,6 +21,8 @@ namespace Game.Items
     
     public interface IInteractables
     {
-
+        bool ActivationStatus();
+        void ActivateInteraction();
+        void DeActivateInteraction();
     }
 }

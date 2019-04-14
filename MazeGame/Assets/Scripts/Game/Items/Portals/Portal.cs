@@ -88,6 +88,23 @@ namespace Game.Items.Interactable.Portal
         {
             return ItemCategories.Interactable;
         }
+
+        public bool ActivationStatus()
+        {
+            return gameObject.activeInHierarchy;
+        }
+
+        public void ActivateInteraction()
+        {
+            //TODO: change this to animation
+            gameObject.SetActive(true);
+        }
+
+        public void DeActivateInteraction()
+        {
+            //TODO: change this to animation
+            gameObject.SetActive(false);
+        }
     }
 
     [Serializable]
