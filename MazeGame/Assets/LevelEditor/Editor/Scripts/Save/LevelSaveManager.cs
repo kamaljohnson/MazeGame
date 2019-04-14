@@ -144,7 +144,4 @@ namespace LevelEditor.Save
             }
         }
     }
-
-    //TODO: create save feature for items
-    //itemType:itemIndex:serializedData
 }
