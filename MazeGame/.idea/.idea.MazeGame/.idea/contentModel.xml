@@ -38,13 +38,17 @@
             <e p="GameManager.cs" t="Include" />
             <e p="Helper.cs" t="Include" />
             <e p="Items" t="Include">
-              <e p="Buttons" t="Include">
-                <e p="Button.cs" t="Include" />
+              <e p="Activators" t="Include">
+                <e p="Button" t="Include">
+                  <e p="Button.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Interactable" t="Include">
+                <e p="Portal" t="Include">
+                  <e p="Portal.cs" t="Include" />
+                </e>
               </e>
               <e p="Items.cs" t="Include" />
-              <e p="Portals" t="Include">
-                <e p="Portal.cs" t="Include" />
-              </e>
             </e>
             <e p="Maze" t="Include">
               <e p="LevelCreator.cs" t="Include" />
