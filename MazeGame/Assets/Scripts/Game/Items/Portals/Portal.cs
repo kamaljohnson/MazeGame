@@ -18,13 +18,12 @@ namespace Game.Items.Interactable.Portal
 
         public static int CurrentCheckpointPortalId;
 
-        private bool _partialOnPortal;
         private bool _onPortal;
         private bool _portalActivated;
 
         public void Update()
         {
-            if(_partialOnPortal)
+            if(_onPortal)
             {
                 if (!GameManager.CurrentMazeTransform.GetComponent<Maze.MazeRotator>().IsRotating && !_portalActivated)
                 {
@@ -36,6 +35,7 @@ namespace Game.Items.Interactable.Portal
 
         public void ActivatePortalEvent()
         {
+            Debug.Log("the portal event is activated");
             if (isCheckpoint)
             {
                 CheckpointSaveGameState();
@@ -63,17 +63,18 @@ namespace Game.Items.Interactable.Portal
         {
 
         }
-        
-        public void OnTriggerEnter()
+
+        private void OnTriggerEnter(Collider other)
         {
-            _partialOnPortal = true;
+            Debug.Log("entered the portal");
+            _onPortal = true;
         }
 
-        public void OnTriggerExit()
+        private void OnTriggerExit(Collider other)
         {
-            _onPortal = false;
+            Debug.Log("exited the portal");
             _portalActivated = false;
-            _partialOnPortal = false;
+            _onPortal = false;
         }
 
         public ItemCategories GetItemType()
