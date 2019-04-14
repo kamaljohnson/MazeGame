@@ -126,19 +126,19 @@ namespace LevelEditor.Save
         //the list of nodes the cube has
         public List<Game.Maze.SavableNode> nl;
 
-        public void ConvertToSavable(GameObject mace_cube)
+        public void ConvertToSavable(GameObject maceCube)
         {
-            x = (int)mace_cube.transform.position.x;
-            y = (int)mace_cube.transform.position.y;
-            z = (int)mace_cube.transform.position.z;
+            x = (int)maceCube.transform.position.x;
+            y = (int)maceCube.transform.position.y;
+            z = (int)maceCube.transform.position.z;
 
             nl = new List<Game.Maze.SavableNode>();
-            for (int j = 0; j < mace_cube.transform.childCount; j++)
+            for (int j = 0; j < maceCube.transform.childCount; j++)
             {
                 Game.Maze.SavableNode sn = new Game.Maze.SavableNode();
-                if (mace_cube.transform.GetChild(j).GetComponent<Game.Maze.Node>() != null)
+                if (maceCube.transform.GetChild(j).GetComponent<Game.Maze.Node>() != null)
                 {
-                    sn.ConvertToSavable(mace_cube.transform.GetChild(j).GetComponent<Game.Maze.Node>());
+                    sn.ConvertToSavable(maceCube.transform.GetChild(j).GetComponent<Game.Maze.Node>());
                     nl.Add(sn);
                 }
             }

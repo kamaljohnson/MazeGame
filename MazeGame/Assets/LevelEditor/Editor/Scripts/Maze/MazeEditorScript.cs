@@ -10,23 +10,21 @@ namespace LevelEditor.Maze
     [CustomEditor(typeof(Maze_e))]
     public class MazeEditorScript : Editor
     {
-        public Maze_e Maze;
+        public Maze_e maze;
 
         public static Game.Maze.Node StartNode;
         public static Game.Maze.Node EndNode;
 
-        private bool _pathCreationStarted = false;
-
         public void OnEnable()
         {
-            Maze = (Maze_e)target;
-            LevelEditor.CurrentMaze = Maze.gameObject;
+            maze = (Maze_e)target;
+            LevelEditor.CurrentMaze = maze.gameObject;
             LevelEditor.CurrentMaze.GetComponent<Maze.Maze_e>().ID = LevelEditor.CurrentMaze.name.Split(' ')[1];
             if (LevelEditor.Mazes != null)
             {
-                Selection.SetActiveObjectWithContext(Maze, Maze);
+                Selection.SetActiveObjectWithContext(maze, maze);
                 SceneView.lastActiveSceneView.FrameSelected();
-                if (Maze.transform.parent != LevelEditor.Mazes)
+                if (maze.transform.parent != LevelEditor.Mazes)
                 {
                     LevelEditor.SetMazeParent();
                 }
@@ -44,21 +42,21 @@ namespace LevelEditor.Maze
         {
             //itrate through all the children of type mazecube and display the handle button as needed
 
-            for (int i = 0; i < Maze.transform.childCount; i++)
+            for (int i = 0; i < maze.transform.childCount; i++)
             {
                 switch (LevelEditor.EditorMode)
                 {
                     case Modes.MazeBody:
                         Tools.current = Tool.None;
-                        CreateBlockCreationHandle(Maze.transform.GetChild(i).gameObject);
+                        CreateBlockCreationHandle(maze.transform.GetChild(i).gameObject);
                         break;
                     case Modes.MazeLayout:
                         Tools.current = Tool.None;
-                        CreateMazeStructureHandle(Maze.transform.GetChild(i).gameObject);
+                        CreateMazeStructureHandle(maze.transform.GetChild(i).gameObject);
                         break;
                     case Modes.Items:
                         Tools.current = Tool.None;
-                        CreateItemCreationHandle(Maze.transform.GetChild(i).gameObject);
+                        CreateItemCreationHandle(maze.transform.GetChild(i).gameObject);
                         break;
                     case Modes.MazePos:
                         Tools.current = Tool.None;
@@ -216,15 +214,15 @@ namespace LevelEditor.Maze
         private void CreateSetMazePositionHandle()
         {
             EditorGUI.BeginChangeCheck();
-            Vector3 newTargetPosition = Handles.PositionHandle(Maze.transform.position, Maze.transform.rotation);
+            Vector3 newTargetPosition = Handles.PositionHandle(maze.transform.position, maze.transform.rotation);
             if (EditorGUI.EndChangeCheck())
             {
-                if (Vector3.Distance(newTargetPosition, Maze.transform.position) == 1)
+                if (Vector3.Distance(newTargetPosition, maze.transform.position) == 1)
                 {
-                    Maze.transform.position = newTargetPosition;
-                    for (int i = 0; i < Maze.transform.childCount; i++)
+                    maze.transform.position = newTargetPosition;
+                    for (int i = 0; i < maze.transform.childCount; i++)
                     {
-                        Transform cube = Maze.transform.GetChild(i);
+                        Transform cube = maze.transform.GetChild(i);
                         for (int j = 0; j < cube.childCount; j++)
                         {
                             Transform node = cube.GetChild(j);
@@ -241,16 +239,16 @@ namespace LevelEditor.Maze
         private void CreateSetMazePivotHandle()
         {
             EditorGUI.BeginChangeCheck();
-            Vector3 newTargetPosition = Handles.PositionHandle(Maze.transform.position, Maze.transform.rotation);
+            Vector3 newTargetPosition = Handles.PositionHandle(maze.transform.position, maze.transform.rotation);
             if (EditorGUI.EndChangeCheck())
             {
-                if (Vector3.Distance(newTargetPosition, Maze.transform.position) == 0.5f)
+                if (Vector3.Distance(newTargetPosition, maze.transform.position) == 0.5f)
                 {
-                    for (int i = 0; i < Maze.transform.childCount; i++)
+                    for (int i = 0; i < maze.transform.childCount; i++)
                     {
-                        Maze.transform.GetChild(i).position -= newTargetPosition - Maze.transform.position;
+                        maze.transform.GetChild(i).position -= newTargetPosition - maze.transform.position;
                     }
-                    Maze.transform.position = newTargetPosition;
+                    maze.transform.position = newTargetPosition;
                 }
             }
         }
