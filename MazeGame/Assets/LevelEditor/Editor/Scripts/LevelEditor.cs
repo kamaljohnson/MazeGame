@@ -160,7 +160,7 @@ namespace LevelEditor
                         for (int itemIndex = 0; itemIndex < AllItems[(int)_currentItemCatgoryToggled].Count; itemIndex++)
                         {
                             GUILayout.BeginHorizontal();
-                            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)_typesOfItems[(int)_currentItemCatgoryToggled][(int)_currentItemCatgoryToggled]);
+                            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)_typesOfItems[(int)_currentItemCatgoryToggled][itemIndex]);
                             GUIContent buttonContent = new GUIContent(previewImage);
                             GUILayout.Toggle(false, buttonContent, GUI.skin.box, GUILayout.Height(20), GUILayout.Width(20));
                             if (GUILayout.Button("Edit", GUILayout.Height(20)))

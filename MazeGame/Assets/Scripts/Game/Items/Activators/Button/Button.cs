@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.Items.Activators.Button
 {
-    public class Button : MonoBehaviour
+    public class Button : MonoBehaviour, IItems
     {
         public enum ButtonTypes
         {
@@ -62,6 +62,11 @@ namespace Game.Items.Activators.Button
             {
                 _buttonOn = false;
             }
+        }
+
+        public ItemCategories GetItemType()
+        {
+            return ItemCategories.Activators;
         }
     }
 
