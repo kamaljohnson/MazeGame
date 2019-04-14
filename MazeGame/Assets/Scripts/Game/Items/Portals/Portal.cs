@@ -17,6 +17,30 @@ namespace Game.Items.Interactable.Portal
         public int mazeId;
 
         public static int CurrentCheckpointPortalId;
+
+        private bool _partialOnPortal;
+        private bool _onPortal;
+        private bool _portalActivated;
+
+        public void Update()
+        {
+            if(_partialOnPortal)
+            {
+                if (!GameManager.CurrentMazeTransform.GetComponent<Maze.MazeRotator>().IsRotating && !_portalActivated)
+                {
+                    _portalActivated = true;
+                    ActivatePortalEvent();
+                }
+            }
+        }
+
+        public void ActivatePortalEvent()
+        {
+            if (isCheckpoint)
+            {
+                CheckpointSaveGameState();
+            }
+        }
         
         public void SetPortalValues(Portal portal)
         {
@@ -28,6 +52,7 @@ namespace Game.Items.Interactable.Portal
             levelId = portal.levelId;
             mazeId = portal.mazeId;
         }
+
         
         public void CheckpointSaveGameState()   //saves the entire state of the game for checkpoint reference
         {
@@ -37,6 +62,18 @@ namespace Game.Items.Interactable.Portal
         public void GoToPortalDestination()     //teleports the player to the destination portal
         {
 
+        }
+        
+        public void OnTriggerEnter()
+        {
+            _partialOnPortal = true;
+        }
+
+        public void OnTriggerExit()
+        {
+            _onPortal = false;
+            _portalActivated = false;
+            _partialOnPortal = false;
         }
 
         public ItemCategories GetItemType()

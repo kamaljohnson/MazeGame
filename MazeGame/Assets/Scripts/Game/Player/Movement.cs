@@ -5,7 +5,6 @@ namespace Game.Player
 {
     public class Movement : MonoBehaviour
     {
-        public GameObject parentMaze;
         public Transform playerCube;
         public PlayerInput input;
 
@@ -55,7 +54,7 @@ namespace Game.Player
 
         public void Update()
         {
-            if (parentMaze.GetComponent<Maze.MazeRotator>().IsRotating)    //no calculations will be made or applied while the maze is rotating
+            if (GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().IsRotating)    //no calculations will be made or applied while the maze is rotating
                 return;
             
             HandleInput();
@@ -235,16 +234,16 @@ namespace Game.Player
                     switch (_movementDirection)
                     {
                         case Direction.Right:
-                            parentMaze.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, speed);
+                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, speed);
                             break;
                         case Direction.Left:
-                            parentMaze.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, speed);
+                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, speed);
                             break;
                         case Direction.Forward:
-                            parentMaze.GetComponent<Maze.MazeRotator>().Rotate(-transform.right, speed);
+                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(-transform.right, speed);
                             break;
                         case Direction.Back:
-                            parentMaze.GetComponent<Maze.MazeRotator>().Rotate(transform.right, speed);
+                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(transform.right, speed);
                             break;
                     }
                     
@@ -302,16 +301,16 @@ namespace Game.Player
                     switch (_movementDirection)
                     {
                         case Direction.Right:
-                            parentMaze.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, speed);
+                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, speed);
                             break;
                         case Direction.Left:
-                            parentMaze.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, speed);
+                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, speed);
                             break;
                         case Direction.Forward:
-                            parentMaze.GetComponent<Maze.MazeRotator>().Rotate(transform.right, speed);
+                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(transform.right, speed);
                             break;
                         case Direction.Back:
-                            parentMaze.GetComponent<Maze.MazeRotator>().Rotate(-transform.right, speed);
+                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(-transform.right, speed);
                             break;
                     }                
                 }
@@ -346,8 +345,8 @@ namespace Game.Player
 
         public void SetParentMaze(GameObject maze)
         {
-            parentMaze = maze;
-            transform.parent = parentMaze.transform;
+            GameManager.CurrentMazeTransform = maze.transform;
+            transform.parent = GameManager.CurrentMazeTransform;
         }
     }
 }
