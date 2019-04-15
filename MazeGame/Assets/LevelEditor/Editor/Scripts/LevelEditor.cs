@@ -986,14 +986,25 @@ namespace LevelEditor
                             {
                                 case "Portal":
                                     Debug.Log("portal");
-                                    if (AllItems[itemType][i].GetComponent<Game.Items.Interactable.Portal.Portal>()
-                                        .itemSet)
+                                    if (AllItems[itemType][i].GetComponent<Game.Items.Interactable.Portal.Portal>().itemSet)
                                     {
                                         allMazeItems[itemType].Add(AllItems[itemType][i]);
                                         Debug.Log("item added to list");
                                     }
                                     break;
                                     
+                            }
+                            break;
+                        case ItemCategories.Activator:
+                            switch (AllItems[itemType][i].name)
+                            {
+                                case "Button":
+                                    if (AllItems[itemType][i].GetComponent<Game.Items.Activators.Button.Button>().itemSet)
+                                    {
+                                        allMazeItems[itemType].Add(AllItems[itemType][i]);
+                                        Debug.Log("item added to list");
+                                    }
+                                    break;
                             }
                             break;
                         case ItemCategories.Collectable:

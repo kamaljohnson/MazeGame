@@ -4,18 +4,24 @@ using System.IO;
 using Game.Items.Interactable.Portal;
 using Game.Maze;
 using Game.Player;
+using UnityEditor.Graphing.Util;
 using UnityEngine.SceneManagement;
 
 namespace Game
 {
     public class LevelCreator : MonoBehaviour
     {
+        [Header("Maze Properties")]
         public Transform mazeHolder;
-
         public GameObject mazeCubePrefab;
         public GameObject mazeWallPrefab;
+        
+        //the item prefabs
+        [Header("Maze Items Properties")]
         public GameObject portalPrefab;
+        public GameObject buttonPrefab;
 
+        [Header("General Properties")]
         public GameObject playerCube;
         public GameObject inputManager;
         private Vector3 _playerStartPosition;
@@ -124,6 +130,22 @@ namespace Game
                         GameManager.PlayerCubeTransform = playerCube.transform;
                         GameManager.CurrentMazeTransform = mazeHolder.GetChild(tempPortal.GetComponent<Portal>().mazeId);
                     }
+                }
+
+                foreach (var button in maze.b)
+                {
+                    var tempButton = Instantiate(buttonPrefab, tempMaze.transform, true);
+
+                    tempButton.transform.position = new Vector3(
+                        button.x,
+                        button.y,
+                        button.z
+                    );                    
+                    tempButton.transform.eulerAngles = new Vector3(
+                        button.u,
+                        button.v,
+                        button.w
+                    );
                 }
                 
             }
@@ -498,6 +520,7 @@ namespace Game
 
         //item data
         public List<Items.Interactable.Portal.SerializableItem> p;    //the list of all portals on the maze
+        public List<Items.Activators.Button.SerializableItem> b;      //the list of all buttons on the maze
     }
 
     [System.Serializable]

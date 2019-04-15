@@ -7,6 +7,7 @@ namespace Game.Items.Activators.Button
 {
     public class Button : MonoBehaviour, IItems
     {
+        public bool itemSet;
         public enum ButtonTypes
         {
             Permanent,
@@ -72,9 +73,32 @@ namespace Game.Items.Activators.Button
 
     public class SerializableItem
     {
+        public int x;
+        public int y;
+        public int z;
+
+        public int u;
+        public int v;
+        public int w;
+        
         public void ConvertToSerializable(Button button)
         {
-            
+            var transform = button.transform;
+            var position = transform.position;
+            x = (int)position.x;
+            y = (int)position.y;
+            z = (int)position.z;
+
+            var eulerAngles = transform.eulerAngles;
+            u = (int) eulerAngles.x;
+            v = (int) eulerAngles.y;
+            w = (int) eulerAngles.z;
+        }
+
+        public Button GetButton()
+        {
+            Button button = new Button();
+            return button;
         }
     }
 }
