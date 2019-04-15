@@ -157,12 +157,10 @@ namespace LevelEditor
                     }
                     if (itemType == (int)_currentItemCatgoryToggled)
                     {
-                        for (int itemIndex = 0; itemIndex < AllItems[(int)_currentItemCatgoryToggled].Count; itemIndex++)
+                        for (int itemIndex = 0; itemIndex < AllItems[itemType].Count; itemIndex++)
                         {
                             GUILayout.BeginHorizontal();
-                            Texture2D previewImage = AssetPreview.GetAssetPreview((GameObject)_typesOfItems[(int)_currentItemCatgoryToggled][itemIndex]);
-                            GUIContent buttonContent = new GUIContent(previewImage);
-                            GUILayout.Toggle(false, buttonContent, GUI.skin.box, GUILayout.Height(20), GUILayout.Width(20));
+                            GUILayout.Label((itemIndex + 1).ToString() + " " + AllItems[itemType][itemIndex].tag);
                             if (GUILayout.Button("Edit", GUILayout.Height(20)))
                             {
                                 Selection.SetActiveObjectWithContext(AllItems[itemType][itemIndex], AllItems[itemType][itemIndex]);
