@@ -113,7 +113,8 @@ namespace LevelEditor.Items.Interactable.Portal
         public void AddButtonLink(Game.Items.Activators.Button.Button button)
         {
             button.itemSet = true;
-            button.interactionItem = (IInteractables) target;
+            button.interactionItem = _portal;
+            button.interactionItemId = _portal.interactableId;
         }
 
         public void EditButtonLink()

@@ -6,6 +6,8 @@ namespace Game.Items.Interactable.Portal
 {
     public class Portal : MonoBehaviour, IInteractables, IItems
     {
+        public int interactableId;    //this id is used to link buttons
+        
         public bool itemSet;    //is the item set with values
         
         public bool isCheckpoint;                //is the portal acting as a checkpoint

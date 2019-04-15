@@ -46,7 +46,7 @@ namespace Game
             if (Application.platform == RuntimePlatform.Android)
             {
                 _touchOnDragDistance = Screen.height * touchOnDragScreenPercent/100;
-                _touchOffDragDistance = Screen.height * _touchOffDragDistance/100;
+                _touchOffDragDistance = Screen.height * touchOffDragScreenPercent/100;
                 _touchDragDistanceCameraOrientation = Screen.height * touchDragScreenPercentCameraOrientation/100;
             }
             else
