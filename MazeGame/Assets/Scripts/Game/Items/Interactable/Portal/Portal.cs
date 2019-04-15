@@ -17,6 +17,19 @@ namespace Game.Items.Interactable.Portal
         public int levelId;
         public int mazeId;
 
+        [Header("State Properties")]
+        [Tooltip("o    -    ON\n" +
+                 "f    -    OFF\n" +
+                 "u    -    UP\n" +
+                 "d    -    DOWN\n" +
+                 "r    -    RIGHT\n" +
+                 "l    -    LEFT\n" +
+                 "c    -    CLK-ROT\n" +
+                 "a    -    A-CLK-ROT\n" +
+                 "#num -    x-times")]
+        public string linkedButtonOnState = "";
+        public string linkedButtonOffSatate = "";
+        
         public static int CurrentCheckpointPortalId;
 
         private bool _onPortal;
@@ -125,6 +138,9 @@ namespace Game.Items.Interactable.Portal
         public int m;   //MazeID
         public int l;   //LevelID
 
+        public string o;    //Linked Button On State
+        public string f;    //Linked Button Off State
+
         public void ConvertToSerializable(Portal portal)
         {
             var transform = portal.transform;
@@ -143,17 +159,23 @@ namespace Game.Items.Interactable.Portal
             p = portal.portalId;
             m = portal.mazeId;
             l = portal.levelId;
+
+            o = portal.linkedButtonOnState;
+            f = portal.linkedButtonOffSatate;
         }
 
         public Portal GetPortal()
         {
             Portal portal = new Portal();
-            portal.isCheckpoint = (c == 1);
+            portal.isCheckpoint = c == 1;
 
             portal.portalId = p;
             portal.mazeId = m;
             portal.levelId = l;
 
+            portal.linkedButtonOnState = o;
+            portal.linkedButtonOffSatate = f;
+            
             return portal;
         }
     }

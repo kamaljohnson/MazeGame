@@ -20,7 +20,7 @@ namespace LevelEditor
     {
         Path,           //[ICE, FIRE]
         Interactable,   //[PORTAL, LASER, SPIKES, GATES, BRIDGE]
-        Activator,     //[BUTTON]
+        Activator,      //[BUTTON]
         Collectable,    //[COIN, DIAMOND, COLLECTION POINT]
         Enemie,         //[GUARDIAN, KNIGHT, HAMMER]
         Decoratable,    //[PLANT_01, FOUNTAIN, ...]
@@ -1042,8 +1042,8 @@ namespace LevelEditor
     
     public interface ItemButtonInteraction
     {
-        void AddButton();       //creates a button which can interact with the item
-        void EditButton();      //the user can edit the properties of the button and its interaction
-        void RemoveButton(int buttonID);    //removes the button with buttonID
+        void AddButtonLink();       //creates a button which can interact with the item
+        void EditButtonLink();      //the user can edit the properties of the button and its interaction
+        void RemoveButtonLink(int buttonID);    //removes the button with buttonID
     }
 }

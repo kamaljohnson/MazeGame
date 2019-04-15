@@ -71,17 +71,17 @@ namespace LevelEditor.Items.Interactable.Portal
             return true;
         }
 
-        public void AddButton()
+        public void AddButtonLink()
+        {
+            
+        }
+
+        public void EditButtonLink()
         {
 
         }
 
-        public void EditButton()
-        {
-
-        }
-
-        public void RemoveButton(int buttonID)
+        public void RemoveButtonLink(int buttonID)
         {
 
         }
