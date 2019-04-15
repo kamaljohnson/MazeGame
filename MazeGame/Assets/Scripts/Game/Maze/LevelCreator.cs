@@ -6,7 +6,6 @@ using Game.Items.Activators.Button;
 using Game.Items.Interactable.Portal;
 using Game.Maze;
 using Game.Player;
-using UnityEditor.Graphing.Util;
 using UnityEngine.SceneManagement;
 
 namespace Game
