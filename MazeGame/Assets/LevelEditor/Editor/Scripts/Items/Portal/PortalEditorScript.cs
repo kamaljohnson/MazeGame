@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Items;
+using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ namespace LevelEditor.Items.Interactable.Portal
     public class PortalEditorScript : Editor, ITem, ItemButtonInteraction
     {
         private Game.Items.Interactable.Portal.Portal _portal;
+        private bool buttonMappingMode;
         
         private void OnEnable()
         {
@@ -19,13 +21,50 @@ namespace LevelEditor.Items.Interactable.Portal
 
         private void OnSceneGUI()
         {
+            DrawAddButtonLinkHandle();
             DrawDeletionHandle();
+            if (buttonMappingMode)
+            {
+                DrawAllUnUsedButtonHandles();
+            }
         }
 
+        public void DrawAddButtonLinkHandle()
+        {
+            if (!buttonMappingMode)
+            {
+                Handles.color = new Color(0.14f, 0.93f, 1f);
+            }
+            else
+            {
+                Handles.color = new Color(1f, 0.73f, 0.18f);                
+            }
+            if (Handles.Button(_portal.transform.position + _portal.transform.up, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            {
+                buttonMappingMode = !buttonMappingMode;
+            }
+        }
+
+        public void DrawAllUnUsedButtonHandles()
+        {
+            foreach (var activator in LevelEditor.AllItems[(int)ItemCategories.Activator])
+            {
+                var button = activator.GetComponent<Game.Items.Activators.Button.Button>();
+                Handles.color = new Color(0.25f, 1f, 0.67f);                
+                if (!button.itemSet)
+                {
+                    if (Handles.Button(activator.transform.position + activator.transform.up * 0.2f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+                    {
+                        AddButtonLink(button);
+                    }
+                }
+            }
+        }
+        
         public void DrawDeletionHandle()
         {
             Handles.color = new Color(1f, 0f, 0.07f);
-            if (Handles.Button(_portal.transform.position + _portal.transform.up, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_portal.transform.position + _portal.transform.up * 0.7f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 if (!EditorUtility.DisplayDialog("Warning!!",
                     "This will delete the item permenently", "Cancel", "Continue"))
@@ -71,9 +110,10 @@ namespace LevelEditor.Items.Interactable.Portal
             return true;
         }
 
-        public void AddButtonLink()
+        public void AddButtonLink(Game.Items.Activators.Button.Button button)
         {
-            
+            button.itemSet = true;
+            button.interactionItem = (IInteractables) target;
         }
 
         public void EditButtonLink()

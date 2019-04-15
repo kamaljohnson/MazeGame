@@ -87,6 +87,8 @@ namespace Game.Items.Activators.Button
         public int u;
         public int v;
         public int w;
+
+        public int t;    //Button type
         
         public void ConvertToSerializable(Button button)
         {

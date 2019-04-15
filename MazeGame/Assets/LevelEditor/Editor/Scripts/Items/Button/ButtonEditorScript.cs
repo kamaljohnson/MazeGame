@@ -23,8 +23,8 @@ namespace LevelEditor.Items.Activator.Button
 
         public void DrawDeletionHandle()
         {
-            Handles.color = new Color(1f, 0f, 0.07f);
-            if (Handles.Button(_button.transform.position + _button.transform.up, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            Handles.color = new Color(1f, 0.29f, 0.3f);
+            if (Handles.Button(_button.transform.position + _button.transform.up * 0.2f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 if (!EditorUtility.DisplayDialog("Warning!!",
                     "This will delete the item permenently", "Cancel", "Continue"))

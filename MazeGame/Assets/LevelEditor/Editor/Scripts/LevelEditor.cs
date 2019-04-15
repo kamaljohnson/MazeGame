@@ -1042,7 +1042,7 @@ namespace LevelEditor
     
     public interface ItemButtonInteraction
     {
-        void AddButtonLink();       //creates a button which can interact with the item
+        void AddButtonLink(Game.Items.Activators.Button.Button button);       //creates a button which can interact with the item
         void EditButtonLink();      //the user can edit the properties of the button and its interaction
         void RemoveButtonLink(int buttonID);    //removes the button with buttonID
     }
