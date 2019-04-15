@@ -114,7 +114,6 @@ namespace LevelEditor.Items.Interactable.Portal
         {
             button.itemSet = true;
             button.interactionItem = _portal;
-            button.interactionItemId = _portal.interactableId;
         }
 
         public void EditButtonLink()

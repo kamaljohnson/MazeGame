@@ -24,5 +24,7 @@ namespace Game.Items
         bool ActivationStatus();
         void ActivateInteraction();
         void DeActivateInteraction();
+        int GetInteractableId();
+        void SetInteractableId(int id);
     }
 }

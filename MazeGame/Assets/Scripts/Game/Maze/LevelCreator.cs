@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Game.Items;
+using Game.Items.Activators.Button;
 using Game.Items.Interactable.Portal;
 using Game.Maze;
 using Game.Player;
@@ -37,6 +39,7 @@ namespace Game
             var levelName = SceneManager.GetActiveScene().name;
             var state = LoadLevelDataFromFile(levelName);
             
+            Button.AllInteractableItems = new List<IInteractables>();
             /*
              * Calculating the render data from the path data
              */
@@ -103,7 +106,7 @@ namespace Game
 
                 foreach (var portal in maze.p)
                 {
-                    var tempPortal= Instantiate(portalPrefab, tempMaze.transform, true);
+                    var tempPortal = Instantiate(portalPrefab, tempMaze.transform, true);
 
                     tempPortal.transform.position = new Vector3(
                         portal.x,
@@ -130,6 +133,8 @@ namespace Game
                         GameManager.PlayerCubeTransform = playerCube.transform;
                         GameManager.CurrentMazeTransform = mazeHolder.GetChild(tempPortal.GetComponent<Portal>().mazeId);
                     }
+
+                    Button.AllInteractableItems.Add(tempPortal.GetComponent<Portal>());
                 }
 
                 foreach (var button in maze.b)
@@ -146,6 +151,13 @@ namespace Game
                         button.v,
                         button.w
                     );
+                    foreach (var interactableItem in Button.AllInteractableItems)
+                    {
+                        if (interactableItem.GetInteractableId() == i)
+                        {
+                            tempButton.GetComponent<Button>().interactionItem = interactableItem;
+                        }
+                    }
                 }
                 
             }

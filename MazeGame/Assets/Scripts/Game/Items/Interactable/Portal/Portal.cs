@@ -54,6 +54,7 @@ namespace Game.Items.Interactable.Portal
             if (portalId == -1)
             {
                 GameManager.Gamestate = GameManager.GameStates.LevelComplete;
+                Debug.Log("level end reached");
             }
             else if (isCheckpoint)
             {
@@ -89,13 +90,11 @@ namespace Game.Items.Interactable.Portal
         
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("entered the portal");
             _onPortal = true;
         }
 
         private void OnTriggerExit(Collider other)
         {
-            Debug.Log("exited the portal");
             _portalActivated = false;
             _onPortal = false;
         }
@@ -121,6 +120,16 @@ namespace Game.Items.Interactable.Portal
             //TODO: change this to animation
             gameObject.SetActive(false);
         }
+
+        public int GetInteractableId()
+        {
+            return interactableId;
+        }
+
+        public void SetInteractableId(int id)
+        {
+            interactableId = id;
+        }
     }
 
     [Serializable]
@@ -143,6 +152,8 @@ namespace Game.Items.Interactable.Portal
         public string o;    //Linked Button On State
         public string f;    //Linked Button Off State
 
+        public int i;    //interactable id
+
         public void ConvertToSerializable(Portal portal)
         {
             var transform = portal.transform;
@@ -164,6 +175,8 @@ namespace Game.Items.Interactable.Portal
 
             o = portal.linkedButtonOnState;
             f = portal.linkedButtonOffSatate;
+
+            i = portal.GetInteractableId();
         }
 
         public Portal GetPortal()
@@ -177,6 +190,8 @@ namespace Game.Items.Interactable.Portal
 
             portal.linkedButtonOnState = o;
             portal.linkedButtonOffSatate = f;
+
+            portal.interactableId = i;
             
             return portal;
         }

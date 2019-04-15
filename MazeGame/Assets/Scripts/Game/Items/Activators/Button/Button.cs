@@ -9,8 +9,6 @@ namespace Game.Items.Activators.Button
 {
     public class Button : MonoBehaviour, IItems
     {
-        public int buttonId;
-        
         public bool itemSet;
         public enum ButtonTypes
         {
@@ -18,7 +16,9 @@ namespace Game.Items.Activators.Button
             Temporary
         }
 
-        public int interactionItemId;
+        public static List<IInteractables> AllInteractableItems;
+        
+        public int interactionItemId;    //this can be used as the idex in allInteractableItems
         public IInteractables interactionItem;
         public ButtonTypes type;
 
@@ -107,14 +107,14 @@ namespace Game.Items.Activators.Button
             w = (int) eulerAngles.z;
 
             t = (int) button.type;
-            i = button.buttonId;
+            i = button.interactionItemId;
         }
 
         public Button GetButton()
         {
             Button button = new Button();
 
-            button.buttonId = i;
+            button.interactionItemId = i;
             button.type = (Button.ButtonTypes) t;
             
             return button;
