@@ -151,9 +151,10 @@ namespace Game
                         button.v,
                         button.w
                     );
+                    
                     foreach (var interactableItem in Button.AllInteractableItems)
                     {
-                        if (interactableItem.GetInteractableId() == i)
+                        if (interactableItem.GetInteractableId() == button.i)
                         {
                             tempButton.GetComponent<Button>().interactionItem = interactableItem;
                         }

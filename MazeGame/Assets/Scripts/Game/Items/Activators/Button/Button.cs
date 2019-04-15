@@ -23,26 +23,38 @@ namespace Game.Items.Activators.Button
         public ButtonTypes type;
 
         public bool buttonOn; //button on / off
+        private bool _tempButtonState;
         private bool _buttonActivated;
 
         private void Update()
         {
-            if (buttonOn)
-            {
                 if (GameManager.PlayerCubeTransform.GetComponent<Movement>().movementSnappedFull && !_buttonActivated)
                 {
                     _buttonActivated = true;
+                    if (type == ButtonTypes.Temporary)
+                    {
+                        _tempButtonState = true;
+                    }
+                    else
+                    {
+                        _tempButtonState = !_tempButtonState;
+                    }
+                }
+
+                if (_tempButtonState != buttonOn)
+                {
+                    buttonOn = _tempButtonState;
                     ActivateButtonEvent();
                 }
-            }
         }
 
+        
         private void ActivateButtonEvent()
         {
             if(interactionItem == null)
                 return;
             
-            if (interactionItem.ActivationStatus())
+            if (buttonOn)
             {
                 interactionItem.ActivateInteraction();
             }
@@ -54,22 +66,14 @@ namespace Game.Items.Activators.Button
 
         private void OnTriggerEnter(Collider other)
         {
-            if (type == ButtonTypes.Temporary)
-            {
-                buttonOn = true;
-            }
-            else
-            {
-                buttonOn = !buttonOn;
-            }
+            _buttonActivated = false;
         }
 
         private void OnTriggerExit(Collider other)
         {
             if (type == ButtonTypes.Temporary)
             {
-                buttonOn = false;
-                _buttonActivated = false;
+                _tempButtonState = false;
             }
         }
 

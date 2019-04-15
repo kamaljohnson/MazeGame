@@ -75,6 +75,8 @@ namespace Game.Items.Interactable.Portal
             portalId = portal.portalId;
             levelId = portal.levelId;
             mazeId = portal.mazeId;
+
+            interactableId = portal.interactableId;
         }
 
         
@@ -106,7 +108,8 @@ namespace Game.Items.Interactable.Portal
 
         public bool ActivationStatus()
         {
-            return gameObject.activeInHierarchy;
+            Debug.Log(gameObject.activeSelf);
+            return gameObject.activeSelf;
         }
 
         public void ActivateInteraction()
