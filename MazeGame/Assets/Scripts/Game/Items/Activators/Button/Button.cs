@@ -9,6 +9,8 @@ namespace Game.Items.Activators.Button
 {
     public class Button : MonoBehaviour, IItems
     {
+        public int buttonId;
+        
         public bool itemSet;
         public enum ButtonTypes
         {
@@ -89,6 +91,7 @@ namespace Game.Items.Activators.Button
         public int w;
 
         public int t;    //Button type
+        public int i;    //Button ID
         
         public void ConvertToSerializable(Button button)
         {
@@ -102,11 +105,18 @@ namespace Game.Items.Activators.Button
             u = (int) eulerAngles.x;
             v = (int) eulerAngles.y;
             w = (int) eulerAngles.z;
+
+            t = (int) button.type;
+            i = button.buttonId;
         }
 
         public Button GetButton()
         {
             Button button = new Button();
+
+            button.buttonId = i;
+            button.type = (Button.ButtonTypes) t;
+            
             return button;
         }
     }
