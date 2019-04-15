@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Game.Items;
+using Game.Player;
 using UnityEngine;
 
 namespace Game.Items.Activators.Button
@@ -18,14 +20,14 @@ namespace Game.Items.Activators.Button
         public IInteractables interactionItem;
         public ButtonTypes type;
 
-        private bool _buttonOn; //button on / off
+        public bool buttonOn; //button on / off
         private bool _buttonActivated;
 
         private void Update()
         {
-            if (_buttonOn)
+            if (buttonOn)
             {
-                if (!GameManager.CurrentMazeTransform.GetComponent<Maze.MazeRotator>().IsRotating && !_buttonActivated)
+                if (GameManager.PlayerCubeTransform.GetComponent<Movement>().movementSnappedFull && !_buttonActivated)
                 {
                     _buttonActivated = true;
                     ActivateButtonEvent();
@@ -35,6 +37,9 @@ namespace Game.Items.Activators.Button
 
         private void ActivateButtonEvent()
         {
+            if(interactionItem == null)
+                return;
+            
             if (interactionItem.ActivationStatus())
             {
                 interactionItem.ActivateInteraction();
@@ -49,11 +54,11 @@ namespace Game.Items.Activators.Button
         {
             if (type == ButtonTypes.Temporary)
             {
-                _buttonOn = true;
+                buttonOn = true;
             }
             else
             {
-                _buttonOn = !_buttonOn;
+                buttonOn = !buttonOn;
             }
         }
 
@@ -61,7 +66,8 @@ namespace Game.Items.Activators.Button
         {
             if (type == ButtonTypes.Temporary)
             {
-                _buttonOn = false;
+                buttonOn = false;
+                _buttonActivated = false;
             }
         }
 
@@ -71,6 +77,7 @@ namespace Game.Items.Activators.Button
         }
     }
 
+    [Serializable]
     public class SerializableItem
     {
         public int x;

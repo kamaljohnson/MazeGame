@@ -20,8 +20,8 @@ namespace Game.Player
         
         private Direction _movementDirection;
         private Direction _tempMovementDirection;
-        private bool _movementSnappedFull;
-        private bool _movementSnappedHalf;
+        public bool movementSnappedFull;
+        public bool movementSnappedHalf;
         private int _snapCount;
 
         private bool _atVerticalDownEdge;
@@ -41,8 +41,8 @@ namespace Game.Player
         public void Start()
         {
             stepSize = playerCube.transform.lossyScale.x;
-            _movementSnappedFull = true;
-            _movementSnappedHalf = true;
+            movementSnappedFull = true;
+            movementSnappedHalf = true;
             _snapCount = 0;
             _atJunction = true;
             _movementDirection = Direction.None;
@@ -59,7 +59,7 @@ namespace Game.Player
             
             HandleInput();
 
-            if(_movementSnappedFull)
+            if(movementSnappedFull)
             {
                 CheckJunction();
             }
@@ -68,7 +68,7 @@ namespace Game.Player
             {
                 UpdateMoveableDirections();
             }
-            else if(_movementSnappedFull)
+            else if(movementSnappedFull)
             {
                 IntermediateMove();
             }
@@ -263,7 +263,7 @@ namespace Game.Player
                     
                     if (_snapCount == 2)
                     {
-                        _movementSnappedFull = true;
+                        movementSnappedFull = true;
                         _snapCount = 0;
                     }
                     else
@@ -275,18 +275,18 @@ namespace Game.Player
                     playerCube.localPosition = Vector3.zero;
                     playerCube.localEulerAngles = Vector3.zero;
 
-                    _movementSnappedHalf = true;
+                    movementSnappedHalf = true;
                 }
                 
                 _tempAngleRotated = 0;
             }
             else
             {
-                _movementSnappedHalf = false;
-                _movementSnappedFull = false;
+                movementSnappedHalf = false;
+                movementSnappedFull = false;
             }
 
-            if (_movementSnappedHalf && !_movementSnappedFull)
+            if (movementSnappedHalf && !movementSnappedFull)
             {
                 if (CheckWallInfront())
                 {

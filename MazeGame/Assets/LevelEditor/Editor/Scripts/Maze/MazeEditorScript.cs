@@ -28,11 +28,6 @@ namespace LevelEditor.Maze
                 {
                     LevelEditor.SetMazeParent();
                 }
-
-                if (LevelEditor.EditorMode == Modes.Items)
-                {
-                    LevelEditor.ReCalculateAllItems();
-                }
                 /*LevelEditor.ReCalculateAllMazeCubes();
                 LevelEditor.ReCalculateNodes();*/
             }

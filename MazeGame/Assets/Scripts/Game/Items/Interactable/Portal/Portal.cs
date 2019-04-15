@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Player;
 using UnityEngine;
 
 namespace Game.Items.Interactable.Portal
@@ -25,7 +26,7 @@ namespace Game.Items.Interactable.Portal
         {
             if(_onPortal)
             {
-                if (!GameManager.CurrentMazeTransform.GetComponent<Maze.MazeRotator>().IsRotating && !_portalActivated)
+                if (GameManager.PlayerCubeTransform.GetComponent<Movement>().movementSnappedFull && !_portalActivated)
                 {
                     _portalActivated = true;
                     ActivatePortalEvent();

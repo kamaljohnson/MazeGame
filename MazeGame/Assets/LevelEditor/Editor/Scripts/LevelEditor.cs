@@ -981,15 +981,12 @@ namespace LevelEditor
                         case ItemCategories.Path:
                             break;
                         case ItemCategories.Interactable:
-                            Debug.Log(AllItems[itemType][i].name);
                             switch (AllItems[itemType][i].name)
                             {
                                 case "Portal":
-                                    Debug.Log("portal");
                                     if (AllItems[itemType][i].GetComponent<Game.Items.Interactable.Portal.Portal>().itemSet)
                                     {
                                         allMazeItems[itemType].Add(AllItems[itemType][i]);
-                                        Debug.Log("item added to list");
                                     }
                                     break;
                                     
@@ -1002,7 +999,6 @@ namespace LevelEditor
                                     if (AllItems[itemType][i].GetComponent<Game.Items.Activators.Button.Button>().itemSet)
                                     {
                                         allMazeItems[itemType].Add(AllItems[itemType][i]);
-                                        Debug.Log("item added to list");
                                     }
                                     break;
                             }

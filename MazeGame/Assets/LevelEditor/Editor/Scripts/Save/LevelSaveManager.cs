@@ -56,6 +56,7 @@ namespace LevelEditor.Save
                                 switch (allItems[itemType][itemIndex].name)
                                 {
                                     case "Portal":
+                                        Debug.Log("Portal");
                                         var serializedData = new Game.Items.Interactable.Portal.SerializableItem();
                                         serializedData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Interactable.Portal.Portal>());
                                         mazeData.p.Add(serializedData);
@@ -66,6 +67,7 @@ namespace LevelEditor.Save
                                 switch (allItems[itemType][itemIndex].name)
                                 {
                                     case "Button":
+                                        Debug.Log("Button");
                                         var serializedData = new Game.Items.Activators.Button.SerializableItem();
                                         serializedData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Activators.Button.Button>());
                                         mazeData.b.Add(serializedData);

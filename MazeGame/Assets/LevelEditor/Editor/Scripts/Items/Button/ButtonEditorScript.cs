@@ -6,11 +6,38 @@ using UnityEngine;
 
 namespace LevelEditor.Items.Activator.Button
 {
+    [CustomEditor(typeof(Game.Items.Activators.Button.Button))]
     public class ButtonEditorScript : Editor, ITem
     {
+        private Game.Items.Activators.Button.Button _button;
+
+        private void OnEnable()
+        {
+            Init();
+        }
+
+        private void OnSceneGUI()
+        {
+            DrawDeletionHandle();
+        }
+
+        public void DrawDeletionHandle()
+        {
+            Handles.color = new Color(1f, 0f, 0.07f);
+            if (Handles.Button(_button.transform.position + _button.transform.up, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            {
+                if (!EditorUtility.DisplayDialog("Warning!!",
+                    "This will delete the item permenently", "Cancel", "Continue"))
+                {
+                    RemoveItem();
+                }
+            }
+        }
+        
         public void Init()
         {
-            
+            _button = (Game.Items.Activators.Button.Button) target;
+            _button.name = "Button";
         }
 
         public void AddItem()
@@ -25,7 +52,8 @@ namespace LevelEditor.Items.Activator.Button
 
         public void RemoveItem()
         {
-            
+            LevelEditor.AllItems[(int) ItemCategories.Interactable].Remove(_button.gameObject);
+            DestroyImmediate(_button.gameObject);
         }
 
         public bool CheckValuesSet()
