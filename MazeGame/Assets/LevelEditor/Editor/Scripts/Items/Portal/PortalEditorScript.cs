@@ -9,10 +9,10 @@ namespace LevelEditor.Items.Interactable.Portal
      * 
      */
     [CustomEditor(typeof(Game.Items.Interactable.Portal.Portal))]
-    public class PortalEditorScript : Editor, ITem, ItemButtonInteraction
+    public class PortalEditorScript : Editor, ITem, ITemButtonInteraction
     {
         private Game.Items.Interactable.Portal.Portal _portal;
-        private bool buttonMappingMode;
+        private bool _buttonMappingMode;
         
         private void OnEnable()
         {
@@ -23,7 +23,7 @@ namespace LevelEditor.Items.Interactable.Portal
         {
             DrawAddButtonLinkHandle();
             DrawDeletionHandle();
-            if (buttonMappingMode)
+            if (_buttonMappingMode)
             {
                 DrawAllUnUsedButtonHandles();
             }
@@ -31,7 +31,7 @@ namespace LevelEditor.Items.Interactable.Portal
 
         public void DrawAddButtonLinkHandle()
         {
-            if (!buttonMappingMode)
+            if (!_buttonMappingMode)
             {
                 Handles.color = new Color(0.14f, 0.93f, 1f);
             }
@@ -41,7 +41,7 @@ namespace LevelEditor.Items.Interactable.Portal
             }
             if (Handles.Button(_portal.transform.position + _portal.transform.up, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                buttonMappingMode = !buttonMappingMode;
+                _buttonMappingMode = !_buttonMappingMode;
             }
         }
 
@@ -122,7 +122,7 @@ namespace LevelEditor.Items.Interactable.Portal
 
         }
 
-        public void RemoveButtonLink(int buttonID)
+        public void RemoveButtonLink(int buttonId)
         {
 
         }

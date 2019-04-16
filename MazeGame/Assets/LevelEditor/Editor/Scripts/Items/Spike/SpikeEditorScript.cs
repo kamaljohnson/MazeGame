@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace LevelEditor.Items.Interactable.Spike
 {
-    public class SpikeEditorScript : Editor, ITem, ItemButtonInteraction
+    public class SpikeEditorScript : Editor, ITem, ITemButtonInteraction
     {
         public void Init()
         {

@@ -1093,7 +1093,7 @@ namespace LevelEditor
         bool CheckValuesSet(); //returns true if the item serializable field values are set
     }
     
-    public interface ItemButtonInteraction
+    public interface ITemButtonInteraction
     {
         /// <summary>
         /// adds the corresponding button as the link button
@@ -1110,7 +1110,7 @@ namespace LevelEditor
         /// <summary>
         /// used to remove the button link to the item
         /// </summary>
-        /// <param name="buttonID"></param>
-        void RemoveButtonLink(int buttonID);    //removes the button with buttonID
+        /// <param name="buttonId"></param>
+        void RemoveButtonLink(int buttonId);    //removes the button with buttonID
     }
 }
