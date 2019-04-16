@@ -523,6 +523,7 @@ namespace LevelEditor
 
         public static void ReCalculateNodes()
         {
+            List<GameObject> tempWallList = new List<GameObject>();
             //create sub nodes for the new maze cube
             for (int i = 0; i < AllMazeCubes.Count; i++)
             {
@@ -542,9 +543,18 @@ namespace LevelEditor
                     {
                         for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
                         {
+                            if(AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>() == null)
+                                continue;
+                            
                             if (AllMazeCubes[i].transform.GetChild(j).transform.forward == direction)
                             {
                                 flag = true;
+                            }
+
+                            for (int k = 0; k < AllMazeCubes[i].transform.GetChild(j).childCount; k++)
+                            {
+                                //adding all the maze wall gameObjects to the tempList
+                                tempWallList.Add(AllMazeCubes[i].transform.GetChild(j).GetChild(k).gameObject);    
                             }
                         }
                     }
@@ -562,22 +572,6 @@ namespace LevelEditor
                     }
                 }
 
-                foreach (var node_offset in Helper.Vector3Directions)
-                {
-                    if (Physics.Raycast(AllMazeCubes[i].transform.position, node_offset, out hit, 1f)) //checks if there is any other maze cube in the direction
-                    {
-                        for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
-                        {
-                            if (Vector3.Distance(AllMazeCubes[i].transform.GetChild(j).transform.forward, node_offset) < 0.01f)
-                            {
-                                DestroyImmediate(AllMazeCubes[i].transform.GetChild(j).gameObject);
-                                break;
-                            }
-                        }
-                    }
-                }
-
-
             }
 
             for (int i = 0; i < AllMazeCubes.Count; i++)
@@ -589,6 +583,12 @@ namespace LevelEditor
                         AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>().ReCalculateNeighbourInterations();
                     }
                 }
+            }
+
+            //destroying all the maze wall gameObjects
+            foreach (var o in tempWallList)
+            {
+                DestroyImmediate(o);
             }
         }
 
