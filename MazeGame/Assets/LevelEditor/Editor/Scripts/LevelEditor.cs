@@ -1017,7 +1017,12 @@ namespace LevelEditor
                                         allMazeItems[itemType].Add(AllItems[itemType][i]);
                                     }
                                     break;
-                                    
+                                case "Gate":
+                                    if (AllItems[itemType][i].GetComponent<Game.Items.Interactable.Gate.Gate>().itemSet)
+                                    {
+                                        allMazeItems[itemType].Add(AllItems[itemType][i]);
+                                    }
+                                    break;
                             }
                             break;
                         case ItemCategories.Activator:
@@ -1060,18 +1065,52 @@ namespace LevelEditor
 
     public interface ITem
     {
+        /// <summary>
+        /// used to initialize the item,
+        /// called just after the item is created
+        /// </summary>
         void Init();            //creates an item and initialises it
+        
+        /// <summary>
+        /// 
+        /// </summary>
         void AddItem();         //adds the item to the item list in the LevelEditor script
+        
+        /// <summary>
+        /// 
+        /// </summary>
         void EditItem();        //the user can edit the properties of the item
+        
+        /// <summary>
+        /// used to remove the item
+        /// </summary>
         void RemoveItem();      //removes the item from the item list
 
+        /// <summary>
+        /// returns true if the item is set with values else false
+        /// </summary>
+        /// <returns></returns>
         bool CheckValuesSet(); //returns true if the item serializable field values are set
     }
     
     public interface ItemButtonInteraction
     {
+        /// <summary>
+        /// adds the corresponding button as the link button
+        /// for the item
+        /// </summary>
+        /// <param name="button"></param>
         void AddButtonLink(Game.Items.Activators.Button.Button button);       //creates a button which can interact with the item
+        
+        /// <summary>
+        /// used to edit the values/ properties of the linked button
+        /// </summary>
         void EditButtonLink();      //the user can edit the properties of the button and its interaction
+        
+        /// <summary>
+        /// used to remove the button link to the item
+        /// </summary>
+        /// <param name="buttonID"></param>
         void RemoveButtonLink(int buttonID);    //removes the button with buttonID
     }
 }

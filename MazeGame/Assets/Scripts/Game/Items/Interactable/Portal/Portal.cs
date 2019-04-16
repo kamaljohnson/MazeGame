@@ -30,7 +30,7 @@ namespace Game.Items.Interactable.Portal
                  "a    -    A-CLK-ROT\n" +
                  "#num -    x-times")]
         public string linkedButtonOnState = "";
-        public string linkedButtonOffSatate = "";
+        public string linkedButtonOffState = "";
         
         public static int CurrentCheckpointPortalId;
 
@@ -78,7 +78,7 @@ namespace Game.Items.Interactable.Portal
 
             interactableId = portal.interactableId;
             linkedButtonOnState = portal.linkedButtonOnState;
-            linkedButtonOffSatate = portal.linkedButtonOffSatate;
+            linkedButtonOffState = portal.linkedButtonOffState;
         }
 
         
@@ -129,7 +129,7 @@ namespace Game.Items.Interactable.Portal
         public void DeActivateInteraction()
         {
             //TODO: change this to animation
-            if (linkedButtonOffSatate == "o")
+            if (linkedButtonOffState == "o")
             {
                 gameObject.SetActive(true);
             }
@@ -192,7 +192,7 @@ namespace Game.Items.Interactable.Portal
             l = portal.levelId;
 
             o = portal.linkedButtonOnState;
-            f = portal.linkedButtonOffSatate;
+            f = portal.linkedButtonOffState;
 
             i = portal.GetInteractableId();
         }
@@ -207,7 +207,7 @@ namespace Game.Items.Interactable.Portal
             portal.levelId = l;
 
             portal.linkedButtonOnState = o;
-            portal.linkedButtonOffSatate = f;
+            portal.linkedButtonOffState = f;
 
             portal.interactableId = i;
             

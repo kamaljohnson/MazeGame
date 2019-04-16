@@ -3,6 +3,7 @@ using UnityEngine;
 using System.IO;
 using Game.Items;
 using Game.Items.Activators.Button;
+using Game.Items.Interactable.Gate;
 using Game.Items.Interactable.Portal;
 using Game.Maze;
 using Game.Player;
@@ -136,6 +137,26 @@ namespace Game
                     Button.AllInteractableItems.Add(tempPortal.GetComponent<Portal>());
                 }
 
+                foreach (var gate in maze.g)
+                {
+                    //TODO: change the portalprefab and create a maze wall with the direction and node data later
+                    var tempGate = Instantiate(portalPrefab, tempMaze.transform, true);
+
+                    tempGate.transform.position = new Vector3(
+                        gate.x,
+                        gate.y,
+                        gate.z
+                    );                    
+                    tempGate.transform.eulerAngles = new Vector3(
+                        gate.u,
+                        gate.v,
+                        gate.w
+                    );
+                    tempGate.GetComponent<Gate>().SetGateValues(gate.GetGate());
+
+                    Button.AllInteractableItems.Add(tempGate.GetComponent<Gate>());
+                }
+                
                 foreach (var button in maze.b)
                 {
                     var tempButton = Instantiate(buttonPrefab, tempMaze.transform, true);
@@ -533,6 +554,7 @@ namespace Game
 
         //item data
         public List<Items.Interactable.Portal.SerializableItem> p;    //the list of all portals on the maze
+        public List<Items.Interactable.Gate.SerializableItem> g;    //the list of all gates on the maze
         public List<Items.Activators.Button.SerializableItem> b;      //the list of all buttons on the maze
     }
 
