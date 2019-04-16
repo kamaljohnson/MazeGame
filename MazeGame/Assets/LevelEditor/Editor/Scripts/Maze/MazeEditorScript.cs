@@ -106,22 +106,22 @@ namespace LevelEditor.Maze
 
                 Handles.color = Color.black;
 
-                if (node.RightPath)
+                if (node.rightPath)
                 {
                     Handles.DrawAAPolyLine(Texture2D.whiteTexture, 10, node.transform.position + node.transform.forward * 0.01f,
                         node.transform.position + node.transform.forward * 0.01f + node.transform.right * 0.52f);
                 }
-                if (node.LeftPath)
+                if (node.leftPath)
                 {
                     Handles.DrawAAPolyLine(Texture2D.whiteTexture, 10, node.transform.position + node.transform.forward * 0.01f,
                         node.transform.position + node.transform.forward * 0.01f - node.transform.right * 0.52f);
                 }
-                if (node.UpPath)
+                if (node.upPath)
                 {
                     Handles.DrawAAPolyLine(Texture2D.whiteTexture, 10, node.transform.position + node.transform.forward * 0.01f,
                         node.transform.position + node.transform.forward * 0.01f + node.transform.up * 0.52f);
                 }
-                if (node.DownPath)
+                if (node.downPath)
                 {
                     Handles.DrawAAPolyLine(Texture2D.whiteTexture, 10, node.transform.position + node.transform.forward * 0.01f,
                         node.transform.position + node.transform.forward * 0.01f - node.transform.up * 0.52f);
@@ -202,7 +202,14 @@ namespace LevelEditor.Maze
                     if (Handles.Button(mazeCube.transform.position + (offset * 0.55f), Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
                     {
                         GameObject obj = Instantiate((GameObject)LevelEditor.CurrentItemPrefab, mazeCube.transform.position + offset, mazeCube.transform.localRotation, mazeCube.transform);
-                        obj.transform.up = offset;
+                        if (obj.transform.CompareTag("Gate"))
+                        {
+                            obj.transform.forward = offset;
+                        }
+                        else
+                        {
+                            obj.transform.up = offset;
+                        }
                         obj.GetComponent<Collider>().enabled = false;
                         LevelEditor.AllItems[(int)LevelEditor.CurrentItemType].Add(obj);
                     }
@@ -227,7 +234,7 @@ namespace LevelEditor.Maze
                             Transform node = cube.GetChild(j);
                             if (node.GetComponent<Game.Maze.Node>() != null)
                             {
-                                node.GetComponent<Game.Maze.Node>().ParentCubePos = cube.transform.position;
+                                node.GetComponent<Game.Maze.Node>().parentCubePos = cube.transform.position;
                             }
                         }
                     }

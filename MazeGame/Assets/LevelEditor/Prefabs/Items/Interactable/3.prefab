@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4086409054585047986}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0.5}
-  m_LocalScale: {x: 0.7502115, y: 0.4482787, z: 0.30233437}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: -0.5, y: 0.000000029802322, z: -0.49999997}
+  m_LocalScale: {x: 0.7502115, y: 0.4079861, z: 0.27621356}
   m_Children: []
   m_Father: {fileID: 5741747168385390597}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!33 &6610710060549542872
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -116,14 +116,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7763595628925981771}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2278569111340787159}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!65 &3539734562482599656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -151,6 +151,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableId: 0
   itemSet: 0
-  gateDireciton: 0
+  gateDireciton: 1
+  parentCubePos: {x: 0, y: 0, z: 0}
+  gatePrefab: {fileID: 0}
+  rrender: 0
+  lrender: 0
+  urender: 0
+  drender: 0
+  rUrender: 0
+  rDrender: 0
+  lUrender: 0
+  lDrender: 0
+  eRrender: 0
+  eLrender: 0
+  eUrender: 0
+  eDrender: 0
+  erUrender: 0
+  erDrender: 0
+  elUrender: 0
+  elDrender: 0
+  euRrender: 0
+  euLrender: 0
+  edRrender: 0
+  edLrender: 0
+  eerUrender: 0
+  eerDrender: 0
+  eelUrender: 0
+  eelDrender: 0
   linkedButtonOnState: 
   linkedButtonOffState: 

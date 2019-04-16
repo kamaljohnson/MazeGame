@@ -39,7 +39,7 @@ namespace LevelEditor.Items.Interactable.Gate
             {
                 Handles.color = new Color(1f, 0.73f, 0.18f);                
             }
-            if (Handles.Button(_gate.transform.position + _gate.transform.up, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_gate.transform.position + _gate.transform.forward, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _buttonMappingMode = !_buttonMappingMode;
             }
@@ -48,7 +48,7 @@ namespace LevelEditor.Items.Interactable.Gate
         public void DrawDeletionHandle()
         {
             Handles.color = new Color(1f, 0f, 0.07f);
-            if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 if (!EditorUtility.DisplayDialog("Warning!!",
                     "This will delete the item permenently", "Cancel", "Continue"))
@@ -78,36 +78,32 @@ namespace LevelEditor.Items.Interactable.Gate
         {
             Handles.color = new Color(0.55f, 0.64f, 1f);                
 
-            if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f + _gate.transform.forward * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f + _gate.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                _gate.gateDireciton = Direction.Forward;
-                _gate.transform.GetChild(0).transform.localPosition = _gate.transform.forward * 0.5f + _gate.transform.up * -0.5f;
+                _gate.gateDireciton = Direction.Up;
+                _gate.transform.GetChild(0).transform.localPosition = _gate.transform.forward * 0.5f + _gate.transform.up * 0.5f;
                 _gate.transform.GetChild(0).transform.eulerAngles = new Vector3(0, 0, 0);
-                Debug.Log("forward");
             }
 
-            if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f - _gate.transform.forward * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f - _gate.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                _gate.gateDireciton = Direction.Back;           
-                _gate.transform.GetChild(0).transform.localPosition = -_gate.transform.forward * 0.5f + _gate.transform.up * -0.5f;
+                _gate.gateDireciton = Direction.Down;           
+                _gate.transform.GetChild(0).transform.localPosition = -_gate.transform.forward * 0.5f + _gate.transform.up * 0.5f;
                 _gate.transform.GetChild(0).transform.eulerAngles = new Vector3(0, 0, 0);
-                Debug.Log("back");
             }
 
-            if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f + _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f + _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _gate.gateDireciton = Direction.Right;
-                _gate.transform.GetChild(0).transform.localPosition = _gate.transform.right * 0.5f + _gate.transform.up * -0.5f;
+                _gate.transform.GetChild(0).transform.localPosition = _gate.transform.right * 0.5f + _gate.transform.up * 0.5f;
                 _gate.transform.GetChild(0).transform.eulerAngles = new Vector3(0, 90, 0);
-                Debug.Log("right");
             }
 
-            if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f - _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f - _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _gate.gateDireciton = Direction.Left;
-                _gate.transform.GetChild(0).transform.localPosition = -_gate.transform.right * 0.5f + _gate.transform.up * -0.5f;
+                _gate.transform.GetChild(0).transform.localPosition = -_gate.transform.right * 0.5f + _gate.transform.up * 0.5f;
                 _gate.transform.GetChild(0).transform.eulerAngles = new Vector3(0, -90, 0);
-                Debug.Log("left");
             }
         }
         

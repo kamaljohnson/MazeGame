@@ -140,9 +140,9 @@ namespace Game
                 foreach (var gate in maze.g)
                 {
                     //TODO: change the portalprefab and create a maze wall with the direction and node data later
-                    var tempGate = Instantiate(portalPrefab, tempMaze.transform, true);
+                    var tempGate = new GameObject();
                     tempGate.AddComponent<Gate>();
-
+                    
                     tempGate.transform.position = new Vector3(
                         gate.x,
                         gate.y,
@@ -154,7 +154,7 @@ namespace Game
                         gate.w
                     );
                     tempGate.GetComponent<Gate>().SetGateValues(gate.GetGate());
-
+                    
                     Button.AllInteractableItems.Add(tempGate.GetComponent<Gate>());
                 }
                 
@@ -217,7 +217,7 @@ namespace Game
 
                     var nodeTransform = node.transform;
                     
-                    if (node.Rrender)
+                    if (node.rrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,nodeTransform.position +nodeTransform.right * offset +nodeTransform.forward * height_offset, Quaternion.identity,nodeTransform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
@@ -225,7 +225,7 @@ namespace Game
                         tempobj.name = "r";
                         tempobj.transform.parent = walls.transform;
                     }
-                    if (node.Lrender)
+                    if (node.lrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,nodeTransform.position -nodeTransform.right * offset +nodeTransform.forward * height_offset, Quaternion.identity,nodeTransform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
@@ -233,7 +233,7 @@ namespace Game
                         tempobj.name = "l";
                         tempobj.transform.parent = walls.transform;
                     }
-                    if (node.Urender)
+                    if (node.urender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,nodeTransform.position +nodeTransform.up * offset +nodeTransform.forward * height_offset, Quaternion.identity,nodeTransform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
@@ -241,7 +241,7 @@ namespace Game
                         tempobj.name = "u";
                         tempobj.transform.parent = walls.transform;
                     }
-                    if (node.Drender)
+                    if (node.drender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,nodeTransform.position -nodeTransform.up * offset +nodeTransform.forward * height_offset, Quaternion.identity,nodeTransform);
                         tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
@@ -251,7 +251,7 @@ namespace Game
                     }
 
                     //rendering corner
-                    if (node.RUrender)
+                    if (node.rUrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position + (node.transform.right +nodeTransform.up) * offset +
@@ -260,7 +260,7 @@ namespace Game
                         tempobj.name = "ru";
                         tempobj.transform.parent = walls.transform;
                     }
-                    if (node.RDrender)
+                    if (node.rDrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position + (node.transform.right -nodeTransform.up) * offset +
@@ -269,7 +269,7 @@ namespace Game
                         tempobj.name = "rd";
                         tempobj.transform.parent = walls.transform;
                     }
-                    if (node.LUrender)
+                    if (node.lUrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position + (-node.transform.right +nodeTransform.up) * offset +
@@ -278,7 +278,7 @@ namespace Game
                         tempobj.name = "lu";
                         tempobj.transform.parent = walls.transform;
                     }
-                    if (node.LDrender)
+                    if (node.lDrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position + (-node.transform.right -nodeTransform.up) * offset +
@@ -289,7 +289,7 @@ namespace Game
                     }
 
                     //rendering external edges
-                    if (node.ERrender)
+                    if (node.eRrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,nodeTransform.position +nodeTransform.right * external_offset +nodeTransform.forward * height_offset, Quaternion.identity,nodeTransform);
                         tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
@@ -298,7 +298,7 @@ namespace Game
                         tempobj.transform.parent = walls.transform;
                     }
 
-                    if (node.ELrender)
+                    if (node.eLrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position -nodeTransform.right * external_offset +
@@ -309,7 +309,7 @@ namespace Game
                         tempobj.transform.parent = walls.transform;
                     }
 
-                    if (node.EUrender)
+                    if (node.eUrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +nodeTransform.up * external_offset +
@@ -320,7 +320,7 @@ namespace Game
                         tempobj.transform.parent = walls.transform;
                     }
 
-                    if (node.EDrender)
+                    if (node.eDrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position -nodeTransform.up * external_offset +
@@ -331,7 +331,7 @@ namespace Game
                         tempobj.transform.parent = walls.transform;
                     }
 
-                    if (node.ERUrender)
+                    if (node.erUrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +
@@ -344,7 +344,7 @@ namespace Game
 
                     }
 
-                    if (node.ERDrender)
+                    if (node.erDrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +
@@ -357,7 +357,7 @@ namespace Game
 
                     }
 
-                    if (node.ELUrender)
+                    if (node.elUrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +
@@ -370,7 +370,7 @@ namespace Game
 
                     }
 
-                    if (node.ELDrender)
+                    if (node.elDrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +
@@ -383,7 +383,7 @@ namespace Game
 
                     }
 
-                    if (node.EURrender)
+                    if (node.euRrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +
@@ -396,7 +396,7 @@ namespace Game
 
                     }
 
-                    if (node.EULrender)
+                    if (node.euLrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +
@@ -409,7 +409,7 @@ namespace Game
 
                     }
 
-                    if (node.EDRrender)
+                    if (node.edRrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +
@@ -422,7 +422,7 @@ namespace Game
 
                     }
 
-                    if (node.EDLrender)
+                    if (node.edLrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +
@@ -434,7 +434,7 @@ namespace Game
                         tempobj.transform.parent = walls.transform;
                     }
 
-                    if (node.EERUrender)
+                    if (node.eerUrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +
@@ -446,7 +446,7 @@ namespace Game
                         tempobj.transform.parent = walls.transform;
                     }
 
-                    if (node.EERDrender)
+                    if (node.eerDrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +
@@ -458,7 +458,7 @@ namespace Game
                         tempobj.transform.parent = walls.transform;
                     }
 
-                    if (node.EELUrender)
+                    if (node.eelUrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +
@@ -470,7 +470,7 @@ namespace Game
                         tempobj.transform.parent = walls.transform;
                     }
 
-                    if (node.EELDrender)
+                    if (node.eelDrender)
                     {
                         GameObject tempobj = Instantiate(mazeWallPrefab,
                            nodeTransform.position +
