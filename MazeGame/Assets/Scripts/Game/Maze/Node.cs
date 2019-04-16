@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Game.Maze
 {
@@ -386,7 +387,7 @@ namespace Game.Maze
         public int w;
 
         //node path data
-        public string p;
+        public int p;
 
         public void ConvertToSavable(Node node)
         {
@@ -396,11 +397,13 @@ namespace Game.Maze
             u = (int)eulerAngles.x;
             v = (int)eulerAngles.y;
             w = (int)eulerAngles.z;
-
-            p = (node.RightPath ? "1" : "0") +
+            
+            string tempBin = (node.RightPath ? "1" : "0") +
                 (node.LeftPath ? "1" : "0") +
                 (node.UpPath ? "1" : "0") +
                 (node.DownPath ? "1" : "0");
+            p = Convert.ToInt32(tempBin, 2);
+            Debug.Log(tempBin + " : " + p);
         }
 
         public Node GetNode()
@@ -411,11 +414,24 @@ namespace Game.Maze
 
             node.NodeTransformRot = new Vector3(u, v, w);
 
-            List<char> tempPathData = p.ToList();
-            node.RightPath = tempPathData[0] == '1';
-            node.LeftPath = tempPathData[1] == '1';
-            node.UpPath = tempPathData[2] == '1';
-            node.DownPath = tempPathData[3] == '1';
+            //converting p to binary and then to individual ints
+            int  n, k;       
+            int[] tempPathData = new int[4];
+            for (int j = 0; j < 4; j++)
+            {
+                tempPathData[j] = 0;
+            }
+            n= p;     
+            for(k=0; n>0; k++)      
+            {      
+                tempPathData[k]=n%2;      
+                n= n/2;    
+            }
+            
+            node.RightPath = tempPathData[3] == 1;
+            node.LeftPath = tempPathData[2] == 1;
+            node.UpPath = tempPathData[1] == 1;
+            node.DownPath = tempPathData[0] == 1;
 
             return node;
         }
