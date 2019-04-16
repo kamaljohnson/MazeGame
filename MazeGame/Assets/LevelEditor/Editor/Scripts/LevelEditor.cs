@@ -497,8 +497,6 @@ namespace LevelEditor
 
         public static void ReCalculateAllMazeCubes()
         {
-            List<GameObject> tempList = new List<GameObject>();
-
             for (int i = 0; i < AllMazeCubes.Count; i++)
             {
                 //removing all the deleted maze cubes
@@ -537,7 +535,7 @@ namespace LevelEditor
                     {
                         for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
                         {
-                            if (AllMazeCubes[i].transform.GetChild(j).forward == direction)
+                            if (AllMazeCubes[i].transform.GetChild(j).forward == direction && AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>() != null)
                             {
                                 tempNodeList.Add(AllMazeCubes[i].transform.GetChild(j).gameObject);
                             }
@@ -1052,7 +1050,7 @@ namespace LevelEditor
 
     public class Helper
     {
-        public static List<Vector3> Vector3Directions = new List<Vector3>()
+        public static List<Vector3> Vector3Directions = new List<Vector3>
         {
             Vector3.forward,
             Vector3.back,

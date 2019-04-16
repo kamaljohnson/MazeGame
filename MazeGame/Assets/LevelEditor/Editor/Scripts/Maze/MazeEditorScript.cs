@@ -28,8 +28,8 @@ namespace LevelEditor.Maze
                 {
                     LevelEditor.SetMazeParent();
                 }
-                LevelEditor.ReCalculateAllMazeCubes();
                 LevelEditor.ReCalculateAllItems();
+                LevelEditor.ReCalculateAllMazeCubes();
             }
 
             StartNode = null;

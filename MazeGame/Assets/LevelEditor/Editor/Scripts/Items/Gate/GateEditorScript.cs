@@ -21,6 +21,7 @@ namespace LevelEditor.Items.Interactable.Gate
         {
             DrawAddButtonLinkHandle();
             DrawDeletionHandle();
+            DrawOrintationButtonHandles();
             if (_buttonMappingMode)
             {
                 DrawAllUnUsedButtonHandles();
@@ -60,7 +61,7 @@ namespace LevelEditor.Items.Interactable.Gate
         {
             foreach (var activator in LevelEditor.AllItems[(int)ItemCategories.Activator])
             {
-                var button = activator.GetComponent<Game.Items.Activators.Button.Button>();
+                var button = activator.GetComponent<Button>();
                 Handles.color = new Color(0.25f, 1f, 0.67f);                
                 if (!button.itemSet)
                 {
@@ -70,6 +71,11 @@ namespace LevelEditor.Items.Interactable.Gate
                     }
                 }
             }
+        }
+
+        public void DrawOrintationButtonHandles()
+        {
+            
         }
         
         public void Init()
