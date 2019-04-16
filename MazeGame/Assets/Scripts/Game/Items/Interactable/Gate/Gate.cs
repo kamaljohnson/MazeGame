@@ -8,7 +8,7 @@ namespace Game.Items.Interactable.Gate
     {
         public bool ActivationStatus()
         {
-            return false;
+            return gameObject.activeSelf;
         }
 
         public void ActivateInteraction()

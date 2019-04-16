@@ -110,7 +110,6 @@ namespace Game.Items.Interactable.Portal
 
         public bool ActivationStatus()
         {
-            Debug.Log(gameObject.activeSelf);
             return gameObject.activeSelf;
         }
 
