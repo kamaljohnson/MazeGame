@@ -26,6 +26,13 @@ namespace Game.Items.Activators.Button
         private bool _tempButtonState;
         private bool _buttonActivated;
 
+        private void Start()
+        {
+            buttonOn = false;
+            _tempButtonState = false;
+            _buttonActivated = true;
+        }
+        
         private void Update()
         {
                 if (GameManager.PlayerCubeTransform.GetComponent<Movement>().movementSnappedFull && !_buttonActivated)
@@ -49,7 +56,7 @@ namespace Game.Items.Activators.Button
         }
 
         
-        private void ActivateButtonEvent()
+        public void ActivateButtonEvent()
         {
             if(interactionItem == null)
                 return;

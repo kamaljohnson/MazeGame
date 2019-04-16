@@ -156,6 +156,7 @@ namespace Game
                         if (interactableItem.GetInteractableId() == button.i)
                         {
                             tempButton.GetComponent<Button>().interactionItem = interactableItem;
+                            tempButton.GetComponent<Button>().ActivateButtonEvent();
                         }
                     }
                 }

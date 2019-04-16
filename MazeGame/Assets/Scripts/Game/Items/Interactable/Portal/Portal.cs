@@ -77,6 +77,8 @@ namespace Game.Items.Interactable.Portal
             mazeId = portal.mazeId;
 
             interactableId = portal.interactableId;
+            linkedButtonOnState = portal.linkedButtonOnState;
+            linkedButtonOffSatate = portal.linkedButtonOffSatate;
         }
 
         
@@ -115,13 +117,27 @@ namespace Game.Items.Interactable.Portal
         public void ActivateInteraction()
         {
             //TODO: change this to animation
-            gameObject.SetActive(true);
+            if (linkedButtonOnState == "o")
+            {
+                gameObject.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(false);                
+            }
         }
 
         public void DeActivateInteraction()
         {
             //TODO: change this to animation
-            gameObject.SetActive(false);
+            if (linkedButtonOffSatate == "o")
+            {
+                gameObject.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(false);                
+            }
         }
 
         public int GetInteractableId()
