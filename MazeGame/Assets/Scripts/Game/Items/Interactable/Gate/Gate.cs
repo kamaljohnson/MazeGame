@@ -10,6 +10,8 @@ namespace Game.Items.Interactable.Gate
         public int interactableId;    //this id is used to link buttons
         
         public bool itemSet;    //is the item set with values
+
+        public Vector3 direction;
         
         [Header("State Properties")]
         [Tooltip("o    -    ON\n" +

@@ -27,8 +27,6 @@ namespace LevelEditor.Save
                 LevelEditor.ReCalculateNodes();
                 LevelEditor.RenderPaths();*/
 
-                Debug.Log(LevelEditor.AllMazeCubes.Count.ToString());
-
                 var surfaceMazeCubes = LevelEditor.GetSurfaceMazeCubes();
                 var mazeData = new MazeData();
                 var position = LevelEditor.CurrentMaze.transform.position;
@@ -81,11 +79,11 @@ namespace LevelEditor.Save
                                 switch (allItems[itemType][itemIndex].name)
                                 {
                                     case "Button":
-                                        Debug.Log("Button");
+                                        Debug.Log("Button");/*
                                         var button = allItems[itemType][itemIndex].GetComponent<Game.Items.Activators.Button.Button>();
-                                        button.interactionItemId = button.interactionItem.GetInteractableId();
+                                        button.interactionItemId = button.interactionItem.GetInteractableId();*/
                                         var serializedData = new Game.Items.Activators.Button.SerializableItem();
-                                        serializedData.ConvertToSerializable(button);
+                                        serializedData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Activators.Button.Button>());
                                         mazeData.b.Add(serializedData);
                                         break;
                                 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Game.Maze
@@ -384,10 +386,7 @@ namespace Game.Maze
         public int w;
 
         //node path data
-        public int r;
-        public int l;
-        public int f;
-        public int b;
+        public string p;
 
         public void ConvertToSavable(Node node)
         {
@@ -398,24 +397,25 @@ namespace Game.Maze
             v = (int)eulerAngles.y;
             w = (int)eulerAngles.z;
 
-            r = node.RightPath ? 1 : 0;
-            l = node.LeftPath ? 1 : 0;
-            f = node.UpPath ? 1 : 0;
-            b = node.DownPath ? 1 : 0;
+            p = (node.RightPath ? "1" : "0") +
+                (node.LeftPath ? "1" : "0") +
+                (node.UpPath ? "1" : "0") +
+                (node.DownPath ? "1" : "0");
         }
 
         public Node GetNode()
         {
             Node node = new Node();
 
-            node.inactive = (i == 1);
+            node.inactive = i == 1;
 
             node.NodeTransformRot = new Vector3(u, v, w);
 
-            node.RightPath = (r == 1);
-            node.LeftPath = (l == 1);
-            node.UpPath = (f == 1);
-            node.DownPath = (b == 1);
+            List<char> tempPathData = p.ToList();
+            node.RightPath = tempPathData[0] == '1';
+            node.LeftPath = tempPathData[1] == '1';
+            node.UpPath = tempPathData[2] == '1';
+            node.DownPath = tempPathData[3] == '1';
 
             return node;
         }
