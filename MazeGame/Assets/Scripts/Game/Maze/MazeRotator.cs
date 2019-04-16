@@ -5,39 +5,39 @@ namespace Game.Maze
 {
     public class MazeRotator : MonoBehaviour
     {
-        public bool IsRotating = false;
-        private int angle = 0;
-        private float speed;
-        private Vector3 direction;
-        private Vector3 prevRotation;
-        private int step;
+        public bool isRotating = false;
+        private int _angle = 0;
+        private float _speed;
+        private Vector3 _direction;
+        private Vector3 _prevRotation;
+        private int _step;
 
         public void Update()
         {
-            if (IsRotating)
+            if (isRotating)
             {
-                StartCoroutine(nameof(rotate));
+                StartCoroutine(nameof(Rotate));
             }
         }
 
-        public IEnumerator rotate()
+        public IEnumerator Rotate()
         {
-            transform.RotateAround(transform.position, direction, step);
-            angle += step;
-            if (angle == 90)
+            transform.RotateAround(transform.position, _direction, _step);
+            _angle += _step;
+            if (_angle == 90)
             {
-                IsRotating = false;
-                angle = 0;
+                isRotating = false;
+                _angle = 0;
             }
-            yield return new WaitForSeconds(90 / step);
+            yield return new WaitForSeconds(90 / _step);
         }
 
         public void Rotate(Vector3 direction, float speed)
         {
-            this.direction = direction;
-            step = 5;
-            prevRotation = transform.eulerAngles;
-            IsRotating = true;
+            _direction = direction;
+            _step = 5;
+            _prevRotation = transform.eulerAngles;
+            isRotating = true;
         }
     }
 }

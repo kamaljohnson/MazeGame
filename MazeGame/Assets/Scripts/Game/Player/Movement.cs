@@ -54,7 +54,7 @@ namespace Game.Player
 
         public void Update()
         {
-            if (GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().IsRotating)    //no calculations will be made or applied while the maze is rotating
+            if (GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().isRotating)    //no calculations will be made or applied while the maze is rotating
                 return;
             
             HandleInput();

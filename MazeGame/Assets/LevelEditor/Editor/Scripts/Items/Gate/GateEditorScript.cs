@@ -80,22 +80,34 @@ namespace LevelEditor.Items.Interactable.Gate
 
             if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f + _gate.transform.forward * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                
+                _gate.gateDireciton = Direction.Forward;
+                _gate.transform.GetChild(0).transform.localPosition = _gate.transform.forward * 0.5f + _gate.transform.up * -0.5f;
+                _gate.transform.GetChild(0).transform.eulerAngles = new Vector3(0, 0, 0);
+                Debug.Log("forward");
             }
 
             if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f - _gate.transform.forward * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                
+                _gate.gateDireciton = Direction.Back;           
+                _gate.transform.GetChild(0).transform.localPosition = -_gate.transform.forward * 0.5f + _gate.transform.up * -0.5f;
+                _gate.transform.GetChild(0).transform.eulerAngles = new Vector3(0, 0, 0);
+                Debug.Log("back");
             }
 
             if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f + _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                
+                _gate.gateDireciton = Direction.Right;
+                _gate.transform.GetChild(0).transform.localPosition = _gate.transform.right * 0.5f + _gate.transform.up * -0.5f;
+                _gate.transform.GetChild(0).transform.eulerAngles = new Vector3(0, 90, 0);
+                Debug.Log("right");
             }
 
             if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f - _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                
+                _gate.gateDireciton = Direction.Left;
+                _gate.transform.GetChild(0).transform.localPosition = -_gate.transform.right * 0.5f + _gate.transform.up * -0.5f;
+                _gate.transform.GetChild(0).transform.eulerAngles = new Vector3(0, -90, 0);
+                Debug.Log("left");
             }
         }
         
