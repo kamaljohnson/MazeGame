@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Game;
 using Game.Items.Activators.Button;
 using UnityEditor;
 using UnityEngine;
@@ -142,4 +143,5 @@ namespace LevelEditor.Items.Interactable.Gate
             throw new System.NotImplementedException();
         }
     }
+    
 }

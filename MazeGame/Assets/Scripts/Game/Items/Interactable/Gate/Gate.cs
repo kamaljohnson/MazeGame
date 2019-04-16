@@ -11,8 +11,8 @@ namespace Game.Items.Interactable.Gate
         
         public bool itemSet;    //is the item set with values
 
-        public Vector3 direction;
-        
+        public Direction gateDireciton;    //the direction of the gate from the node
+
         [Header("State Properties")]
         [Tooltip("o    -    ON\n" +
                  "f    -    OFF\n" +
@@ -68,7 +68,11 @@ namespace Game.Items.Interactable.Gate
 
         public void SetGateValues(Gate gate)
         {
+            gateDireciton = gate.gateDireciton;
             
+            interactableId = gate.interactableId;
+            linkedButtonOnState = gate.linkedButtonOnState;
+            linkedButtonOffState = gate.linkedButtonOffState;
         }
     }
     
@@ -86,7 +90,9 @@ namespace Game.Items.Interactable.Gate
         public string o;    //Linked Button On State
         public string f;    //Linked Button Off State
 
-        public int i;    //interactable id
+        public int i;       //interactable id
+
+        public int d;       //direction of the gate
 
         public void ConvertToSerializable(Gate gate)
         {
@@ -105,6 +111,7 @@ namespace Game.Items.Interactable.Gate
             f = gate.linkedButtonOffState;
 
             i = gate.GetInteractableId();
+            d = (int) gate.gateDireciton;
         }
 
         public Gate GetGate()
@@ -115,6 +122,7 @@ namespace Game.Items.Interactable.Gate
             gate.linkedButtonOffState = f;
 
             gate.interactableId = i;
+            gate.gateDireciton = (Direction) d;
             
             return gate;
         }
