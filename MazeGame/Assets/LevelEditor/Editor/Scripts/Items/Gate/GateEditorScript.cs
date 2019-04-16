@@ -47,7 +47,7 @@ namespace LevelEditor.Items.Interactable.Gate
         public void DrawDeletionHandle()
         {
             Handles.color = new Color(1f, 0f, 0.07f);
-            if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.7f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 if (!EditorUtility.DisplayDialog("Warning!!",
                     "This will delete the item permenently", "Cancel", "Continue"))
@@ -75,7 +75,27 @@ namespace LevelEditor.Items.Interactable.Gate
 
         public void DrawOrintationButtonHandles()
         {
-            
+            Handles.color = new Color(0.55f, 0.64f, 1f);                
+
+            if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f + _gate.transform.forward * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            {
+                
+            }
+
+            if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f - _gate.transform.forward * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            {
+                
+            }
+
+            if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f + _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            {
+                
+            }
+
+            if (Handles.Button(_gate.transform.position + _gate.transform.up * 0.6f - _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            {
+                
+            }
         }
         
         public void Init()
