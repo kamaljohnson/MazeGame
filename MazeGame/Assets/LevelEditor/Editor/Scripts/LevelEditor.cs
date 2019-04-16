@@ -246,8 +246,8 @@ namespace LevelEditor
                     if (tempMode != EditorMode)
                     {
                         EditorMode = tempMode;
+                        //TODO: re-store all the items after re-calculating stuff
                         ReCalculateAllMazeCubes();
-                        ReCalculateNodes();
                     }
 
                     switch (EditorMode)
@@ -265,6 +265,7 @@ namespace LevelEditor
                                     "Reset"))
                                 {
                                     ResetPaths();
+                                    ReCalculateAllMazeCubes();
                                     ReCalculateNodes();
                                 }
                             }
@@ -289,6 +290,7 @@ namespace LevelEditor
                 {
                     Maze.MazeEditorScript.EndNode = null;
                     Maze.MazeEditorScript.StartNode = null;
+                    ReCalculateAllMazeCubes();
                     ReCalculateNodes();
                     RenderPaths();
                 }
@@ -495,26 +497,28 @@ namespace LevelEditor
 
         public static void ReCalculateAllMazeCubes()
         {
-            AllMazeCubes = new List<GameObject>();
             List<GameObject> tempList = new List<GameObject>();
 
+            for (int i = 0; i < AllMazeCubes.Count; i++)
+            {
+                //removing all the deleted maze cubes
+                if (AllMazeCubes[i] == null)
+                {
+                    AllMazeCubes.RemoveAt(i);
+                }
+            }
+            
             for (int i = 0; i < CurrentMaze.transform.childCount; i++)
             {
                 CurrentMaze.transform.GetChild(i).gameObject.name = CurrentMaze.name + " cube";
-                for (int j = 0; j < CurrentMaze.transform.GetChild(i).childCount; j++)
+                //adding all the created maze cubes to the list
+                if (!AllMazeCubes.Contains(CurrentMaze.transform.GetChild(i).gameObject))
                 {
-                    for (int k = 0; k < CurrentMaze.transform.GetChild(i).GetChild(j).childCount; k++)
-                    {
-                        tempList.Add(CurrentMaze.transform.GetChild(i).GetChild(j).GetChild(k).gameObject);
-                    }
+                    AllMazeCubes.Add(CurrentMaze.transform.GetChild(i).gameObject);
                 }
-                AllMazeCubes.Add(CurrentMaze.transform.GetChild(i).gameObject);
             }
-
-            foreach (var o in tempList)
-            {
-                DestroyImmediate(o);
-            }
+            
+            ReCalculateNodes();
         }
 
         public static void ReCalculateNodes()
@@ -522,18 +526,29 @@ namespace LevelEditor
             //create sub nodes for the new maze cube
             for (int i = 0; i < AllMazeCubes.Count; i++)
             {
+                RaycastHit hit;
                 foreach (var direction in Helper.Vector3Directions)
                 {
                     bool flag = false;
-                    for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
+                    if (Physics.Raycast(AllMazeCubes[i].transform.position, direction, out hit, 0.505f))
                     {
-                        if (Vector3.Distance(AllMazeCubes[i].transform.GetChild(j).transform.forward, direction) < 0.01f)
+                        if (hit.transform.CompareTag("MazeCube"))
                         {
                             flag = true;
-                            break;
                         }
                     }
 
+                    if (!flag)
+                    {
+                        for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
+                        {
+                            if (AllMazeCubes[i].transform.GetChild(j).transform.forward == direction)
+                            {
+                                flag = true;
+                            }
+                        }
+                    }
+                    
                     if (!flag)
                     {
                         GameObject node = new GameObject();
@@ -547,7 +562,6 @@ namespace LevelEditor
                     }
                 }
 
-                RaycastHit hit;
                 foreach (var node_offset in Helper.Vector3Directions)
                 {
                     if (Physics.Raycast(AllMazeCubes[i].transform.position, node_offset, out hit, 1f)) //checks if there is any other maze cube in the direction
@@ -581,7 +595,6 @@ namespace LevelEditor
         public void ResetPaths()
         {
             ReCalculateAllMazeCubes();
-            ReCalculateNodes();
             Debug.Log("the path is reset");
             for (int i = 0; i < AllMazeCubes.Count; i++)
             {
@@ -609,7 +622,7 @@ namespace LevelEditor
                 {
                     Game.Maze.Node node = AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>();
                     if (node == null)
-                        break;
+                        continue;
                     node.CalculateRenderNodePath();
                 }
             }
@@ -620,7 +633,7 @@ namespace LevelEditor
                 {
                     Game.Maze.Node node = AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>();
                     if (node == null)
-                        break;
+                        continue;
                     
                     float offset = 1 / 2f - 1 / 12f;
                     float height_offset = 1 / 12f;

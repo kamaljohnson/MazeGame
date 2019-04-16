@@ -28,8 +28,7 @@ namespace LevelEditor.Maze
                 {
                     LevelEditor.SetMazeParent();
                 }
-                /*LevelEditor.ReCalculateAllMazeCubes();
-                LevelEditor.ReCalculateNodes();*/
+                LevelEditor.ReCalculateAllMazeCubes();
             }
 
             StartNode = null;
@@ -100,7 +99,7 @@ namespace LevelEditor.Maze
             {
                 Game.Maze.Node node = mazeCube.transform.GetChild(i).gameObject.GetComponent<Game.Maze.Node>();
                 if (node == null)
-                    break;
+                    continue;
                 
                 Handles.zTest = UnityEngine.Rendering.CompareFunction.Less;
 
