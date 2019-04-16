@@ -141,6 +141,7 @@ namespace Game
                 {
                     //TODO: change the portalprefab and create a maze wall with the direction and node data later
                     var tempGate = Instantiate(portalPrefab, tempMaze.transform, true);
+                    tempGate.AddComponent<Gate>();
 
                     tempGate.transform.position = new Vector3(
                         gate.x,

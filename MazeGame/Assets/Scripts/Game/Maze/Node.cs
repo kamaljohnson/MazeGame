@@ -403,7 +403,6 @@ namespace Game.Maze
                 (node.UpPath ? "1" : "0") +
                 (node.DownPath ? "1" : "0");
             p = Convert.ToInt32(tempBin, 2);
-            Debug.Log(tempBin + " : " + p);
         }
 
         public Node GetNode()
