@@ -11,7 +11,7 @@ namespace Game.Items
         Activators,             // [BUTTON]
         Collectable,            // [COIN, DIAMOND, COLLECTION POINT]
         Enemie,                 // [GUARDIAN, KNIGHT, HAMMER]
-        Decoratable,           // [PLANT_01, FOUNTAIN, ...]
+        Decoratable,            // [PLANT_01, FOUNTAIN, ...]
     }
     
     public interface IItems

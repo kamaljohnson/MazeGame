@@ -103,6 +103,7 @@ namespace LevelEditor.Items.Interactable.Portal
         {
             LevelEditor.AllItems[(int) ItemCategories.Interactable].Remove(_portal.gameObject);
             DestroyImmediate(_portal.gameObject);
+            LevelEditor.ReCalculateAllItems();
         }
 
         public bool CheckValuesSet()

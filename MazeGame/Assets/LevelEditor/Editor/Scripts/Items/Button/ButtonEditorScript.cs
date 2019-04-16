@@ -54,6 +54,7 @@ namespace LevelEditor.Items.Activator.Button
         {
             LevelEditor.AllItems[(int) ItemCategories.Interactable].Remove(_button.gameObject);
             DestroyImmediate(_button.gameObject);
+            LevelEditor.ReCalculateAllItems();
         }
 
         public bool CheckValuesSet()

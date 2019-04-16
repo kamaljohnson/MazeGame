@@ -523,7 +523,9 @@ namespace LevelEditor
 
         public static void ReCalculateNodes()
         {
-            List<GameObject> tempWallList = new List<GameObject>();
+            List<GameObject> tempWallList = new List<GameObject>();    //used to delete all the maze walls
+            List<GameObject> tempNodeList = new List<GameObject>();    //used to delete the nodes which are not needed
+            
             //create sub nodes for the new maze cube
             for (int i = 0; i < AllMazeCubes.Count; i++)
             {
@@ -531,8 +533,16 @@ namespace LevelEditor
                 foreach (var direction in Helper.Vector3Directions)
                 {
                     bool flag = false;
-                    if (Physics.Raycast(AllMazeCubes[i].transform.position, direction, out hit, 0.505f))
+                    if (Physics.Raycast(AllMazeCubes[i].transform.position, direction, out hit, 1.1f))
                     {
+                        for (int j = 0; j < AllMazeCubes[i].transform.childCount; j++)
+                        {
+                            if (AllMazeCubes[i].transform.GetChild(j).forward == direction)
+                            {
+                                tempNodeList.Add(AllMazeCubes[i].transform.GetChild(j).gameObject);
+                            }
+                        }
+                        
                         if (hit.transform.CompareTag("MazeCube"))
                         {
                             flag = true;
@@ -587,6 +597,11 @@ namespace LevelEditor
 
             //destroying all the maze wall gameObjects
             foreach (var o in tempWallList)
+            {
+                DestroyImmediate(o);
+            }
+            //destroying all the nodes which are not needed
+            foreach (var o in tempNodeList)
             {
                 DestroyImmediate(o);
             }
