@@ -37,7 +37,7 @@ namespace Game.Items.Interactable.Gate
         public string linkedButtonOnState = "";
         public string linkedButtonOffState = "";
         
-        public void CalculateGateRenderPath()
+        public void CreateGate()
         {
             RaycastHit hit;
 
@@ -61,119 +61,7 @@ namespace Game.Items.Interactable.Gate
                     rrender = true;
                     break;
             }
-            
-            //TODO: create a new ex-direction down wall at the edge
-
-        }
-
-        public void RenderGate()
-        {
-            transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-            _allGateWalls = new List<GameObject>();
-            
-            var offset = 1 / 2f - 1 / 12f;
-            var heightOffset = 1 / 12f;
-            
-            var externalOffset = 1 / 2f + 1 / 12f;
-            var downOffset = externalOffset - offset;
-            
-            var w_size = 4 / 6f;
-            var c_size = 1 / 6f;
-            var h_size = 1 / 6f;
-            
-            //rendering walls
-            if (rrender)
-            {
-                GameObject tempobj = Instantiate(gatePrefab, transform.position - transform.forward * 0.5f + transform.right * offset + transform.forward * heightOffset, Quaternion.identity, transform);
-                tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
-                tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
-                tempobj.name = "r";
-                _allGateWalls.Add(tempobj);
-                
-                tempobj = Instantiate(gatePrefab, transform.position - transform.forward * 0.5f + transform.right * externalOffset + transform.forward * heightOffset, Quaternion.identity, transform);
-                tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
-                tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
-                tempobj.name = "er";
-                _allGateWalls.Add(tempobj);
-                
-                tempobj = Instantiate(gatePrefab, transform.position - transform.forward * 0.5f + transform.right * externalOffset + transform.forward * heightOffset - transform.forward * downOffset , Quaternion.identity, transform);
-                tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
-                tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
-                tempobj.name = "er";
-                _allGateWalls.Add(tempobj);
-            }
-            if (lrender)
-            {
-                GameObject tempobj = Instantiate(gatePrefab, transform.position - transform.forward * 0.5f - transform.right * offset + transform.forward * heightOffset, Quaternion.identity, transform);
-                tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
-                tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
-                tempobj.name = "l";
-                _allGateWalls.Add(tempobj);
-                
-                tempobj = Instantiate(gatePrefab,
-                    transform.position - transform.forward * 0.5f - transform.right * externalOffset +
-                    transform.forward * heightOffset, Quaternion.identity, transform);
-                tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
-                tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
-                tempobj.name = "el";
-                _allGateWalls.Add(tempobj);
-                
-                tempobj = Instantiate(gatePrefab,
-                    transform.position - transform.forward * 0.5f - transform.right * externalOffset +
-                    transform.forward * heightOffset - transform.forward * downOffset , Quaternion.identity, transform);
-                tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
-                tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
-                tempobj.name = "el";
-                _allGateWalls.Add(tempobj);
-            }
-            if (urender)
-            {
-                GameObject tempobj = Instantiate(gatePrefab, transform.position - transform.forward * 0.5f + transform.up * offset + transform.forward * heightOffset, Quaternion.identity, transform);
-                tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
-                tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
-                tempobj.name = "u";
-                _allGateWalls.Add(tempobj);
-                
-                tempobj = Instantiate(gatePrefab,
-                    transform.position - transform.forward * 0.5f + transform.up * externalOffset +
-                    transform.forward * heightOffset, Quaternion.identity, transform);
-                tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
-                tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
-                tempobj.name = "eu";
-                _allGateWalls.Add(tempobj);
-                
-                tempobj = Instantiate(gatePrefab,
-                    transform.position - transform.forward * 0.5f + transform.up * externalOffset +
-                    transform.forward * heightOffset - transform.forward * downOffset , Quaternion.identity, transform);
-                tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
-                tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
-                tempobj.name = "eu";
-                _allGateWalls.Add(tempobj);
-            }
-            if (drender)
-            {
-                GameObject tempobj = Instantiate(gatePrefab, transform.position - transform.forward * 0.5f - transform.up * offset + transform.forward * heightOffset, Quaternion.identity, transform);
-                tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
-                tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
-                tempobj.name = "d";
-                _allGateWalls.Add(tempobj);
-                
-                tempobj = Instantiate(gatePrefab,
-                    transform.position - transform.forward * 0.5f - transform.up * externalOffset +
-                    transform.forward * heightOffset, Quaternion.identity, transform);
-                tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
-                tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
-                tempobj.name = "ed";
-                _allGateWalls.Add(tempobj);
-                
-                tempobj = Instantiate(gatePrefab,
-                    transform.position - transform.forward * 0.5f - transform.up * externalOffset +
-                    transform.forward * heightOffset - transform.forward * downOffset , Quaternion.identity, transform);
-                tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
-                tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
-                tempobj.name = "ed";
-                _allGateWalls.Add(tempobj);
-            }
+            //TODO: orient the gate the the direction 
         }
         
         public bool ActivationStatus()
@@ -215,8 +103,7 @@ namespace Game.Items.Interactable.Gate
         public void CloseGate()
         {
             Debug.Log("closing the gate");
-            CalculateGateRenderPath();
-            RenderGate();
+            CreateGate();
         }
         
 
