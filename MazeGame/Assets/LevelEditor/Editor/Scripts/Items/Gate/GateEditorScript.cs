@@ -76,37 +76,41 @@ namespace LevelEditor.Items.Interactable.Gate
 
         public void DrawOrintationButtonHandles()
         {
-            Handles.color = new Color(0.55f, 0.64f, 1f);                
-
-            if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f + _gate.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            Handles.color = new Color(0.55f, 0.64f, 1f);
+            
+            if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f - _gate.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                _gate.gateDireciton = Direction.Up;
-                _gate.transform.GetChild(0).position = _gate.transform.position + _gate.transform.up * 0.5f;
-                _gate.transform.GetChild(0).localEulerAngles = _gate.transform.forward * 90;
+                _gate.gateDireciton = Direction.Down;
+                _gate.transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
+                _gate.transform.GetChild(0).localPosition += new Vector3(0,1, 0) * -(0.5f + 1/12f);                    
+                _gate.transform.GetChild(0).localEulerAngles = new Vector3(270, 90, 90);     
                 Debug.Log("up");
             }
 
-            if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f - _gate.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f + _gate.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                _gate.gateDireciton = Direction.Down;           
-                _gate.transform.GetChild(0).position = _gate.transform.position - _gate.transform.up * 0.5f;
-                _gate.transform.GetChild(0).localEulerAngles = _gate.transform.forward * 90;
+                _gate.gateDireciton = Direction.Up;           
+                _gate.transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);                
+                _gate.transform.GetChild(0).localPosition += new Vector3(0,1, 0) * (0.5f + 1/12f);     
+                _gate.transform.GetChild(0).localEulerAngles = new Vector3(90, 90, 90); 
                 Debug.Log("down");
+            }
+
+            if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f - _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            {
+                _gate.gateDireciton = Direction.Left;      
+                _gate.transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
+                _gate.transform.GetChild(0).localPosition += new Vector3(1, 0, 0) * -(0.5f + 1/12f);                    
+                _gate.transform.GetChild(0).localEulerAngles = new Vector3(0, 90, 90);  
+                Debug.Log("right");
             }
 
             if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f + _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _gate.gateDireciton = Direction.Right;
-                _gate.transform.GetChild(0).position = _gate.transform.position + _gate.transform.right * 0.5f;
-                _gate.transform.GetChild(0).localEulerAngles = (_gate.transform.right + _gate.transform.up) * 90;
-                Debug.Log("right");
-            }
-
-            if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f - _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
-            {
-                _gate.gateDireciton = Direction.Left;
-                _gate.transform.GetChild(0).position = _gate.transform.position - _gate.transform.right * 0.5f;
-                _gate.transform.GetChild(0).localEulerAngles = (_gate.transform.right + _gate.transform.up) * 90;
+                _gate.transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
+                _gate.transform.GetChild(0).localPosition += new Vector3(1,0, 0) * (0.5f + 1/12f);                    
+                _gate.transform.GetChild(0).localEulerAngles = new Vector3(180, 90, 90);
                 Debug.Log("left");
             }
         }
