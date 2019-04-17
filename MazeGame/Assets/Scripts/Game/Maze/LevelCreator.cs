@@ -21,6 +21,7 @@ namespace Game
         //the item prefabs
         [Header("Maze Items Properties")]
         public GameObject portalPrefab;
+        public GameObject gatePrefab;
         public GameObject buttonPrefab;
 
         [Header("General Properties")]
@@ -139,11 +140,8 @@ namespace Game
 
                 foreach (var gate in maze.g)
                 {
-                    //TODO: change the portalprefab and create a maze wall with the direction and node data later
-                    var tempGate = new GameObject();
-                    tempGate.AddComponent<Gate>();
-                    tempGate.transform.parent = tempMaze.transform;
-                    
+                    var tempGate = Instantiate(gatePrefab, tempMaze.transform, true);
+
                     tempGate.transform.position = new Vector3(
                         gate.x,
                         gate.y,
@@ -155,6 +153,7 @@ namespace Game
                         gate.w
                     );
                     tempGate.GetComponent<Gate>().SetGateValues(gate.GetGate());
+                    tempGate.GetComponent<Gate>().CloseGate();
                     
                     Button.AllInteractableItems.Add(tempGate.GetComponent<Gate>());
                 }

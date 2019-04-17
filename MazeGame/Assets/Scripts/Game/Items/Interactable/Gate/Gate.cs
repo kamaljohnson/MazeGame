@@ -119,7 +119,8 @@ namespace Game.Items.Interactable.Gate
                     break;
             }
 
-            if (!Physics.Raycast( transform.position - transform.up, transform.right * 0.6f, out hit, 0.5f))
+            Debug.DrawRay(transform.position - transform.forward, transform.right * 0.6f, Color.red, 100);
+            if (!Physics.Raycast( transform.position - transform.forward, transform.right * 0.6f, out hit, 0.5f))
             {
                 erUrender = true;
                 erDrender = true;
@@ -128,8 +129,8 @@ namespace Game.Items.Interactable.Gate
                     eRrender = true;
                 }
             }
-
-            if (!Physics.Raycast( transform.position - transform.up, -transform.right * 0.6f, out hit, 0.5f))
+            Debug.DrawRay(transform.position - transform.forward, -transform.right * 0.6f, Color.red, 100);
+            if (!Physics.Raycast( transform.position - transform.forward, -transform.right * 0.6f, out hit, 0.5f))
             {
                 elUrender = true;
                 elDrender = true;
@@ -138,8 +139,8 @@ namespace Game.Items.Interactable.Gate
                     eLrender = true;
                 }
             }
-
-            if (!Physics.Raycast( transform.position - transform.up, transform.up * 0.6f, out hit, 0.5f))
+            Debug.DrawRay(transform.position - transform.forward, transform.up * 0.6f, Color.red, 100);
+            if (!Physics.Raycast( transform.position - transform.forward, transform.up * 0.6f, out hit, 0.5f))
             {
                 euRrender = true;
                 euLrender = true;
@@ -148,8 +149,8 @@ namespace Game.Items.Interactable.Gate
                     eUrender = true;
                 }
             }
-
-            if (!Physics.Raycast( transform.position - transform.up,  transform.position - transform.up * 0.6f, out hit, 0.5f))
+            Debug.DrawRay(transform.position - transform.forward, -transform.up * 0.6f, Color.red, 100);
+            if (!Physics.Raycast( transform.position - transform.forward, - transform.up * 0.6f, out hit, 0.5f))
             {
                 edRrender = true;
                 edLrender = true;
@@ -179,6 +180,9 @@ namespace Game.Items.Interactable.Gate
 
         public void RenderGate()
         {
+            transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            _allGateWalls = new List<GameObject>();
+            
             var offset = 1 / 2f - 1 / 12f;
             var height_offset = 1 / 12f;
             
