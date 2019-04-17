@@ -17,12 +17,6 @@ namespace Game.Items.Interactable.Gate
         public GameObject gatePrefab;
 
         private List<GameObject> _allGateWalls;
-        //rendering status
-        //sides
-        public bool rrender;
-        public bool lrender;
-        public bool urender;
-        public bool drender;
         
         [Header("State Properties")]
         [Tooltip("o    -    ON\n" +
@@ -39,26 +33,19 @@ namespace Game.Items.Interactable.Gate
         
         public void CreateGate()
         {
-            RaycastHit hit;
-
-            rrender = false;
-            lrender = false;
-            urender = false;
-            drender = false;
-
             switch (gateDireciton)
             {
-                case Direction.Up:
-                    urender = true;
-                    break;
                 case Direction.Left:
-                    lrender = true;
-                    break;
-                case Direction.Down:
-                    drender = true;
+                    transform.GetChild(0).localEulerAngles = new Vector3(2, 0, 1) * 90;
                     break;
                 case Direction.Right:
-                    rrender = true;
+                    transform.GetChild(0).localEulerAngles = new Vector3(0, 2, 1) * 90;
+                    break;
+                case Direction.Down:
+                    transform.GetChild(0).localEulerAngles = new Vector3(0, 1, 1) * 90;                    
+                    break;
+                case Direction.Up:
+                    transform.GetChild(0).localEulerAngles = new Vector3(0, 3, 3) * 90;
                     break;
             }
             //TODO: orient the gate the the direction 
