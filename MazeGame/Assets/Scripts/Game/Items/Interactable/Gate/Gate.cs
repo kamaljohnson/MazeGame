@@ -33,22 +33,27 @@ namespace Game.Items.Interactable.Gate
         
         public void CreateGate()
         {
+
+            
             switch (gateDireciton)
             {
                 case Direction.Left:
-                    transform.GetChild(0).localEulerAngles = new Vector3(2, 0, 1) * 90;
+                    transform.GetChild(0).localPosition += new Vector3(0,1, 0) * (0.5f + 1/12f);     
+                    transform.GetChild(0).localEulerAngles = new Vector3(90, 90, 90);                    
                     break;
                 case Direction.Right:
-                    transform.GetChild(0).localEulerAngles = new Vector3(0, 2, 1) * 90;
+                    transform.GetChild(0).localPosition += new Vector3(0,1, 0) * -(0.5f + 1/12f);                    
+                    transform.GetChild(0).localEulerAngles = new Vector3(270, 90, 90);                    
                     break;
                 case Direction.Down:
-                    transform.GetChild(0).localEulerAngles = new Vector3(0, 1, 1) * 90;                    
+                    transform.GetChild(0).localPosition += new Vector3(1,0, 0) * (0.5f + 1/12f);                    
+                    transform.GetChild(0).localEulerAngles = new Vector3(180, 90, 90);                    
                     break;
                 case Direction.Up:
-                    transform.GetChild(0).localEulerAngles = new Vector3(0, 3, 3) * 90;
+                    transform.GetChild(0).localPosition += new Vector3(1,0, 0) * -(0.5f + 1/12f);                    
+                    transform.GetChild(0).localEulerAngles = new Vector3(0, 90, 90);                    
                     break;
             }
-            //TODO: orient the gate the the direction 
         }
         
         public bool ActivationStatus()

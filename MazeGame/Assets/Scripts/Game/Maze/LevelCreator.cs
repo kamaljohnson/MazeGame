@@ -140,8 +140,8 @@ namespace Game
 
                 foreach (var gate in maze.g)
                 {
-                    var tempGate = Instantiate(gatePrefab, tempMaze.transform, true);
-
+                    var tempGate = Instantiate(gatePrefab, tempMaze.transform);
+                    
                     tempGate.transform.position = new Vector3(
                         gate.x,
                         gate.y,
