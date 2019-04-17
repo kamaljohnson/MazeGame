@@ -41,12 +41,6 @@ namespace LevelEditor.Save
                 
                 List<List<GameObject>> allItems;
                 LevelEditor.GetAllMazeItems(out allItems);
-
-                //setting the id's of all the interactable items for the buttons to reference
-                for (int index = 0; index < allItems[(int)ItemCategories.Interactable].Count; index++)
-                {
-                    allItems[(int) ItemCategories.Interactable][index].GetComponent<IInteractables>().SetInteractableId(index + 1);
-                }
                 
                 //adding all the item data
                 for(var itemType = 0; itemType < allItems.Count; itemType++)
@@ -81,7 +75,6 @@ namespace LevelEditor.Save
                                     case "Button":
                                         Debug.Log("Button");
                                         var button = allItems[itemType][itemIndex].GetComponent<Game.Items.Activators.Button.Button>();
-                                        button.interactionItemId = button.interactionItem.GetInteractableId();
                                         var serializedData = new Game.Items.Activators.Button.SerializableItem();
                                         serializedData.ConvertToSerializable(button);
                                         mazeData.b.Add(serializedData);

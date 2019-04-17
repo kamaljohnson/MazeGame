@@ -1,4 +1,6 @@
-﻿using Game.Items;
+﻿using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using Game.Items;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
@@ -115,6 +117,38 @@ namespace LevelEditor.Items.Interactable.Portal
         {
             button.itemSet = true;
             button.interactionItem = _portal;
+
+            List<int> allIds = new List<int>();
+            int tempId = 0;
+            
+            List<List<GameObject>> allItems;
+            LevelEditor.GetAllMazeItems(out allItems);
+            
+            for (int index = 0; index < allItems[(int)ItemCategories.Interactable].Count; index++)
+            {
+                if (allItems[(int) ItemCategories.Interactable][index].GetComponent<IInteractables>().GetInteractableId() != 0)
+                {
+                    allIds.Add(allItems[(int) ItemCategories.Interactable][index].GetComponent<IInteractables>().GetInteractableId());
+                }
+            }
+            allIds.Sort();
+            foreach (var id in allIds)
+            {
+                if (!tempId.Equals(id))
+                {
+                    tempId = id;
+                }
+
+                tempId++;
+            }
+
+            if (tempId == 0)
+            {
+                tempId = 1;
+            }
+
+            _portal.interactableId = tempId;
+            button.interactionItemId = tempId;
         }
 
         public void EditButtonLink()
