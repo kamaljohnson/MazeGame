@@ -178,17 +178,18 @@ namespace Game.Items.Interactable.Gate
         
         public bool ActivationStatus()
         {
+            //TODO: return the gate state i.e. open or closed
             return gameObject.activeSelf;
         }
 
         public void ActivateInteraction()
         {
-            
+            OpenGate();
         }
 
         public void DeActivateInteraction()
         {
-            
+            CloseGate();
         }
 
         public int GetInteractableId()
@@ -208,11 +209,12 @@ namespace Game.Items.Interactable.Gate
 
         public void OpenGate()
         {
-            
+            Debug.Log("opening the gate");
         }
 
         public void CloseGate()
         {
+            Debug.Log("closing the gate");
             CalculateGateRenderPath();
             RenderGate();
         }
