@@ -82,24 +82,32 @@ namespace LevelEditor.Items.Interactable.Gate
             {
                 _gate.gateDireciton = Direction.Up;
                 _gate.transform.GetChild(0).position = _gate.transform.position + _gate.transform.up * 0.5f;
+                _gate.transform.GetChild(0).localEulerAngles = _gate.transform.forward * 90;
+                Debug.Log("up");
             }
 
             if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f - _gate.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _gate.gateDireciton = Direction.Down;           
                 _gate.transform.GetChild(0).position = _gate.transform.position - _gate.transform.up * 0.5f;
+                _gate.transform.GetChild(0).localEulerAngles = _gate.transform.forward * 90;
+                Debug.Log("down");
             }
 
             if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f + _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _gate.gateDireciton = Direction.Right;
                 _gate.transform.GetChild(0).position = _gate.transform.position + _gate.transform.right * 0.5f;
+                _gate.transform.GetChild(0).localEulerAngles = (_gate.transform.right + _gate.transform.up) * 90;
+                Debug.Log("right");
             }
 
             if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f - _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _gate.gateDireciton = Direction.Left;
                 _gate.transform.GetChild(0).position = _gate.transform.position - _gate.transform.right * 0.5f;
+                _gate.transform.GetChild(0).localEulerAngles = (_gate.transform.right + _gate.transform.up) * 90;
+                Debug.Log("left");
             }
         }
         

@@ -13,8 +13,6 @@ namespace Game.Items.Interactable.Gate
 
         public Direction gateDireciton;    //the direction of the gate from the node
 
-        public Vector3 parentCubePos;
-
         public GameObject gatePrefab;
 
         private List<GameObject> _allGateWalls;
@@ -121,7 +119,7 @@ namespace Game.Items.Interactable.Gate
                     break;
             }
 
-            if (!Physics.Raycast(parentCubePos, transform.right * 0.6f, out hit, 0.5f))
+            if (!Physics.Raycast( transform.position - transform.up, transform.right * 0.6f, out hit, 0.5f))
             {
                 erUrender = true;
                 erDrender = true;
@@ -131,7 +129,7 @@ namespace Game.Items.Interactable.Gate
                 }
             }
 
-            if (!Physics.Raycast(parentCubePos, -transform.right * 0.6f, out hit, 0.5f))
+            if (!Physics.Raycast( transform.position - transform.up, -transform.right * 0.6f, out hit, 0.5f))
             {
                 elUrender = true;
                 elDrender = true;
@@ -141,7 +139,7 @@ namespace Game.Items.Interactable.Gate
                 }
             }
 
-            if (!Physics.Raycast(parentCubePos, transform.up * 0.6f, out hit, 0.5f))
+            if (!Physics.Raycast( transform.position - transform.up, transform.up * 0.6f, out hit, 0.5f))
             {
                 euRrender = true;
                 euLrender = true;
@@ -151,7 +149,7 @@ namespace Game.Items.Interactable.Gate
                 }
             }
 
-            if (!Physics.Raycast(parentCubePos, -transform.up * 0.6f, out hit, 0.5f))
+            if (!Physics.Raycast( transform.position - transform.up,  transform.position - transform.up * 0.6f, out hit, 0.5f))
             {
                 edRrender = true;
                 edLrender = true;
@@ -557,7 +555,6 @@ namespace Game.Items.Interactable.Gate
 
             gate.interactableId = i;
             gate.gateDireciton = (Direction) d;
-            gate.parentCubePos = -gate.transform.up;
             
             return gate;
         }
