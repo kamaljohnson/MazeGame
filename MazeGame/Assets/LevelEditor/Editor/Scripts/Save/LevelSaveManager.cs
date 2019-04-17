@@ -79,11 +79,11 @@ namespace LevelEditor.Save
                                 switch (allItems[itemType][itemIndex].name)
                                 {
                                     case "Button":
-                                        Debug.Log("Button");/*
+                                        Debug.Log("Button");
                                         var button = allItems[itemType][itemIndex].GetComponent<Game.Items.Activators.Button.Button>();
-                                        button.interactionItemId = button.interactionItem.GetInteractableId();*/
+                                        button.interactionItemId = button.interactionItem.GetInteractableId();
                                         var serializedData = new Game.Items.Activators.Button.SerializableItem();
-                                        serializedData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Activators.Button.Button>());
+                                        serializedData.ConvertToSerializable(button);
                                         mazeData.b.Add(serializedData);
                                         break;
                                 }
