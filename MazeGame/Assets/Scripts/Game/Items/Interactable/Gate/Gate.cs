@@ -36,18 +36,22 @@ namespace Game.Items.Interactable.Gate
             switch (gateDireciton)
             {
                 case Direction.Up:
+                    transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);                
                     transform.GetChild(0).localPosition += new Vector3(0,1, 0) * (0.5f + 1/12f);     
                     transform.GetChild(0).localEulerAngles = new Vector3(90, 90, 90);                    
                     break;
                 case Direction.Down:
+                    transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
                     transform.GetChild(0).localPosition += new Vector3(0,1, 0) * -(0.5f + 1/12f);                    
                     transform.GetChild(0).localEulerAngles = new Vector3(270, 90, 90);                    
                     break;
                 case Direction.Right:
+                    transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
                     transform.GetChild(0).localPosition += new Vector3(1,0, 0) * (0.5f + 1/12f);                    
                     transform.GetChild(0).localEulerAngles = new Vector3(180, 90, 90);                    
                     break;
                 case Direction.Left:
+                    transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
                     transform.GetChild(0).localPosition += new Vector3(1,0, 0) * -(0.5f + 1/12f);                    
                     transform.GetChild(0).localEulerAngles = new Vector3(0, 90, 90);                    
                     break;
@@ -88,10 +92,12 @@ namespace Game.Items.Interactable.Gate
         public void OpenGate()
         {
             Debug.Log("opening the gate");
+            gameObject.SetActive(false);
         }
 
         public void CloseGate()
         {
+            gameObject.SetActive(true);
             Debug.Log("closing the gate");
             CreateGate();
         }

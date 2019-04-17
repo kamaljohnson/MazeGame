@@ -153,6 +153,7 @@ namespace Game
                         gate.w
                     );
                     tempGate.GetComponent<Gate>().SetGateValues(gate.GetGate());
+                    tempGate.GetComponent<Collider>().enabled = false;
                     tempGate.GetComponent<Gate>().CloseGate();
                     
                     Button.AllInteractableItems.Add(tempGate.GetComponent<Gate>());
