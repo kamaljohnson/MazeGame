@@ -22,6 +22,11 @@ namespace Game.Items
         /// <returns></returns>
         ItemCategories GetItemType();
     }
+
+    public interface IPath
+    {
+        
+    }
     
     public interface IInteractables
     {

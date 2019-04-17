@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ice : MonoBehaviour
+namespace Game.Items.Path.Ice
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Ice : MonoBehaviour, IItems, IPath
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public ItemCategories GetItemType()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -1,18 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class IceEditorScript : MonoBehaviour
+namespace LevelEditor.Items.Path.Ice
 {
-    // Start is called before the first frame update
-    void Start()
+    [CustomEditor(typeof(Game.Items.Path.Ice.Ice))]
+    public class IceEditorScript : Editor, ITem
     {
-        
-    }
+        public void Init()
+        {
+            throw new System.NotImplementedException();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void AddItem()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void EditItem()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void RemoveItem()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool CheckValuesSet()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
