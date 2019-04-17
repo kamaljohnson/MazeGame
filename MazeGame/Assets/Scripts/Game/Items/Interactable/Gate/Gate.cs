@@ -23,10 +23,10 @@ namespace Game.Items.Interactable.Gate
         public bool urender;
         public bool drender;
         //corners
-        public bool rUrender;
-        public bool rDrender;
-        public bool lUrender;
-        public bool lDrender;
+//        public bool rUrender;
+//        public bool rDrender;
+//        public bool lUrender;
+//        public bool lDrender;
 
         public bool eRrender;
         public bool eLrender;
@@ -70,10 +70,10 @@ namespace Game.Items.Interactable.Gate
             urender = false;
             drender = false;
 
-            rUrender = false;
-            rDrender = false;
-            lUrender = false;
-            lDrender = false;
+//            rUrender = false;
+//            rDrender = false;
+//            lUrender = false;
+//            lDrender = false;
 
             eRrender = false;
             eLrender = false;
@@ -99,28 +99,28 @@ namespace Game.Items.Interactable.Gate
             {
                 case Direction.Up:
                     urender = true;
-                    rrender = true;
-                    lrender = true;
+//                    rUrender = true;
+//                    lUrender = true;
                     break;
                 case Direction.Left:
                     lrender = true;
-                    urender = true;
-                    drender = true;
+//                    lUrender = true;
+//                    lDrender = true;
                     break;
                 case Direction.Down:
                     drender = true;
-                    rrender = true;
-                    lrender = true;
+//                    rDrender = true;
+//                    lDrender = true;
                     break;
                 case Direction.Right:
                     rrender = true;
-                    urender = true;
-                    drender = true;
+//                    rDrender = true;
+//                    rUrender = true;
                     break;
             }
 
-            Debug.DrawRay(transform.position - transform.forward, transform.right * 0.6f, Color.red, 100);
-            if (!Physics.Raycast( transform.position - transform.forward, transform.right * 0.6f, out hit, 0.5f))
+/*            Debug.DrawRay((transform.position - transform.forward) * 5, transform.right * 5f, Color.red, 100);
+            if (!Physics.Raycast( (transform.position - transform.forward) * 5, transform.right * 5f, out hit, 5f))
             {
                 erUrender = true;
                 erDrender = true;
@@ -129,8 +129,8 @@ namespace Game.Items.Interactable.Gate
                     eRrender = true;
                 }
             }
-            Debug.DrawRay(transform.position - transform.forward, -transform.right * 0.6f, Color.red, 100);
-            if (!Physics.Raycast( transform.position - transform.forward, -transform.right * 0.6f, out hit, 0.5f))
+            Debug.DrawRay((transform.position - transform.forward) * 5, -transform.right * 5f, Color.red, 100);
+            if (!Physics.Raycast((transform.position - transform.forward) * 5, -transform.right * 5f, out hit, 5f))
             {
                 elUrender = true;
                 elDrender = true;
@@ -139,8 +139,8 @@ namespace Game.Items.Interactable.Gate
                     eLrender = true;
                 }
             }
-            Debug.DrawRay(transform.position - transform.forward, transform.up * 0.6f, Color.red, 100);
-            if (!Physics.Raycast( transform.position - transform.forward, transform.up * 0.6f, out hit, 0.5f))
+            Debug.DrawRay((transform.position - transform.forward) * 5, transform.up * 5f, Color.red, 100);
+            if (!Physics.Raycast( (transform.position - transform.forward) * 5, transform.up * 5f, out hit, 5f))
             {
                 euRrender = true;
                 euLrender = true;
@@ -149,8 +149,8 @@ namespace Game.Items.Interactable.Gate
                     eUrender = true;
                 }
             }
-            Debug.DrawRay(transform.position - transform.forward, -transform.up * 0.6f, Color.red, 100);
-            if (!Physics.Raycast( transform.position - transform.forward, - transform.up * 0.6f, out hit, 0.5f))
+            Debug.DrawRay((transform.position - transform.forward) * 5, -transform.up * 5f, Color.red, 100);
+            if (!Physics.Raycast( (transform.position - transform.forward) * 5, - transform.up * 5f, out hit, 5f))
             {
                 edRrender = true;
                 edLrender = true;
@@ -175,7 +175,7 @@ namespace Game.Items.Interactable.Gate
             if (elDrender && edLrender)
             {
                 eelDrender = true;
-            }
+            }*/
         }
 
         public void RenderGate()
@@ -195,7 +195,7 @@ namespace Game.Items.Interactable.Gate
             //rendering walls
             if (rrender)
             {
-                GameObject tempobj = Instantiate(gatePrefab, transform.position + transform.right * offset + transform.forward * height_offset, Quaternion.identity, transform);
+                GameObject tempobj = Instantiate(gatePrefab, transform.position - transform.forward * 0.5f + transform.right * offset + transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                 tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                 tempobj.name = "r";
@@ -203,7 +203,7 @@ namespace Game.Items.Interactable.Gate
             }
             if (lrender)
             {
-                GameObject tempobj = Instantiate(gatePrefab, transform.position - transform.right * offset + transform.forward * height_offset, Quaternion.identity, transform);
+                GameObject tempobj = Instantiate(gatePrefab, transform.position - transform.forward * 0.5f - transform.right * offset + transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                 tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                 tempobj.name = "l";
@@ -211,7 +211,7 @@ namespace Game.Items.Interactable.Gate
             }
             if (urender)
             {
-                GameObject tempobj = Instantiate(gatePrefab, transform.position + transform.up * offset + transform.forward * height_offset, Quaternion.identity, transform);
+                GameObject tempobj = Instantiate(gatePrefab, transform.position - transform.forward * 0.5f + transform.up * offset + transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                 tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                 tempobj.name = "u";
@@ -219,7 +219,7 @@ namespace Game.Items.Interactable.Gate
             }
             if (drender)
             {
-                GameObject tempobj = Instantiate(gatePrefab, transform.position - transform.up * offset + transform.forward * height_offset, Quaternion.identity, transform);
+                GameObject tempobj = Instantiate(gatePrefab, transform.position - transform.forward * 0.5f - transform.up * offset + transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                 tempobj.transform.localScale = new Vector3(w_size, h_size, c_size);
                 tempobj.name = "d";
@@ -227,47 +227,47 @@ namespace Game.Items.Interactable.Gate
             }
             
             //rendering corner
-            if (rUrender)
-            {
-                GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position + (transform.right + transform.up) * offset +
-                    transform.forward * height_offset, transform.rotation, transform);
-                tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
-                tempobj.name = "ru";
-                _allGateWalls.Add(tempobj);
-            }
-            if (rDrender)
-            {
-                GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position + (transform.right - transform.up) * offset +
-                    transform.forward * height_offset, transform.rotation, transform);
-                tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
-                tempobj.name = "rd";
-                _allGateWalls.Add(tempobj);
-            }
-            if (lUrender)
-            {
-                GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position + (-transform.right + transform.up) * offset +
-                    transform.forward * height_offset, transform.rotation, transform);
-                tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
-                tempobj.name = "lu";
-                _allGateWalls.Add(tempobj);
-            }
-            if (lDrender)
-            {
-                GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position + (-transform.right - transform.up) * offset +
-                    transform.forward * height_offset, transform.rotation, transform);
-                tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
-                tempobj.name = "ld";
-                _allGateWalls.Add(tempobj);
-            }
+//            if (rUrender)
+//            {
+//                GameObject tempobj = Instantiate(gatePrefab,
+//                    transform.position - transform.forward * 0.5f + (transform.right + transform.up) * offset +
+//                    transform.forward * height_offset, transform.rotation, transform);
+//                tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
+//                tempobj.name = "ru";
+//                _allGateWalls.Add(tempobj);
+//            }
+//            if (rDrender)
+//            {
+//                GameObject tempobj = Instantiate(gatePrefab,
+//                    transform.position - transform.forward * 0.5f + (transform.right - transform.up) * offset +
+//                    transform.forward * height_offset, transform.rotation, transform);
+//                tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
+//                tempobj.name = "rd";
+//                _allGateWalls.Add(tempobj);
+//            }
+//            if (lUrender)
+//            {
+//                GameObject tempobj = Instantiate(gatePrefab,
+//                    transform.position - transform.forward * 0.5f + (-transform.right + transform.up) * offset +
+//                    transform.forward * height_offset, transform.rotation, transform);
+//                tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
+//                tempobj.name = "lu";
+//                _allGateWalls.Add(tempobj);
+//            }
+//            if (lDrender)
+//            {
+//                GameObject tempobj = Instantiate(gatePrefab,
+//                    transform.position - transform.forward * 0.5f + (-transform.right - transform.up) * offset +
+//                    transform.forward * height_offset, transform.rotation, transform);
+//                tempobj.transform.localScale = new Vector3(c_size, c_size, h_size);
+//                tempobj.name = "ld";
+//                _allGateWalls.Add(tempobj);
+//            }
             
             //rendering external edges
             if (eRrender)
             {
-                GameObject tempobj = Instantiate(gatePrefab, transform.position + transform.right * external_offset + transform.forward * height_offset, Quaternion.identity, transform);
+                GameObject tempobj = Instantiate(gatePrefab, transform.position - transform.forward * 0.5f + transform.right * external_offset + transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                 tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
                 tempobj.name = "er";
@@ -277,7 +277,7 @@ namespace Game.Items.Interactable.Gate
             if (eLrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position - transform.right * external_offset +
+                    transform.position - transform.forward * 0.5f - transform.right * external_offset +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localEulerAngles = new Vector3(0, 90, 90);
                 tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
@@ -288,7 +288,7 @@ namespace Game.Items.Interactable.Gate
             if (eUrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position + transform.up * external_offset +
+                    transform.position - transform.forward * 0.5f + transform.up * external_offset +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                 tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
@@ -299,7 +299,7 @@ namespace Game.Items.Interactable.Gate
             if (eDrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position - transform.up * external_offset +
+                    transform.position - transform.forward * 0.5f - transform.up * external_offset +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localEulerAngles = new Vector3(-90, 0, 0);
                 tempobj.transform.localScale = new Vector3(w_size, h_size, h_size);
@@ -310,7 +310,7 @@ namespace Game.Items.Interactable.Gate
             if (erUrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position +
+                    transform.position - transform.forward * 0.5f +
                     (transform.right * external_offset + transform.up * offset) +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
@@ -323,7 +323,7 @@ namespace Game.Items.Interactable.Gate
             if (erDrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position +
+                    transform.position - transform.forward * 0.5f +
                     (transform.right * external_offset - transform.up * offset) +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
@@ -336,7 +336,7 @@ namespace Game.Items.Interactable.Gate
             if (elUrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position +
+                    transform.position - transform.forward * 0.5f +
                     (-transform.right * external_offset + transform.up * offset) +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
@@ -349,7 +349,7 @@ namespace Game.Items.Interactable.Gate
             if (elDrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position +
+                    transform.position - transform.forward * 0.5f +
                     (-transform.right * external_offset - transform.up * offset) +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
@@ -362,7 +362,7 @@ namespace Game.Items.Interactable.Gate
             if (euRrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position +
+                    transform.position - transform.forward * 0.5f + 
                     (transform.right * offset + transform.up * external_offset) +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
@@ -375,7 +375,7 @@ namespace Game.Items.Interactable.Gate
             if (euLrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position +
+                    transform.position - transform.forward * 0.5f +
                     (-transform.right * offset + transform.up * external_offset) +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
@@ -388,7 +388,7 @@ namespace Game.Items.Interactable.Gate
             if (edRrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position +
+                    transform.position - transform.forward * 0.5f +
                     (transform.right * offset - transform.up * external_offset) +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
@@ -401,7 +401,7 @@ namespace Game.Items.Interactable.Gate
             if (edLrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position +
+                    transform.position - transform.forward * 0.5f +
                     (-transform.right * offset - transform.up * external_offset) +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localScale = new Vector3(h_size, c_size, h_size);
@@ -413,7 +413,7 @@ namespace Game.Items.Interactable.Gate
             if (eerUrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position +
+                    transform.position - transform.forward * 0.5f +
                     (transform.right + transform.up) * external_offset +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localScale = new Vector3(h_size, h_size, h_size);
@@ -425,7 +425,7 @@ namespace Game.Items.Interactable.Gate
             if (eerDrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position +
+                    transform.position - transform.forward * 0.5f +
                     (transform.right - transform.up) * external_offset +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localScale = new Vector3(h_size, h_size, h_size);
@@ -437,7 +437,7 @@ namespace Game.Items.Interactable.Gate
             if (eelUrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position +
+                    transform.position - transform.forward * 0.5f +
                     (-transform.right + transform.up) * external_offset +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localScale = new Vector3(h_size, h_size, h_size);
@@ -449,7 +449,7 @@ namespace Game.Items.Interactable.Gate
             if (eelDrender)
             {
                 GameObject tempobj = Instantiate(gatePrefab,
-                    transform.position +
+                    transform.position - transform.forward * 0.5f +
                     (-transform.right - transform.up) * external_offset +
                     transform.forward * height_offset, Quaternion.identity, transform);
                 tempobj.transform.localScale = new Vector3(h_size, h_size, h_size);
