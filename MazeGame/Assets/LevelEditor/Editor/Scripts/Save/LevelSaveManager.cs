@@ -39,6 +39,8 @@ namespace LevelEditor.Save
                 mazeData.g = new List<Game.Items.Interactable.Gate.SerializableItem>();
                 mazeData.b = new List<Game.Items.Activators.Button.SerializableItem>();
                 
+                mazeData.i = new List<Game.Items.Path.Ice.SerializableItem>();
+                
                 List<List<GameObject>> allItems;
                 LevelEditor.GetAllMazeItems(out allItems);
                 
@@ -51,6 +53,15 @@ namespace LevelEditor.Save
                         switch ((ItemCategories)itemType)
                         {
                             case ItemCategories.Path:
+                                switch (allItems[itemType][itemIndex].name)
+                                {
+                                    case "Ice":
+                                        Debug.Log("Ice");
+                                        var serializedIceData = new Game.Items.Path.Ice.SerializableItem();
+                                        serializedIceData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Path.Ice.Ice>());
+                                        mazeData.i.Add(serializedIceData);
+                                        break;
+                                }
                                 break;
                             case ItemCategories.Interactable:
                                 switch (allItems[itemType][itemIndex].name)
@@ -136,6 +147,8 @@ namespace LevelEditor.Save
         public List<Game.Items.Interactable.Portal.SerializableItem> p;    //the list of all portals on the maze
         public List<Game.Items.Interactable.Gate.SerializableItem> g;    //the list of all gates on the maze
         public List<Game.Items.Activators.Button.SerializableItem> b;    //the list of all buttons on the maze
+        
+        public List<Game.Items.Path.Ice.SerializableItem> i;    //the list of all ice on the maze
     }
 
     [System.Serializable]

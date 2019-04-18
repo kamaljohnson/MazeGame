@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -59,4 +58,5 @@ namespace LevelEditor.Items.Path.Ice
             throw new System.NotImplementedException();
         }
     }
+
 }

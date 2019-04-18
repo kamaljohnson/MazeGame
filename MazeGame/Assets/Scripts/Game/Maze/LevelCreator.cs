@@ -23,6 +23,7 @@ namespace Game
         public GameObject portalPrefab;
         public GameObject gatePrefab;
         public GameObject buttonPrefab;
+        public GameObject icePrefab;
 
         [Header("General Properties")]
         public GameObject playerCube;
@@ -188,6 +189,25 @@ namespace Game
                             tempButton.GetComponent<Button>().ActivateButtonEvent();
                         }
                     }
+                }
+
+                foreach (var ice in maze.i)
+                {
+                    var tempIce = Instantiate(icePrefab, tempMaze.transform, true);
+                    tempIce.GetComponent<Collider>().enabled = true;
+                    tempIce.transform.GetChild(0).GetComponent<Collider>().enabled = true;
+                    
+                    tempIce.transform.position = new Vector3(
+                        ice.x,
+                        ice.y,
+                        ice.z
+                    );                    
+                    tempIce.transform.eulerAngles = new Vector3(
+                        ice.u,
+                        ice.v,
+                        ice.w
+                    );
+
                 }
                 
             }
@@ -564,6 +584,7 @@ namespace Game
         public List<Items.Interactable.Portal.SerializableItem> p;    //the list of all portals on the maze
         public List<Items.Interactable.Gate.SerializableItem> g;    //the list of all gates on the maze
         public List<Items.Activators.Button.SerializableItem> b;      //the list of all buttons on the maze
+        public List<Items.Path.Ice.SerializableItem> i;      //the list of all buttons on the maze
     }
 
     [System.Serializable]

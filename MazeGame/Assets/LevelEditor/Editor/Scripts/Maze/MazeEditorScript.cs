@@ -202,6 +202,10 @@ namespace LevelEditor.Maze
                     if (Handles.Button(mazeCube.transform.position + (offset * 0.55f), Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
                     {
                         GameObject obj = Instantiate((GameObject)LevelEditor.CurrentItemPrefab, mazeCube.transform.position + offset, mazeCube.transform.localRotation, mazeCube.transform);
+                        if (obj.transform.CompareTag("Ice"))
+                        {
+                            obj.name = "Ice";
+                        }
                         if (obj.transform.CompareTag("Gate"))
                         {
                             obj.transform.forward = offset;
