@@ -139,6 +139,7 @@ namespace Game.Items.Interactable.Gate
         public string f;    //Linked Button Off State
 
         public int i;       //interactable id
+        public int c;       //color id
 
         public int d;       //direction of the gate
 
@@ -159,6 +160,7 @@ namespace Game.Items.Interactable.Gate
             f = gate.linkedButtonOffState;
 
             i = gate.GetInteractableId();
+            c = gate.colorId;
             d = (int) gate.gateDireciton;
         }
 
@@ -171,6 +173,7 @@ namespace Game.Items.Interactable.Gate
 
             gate.interactableId = i;
             gate.gateDireciton = (Direction) d;
+            gate.colorId = c;
             
             return gate;
         }

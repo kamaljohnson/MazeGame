@@ -108,7 +108,8 @@ namespace Game
                 foreach (var portal in maze.p)
                 {
                     var tempPortal = Instantiate(portalPrefab, tempMaze.transform, true);
-
+                    tempPortal.GetComponent<Collider>().enabled = true;
+                    
                     tempPortal.transform.position = new Vector3(
                         portal.x,
                         portal.y,
@@ -141,6 +142,9 @@ namespace Game
                 foreach (var gate in maze.g)
                 {
                     var tempGate = Instantiate(gatePrefab, tempMaze.transform);
+                    tempGate.transform.GetChild(0).GetComponent<Collider>().enabled = true;
+                    tempGate.transform.GetChild(0).GetChild(0).GetComponent<Collider>().enabled = true;
+                    tempGate.transform.GetChild(0).GetChild(1).GetComponent<Collider>().enabled = true;
                     
                     tempGate.transform.position = new Vector3(
                         gate.x,
@@ -162,6 +166,8 @@ namespace Game
                 foreach (var button in maze.b)
                 {
                     var tempButton = Instantiate(buttonPrefab, tempMaze.transform, true);
+                    tempButton.GetComponent<Collider>().enabled = true;
+                    tempButton.transform.GetChild(0).GetComponent<Collider>().enabled = true;
 
                     tempButton.transform.position = new Vector3(
                         button.x,
