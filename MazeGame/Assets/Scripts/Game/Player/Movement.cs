@@ -117,7 +117,7 @@ namespace Game.Player
                 return;
             }
             
-            if (_tempMovementDirection != _movementDirection)
+            if (_tempMovementDirection != _movementDirection && !Ice.onIce)
             {
                 if (_tempMovementDirection == Direction.Right && _movementDirection == Direction.Left)
                 {
