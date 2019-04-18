@@ -480,7 +480,7 @@ namespace LevelEditor
             }
         }
 
-        public void HideAllMazeItems()
+        public static void HideAllMazeItems()
         {
             for (int i = 0; i < AllItems.Count; i++)
             {
@@ -491,7 +491,7 @@ namespace LevelEditor
             }
         }
 
-        public void ShowAllMazeItems()
+        public static void ShowAllMazeItems()
         {
             for (int i = 0; i < AllItems.Count; i++)
             {
@@ -526,6 +526,7 @@ namespace LevelEditor
 
         public static void ReCalculateAllMazeCubes()
         {
+            HideAllMazeItems();
             for (int i = 0; i < AllMazeCubes.Count; i++)
             {
                 //removing all the deleted maze cubes
@@ -546,6 +547,10 @@ namespace LevelEditor
             }
             
             ReCalculateNodes();
+            if (EditorMode == Modes.Items)
+            {
+                ShowAllMazeItems();
+            }
         }
 
         public static void ReCalculateNodes()
@@ -653,6 +658,8 @@ namespace LevelEditor
 
         public static void RenderPaths()
         {
+            HideAllMazeItems();
+            
             for (int i = 0; i < AllMazeWalls.Count; i++)
             {
                 DestroyImmediate(AllMazeWalls[i].gameObject);
@@ -954,6 +961,11 @@ namespace LevelEditor
                     }
 
                 }
+            }
+
+            if (EditorMode == Modes.Items)
+            {
+                ShowAllMazeItems();
             }
         }
 
