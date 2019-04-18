@@ -12,7 +12,7 @@ namespace LevelEditor.Items.Path.Ice
         
         private void OnEnable()
         {
-            
+            _ice = (Game.Items.Path.Ice.Ice) target;
         }
 
         private void OnSceneGUI()

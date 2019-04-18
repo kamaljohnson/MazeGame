@@ -246,6 +246,14 @@ namespace LevelEditor
                     if (tempMode != EditorMode)
                     {
                         EditorMode = tempMode;
+                        if (EditorMode != Modes.Items)
+                        {
+                            HideAllMazeItems();
+                        }
+                        else
+                        {
+                            ShowAllMazeItems();
+                        }
                         //TODO: re-store all the items after re-calculating stuff
                         ReCalculateAllMazeCubes();
                     }
@@ -255,7 +263,6 @@ namespace LevelEditor
                         case Modes.MazeBody:
                             break;
                         case Modes.MazeLayout:
-
                             InactiveNodeEditing = GUILayout.Toggle(InactiveNodeEditing, "set inactive nodes");
 
                             if (GUILayout.Button("reset paths"))
@@ -473,6 +480,28 @@ namespace LevelEditor
             }
         }
 
+        public void HideAllMazeItems()
+        {
+            for (int i = 0; i < AllItems.Count; i++)
+            {
+                for (int j = 0; j < AllItems[i].Count; j++)
+                {
+                    AllItems[i][j].SetActive(false);
+                }
+            }
+        }
+
+        public void ShowAllMazeItems()
+        {
+            for (int i = 0; i < AllItems.Count; i++)
+            {
+                for (int j = 0; j < AllItems[i].Count; j++)
+                {
+                    AllItems[i][j].SetActive(true);
+                }
+            }
+        }
+        
         public static void ReCalculateAllItems()
         {
             AllItems = new List<List<GameObject>>();
