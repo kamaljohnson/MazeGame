@@ -253,7 +253,7 @@ namespace Game.Player
             else
             {
                 playerCube.transform.localPosition = Vector3.Lerp(playerCube.transform.localPosition,
-                    playerCube.transform.localPosition + Helper.DirectionVector[(int) _movementDirection], Time.deltaTime);
+                    playerCube.transform.localPosition + Helper.DirectionVector[(int) _movementDirection], Time.deltaTime * 1.5f);
             }
 
             _tempAngleRotated += deltaAngle;
