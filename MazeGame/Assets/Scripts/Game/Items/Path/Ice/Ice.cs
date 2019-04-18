@@ -7,9 +7,21 @@ namespace Game.Items.Path.Ice
 {
     public class Ice : MonoBehaviour, IItems, IPath
     {
+        public static bool onIce;
+     
         public ItemCategories GetItemType()
         {
             return ItemCategories.Path;
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            onIce = true;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            onIce = false;
         }
     }
         

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Game.Items.Path.Ice;
 using UnityEngine;
 
 namespace Game.Player
@@ -142,7 +143,7 @@ namespace Game.Player
         }
 
         private void CheckJunction()
-        {
+        {   
             //getting the raycast data
             var transformPosition = transform.position;
 
@@ -171,30 +172,55 @@ namespace Game.Player
             switch (_movementDirection)
             {
                 case Direction.Right:
-                    if (playerRayCastData[(int) Direction.Right] ||
-                        !playerRayCastData[(int) Direction.Forward] || !playerRayCastData[(int) Direction.Back])
+                    if (playerRayCastData[(int)Direction.Right])
                     {
-                        _atJunction = true;
+                        _atJunction = true;                        
+                    }
+                    if (!playerRayCastData[(int) Direction.Forward] || !playerRayCastData[(int) Direction.Back])
+                    {
+                        if (!Ice.onIce)
+                        {
+                            _atJunction = true;
+                        }
                     }
                     break;
                 case Direction.Left:
-                    if (playerRayCastData[(int) Direction.Left] ||
-                        !playerRayCastData[(int) Direction.Forward] || !playerRayCastData[(int) Direction.Back])
+                    if (playerRayCastData[(int)Direction.Left])
                     {
-                        _atJunction = true;
+                        _atJunction = true;                        
+                    }
+                    if (!playerRayCastData[(int) Direction.Forward] || !playerRayCastData[(int) Direction.Back])
+                    {
+                        if (!Ice.onIce)
+                        {
+                            _atJunction = true;
+                        }
                     }
                     break;
                 case Direction.Forward:
-                    if (playerRayCastData[(int) Direction.Forward] ||
-                        !playerRayCastData[(int) Direction.Right] || !playerRayCastData[(int) Direction.Left])
+                    if (playerRayCastData[(int)Direction.Forward])
                     {
-                        _atJunction = true;
-                    }break;
+                        _atJunction = true;                        
+                    }
+                    if (!playerRayCastData[(int) Direction.Right] || !playerRayCastData[(int) Direction.Left])
+                    {
+                        if (!Ice.onIce)
+                        {
+                            _atJunction = true;
+                        }
+                    }
+                    break;
                 case Direction.Back:
-                    if (playerRayCastData[(int) Direction.Back] ||
-                        !playerRayCastData[(int) Direction.Right] || !playerRayCastData[(int) Direction.Left])
+                    if (playerRayCastData[(int)Direction.Back])
                     {
-                        _atJunction = true;
+                        _atJunction = true;                        
+                    }
+                    if (!playerRayCastData[(int) Direction.Right] || !playerRayCastData[(int) Direction.Left])
+                    {
+                        if (!Ice.onIce)
+                        {
+                            _atJunction = true;
+                        }
                     }
                     break;
                 case Direction.None:
