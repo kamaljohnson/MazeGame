@@ -156,8 +156,7 @@ namespace LevelEditor.Maze
                         }
                         else
                         {
-                            Debug.Log("new path started");
-                            //LevelEditor.ReCalculateAllMazeCubes();
+                            LevelEditor.ReCalculateNodes();
                         }
 
                         if (StartNode == EndNode)

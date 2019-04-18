@@ -589,6 +589,7 @@ namespace LevelEditor
                     if (AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>() != null)
                     {
                         AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>().ReCalculateNeighbourInterations();
+                        AllMazeCubes[i].transform.GetChild(j).GetComponent<Game.Maze.Node>().CalculateRenderNodePath();
                     }
                 }
             }
