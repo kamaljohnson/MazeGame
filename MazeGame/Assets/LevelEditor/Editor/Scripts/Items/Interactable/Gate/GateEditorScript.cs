@@ -148,6 +148,13 @@ namespace LevelEditor.Items.Interactable.Gate
         {
             button.itemSet = true;
             button.interactionItem = _gate;
+
+            button.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
+
+            //color coding the gate-button pair
+            _gate.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
+            _gate.transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
+            _gate.transform.GetChild(0).GetChild(1).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
             
             List<int> allIds = new List<int>();
             int tempId = 0;

@@ -8,6 +8,7 @@ namespace Game.Items.Interactable.Gate
 {
     public class Gate : MonoBehaviour, IInteractables, IItems
     {
+        
         public int interactableId;    //this id is used to link buttons
         
         public bool itemSet;    //is the item set with values
@@ -15,6 +16,16 @@ namespace Game.Items.Interactable.Gate
         public Direction gateDireciton;    //the direction of the gate from the node
 
         public GameObject gatePrefab;
+        public int colorId;
+        public List<Color> gateColors = new List<Color>
+        {
+            Color.red,
+            Color.blue,
+            Color.cyan,
+            Color.green,
+            Color.yellow,
+            Color.magenta
+        };
 
         private List<GameObject> _allGateWalls;
         

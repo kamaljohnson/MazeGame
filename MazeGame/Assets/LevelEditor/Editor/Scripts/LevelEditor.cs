@@ -555,6 +555,7 @@ namespace LevelEditor
 
         public static void ReCalculateNodes()
         {
+            HideAllMazeItems();
             List<GameObject> tempWallList = new List<GameObject>();    //used to delete all the maze walls
             List<GameObject> tempNodeList = new List<GameObject>();    //used to delete the nodes which are not needed
             
@@ -613,7 +614,10 @@ namespace LevelEditor
                         node.transform.forward = direction;
                     }
                 }
-
+                if (EditorMode == Modes.Items)
+                {
+                    ShowAllMazeItems();
+                }
             }
 
             for (int i = 0; i < AllMazeCubes.Count; i++)
