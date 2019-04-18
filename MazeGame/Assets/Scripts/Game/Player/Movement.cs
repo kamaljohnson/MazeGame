@@ -232,20 +232,28 @@ namespace Game.Player
         private void Move()
         {
             float deltaAngle = speed * Time.deltaTime;
-            switch (_movementDirection)
+            if(!Ice.onIce)
             {
-                case Direction.Right:
-                    playerCube.RotateAround(rightAnchor.position, -transform.forward * stepSize, deltaAngle);
-                    break;
-                case Direction.Left:
-                    playerCube.RotateAround(leftAnchor.position, transform.forward * stepSize, deltaAngle);
-                    break;
-                case Direction.Forward:
-                    playerCube.RotateAround(forwardAnchor.position, transform.right * stepSize, deltaAngle);
-                    break;
-                case Direction.Back:
-                    playerCube.RotateAround(backAnchor.position, -transform.right * stepSize, deltaAngle);
-                    break;
+                switch (_movementDirection)
+                {
+                    case Direction.Right:
+                        playerCube.RotateAround(rightAnchor.position, -transform.forward * stepSize, deltaAngle);
+                        break;
+                    case Direction.Left:
+                        playerCube.RotateAround(leftAnchor.position, transform.forward * stepSize, deltaAngle);
+                        break;
+                    case Direction.Forward:
+                        playerCube.RotateAround(forwardAnchor.position, transform.right * stepSize, deltaAngle);
+                        break;
+                    case Direction.Back:
+                        playerCube.RotateAround(backAnchor.position, -transform.right * stepSize, deltaAngle);
+                        break;
+                }
+            }
+            else
+            {
+                playerCube.transform.localPosition = Vector3.Lerp(playerCube.transform.localPosition,
+                    playerCube.transform.localPosition + Helper.DirectionVector[(int) _movementDirection], Time.deltaTime);
             }
 
             _tempAngleRotated += deltaAngle;
