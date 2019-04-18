@@ -960,6 +960,12 @@ namespace LevelEditor
                     switch ((ItemCategories)itemType)
                     {
                         case ItemCategories.Path:
+                            switch (AllItems[itemType][i].name)
+                            {
+                                case "Ice":
+                                    allMazeItems[itemType].Add((AllItems[itemType][i]));
+                                    break;
+                            }
                             break;
                         case ItemCategories.Interactable:
                             switch (AllItems[itemType][i].name)

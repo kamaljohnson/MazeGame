@@ -72,10 +72,10 @@ namespace Game.Maze
 
         public void ReCalculateNeighbourInterations()
         {
-            rightPath = (rightNode != null);
-            leftPath = (leftNode != null);
-            upPath = (upNode != null);
-            downPath = (downNode != null);
+            rightPath = rightNode != null;
+            leftPath = leftNode != null;
+            upPath = upNode != null;
+            downPath = downNode != null;
         }
 
         public void CalculatePathDirection(Node other)
@@ -92,7 +92,15 @@ namespace Game.Maze
                 {
                     rightPath = true;
                 }
-                rightNode = other;
+
+                if (rightPath)
+                {
+                    rightNode = other;
+                }
+                else
+                {
+                    rightNode = null;
+                }
             }
             if (Vector3.Distance(other.transform.position, transform.position - transform.right) < 0.1f ||
                 Vector3.Distance(other.transform.position, parentCubePos - transform.right * 0.5f) < 0.1f ||
@@ -106,7 +114,15 @@ namespace Game.Maze
                 {
                     leftPath = true;
                 }
-                leftNode = other;
+                
+                if (leftPath)
+                {
+                    leftNode = other;
+                }
+                else
+                {
+                    leftNode = null;
+                }
             }
             if (Vector3.Distance(other.transform.position, transform.position + transform.up) < 0.1f ||
                 Vector3.Distance(other.transform.position, parentCubePos + transform.up * 0.5f) < 0.1f ||
@@ -120,7 +136,15 @@ namespace Game.Maze
                 {
                     upPath = true;
                 }
-                upNode = other;
+                
+                if (upPath)
+                {
+                    upNode = other;
+                }
+                else
+                {
+                    upNode = null;
+                }
             }
             if (Vector3.Distance(other.transform.position, transform.position - transform.up) < 0.1f ||
                 Vector3.Distance(other.transform.position, parentCubePos - transform.up * 0.5f) < 0.1f ||
@@ -134,7 +158,15 @@ namespace Game.Maze
                 {
                     downPath = true;
                 }
-                downNode = other;
+                
+                if (downPath)
+                {
+                    downNode = other;
+                }
+                else
+                {
+                    downNode = null;
+                }
             }
         }
 

@@ -8,7 +8,7 @@ namespace Game.Items.Path.Ice
     {
         public ItemCategories GetItemType()
         {
-            throw new System.NotImplementedException();
+            return ItemCategories.Path;
         }
     }
 }
