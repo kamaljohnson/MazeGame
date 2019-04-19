@@ -10,6 +10,8 @@ namespace LevelEditor.Items.Intractable.Spike
     public class SpikeEditorScript : Editor, ITem, ITemButtonInteraction
     {
         private Game.Items.Intractable.Spike.Spike _spike;
+        public static int currentGroupId;
+        public static int currentSpikeId;
 
         private void OnEnable()
         {
@@ -19,6 +21,7 @@ namespace LevelEditor.Items.Intractable.Spike
         private void OnSceneGUI()
         {
             DrawDeletionHandle();
+            DrawGroupingHandles();
         }
 
         private void DrawDeletionHandle()
@@ -34,12 +37,36 @@ namespace LevelEditor.Items.Intractable.Spike
             }
         }
 
+        private void DrawGroupingHandles()
+        {
+            foreach (var intractableSpike in LevelEditor.AllItems[(int)ItemCategories.Intractable])
+            {
+                var spike = intractableSpike.GetComponent<Game.Items.Intractable.Spike.Spike>();
+                if (spike == null)
+                {
+                    continue;
+                }
+                Handles.color = new Color(0.25f, 1f, 0.67f);                
+                if (!spike.itemSet)
+                {
+                    if (Handles.Button(intractableSpike.transform.position + intractableSpike.transform.up * 0.2f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+                    {
+                        spike.itemSet = true;
+                        spike.groupId = currentGroupId;
+                        spike.spikeId = currentSpikeId;
+                        spike.type = _spike.type;
+                        currentSpikeId++;
+                    }
+                }
+            }
+        }
+
         public void Init()
         {
             _spike = (Game.Items.Intractable.Spike.Spike)target;
             _spike.name = "Spike";
-
-            _spike.itemSet = true;
+            currentGroupId++;
+            currentSpikeId = 0;
         }
 
         public void AddItem()

@@ -5,11 +5,19 @@ using UnityEngine;
 
 namespace Game.Items.Intractable.Spike
 {
+    public enum ActivationType
+    {
+        Cyclic,
+        Linear
+    }
     public class Spike : MonoBehaviour, IIntractables, IItems
     {
         public int interactableId;    //this id is used to link buttons
+        public int spikeId;    //the id of the spike in the group
+        public int groupId;    //the group id
         
         public bool itemSet;    //is the item set with values
+        public ActivationType type;    //the type of activation of the spike group
         
         [Header("State Properties")]
         [Tooltip("o    -    ON\n" +
@@ -56,7 +64,8 @@ namespace Game.Items.Intractable.Spike
 
         public void SetSpikeValues(Spike spike)
         {
-            
+            groupId = spike.groupId;
+            spikeId = spike.spikeId;
         }
     }
     
@@ -73,6 +82,11 @@ namespace Game.Items.Intractable.Spike
 
         public string o;    //Linked Button On State
         public string f;    //Linked Button Off State
+
+        public int s;    //spike id
+        public int g;    //group id
+
+        public int t;    //activation type
 
         public int i;    //intractable id
 
@@ -93,6 +107,11 @@ namespace Game.Items.Intractable.Spike
             f = spike.linkedButtonOffState;
 
             i = spike.GetIntractableId();
+
+            t = (int) spike.type;
+            
+            s = spike.spikeId;
+            g = spike.groupId;
         }
 
         public Spike GetSpike()
@@ -103,6 +122,11 @@ namespace Game.Items.Intractable.Spike
             spike.linkedButtonOffState = f;
 
             spike.interactableId = i;
+
+            spike.type = (ActivationType) t;
+            
+            spike.spikeId = s;
+            spike.groupId = g;
             
             return spike;
         }
