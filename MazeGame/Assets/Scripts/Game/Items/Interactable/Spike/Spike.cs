@@ -15,7 +15,7 @@ namespace Game.Items.Intractable.Spike
         public int interactableId;    //this id is used to link buttons
         public int spikeId;    //the id of the spike in the group
         public int groupId;    //the group id
-        
+
         public bool itemSet;    //is the item set with values
         public ActivationType type;    //the type of activation of the spike group
         
@@ -31,6 +31,68 @@ namespace Game.Items.Intractable.Spike
                  "#num -    x-times")]
         public string linkedButtonOnState = "";
         public string linkedButtonOffState = "";
+
+        [Header("Spike Activation Properties")]
+        public float timeBetweenSpikeActivation;
+        
+        private int _currentSpikeId;
+        private bool _isActivated;
+        private float _timer;
+        private int _direction;
+        private int _maxSpikeId;
+        
+        public void Start()
+        {
+            _currentSpikeId = 0;
+            _direction = 1;
+            _timer = 0;
+
+            var allSpike = FindObjectsOfType<Spike>();
+            _maxSpikeId = -1;
+            foreach (var spike in allSpike)
+            {
+                if (spike.groupId == groupId)
+                {
+                    _maxSpikeId++;
+                }
+            }
+        }
+
+        public void Update()
+        {            
+            _timer += Time.deltaTime;
+            if (_timer > timeBetweenSpikeActivation)
+            {
+                _currentSpikeId += _direction;
+                _timer = 0;
+            }
+
+            if (_currentSpikeId > _maxSpikeId)
+            {
+                _currentSpikeId = 0;
+            }
+            
+            if (_currentSpikeId == spikeId && !_isActivated)
+            {
+                ActivateSpike();
+            }
+            
+            if(_currentSpikeId != spikeId && _isActivated)
+            {
+                DeactivateSpike();
+            }
+        }
+        
+        public void ActivateSpike()
+        {
+            Debug.Log(spikeId + " spike activated");
+            _isActivated = true;
+        }
+
+        public void DeactivateSpike()
+        {
+            _isActivated = false;
+        }
         
         public bool ActivationStatus()
         {
