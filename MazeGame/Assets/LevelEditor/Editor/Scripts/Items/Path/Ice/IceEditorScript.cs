@@ -49,7 +49,7 @@ namespace LevelEditor.Items.Path.Ice
 
         public void RemoveItem()
         {
-            LevelEditor.AllItems[(int) ItemCategories.Interactable].Remove(_ice.gameObject);
+            LevelEditor.AllItems[(int) ItemCategories.Intractable].Remove(_ice.gameObject);
             DestroyImmediate(_ice.gameObject);
             LevelEditor.ReCalculateAllItems();        }
 

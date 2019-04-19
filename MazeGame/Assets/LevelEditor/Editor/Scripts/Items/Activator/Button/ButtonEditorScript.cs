@@ -52,7 +52,7 @@ namespace LevelEditor.Items.Activator.Button
 
         public void RemoveItem()
         {
-            LevelEditor.AllItems[(int) ItemCategories.Interactable].Remove(_button.gameObject);
+            LevelEditor.AllItems[(int) ItemCategories.Intractable].Remove(_button.gameObject);
             DestroyImmediate(_button.gameObject);
             LevelEditor.ReCalculateAllItems();
         }

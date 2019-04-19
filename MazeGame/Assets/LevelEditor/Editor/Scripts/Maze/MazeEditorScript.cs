@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Game.Items.Interactable.Gate;
+using Game.Items.Intractable.Gate;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Graphs;

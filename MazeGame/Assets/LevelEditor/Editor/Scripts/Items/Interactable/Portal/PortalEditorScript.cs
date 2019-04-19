@@ -10,10 +10,10 @@ namespace LevelEditor.Items.Interactable.Portal
     /*Scene editor script for editing portals
      * 
      */
-    [CustomEditor(typeof(Game.Items.Interactable.Portal.Portal))]
+    [CustomEditor(typeof(Game.Items.Intractable.Portal.Portal))]
     public class PortalEditorScript : Editor, ITem, ITemButtonInteraction
     {
-        private Game.Items.Interactable.Portal.Portal _portal;
+        private Game.Items.Intractable.Portal.Portal _portal;
         private bool _buttonMappingMode;
         
         private void OnEnable()
@@ -78,7 +78,7 @@ namespace LevelEditor.Items.Interactable.Portal
         
         public void Init()
         {
-            _portal = (Game.Items.Interactable.Portal.Portal)target;
+            _portal = (Game.Items.Intractable.Portal.Portal)target;
             _portal.name = "Portal";
             _portal.levelId = int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]);
             _portal.mazeId = int.Parse(Selection.activeGameObject.transform.parent.name.Split(' ')[1]);
@@ -103,7 +103,7 @@ namespace LevelEditor.Items.Interactable.Portal
 
         public void RemoveItem()
         {
-            LevelEditor.AllItems[(int) ItemCategories.Interactable].Remove(_portal.gameObject);
+            LevelEditor.AllItems[(int) ItemCategories.Intractable].Remove(_portal.gameObject);
             DestroyImmediate(_portal.gameObject);
             LevelEditor.ReCalculateAllItems();
         }
@@ -124,11 +124,11 @@ namespace LevelEditor.Items.Interactable.Portal
             List<List<GameObject>> allItems;
             LevelEditor.GetAllMazeItems(out allItems);
             
-            for (int index = 0; index < allItems[(int)ItemCategories.Interactable].Count; index++)
+            for (int index = 0; index < allItems[(int)ItemCategories.Intractable].Count; index++)
             {
-                if (allItems[(int) ItemCategories.Interactable][index].GetComponent<IInteractables>().GetInteractableId() != 0)
+                if (allItems[(int) ItemCategories.Intractable][index].GetComponent<IIntractables>().GetIntractableId() != 0)
                 {
-                    allIds.Add(allItems[(int) ItemCategories.Interactable][index].GetComponent<IInteractables>().GetInteractableId());
+                    allIds.Add(allItems[(int) ItemCategories.Intractable][index].GetComponent<IIntractables>().GetIntractableId());
                 }
             }
             allIds.Sort();
@@ -147,7 +147,7 @@ namespace LevelEditor.Items.Interactable.Portal
                 tempId = 1;
             }
 
-            _portal.interactableId = tempId;
+            _portal.intractableId = tempId;
             button.interactionItemId = tempId;
         }
 

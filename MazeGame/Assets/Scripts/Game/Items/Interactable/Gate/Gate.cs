@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Game.Items.Interactable.Gate
+namespace Game.Items.Intractable.Gate
 {
-    public class Gate : MonoBehaviour, IInteractables, IItems
+    public class Gate : MonoBehaviour, IIntractables, IItems
     {
         
         public int interactableId;    //this id is used to link buttons
@@ -85,19 +85,19 @@ namespace Game.Items.Interactable.Gate
             CloseGate();
         }
 
-        public int GetInteractableId()
+        public int GetIntractableId()
         {
             return interactableId;
         }
 
-        public void SetInteractableId(int id)
+        public void SetIntractableId(int id)
         {
             interactableId = id;
         }
 
         public ItemCategories GetItemType()
         {
-            return ItemCategories.Interactable;
+            return ItemCategories.Intractable;
         }
 
         public void OpenGate()
@@ -159,7 +159,7 @@ namespace Game.Items.Interactable.Gate
             o = gate.linkedButtonOnState;
             f = gate.linkedButtonOffState;
 
-            i = gate.GetInteractableId();
+            i = gate.GetIntractableId();
             c = gate.colorId;
             d = (int) gate.gateDireciton;
         }

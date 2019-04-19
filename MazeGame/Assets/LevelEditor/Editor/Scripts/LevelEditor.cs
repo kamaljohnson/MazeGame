@@ -19,7 +19,7 @@ namespace LevelEditor
     public enum ItemCategories
     {
         Path,           //[ICE, FIRE]
-        Interactable,   //[PORTAL, LASER, SPIKES, GATES, BRIDGE]
+        Intractable,   //[PORTAL, LASER, SPIKES, GATES, BRIDGE]
         Activator,      //[BUTTON]
         Collectable,    //[COIN, DIAMOND, COLLECTION POINT]
         Enemie,         //[GUARDIAN, KNIGHT, HAMMER]
@@ -386,7 +386,7 @@ namespace LevelEditor
         {
             _typesOfItems = new List<List<Object>> {
                 new List<Object>(), //Path items
-                new List<Object>(), //Interactable items
+                new List<Object>(), //Intractable items
                 new List<Object>(), //Activator items
                 new List<Object>(), //Collectable items
                 new List<Object>(), //Enemie items
@@ -395,7 +395,7 @@ namespace LevelEditor
             AllItems = new List<List<GameObject>>
             {
                 new List<GameObject>(), //Path items
-                new List<GameObject>(), //Interactable items
+                new List<GameObject>(), //Intractable items
                 new List<GameObject>(), //Activator items
                 new List<GameObject>(), //Collectable items
                 new List<GameObject>(), //Enemie items
@@ -448,7 +448,7 @@ namespace LevelEditor
             CurrentMaze = Selection.activeGameObject;
             if (CurrentMaze == null)
             {
-                GameObject tempMazesGameobject = new GameObject();
+                var tempMazesGameobject = new GameObject();
                 CurrentMaze = tempMazesGameobject;
             }
             CurrentMaze.name = "Maze " + Mazes.childCount.ToString();
@@ -1013,17 +1013,17 @@ namespace LevelEditor
                                     break;
                             }
                             break;
-                        case ItemCategories.Interactable:
+                        case ItemCategories.Intractable:
                             switch (AllItems[itemType][i].name)
                             {
                                 case "Portal":
-                                    if (AllItems[itemType][i].GetComponent<Game.Items.Interactable.Portal.Portal>().itemSet)
+                                    if (AllItems[itemType][i].GetComponent<Game.Items.Intractable.Portal.Portal>().itemSet)
                                     {
                                         allMazeItems[itemType].Add(AllItems[itemType][i]);
                                     }
                                     break;
                                 case "Gate":
-                                    if (AllItems[itemType][i].GetComponent<Game.Items.Interactable.Gate.Gate>().itemSet)
+                                    if (AllItems[itemType][i].GetComponent<Game.Items.Intractable.Gate.Gate>().itemSet)
                                     {
                                         allMazeItems[itemType].Add(AllItems[itemType][i]);
                                     }

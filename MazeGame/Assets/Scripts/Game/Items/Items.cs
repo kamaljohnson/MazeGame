@@ -7,7 +7,7 @@ namespace Game.Items
     public enum ItemCategories
     {
         Path,                   // [ICE, FIRE]
-        Interactable,           // [PORTAL, LASER, SPIKES, GATES, BRIDGE]
+        Intractable,           // [PORTAL, LASER, SPIKES, GATES, BRIDGE]
         Activators,             // [BUTTON]
         Collectable,            // [COIN, DIAMOND, COLLECTION POINT]
         Enemie,                 // [GUARDIAN, KNIGHT, HAMMER]
@@ -17,7 +17,7 @@ namespace Game.Items
     public interface IItems
     {
         /// <summary>
-        /// returns the item catagory of the item
+        /// returns the item category of the item
         /// </summary>
         /// <returns></returns>
         ItemCategories GetItemType();
@@ -28,7 +28,7 @@ namespace Game.Items
         
     }
     
-    public interface IInteractables
+    public interface IIntractables
     {
         /// <summary>
         /// returns if the item is activated or not,
@@ -50,15 +50,15 @@ namespace Game.Items
         void DeActivateInteraction();
         
         /// <summary>
-        /// returns the interactable-id of the item
+        /// returns the intractable-id of the item
         /// </summary>
         /// <returns></returns>
-        int GetInteractableId();
+        int GetIntractableId();
         
         /// <summary>
-        /// call this to set the interactable-id of the item
+        /// call this to set the intractable-id of the item
         /// </summary>
         /// <param name="id"></param>
-        void SetInteractableId(int id);
+        void SetIntractableId(int id);
     }
 }

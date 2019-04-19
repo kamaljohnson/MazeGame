@@ -3,11 +3,11 @@ using Game.Items.Path.Ice;
 using Game.Player;
 using UnityEngine;
 
-namespace Game.Items.Interactable.Portal
+namespace Game.Items.Intractable.Portal
 {
-    public class Portal : MonoBehaviour, IInteractables, IItems
+    public class Portal : MonoBehaviour, IIntractables, IItems
     {
-        public int interactableId;    //this id is used to link buttons
+        public int intractableId;    //this id is used to link buttons
         
         public bool itemSet;    //is the item set with values
         
@@ -77,7 +77,7 @@ namespace Game.Items.Interactable.Portal
             levelId = portal.levelId;
             mazeId = portal.mazeId;
 
-            interactableId = portal.interactableId;
+            intractableId = portal.intractableId;
             linkedButtonOnState = portal.linkedButtonOnState;
             linkedButtonOffState = portal.linkedButtonOffState;
         }
@@ -88,7 +88,7 @@ namespace Game.Items.Interactable.Portal
 
         }
 
-        public void GoToPortalDestination()     //teleports the player to the destination portal
+        public void GoToPortalDestination()     //teleport the player to the destination portal
         {
 
         }
@@ -106,7 +106,7 @@ namespace Game.Items.Interactable.Portal
 
         public ItemCategories GetItemType()
         {
-            return ItemCategories.Interactable;
+            return ItemCategories.Intractable;
         }
 
         public bool ActivationStatus()
@@ -140,14 +140,14 @@ namespace Game.Items.Interactable.Portal
             }
         }
 
-        public int GetInteractableId()
+        public int GetIntractableId()
         {
-            return interactableId;
+            return intractableId;
         }
 
-        public void SetInteractableId(int id)
+        public void SetIntractableId(int id)
         {
-            interactableId = id;
+            intractableId = id;
         }
     }
 
@@ -171,7 +171,7 @@ namespace Game.Items.Interactable.Portal
         public string o;    //Linked Button On State
         public string f;    //Linked Button Off State
 
-        public int i;    //interactable id
+        public int i;    //intractable id
 
         public void ConvertToSerializable(Portal portal)
         {
@@ -195,12 +195,12 @@ namespace Game.Items.Interactable.Portal
             o = portal.linkedButtonOnState;
             f = portal.linkedButtonOffState;
 
-            i = portal.GetInteractableId();
+            i = portal.GetIntractableId();
         }
 
         public Portal GetPortal()
         {
-            Portal portal = new Portal();
+            var portal = new Portal();
             portal.isCheckpoint = c == 1;
 
             portal.portalId = p;
@@ -210,7 +210,7 @@ namespace Game.Items.Interactable.Portal
             portal.linkedButtonOnState = o;
             portal.linkedButtonOffState = f;
 
-            portal.interactableId = i;
+            portal.intractableId = i;
             
             return portal;
         }

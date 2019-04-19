@@ -16,10 +16,10 @@ namespace Game.Items.Activators.Button
             Temporary
         }
 
-        public static List<IInteractables> AllInteractableItems;
+        public static List<IIntractables> AllInteractableItems;
         
         public int interactionItemId;    //this can be used as the idex in allInteractableItems
-        public IInteractables interactionItem;
+        public IIntractables interactionItem;
         public ButtonTypes type;
 
         public bool buttonOn; //button on / off

@@ -3,8 +3,8 @@ using UnityEngine;
 using System.IO;
 using Game.Items;
 using Game.Items.Activators.Button;
-using Game.Items.Interactable.Gate;
-using Game.Items.Interactable.Portal;
+using Game.Items.Intractable.Gate;
+using Game.Items.Intractable.Portal;
 using Game.Maze;
 using Game.Player;
 using UnityEngine.SceneManagement;
@@ -41,7 +41,7 @@ namespace Game
             var levelName = SceneManager.GetActiveScene().name;
             var state = LoadLevelDataFromFile(levelName);
             
-            Button.AllInteractableItems = new List<IInteractables>();
+            Button.AllInteractableItems = new List<IIntractables>();
             /*
              * Calculating the render data from the path data
              */
@@ -183,7 +183,7 @@ namespace Game
                     
                     foreach (var interactableItem in Button.AllInteractableItems)
                     {
-                        if (interactableItem.GetInteractableId() == button.i)
+                        if (interactableItem.GetIntractableId() == button.i)
                         {
                             tempButton.GetComponent<Button>().interactionItem = interactableItem;
                             tempButton.GetComponent<Button>().ActivateButtonEvent();
@@ -581,8 +581,8 @@ namespace Game
         public int z;
 
         //item data
-        public List<Items.Interactable.Portal.SerializableItem> p;    //the list of all portals on the maze
-        public List<Items.Interactable.Gate.SerializableItem> g;    //the list of all gates on the maze
+        public List<Items.Intractable.Portal.SerializableItem> p;    //the list of all portals on the maze
+        public List<Items.Intractable.Gate.SerializableItem> g;    //the list of all gates on the maze
         public List<Items.Activators.Button.SerializableItem> b;      //the list of all buttons on the maze
         public List<Items.Path.Ice.SerializableItem> i;      //the list of all buttons on the maze
     }

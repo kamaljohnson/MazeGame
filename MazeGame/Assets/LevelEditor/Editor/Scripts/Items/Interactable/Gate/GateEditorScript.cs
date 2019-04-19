@@ -8,10 +8,10 @@ using UnityEngine;
 
 namespace LevelEditor.Items.Interactable.Gate
 {
-    [CustomEditor(typeof(Game.Items.Interactable.Gate.Gate))]
+    [CustomEditor(typeof(Game.Items.Intractable.Gate.Gate))]
     public class GateEditorScript : Editor, ITem, ITemButtonInteraction
     {
-        private Game.Items.Interactable.Gate.Gate _gate;
+        private Game.Items.Intractable.Gate.Gate _gate;
         private bool _buttonMappingMode;
         
         private void OnEnable()
@@ -118,7 +118,7 @@ namespace LevelEditor.Items.Interactable.Gate
         
         public void Init()
         {
-            _gate = (Game.Items.Interactable.Gate.Gate) target;
+            _gate = (Game.Items.Intractable.Gate.Gate) target;
             _gate.name = "Gate";
         }
 
@@ -134,7 +134,7 @@ namespace LevelEditor.Items.Interactable.Gate
 
         public void RemoveItem()
         {
-            LevelEditor.AllItems[(int) ItemCategories.Interactable].Remove(_gate.gameObject);
+            LevelEditor.AllItems[(int) ItemCategories.Intractable].Remove(_gate.gameObject);
             DestroyImmediate(_gate.gameObject);
             LevelEditor.ReCalculateAllItems();
         }
@@ -162,11 +162,11 @@ namespace LevelEditor.Items.Interactable.Gate
             List<List<GameObject>> allItems;
             LevelEditor.GetAllMazeItems(out allItems);
             
-            for (int index = 0; index < allItems[(int)ItemCategories.Interactable].Count; index++)
+            for (int index = 0; index < allItems[(int)ItemCategories.Intractable].Count; index++)
             {
-                if (allItems[(int) ItemCategories.Interactable][index].GetComponent<IInteractables>().GetInteractableId() != 0)
+                if (allItems[(int) ItemCategories.Intractable][index].GetComponent<IIntractables>().GetIntractableId() != 0)
                 {
-                    allIds.Add(allItems[(int) ItemCategories.Interactable][index].GetComponent<IInteractables>().GetInteractableId());
+                    allIds.Add(allItems[(int) ItemCategories.Intractable][index].GetComponent<IIntractables>().GetIntractableId());
                 }
             }
             allIds.Sort();

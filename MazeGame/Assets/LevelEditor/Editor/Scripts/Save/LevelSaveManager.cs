@@ -35,8 +35,8 @@ namespace LevelEditor.Save
                 mazeData.z = (int)position.z;
                 
                 mazeData.c = new List<MazeCubeData>();
-                mazeData.p = new List<Game.Items.Interactable.Portal.SerializableItem>();
-                mazeData.g = new List<Game.Items.Interactable.Gate.SerializableItem>();
+                mazeData.p = new List<Game.Items.Intractable.Portal.SerializableItem>();
+                mazeData.g = new List<Game.Items.Intractable.Gate.SerializableItem>();
                 mazeData.b = new List<Game.Items.Activators.Button.SerializableItem>();
                 
                 mazeData.i = new List<Game.Items.Path.Ice.SerializableItem>();
@@ -63,19 +63,19 @@ namespace LevelEditor.Save
                                         break;
                                 }
                                 break;
-                            case ItemCategories.Interactable:
+                            case ItemCategories.Intractable:
                                 switch (allItems[itemType][itemIndex].name)
                                 {
                                     case "Portal":
                                         Debug.Log("Portal");
-                                        var serializedPortalData = new Game.Items.Interactable.Portal.SerializableItem();
-                                        serializedPortalData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Interactable.Portal.Portal>());
+                                        var serializedPortalData = new Game.Items.Intractable.Portal.SerializableItem();
+                                        serializedPortalData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Intractable.Portal.Portal>());
                                         mazeData.p.Add(serializedPortalData);
                                         break;
                                     case "Gate":
                                         Debug.Log("Gate");
-                                        var serializedGateData = new Game.Items.Interactable.Gate.SerializableItem();
-                                        serializedGateData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Interactable.Gate.Gate>());
+                                        var serializedGateData = new Game.Items.Intractable.Gate.SerializableItem();
+                                        serializedGateData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Intractable.Gate.Gate>());
                                         mazeData.g.Add(serializedGateData);
                                         break;
                                 }
@@ -144,8 +144,8 @@ namespace LevelEditor.Save
         public List<MazeCubeData> c;
 
         //item data
-        public List<Game.Items.Interactable.Portal.SerializableItem> p;    //the list of all portals on the maze
-        public List<Game.Items.Interactable.Gate.SerializableItem> g;    //the list of all gates on the maze
+        public List<Game.Items.Intractable.Portal.SerializableItem> p;    //the list of all portals on the maze
+        public List<Game.Items.Intractable.Gate.SerializableItem> g;    //the list of all gates on the maze
         public List<Game.Items.Activators.Button.SerializableItem> b;    //the list of all buttons on the maze
         
         public List<Game.Items.Path.Ice.SerializableItem> i;    //the list of all ice on the maze
