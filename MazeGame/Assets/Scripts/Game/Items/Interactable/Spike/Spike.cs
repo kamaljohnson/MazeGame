@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Player;
 using UnityEngine;
 
 namespace Game.Items.Intractable.Spike
@@ -56,6 +57,7 @@ namespace Game.Items.Intractable.Spike
                     _maxSpikeId++;
                 }
             }
+            transform.GetChild(0).GetComponent<Animator>().Play("SpikeDeActivationAnimation", -1, 1);
         }
 
         public void Update()
@@ -76,8 +78,7 @@ namespace Game.Items.Intractable.Spike
             {
                 ActivateSpike();
             }
-            
-            if(_currentSpikeId != spikeId && _isActivated)
+            else if(_currentSpikeId != spikeId && _isActivated)
             {
                 DeactivateSpike();
             }
@@ -85,15 +86,21 @@ namespace Game.Items.Intractable.Spike
         
         public void ActivateSpike()
         {
-            Debug.Log(spikeId + " spike activated");
+            transform.GetChild(0).GetComponent<Animator>().Play("SpikeActivationAnimation", -1, 0);
             _isActivated = true;
         }
 
         public void DeactivateSpike()
         {
+            transform.GetChild(0).GetComponent<Animator>().Play("SpikeDeActivationAnimation", -1, 0);
             _isActivated = false;
         }
-        
+
+        private void OnTriggerEnter(Collider other)
+        {
+            PlayerHealth.DecreaseHealth(1);
+        }
+
         public bool ActivationStatus()
         {
             return true;
