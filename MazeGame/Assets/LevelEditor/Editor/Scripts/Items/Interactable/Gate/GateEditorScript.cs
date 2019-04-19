@@ -6,7 +6,7 @@ using Game.Items.Activators.Button;
 using UnityEditor;
 using UnityEngine;
 
-namespace LevelEditor.Items.Interactable.Gate
+namespace LevelEditor.Items.Intractable.Gate
 {
     [CustomEditor(typeof(Game.Items.Intractable.Gate.Gate))]
     public class GateEditorScript : Editor, ITem, ITemButtonInteraction
@@ -81,7 +81,7 @@ namespace LevelEditor.Items.Interactable.Gate
             
             if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f - _gate.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                _gate.gateDireciton = Direction.Down;
+                _gate.gateDirection = Direction.Down;
                 _gate.transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
                 _gate.transform.GetChild(0).localPosition += new Vector3(0,1, 0) * -(0.5f + 1/12f);                    
                 _gate.transform.GetChild(0).localEulerAngles = new Vector3(270, 90, 90);     
@@ -90,7 +90,7 @@ namespace LevelEditor.Items.Interactable.Gate
 
             if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f + _gate.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                _gate.gateDireciton = Direction.Up;           
+                _gate.gateDirection = Direction.Up;           
                 _gate.transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);                
                 _gate.transform.GetChild(0).localPosition += new Vector3(0,1, 0) * (0.5f + 1/12f);     
                 _gate.transform.GetChild(0).localEulerAngles = new Vector3(90, 90, 90); 
@@ -99,7 +99,7 @@ namespace LevelEditor.Items.Interactable.Gate
 
             if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f - _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                _gate.gateDireciton = Direction.Left;      
+                _gate.gateDirection = Direction.Left;      
                 _gate.transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
                 _gate.transform.GetChild(0).localPosition += new Vector3(1, 0, 0) * -(0.5f + 1/12f);                    
                 _gate.transform.GetChild(0).localEulerAngles = new Vector3(0, 90, 90);  
@@ -108,7 +108,7 @@ namespace LevelEditor.Items.Interactable.Gate
 
             if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f + _gate.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                _gate.gateDireciton = Direction.Right;
+                _gate.gateDirection = Direction.Right;
                 _gate.transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
                 _gate.transform.GetChild(0).localPosition += new Vector3(1,0, 0) * (0.5f + 1/12f);                    
                 _gate.transform.GetChild(0).localEulerAngles = new Vector3(180, 90, 90);
@@ -185,7 +185,7 @@ namespace LevelEditor.Items.Interactable.Gate
                 tempId = 1;
             }
 
-            _gate.interactableId = tempId;
+            _gate.intractableId = tempId;
             button.interactionItemId = tempId;
         }
 

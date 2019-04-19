@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 
-namespace LevelEditor.Items.Interactable.Portal
+namespace LevelEditor.Items.Intractable.Portal
 {
     /*Scene editor script for editing portals
      * 
@@ -69,7 +69,7 @@ namespace LevelEditor.Items.Interactable.Portal
             if (Handles.Button(_portal.transform.position + _portal.transform.up * 0.7f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 if (!EditorUtility.DisplayDialog("Warning!!",
-                    "This will delete the item permenently", "Cancel", "Continue"))
+                    "This will delete the item permanently", "Cancel", "Continue"))
                 {
                     RemoveItem();
                 }

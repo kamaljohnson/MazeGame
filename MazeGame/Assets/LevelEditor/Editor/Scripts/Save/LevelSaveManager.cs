@@ -37,6 +37,7 @@ namespace LevelEditor.Save
                 mazeData.c = new List<MazeCubeData>();
                 mazeData.p = new List<Game.Items.Intractable.Portal.SerializableItem>();
                 mazeData.g = new List<Game.Items.Intractable.Gate.SerializableItem>();
+                mazeData.s = new List<Game.Items.Intractable.Spike.SerializableItem>();
                 mazeData.b = new List<Game.Items.Activators.Button.SerializableItem>();
                 
                 mazeData.i = new List<Game.Items.Path.Ice.SerializableItem>();
@@ -66,6 +67,12 @@ namespace LevelEditor.Save
                             case ItemCategories.Intractable:
                                 switch (allItems[itemType][itemIndex].name)
                                 {
+                                    case "Spike":
+                                        Debug.Log("Spike");
+                                        var serializedSpikeData = new Game.Items.Intractable.Spike.SerializableItem();
+                                        serializedSpikeData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Intractable.Spike.Spike>());
+                                        mazeData.s.Add(serializedSpikeData);
+                                        break;
                                     case "Portal":
                                         Debug.Log("Portal");
                                         var serializedPortalData = new Game.Items.Intractable.Portal.SerializableItem();
@@ -146,6 +153,7 @@ namespace LevelEditor.Save
         //item data
         public List<Game.Items.Intractable.Portal.SerializableItem> p;    //the list of all portals on the maze
         public List<Game.Items.Intractable.Gate.SerializableItem> g;    //the list of all gates on the maze
+        public List<Game.Items.Intractable.Spike.SerializableItem> s;    //the list of all buttons on the maze
         public List<Game.Items.Activators.Button.SerializableItem> b;    //the list of all buttons on the maze
         
         public List<Game.Items.Path.Ice.SerializableItem> i;    //the list of all ice on the maze

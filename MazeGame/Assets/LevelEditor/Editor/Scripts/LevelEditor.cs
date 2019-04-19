@@ -1016,6 +1016,12 @@ namespace LevelEditor
                         case ItemCategories.Intractable:
                             switch (AllItems[itemType][i].name)
                             {
+                                case "Spike":
+                                    if (AllItems[itemType][i].GetComponent<Game.Items.Intractable.Spike.Spike>().itemSet)
+                                    {
+                                        allMazeItems[itemType].Add(AllItems[itemType][i]);
+                                    }
+                                    break;
                                 case "Portal":
                                     if (AllItems[itemType][i].GetComponent<Game.Items.Intractable.Portal.Portal>().itemSet)
                                     {

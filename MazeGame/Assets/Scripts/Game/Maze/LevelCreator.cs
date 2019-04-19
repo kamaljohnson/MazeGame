@@ -5,6 +5,7 @@ using Game.Items;
 using Game.Items.Activators.Button;
 using Game.Items.Intractable.Gate;
 using Game.Items.Intractable.Portal;
+using Game.Items.Intractable.Spike;
 using Game.Maze;
 using Game.Player;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,7 @@ namespace Game
         //the item prefabs
         [Header("Maze Items Properties")]
         public GameObject portalPrefab;
+        public GameObject spikePrefab;
         public GameObject gatePrefab;
         public GameObject buttonPrefab;
         public GameObject icePrefab;
@@ -106,6 +108,26 @@ namespace Game
                     i++;
                 }
 
+                foreach (var spike in maze.s)
+                {
+                    var tempSpike = Instantiate(spikePrefab, tempMaze.transform, true);
+                    tempSpike.GetComponent<Collider>().enabled = true;
+                    
+                    tempSpike.transform.position = new Vector3(
+                        spike.x,
+                        spike.y,
+                        spike.z
+                        );                    
+                    tempSpike.transform.eulerAngles = new Vector3(
+                        spike.u,
+                        spike.v,
+                        spike.w
+                    );
+                    tempSpike.GetComponent<Spike>().SetSpikeValues(spike.GetSpike());
+
+                    Button.AllInteractableItems.Add(tempSpike.GetComponent<Spike>());
+                }
+                
                 foreach (var portal in maze.p)
                 {
                     var tempPortal = Instantiate(portalPrefab, tempMaze.transform, true);
@@ -583,7 +605,10 @@ namespace Game
         //item data
         public List<Items.Intractable.Portal.SerializableItem> p;    //the list of all portals on the maze
         public List<Items.Intractable.Gate.SerializableItem> g;    //the list of all gates on the maze
+        public List<Items.Intractable.Spike.SerializableItem> s;      //the list of all buttons on the maze
+        
         public List<Items.Activators.Button.SerializableItem> b;      //the list of all buttons on the maze
+        
         public List<Items.Path.Ice.SerializableItem> i;      //the list of all buttons on the maze
     }
 

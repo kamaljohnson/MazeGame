@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7829293865007883866}
   - component: {fileID: 5197887398381782397}
   - component: {fileID: 7545684014835012542}
+  - component: {fileID: 4190688750515123519}
   m_Layer: 0
   m_Name: 2
   m_TagString: Spike
@@ -86,8 +87,24 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7763595628925981771}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4190688750515123519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763595628925981771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310a11a86cf919947b044786335272ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableId: 0
+  itemSet: 1
+  linkedButtonOnState: 
+  linkedButtonOffState: 

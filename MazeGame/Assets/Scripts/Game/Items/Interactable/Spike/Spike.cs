@@ -54,6 +54,10 @@ namespace Game.Items.Intractable.Spike
             return ItemCategories.Intractable;
         }
 
+        public void SetSpikeValues(Spike spike)
+        {
+            
+        }
     }
     
     [Serializable]

@@ -9,11 +9,11 @@ namespace Game.Items.Intractable.Gate
     public class Gate : MonoBehaviour, IIntractables, IItems
     {
         
-        public int interactableId;    //this id is used to link buttons
+        public int intractableId;    //this id is used to link buttons
         
         public bool itemSet;    //is the item set with values
 
-        public Direction gateDireciton;    //the direction of the gate from the node
+        public Direction gateDirection;    //the direction of the gate from the node
 
         public GameObject gatePrefab;
         public int colorId;
@@ -44,7 +44,7 @@ namespace Game.Items.Intractable.Gate
         
         public void CreateGate()
         {
-            switch (gateDireciton)
+            switch (gateDirection)
             {
                 case Direction.Up:
                     transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);                
@@ -87,12 +87,12 @@ namespace Game.Items.Intractable.Gate
 
         public int GetIntractableId()
         {
-            return interactableId;
+            return intractableId;
         }
 
         public void SetIntractableId(int id)
         {
-            interactableId = id;
+            intractableId = id;
         }
 
         public ItemCategories GetItemType()
@@ -116,9 +116,9 @@ namespace Game.Items.Intractable.Gate
 
         public void SetGateValues(Gate gate)
         {
-            gateDireciton = gate.gateDireciton;
+            gateDirection = gate.gateDirection;
             
-            interactableId = gate.interactableId;
+            intractableId = gate.intractableId;
             linkedButtonOnState = gate.linkedButtonOnState;
             linkedButtonOffState = gate.linkedButtonOffState;
         }
@@ -161,7 +161,7 @@ namespace Game.Items.Intractable.Gate
 
             i = gate.GetIntractableId();
             c = gate.colorId;
-            d = (int) gate.gateDireciton;
+            d = (int) gate.gateDirection;
         }
 
         public Gate GetGate()
@@ -171,8 +171,8 @@ namespace Game.Items.Intractable.Gate
             gate.linkedButtonOnState = o;
             gate.linkedButtonOffState = f;
 
-            gate.interactableId = i;
-            gate.gateDireciton = (Direction) d;
+            gate.intractableId = i;
+            gate.gateDirection = (Direction) d;
             gate.colorId = c;
             
             return gate;
