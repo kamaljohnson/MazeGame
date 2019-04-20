@@ -49,22 +49,38 @@ namespace Game.Items.Intractable.Gate
                 case Direction.Up:
                     transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);                
                     transform.GetChild(0).localPosition += new Vector3(0,1, 0) * (0.5f + 1/12f);     
-                    transform.GetChild(0).localEulerAngles = new Vector3(90, 90, 90);                    
+                    transform.GetChild(0).localEulerAngles = new Vector3(90, 90, 90);        
+                    
+                    transform.GetChild(1).localPosition = new Vector3(0, 0, -0.5f +1/12f);                
+                    transform.GetChild(1).localPosition += new Vector3(0,1, 0) * (0.5f + 1/12f);     
+                    transform.GetChild(1).localEulerAngles = new Vector3(90, 90, 90);        
                     break;
                 case Direction.Down:
                     transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
                     transform.GetChild(0).localPosition += new Vector3(0,1, 0) * -(0.5f + 1/12f);                    
                     transform.GetChild(0).localEulerAngles = new Vector3(270, 90, 90);                    
+                    
+                    transform.GetChild(1).localPosition = new Vector3(0, 0, -0.5f +1/12f);
+                    transform.GetChild(1).localPosition += new Vector3(0,1, 0) * -(0.5f + 1/12f);                    
+                    transform.GetChild(1).localEulerAngles = new Vector3(270, 90, 90);                    
                     break;
                 case Direction.Right:
                     transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
                     transform.GetChild(0).localPosition += new Vector3(1,0, 0) * (0.5f + 1/12f);                    
                     transform.GetChild(0).localEulerAngles = new Vector3(180, 90, 90);                    
+                    
+                    transform.GetChild(1).localPosition = new Vector3(0, 0, -0.5f +1/12f);
+                    transform.GetChild(1).localPosition += new Vector3(1,0, 0) * (0.5f + 1/12f);                    
+                    transform.GetChild(1).localEulerAngles = new Vector3(180, 90, 90);                    
                     break;
                 case Direction.Left:
                     transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
                     transform.GetChild(0).localPosition += new Vector3(1,0, 0) * -(0.5f + 1/12f);                    
                     transform.GetChild(0).localEulerAngles = new Vector3(0, 90, 90);                    
+                    
+                    transform.GetChild(1).localPosition = new Vector3(0, 0, -0.5f +1/12f);
+                    transform.GetChild(1).localPosition += new Vector3(1,0, 0) * -(0.5f + 1/12f);                    
+                    transform.GetChild(1).localEulerAngles = new Vector3(0, 90, 90);                    
                     break;
             }
         }
