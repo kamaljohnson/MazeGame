@@ -82,18 +82,27 @@ namespace LevelEditor.Items.Intractable.Gate
             if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f - _gate.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _gate.gateDirection = Direction.Down;
+
+                Debug.Log("up");
                 _gate.transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
                 _gate.transform.GetChild(0).localPosition += new Vector3(0,1, 0) * -(0.5f + 1/12f);                    
-                _gate.transform.GetChild(0).localEulerAngles = new Vector3(270, 90, 90);     
-                Debug.Log("up");
+                _gate.transform.GetChild(0).localEulerAngles = new Vector3(270, 90, 90);                    
+                    
+                _gate.transform.GetChild(1).localPosition = new Vector3(0, 0, -0.5f +1/12f);
+                _gate.transform.GetChild(1).localPosition += new Vector3(0,1, 0) * -(0.5f + 1/12f);                    
+                _gate.transform.GetChild(1).localEulerAngles = new Vector3(270, 90, 90); 
             }
 
             if (Handles.Button(_gate.transform.position + _gate.transform.forward * 0.6f + _gate.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                _gate.gateDirection = Direction.Up;           
+                _gate.gateDirection = Direction.Up;       
                 _gate.transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);                
                 _gate.transform.GetChild(0).localPosition += new Vector3(0,1, 0) * (0.5f + 1/12f);     
-                _gate.transform.GetChild(0).localEulerAngles = new Vector3(90, 90, 90); 
+                _gate.transform.GetChild(0).localEulerAngles = new Vector3(90, 90, 90);        
+                    
+                _gate.transform.GetChild(1).localPosition = new Vector3(0, 0, -0.5f +1/12f);                
+                _gate.transform.GetChild(1).localPosition += new Vector3(0,1, 0) * (0.5f + 1/12f);     
+                _gate.transform.GetChild(1).localEulerAngles = new Vector3(90, 90, 90);   
                 Debug.Log("down");
             }
 
@@ -101,8 +110,13 @@ namespace LevelEditor.Items.Intractable.Gate
             {
                 _gate.gateDirection = Direction.Left;      
                 _gate.transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
-                _gate.transform.GetChild(0).localPosition += new Vector3(1, 0, 0) * -(0.5f + 1/12f);                    
-                _gate.transform.GetChild(0).localEulerAngles = new Vector3(0, 90, 90);  
+                _gate.transform.GetChild(0).localPosition += new Vector3(1,0, 0) * -(0.5f + 1/12f);                    
+                _gate.transform.GetChild(0).localEulerAngles = new Vector3(0, 90, 90);                    
+                    
+                _gate.transform.GetChild(1).localPosition = new Vector3(0, 0, -0.5f +1/12f);
+                _gate.transform.GetChild(1).localPosition += new Vector3(1,0, 0) * -(0.5f + 1/12f);                    
+                _gate.transform.GetChild(1).localEulerAngles = new Vector3(0, 90, 90);    
+  
                 Debug.Log("right");
             }
 
@@ -111,7 +125,11 @@ namespace LevelEditor.Items.Intractable.Gate
                 _gate.gateDirection = Direction.Right;
                 _gate.transform.GetChild(0).localPosition = new Vector3(0, 0, -0.5f +1/12f);
                 _gate.transform.GetChild(0).localPosition += new Vector3(1,0, 0) * (0.5f + 1/12f);                    
-                _gate.transform.GetChild(0).localEulerAngles = new Vector3(180, 90, 90);
+                _gate.transform.GetChild(0).localEulerAngles = new Vector3(180, 90, 90);                    
+                    
+                _gate.transform.GetChild(1).localPosition = new Vector3(0, 0, -0.5f +1/12f);
+                _gate.transform.GetChild(1).localPosition += new Vector3(1,0, 0) * (0.5f + 1/12f);                    
+                _gate.transform.GetChild(1).localEulerAngles = new Vector3(180, 90, 90);    
                 Debug.Log("left");
             }
         }
@@ -152,9 +170,16 @@ namespace LevelEditor.Items.Intractable.Gate
             button.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
 
             //color coding the gate-button pair
-            _gate.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
-            _gate.transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
-            _gate.transform.GetChild(0).GetChild(1).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
+            for (int i = 0; i < 2; i++)
+            {
+                for (var j = 0; j < _gate.transform.GetChild(i).childCount; j++)
+                {
+                    _gate.transform.GetChild(i).GetChild(j).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
+                }
+            }
+//            _gate.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
+//            _gate.transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
+//            _gate.transform.GetChild(0).GetChild(1).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
             
             List<int> allIds = new List<int>();
             int tempId = 0;

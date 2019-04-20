@@ -149,6 +149,11 @@ namespace Game.Items.Intractable.Portal
         {
             intractableId = id;
         }
+
+        public Color GetItemColor()
+        {
+            return Color.black;
+        }
     }
 
     [Serializable]

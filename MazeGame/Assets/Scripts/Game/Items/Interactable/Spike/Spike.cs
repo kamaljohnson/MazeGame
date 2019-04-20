@@ -126,6 +126,11 @@ namespace Game.Items.Intractable.Spike
             
         }
 
+        public Color GetItemColor()
+        {
+            return Color.black;
+        }
+
         public ItemCategories GetItemType()
         {
             return ItemCategories.Intractable;

@@ -83,6 +83,14 @@ namespace Game.Items.Intractable.Gate
                     transform.GetChild(1).localEulerAngles = new Vector3(0, 90, 90);                    
                     break;
             }
+
+            for (int i = 0; i < 2; i++)
+            {
+                for (var j = 0; j < transform.GetChild(i).childCount; j++)
+                {
+                    transform.GetChild(i).GetChild(j).GetComponent<MeshRenderer>().material.color = gateColors[colorId];
+                }
+            }
         }
         
         public bool ActivationStatus()
@@ -109,6 +117,11 @@ namespace Game.Items.Intractable.Gate
         public void SetIntractableId(int id)
         {
             intractableId = id;
+        }
+
+        public Color GetItemColor()
+        {
+            return gateColors[colorId];
         }
 
         public ItemCategories GetItemType()

@@ -165,9 +165,10 @@ namespace Game
                 foreach (var gate in maze.g)
                 {
                     var tempGate = Instantiate(gatePrefab, tempMaze.transform);
-                    tempGate.transform.GetChild(0).GetComponent<Collider>().enabled = true;
+                    
                     tempGate.transform.GetChild(0).GetChild(0).GetComponent<Collider>().enabled = true;
                     tempGate.transform.GetChild(0).GetChild(1).GetComponent<Collider>().enabled = true;
+                    tempGate.transform.GetChild(0).GetChild(2).GetComponent<Collider>().enabled = true;
                     
                     tempGate.transform.position = new Vector3(
                         gate.x,
@@ -209,6 +210,11 @@ namespace Game
                         {
                             tempButton.GetComponent<Button>().interactionItem = interactableItem;
                             tempButton.GetComponent<Button>().ActivateButtonEvent();
+                            if (interactableItem.GetItemColor() != null)
+                            {
+                                tempButton.transform.GetChild(0).GetComponent<MeshRenderer>().material.color =
+                                    interactableItem.GetItemColor();
+                            }
                         }
                     }
                 }

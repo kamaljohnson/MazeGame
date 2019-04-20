@@ -60,5 +60,12 @@ namespace Game.Items
         /// </summary>
         /// <param name="id"></param>
         void SetIntractableId(int id);
+
+        /// <summary>
+        /// returs the color of the item
+        /// which will be used by the linked buttons to change its color
+        /// </summary>
+        /// <returns></returns>
+        Color GetItemColor();
     }
 }
