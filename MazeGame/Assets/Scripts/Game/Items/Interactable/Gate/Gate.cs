@@ -103,13 +103,14 @@ namespace Game.Items.Intractable.Gate
         public void OpenGate()
         {
             Debug.Log("opening the gate");
-            gameObject.SetActive(false);
+            transform.GetChild(0).GetComponent<Animator>().Play("GateActivationAnimation", -1, 0);
+            //gameObject.SetActive(false);
         }
 
         public void CloseGate()
         {
-            gameObject.SetActive(true);
             Debug.Log("closing the gate");
+            transform.GetChild(0).GetComponent<Animator>().Play("GateDeActivationAnimation", -1, 0);
             CreateGate();
         }
         

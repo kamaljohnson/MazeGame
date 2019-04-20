@@ -8,42 +8,6 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="LevelEditor" t="Include">
-          <e p="Editor" t="Include">
-            <e p="Scripts" t="Include">
-              <e p="Items" t="Include">
-                <e p="Activator" t="Include">
-                  <e p="Button" t="Include">
-                    <e p="ButtonEditorScript.cs" t="Include" />
-                  </e>
-                </e>
-                <e p="Interactable" t="Include">
-                  <e p="Gate" t="Include">
-                    <e p="GateEditorScript.cs" t="Include" />
-                  </e>
-                  <e p="Portal" t="Include">
-                    <e p="PortalEditorScript.cs" t="Include" />
-                  </e>
-                  <e p="Spike" t="Include">
-                    <e p="SpikeEditorScript.cs" t="Include" />
-                  </e>
-                </e>
-                <e p="Path" t="Include">
-                  <e p="Ice" t="Include">
-                    <e p="IceEditorScript.cs" t="Include" />
-                  </e>
-                </e>
-              </e>
-              <e p="LevelEditor.cs" t="Include" />
-              <e p="Maze" t="Include">
-                <e p="MazeEditorScript.cs" t="Include" />
-              </e>
-              <e p="Save" t="Include">
-                <e p="LevelSaveManager.cs" t="Include" />
-              </e>
-            </e>
-          </e>
-        </e>
         <e p="Prefabs" t="Include">
           <e p="Shaders" t="Include">
             <e p="outline shader 1.shader" t="Include" />
@@ -51,6 +15,38 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Editor" t="Include">
+            <e p="Items" t="Include">
+              <e p="Activator" t="Include">
+                <e p="Button" t="Include">
+                  <e p="ButtonEditorScript.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Interactable" t="Include">
+                <e p="Gate" t="Include">
+                  <e p="GateEditorScript.cs" t="Include" />
+                </e>
+                <e p="Portal" t="Include">
+                  <e p="PortalEditorScript.cs" t="Include" />
+                </e>
+                <e p="Spike" t="Include">
+                  <e p="SpikeEditorScript.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Path" t="Include">
+                <e p="Ice" t="Include">
+                  <e p="IceEditorScript.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="LevelEditor.cs" t="Include" />
+            <e p="Maze" t="Include">
+              <e p="MazeEditorScript.cs" t="Include" />
+            </e>
+            <e p="Save" t="Include">
+              <e p="LevelSaveManager.cs" t="Include" />
+            </e>
+          </e>
           <e p="Game" t="Include">
             <e p="Camera" t="Include">
               <e p="CameraMovement.cs" t="Include" />

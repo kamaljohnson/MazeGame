@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 6610710060549542872}
   - component: {fileID: 1082006371524352165}
   - component: {fileID: 6867096404822764841}
+  - component: {fileID: 3900601243232711565}
   m_Layer: 0
   m_Name: 3
   m_TagString: Gate
@@ -184,6 +185,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &3900601243232711565
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4086409054585047986}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 733dbd442c2c928419c12bcafb90c65a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4357862220080677661
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,10 +353,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aece5558b2ef2144f95eb04de2f8f2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableId: 0
+  intractableId: 0
   itemSet: 0
-  gateDireciton: 1
+  gateDirection: 0
   gatePrefab: {fileID: 9074127498958625112, guid: 4bb9f75c3ae9429408ab30d447abdff3,
     type: 3}
+  colorId: 0
+  gateColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
   linkedButtonOnState: 
   linkedButtonOffState: 
