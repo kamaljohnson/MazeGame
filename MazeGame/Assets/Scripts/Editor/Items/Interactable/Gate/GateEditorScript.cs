@@ -181,37 +181,11 @@ namespace LevelEditor.Items.Intractable.Gate
 //            _gate.transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
 //            _gate.transform.GetChild(0).GetChild(1).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
             
-            List<int> allIds = new List<int>();
-            int tempId = 0;
-            
-            List<List<GameObject>> allItems;
-            LevelEditor.GetAllMazeItems(out allItems);
-            
-            for (int index = 0; index < allItems[(int)ItemCategories.Intractable].Count; index++)
-            {
-                if (allItems[(int) ItemCategories.Intractable][index].GetComponent<IIntractables>().GetIntractableId() != 0)
-                {
-                    allIds.Add(allItems[(int) ItemCategories.Intractable][index].GetComponent<IIntractables>().GetIntractableId());
-                }
-            }
-            allIds.Sort();
-            foreach (var id in allIds)
-            {
-                if (!tempId.Equals(id))
-                {
-                    tempId = id;
-                }
-
-                tempId++;
-            }
-
-            if (tempId == 0)
-            {
-                tempId = 1;
-            }
+            int tempId = Helper.GetUniqueIntractableID();
 
             _gate.intractableId = tempId;
             button.interactionItemId = tempId;
+            _gate.itemSet = true;
         }
 
         public void EditButtonLink()
@@ -223,6 +197,7 @@ namespace LevelEditor.Items.Intractable.Gate
         {
             throw new System.NotImplementedException();
         }
+        
     }
     
 }

@@ -118,34 +118,7 @@ namespace LevelEditor.Items.Intractable.Portal
             button.itemSet = true;
             button.interactionItem = _portal;
 
-            List<int> allIds = new List<int>();
-            int tempId = 0;
-            
-            List<List<GameObject>> allItems;
-            LevelEditor.GetAllMazeItems(out allItems);
-            
-            for (int index = 0; index < allItems[(int)ItemCategories.Intractable].Count; index++)
-            {
-                if (allItems[(int) ItemCategories.Intractable][index].GetComponent<IIntractables>().GetIntractableId() != 0)
-                {
-                    allIds.Add(allItems[(int) ItemCategories.Intractable][index].GetComponent<IIntractables>().GetIntractableId());
-                }
-            }
-            allIds.Sort();
-            foreach (var id in allIds)
-            {
-                if (!tempId.Equals(id))
-                {
-                    tempId = id;
-                }
-
-                tempId++;
-            }
-
-            if (tempId == 0)
-            {
-                tempId = 1;
-            }
+            int tempId = Helper.GetUniqueIntractableID();
 
             _portal.intractableId = tempId;
             button.interactionItemId = tempId;

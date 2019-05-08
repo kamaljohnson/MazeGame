@@ -204,16 +204,16 @@ namespace Game
                         button.w
                     );
                     
-                    foreach (var interactableItem in Button.AllInteractableItems)
+                    foreach (var intractableItem in Button.AllInteractableItems)
                     {
-                        if (interactableItem.GetIntractableId() == button.i)
+                        if (intractableItem.GetIntractableId() == button.i)
                         {
-                            tempButton.GetComponent<Button>().interactionItem = interactableItem;
+                            tempButton.GetComponent<Button>().interactionItem = intractableItem;
                             tempButton.GetComponent<Button>().ActivateButtonEvent();
-                            if (interactableItem.GetItemColor() != null)
+                            if (intractableItem.GetItemColor() != null)
                             {
                                 tempButton.transform.GetChild(0).GetComponent<MeshRenderer>().material.color =
-                                    interactableItem.GetItemColor();
+                                    intractableItem.GetItemColor();
                             }
                         }
                     }

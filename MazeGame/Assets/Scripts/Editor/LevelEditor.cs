@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game.Items;
 using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -1072,6 +1073,40 @@ namespace LevelEditor
             Vector3.right,
             Vector3.left,
         };
+
+        public static int GetUniqueIntractableID()
+        {
+            int tempId = 1;
+            
+            List<int> allIds = new List<int>();
+            List<List<GameObject>> allItems;
+            LevelEditor.GetAllMazeItems(out allItems);
+            
+            for (int index = 0; index < allItems[(int)ItemCategories.Intractable].Count; index++)
+            {
+                if (allItems[(int) ItemCategories.Intractable][index].GetComponent<IIntractables>().GetIntractableId() != 0)
+                {
+                    allIds.Add(allItems[(int) ItemCategories.Intractable][index].GetComponent<IIntractables>().GetIntractableId());
+                }
+            }
+            allIds.Sort();
+            foreach (var id in allIds)
+            {
+                Debug.Log(id);
+            }
+            foreach (var id in allIds)
+            {
+                if (!tempId.Equals(id))
+                {
+                    break;
+                }
+
+                tempId++;
+            }
+
+            return tempId;
+        }
+        
     }
 
     public interface ITem

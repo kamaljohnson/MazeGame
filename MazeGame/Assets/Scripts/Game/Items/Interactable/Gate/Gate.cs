@@ -147,6 +147,7 @@ namespace Game.Items.Intractable.Gate
         public void SetGateValues(Gate gate)
         {
             gateDirection = gate.gateDirection;
+            colorId = gate.colorId;
             
             intractableId = gate.intractableId;
             linkedButtonOnState = gate.linkedButtonOnState;
@@ -168,7 +169,7 @@ namespace Game.Items.Intractable.Gate
         public string o;    //Linked Button On State
         public string f;    //Linked Button Off State
 
-        public int i;       //interactable id
+        public int i;       //intractable id
         public int c;       //color id
 
         public int d;       //direction of the gate
