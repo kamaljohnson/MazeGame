@@ -20,7 +20,7 @@ namespace LevelEditor
     public enum ItemCategories
     {
         Path,           //[ICE, FIRE]
-        Intractable,   //[PORTAL, LASER, SPIKES, GATES, BRIDGE]
+        Intractable,    //[PORTAL, LASER, SPIKES, GATES]
         Activator,      //[BUTTON]
         Collectable,    //[COIN, DIAMOND, COLLECTION POINT]
         Enemie,         //[GUARDIAN, KNIGHT, HAMMER]
