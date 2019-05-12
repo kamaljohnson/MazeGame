@@ -63,6 +63,13 @@ namespace Game.Items.Intractable.Laser
         {
             return ItemCategories.Intractable;
         }
+        
+        public void SetLazerValues(Laser laser)
+        {   
+            intractableId = laser.intractableId;
+            linkedButtonOnState = laser.linkedButtonOnState;
+            linkedButtonOffState = laser.linkedButtonOffState;
+        }
     }
     
     public class SerializableItem

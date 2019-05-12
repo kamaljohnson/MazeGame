@@ -37,6 +37,7 @@ namespace LevelEditor.Save
                 mazeData.c = new List<MazeCubeData>();
                 mazeData.p = new List<Game.Items.Intractable.Portal.SerializableItem>();
                 mazeData.g = new List<Game.Items.Intractable.Gate.SerializableItem>();
+                mazeData.l = new List<Game.Items.Intractable.Laser.SerializableItem>();
                 mazeData.s = new List<Game.Items.Intractable.Spike.SerializableItem>();
                 mazeData.b = new List<Game.Items.Activators.Button.SerializableItem>();
                 
@@ -57,10 +58,10 @@ namespace LevelEditor.Save
                                 switch (allItems[itemType][itemIndex].name)
                                 {
                                     case "Ice":
-                                        Debug.Log("Ice");
                                         var serializedIceData = new Game.Items.Path.Ice.SerializableItem();
                                         serializedIceData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Path.Ice.Ice>());
                                         mazeData.i.Add(serializedIceData);
+                                        Debug.Log("Ice");
                                         break;
                                 }
                                 break;
@@ -68,22 +69,28 @@ namespace LevelEditor.Save
                                 switch (allItems[itemType][itemIndex].name)
                                 {
                                     case "Spike":
-                                        Debug.Log("Spike");
                                         var serializedSpikeData = new Game.Items.Intractable.Spike.SerializableItem();
                                         serializedSpikeData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Intractable.Spike.Spike>());
                                         mazeData.s.Add(serializedSpikeData);
+                                        Debug.Log("Spike");
                                         break;
                                     case "Portal":
-                                        Debug.Log("Portal");
                                         var serializedPortalData = new Game.Items.Intractable.Portal.SerializableItem();
                                         serializedPortalData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Intractable.Portal.Portal>());
                                         mazeData.p.Add(serializedPortalData);
+                                        Debug.Log("Portal");
                                         break;
                                     case "Gate":
-                                        Debug.Log("Gate");
                                         var serializedGateData = new Game.Items.Intractable.Gate.SerializableItem();
                                         serializedGateData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Intractable.Gate.Gate>());
                                         mazeData.g.Add(serializedGateData);
+                                        Debug.Log("Gate");
+                                        break;
+                                    case "Laser":
+                                        var serializedLaserData = new Game.Items.Intractable.Laser.SerializableItem();
+                                        serializedLaserData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Intractable.Laser.Laser>());
+                                        mazeData.l.Add(serializedLaserData);
+                                        Debug.Log("Laser");
                                         break;
                                 }
                                 break;
@@ -127,8 +134,7 @@ namespace LevelEditor.Save
                 Debug.Log("MAZE " + (i + 1) + " : " + state.m[i].c.Count + " CUBES");
             }
 
-            string jsonString;
-            jsonString = JsonUtility.ToJson(state);
+            var jsonString = JsonUtility.ToJson(state);
             Debug.Log(jsonString);
             File.WriteAllText(directory, jsonString);
         }
@@ -153,6 +159,7 @@ namespace LevelEditor.Save
         //item data
         public List<Game.Items.Intractable.Portal.SerializableItem> p;    //the list of all portals on the maze
         public List<Game.Items.Intractable.Gate.SerializableItem> g;    //the list of all gates on the maze
+        public List<Game.Items.Intractable.Laser.SerializableItem> l;    //the list of all lasers on the maze
         public List<Game.Items.Intractable.Spike.SerializableItem> s;    //the list of all buttons on the maze
         public List<Game.Items.Activators.Button.SerializableItem> b;    //the list of all buttons on the maze
         

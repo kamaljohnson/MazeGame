@@ -4,6 +4,7 @@ using System.IO;
 using Game.Items;
 using Game.Items.Activators.Button;
 using Game.Items.Intractable.Gate;
+using Game.Items.Intractable.Laser;
 using Game.Items.Intractable.Portal;
 using Game.Items.Intractable.Spike;
 using Game.Maze;
@@ -187,6 +188,25 @@ namespace Game
                     
                     Button.AllInteractableItems.Add(tempGate.GetComponent<Gate>());
                 }
+                
+                /*foreach (var laser in maze.l)
+                {
+                    var tempLaser = Instantiate(laserPrefab, tempMaze.transform);
+                    
+                    tempLaser.transform.position = new Vector3(
+                        laser.x,
+                        laser.y,
+                        laser.z
+                    );                    
+                    tempLaser.transform.eulerAngles = new Vector3(
+                        laser.u,
+                        laser.v,
+                        laser.w
+                    );
+                    tempLaser.GetComponent<Laser>().SetLazerValues(laser.GetLaser());
+                    
+                    Button.AllInteractableItems.Add(tempLaser.GetComponent<Laser>());
+                }*/
                 
                 foreach (var button in maze.b)
                 {
@@ -612,6 +632,7 @@ namespace Game
         //item data
         public List<Items.Intractable.Portal.SerializableItem> p;    //the list of all portals on the maze
         public List<Items.Intractable.Gate.SerializableItem> g;    //the list of all gates on the maze
+        public List<Items.Intractable.Laser.SerializableItem> l;    //the list of all lasers on the maze
         public List<Items.Intractable.Spike.SerializableItem> s;      //the list of all buttons on the maze
         
         public List<Items.Activators.Button.SerializableItem> b;      //the list of all buttons on the maze
