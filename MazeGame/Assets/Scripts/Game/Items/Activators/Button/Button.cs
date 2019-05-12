@@ -35,24 +35,24 @@ namespace Game.Items.Activators.Button
         
         private void Update()
         {
-                if (GameManager.PlayerCubeTransform.GetComponent<Movement>().movementSnappedFull && !_buttonActivated)
+            if (GameManager.PlayerCubeTransform.GetComponent<Movement>().movementSnappedFull && !_buttonActivated)
+            {
+                _buttonActivated = true;
+                if (type == ButtonTypes.Temporary)
                 {
-                    _buttonActivated = true;
-                    if (type == ButtonTypes.Temporary)
-                    {
-                        _tempButtonState = true;
-                    }
-                    else
-                    {
-                        _tempButtonState = !_tempButtonState;
-                    }
+                    _tempButtonState = true;
                 }
+                else
+                {
+                    _tempButtonState = !_tempButtonState;
+                }
+            }
 
-                if (_tempButtonState != buttonOn)
-                {
-                    buttonOn = _tempButtonState;
-                    ActivateButtonEvent();
-                }
+            if (_tempButtonState != buttonOn)
+            {
+                buttonOn = _tempButtonState;
+                ActivateButtonEvent();
+            }
         }
 
         

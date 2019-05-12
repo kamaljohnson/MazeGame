@@ -292,17 +292,27 @@ namespace LevelEditor
                 }
 
                 GUILayout.EndHorizontal();
-
                 GUILayout.BeginHorizontal();
-                if (GUILayout.Button("Render", GUILayout.Height(30)))
+                GUILayout.Label("Render");
+                GUILayout.BeginVertical();
+                if (GUILayout.Button("Without Items", GUILayout.Height(30)))
                 {
                     Maze.MazeEditorScript.EndNode = null;
                     Maze.MazeEditorScript.StartNode = null;
                     ReCalculateAllMazeCubes();
                     ReCalculateNodes();
-                    RenderPaths();
+                    RenderPaths(showItems:false);
                 }
 
+                if (GUILayout.Button("With Items", GUILayout.Height(30)))
+                {
+                    Maze.MazeEditorScript.EndNode = null;
+                    Maze.MazeEditorScript.StartNode = null;
+                    ReCalculateAllMazeCubes();
+                    ReCalculateNodes();
+                    RenderPaths(showItems:true);
+                }                
+                GUILayout.EndVertical();
                 GUILayout.EndHorizontal();
 
             }
@@ -661,7 +671,7 @@ namespace LevelEditor
             }
         }
 
-        public static void RenderPaths()
+        public static void RenderPaths(bool showItems = false)
         {
             HideAllMazeItems();
             
@@ -968,7 +978,7 @@ namespace LevelEditor
                 }
             }
 
-            if (EditorMode == Modes.Items)
+            if (showItems)
             {
                 ShowAllMazeItems();
             }

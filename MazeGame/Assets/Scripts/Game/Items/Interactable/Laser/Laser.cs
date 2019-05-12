@@ -28,7 +28,29 @@ namespace Game.Items.Intractable.Laser
         public bool left;
         public bool forward;
         public bool back;
+        
+        public void Update()
+        {
+            if(right) Shoot(Direction.Right);
+            if(left) Shoot(Direction.Left);
+            if(forward) Shoot(Direction.Forward);
+            if(back) Shoot(Direction.Back);
+        }
 
+        public void Shoot(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Right:
+                    break;
+                case Direction.Left:
+                    break;
+                case Direction.Forward:
+                    break;
+                case Direction.Back:
+                    break;
+            }
+        }
         
         public bool ActivationStatus()
         {

@@ -177,9 +177,6 @@ namespace LevelEditor.Items.Intractable.Gate
                     _gate.transform.GetChild(i).GetChild(j).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
                 }
             }
-//            _gate.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
-//            _gate.transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
-//            _gate.transform.GetChild(0).GetChild(1).GetComponent<MeshRenderer>().material.color = _gate.gateColors[_gate.colorId];
             
             int tempId = Helper.GetUniqueIntractableID();
 
