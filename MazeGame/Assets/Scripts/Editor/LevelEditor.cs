@@ -1035,6 +1035,12 @@ namespace LevelEditor
                                         allMazeItems[itemType].Add(AllItems[itemType][i]);
                                     }
                                     break;
+                                case "Laser":
+                                    if (AllItems[itemType][i].GetComponent<Game.Items.Intractable.Laser.Laser>().itemSet)
+                                    {
+                                        allMazeItems[itemType].Add(AllItems[itemType][i]);
+                                    }
+                                    break;
                             }
                             break;
                         case ItemCategories.Activator:

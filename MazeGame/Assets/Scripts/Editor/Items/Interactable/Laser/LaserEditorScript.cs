@@ -38,7 +38,7 @@ namespace LevelEditor.Items.Intractable.Laser
             {
                 Handles.color = new Color(1f, 0.73f, 0.18f);                
             }
-            if (Handles.Button(_laser.transform.position + _laser.transform.forward, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_laser.transform.position + _laser.transform.up, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _buttonMappingMode = !_buttonMappingMode;
             }
@@ -68,7 +68,7 @@ namespace LevelEditor.Items.Intractable.Laser
             {
                 Handles.color = new Color(0.55f, 0.64f, 1f);                
             }
-            if (Handles.Button(_laser.transform.position + _laser.transform.forward * 0.6f - _laser.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_laser.transform.position + _laser.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _laser.right = !_laser.right;
             }
@@ -81,7 +81,7 @@ namespace LevelEditor.Items.Intractable.Laser
             {
                 Handles.color = new Color(0.55f, 0.64f, 1f);                
             }
-            if (Handles.Button(_laser.transform.position + _laser.transform.forward * 0.6f + _laser.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_laser.transform.position - _laser.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _laser.left = !_laser.left;           
             }
@@ -94,7 +94,7 @@ namespace LevelEditor.Items.Intractable.Laser
             {
                 Handles.color = new Color(0.55f, 0.64f, 1f);                
             }
-            if (Handles.Button(_laser.transform.position + _laser.transform.forward * 0.6f - _laser.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_laser.transform.position + _laser.transform.forward * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _laser.forward = !_laser.forward;
             }
@@ -107,7 +107,7 @@ namespace LevelEditor.Items.Intractable.Laser
             {
                 Handles.color = new Color(0.55f, 0.64f, 1f);                
             }
-            if (Handles.Button(_laser.transform.position + _laser.transform.forward * 0.6f + _laser.transform.right * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_laser.transform.position - _laser.transform.forward * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _laser.back = !_laser.back;
             }
