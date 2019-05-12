@@ -28,6 +28,7 @@ namespace Game.Items.Intractable.Laser
         public bool left;
         public bool forward;
         public bool back;
+
         
         public bool ActivationStatus()
         {
@@ -69,9 +70,20 @@ namespace Game.Items.Intractable.Laser
             intractableId = laser.intractableId;
             linkedButtonOnState = laser.linkedButtonOnState;
             linkedButtonOffState = laser.linkedButtonOffState;
+
+            right = laser.right;
+            left = laser.left;
+            forward = laser.forward;
+            back = laser.back;
+            
+            transform.GetChild(1).gameObject.SetActive(GetComponent<Laser>().right);
+            transform.GetChild(2).gameObject.SetActive(GetComponent<Laser>().left);
+            transform.GetChild(3).gameObject.SetActive(GetComponent<Laser>().forward);
+            transform.GetChild(4).gameObject.SetActive(GetComponent<Laser>().back);
         }
     }
     
+    [Serializable]
     public class SerializableItem
     {
         public int x;

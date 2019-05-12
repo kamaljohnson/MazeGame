@@ -189,9 +189,10 @@ namespace Game
                     Button.AllInteractableItems.Add(tempGate.GetComponent<Gate>());
                 }
                 
-                /*foreach (var laser in maze.l)
+                foreach (var laser in maze.l)
                 {
                     var tempLaser = Instantiate(laserPrefab, tempMaze.transform);
+                    
                     
                     tempLaser.transform.position = new Vector3(
                         laser.x,
@@ -206,7 +207,7 @@ namespace Game
                     tempLaser.GetComponent<Laser>().SetLazerValues(laser.GetLaser());
                     
                     Button.AllInteractableItems.Add(tempLaser.GetComponent<Laser>());
-                }*/
+                }
                 
                 foreach (var button in maze.b)
                 {
