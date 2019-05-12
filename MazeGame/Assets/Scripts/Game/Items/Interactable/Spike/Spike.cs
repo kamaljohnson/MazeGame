@@ -13,7 +13,7 @@ namespace Game.Items.Intractable.Spike
     }
     public class Spike : MonoBehaviour, IIntractables, IItems
     {
-        public int interactableId;    //this id is used to link buttons
+        public int intractableId;    //this id is used to link buttons
         public int spikeId;    //the id of the spike in the group
         public int groupId;    //the group id
 
@@ -118,12 +118,12 @@ namespace Game.Items.Intractable.Spike
 
         public int GetIntractableId()
         {
-            return 0;
+            return intractableId;
         }
 
         public void SetIntractableId(int id)
         {
-            
+            intractableId = id;
         }
 
         public Color GetItemColor()
@@ -195,7 +195,7 @@ namespace Game.Items.Intractable.Spike
             spike.linkedButtonOnState = o;
             spike.linkedButtonOffState = f;
 
-            spike.interactableId = i;
+            spike.intractableId = i;
 
             spike.type = (ActivationType) t;
             

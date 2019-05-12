@@ -411,7 +411,7 @@ namespace Game.Maze
             for(k=0; n>0; k++)      
             {      
                 tempPathData[k]=n%2;      
-                n= n/2;    
+                n = n/2;    
             }
             
             node.rightPath = tempPathData[3] == 1;

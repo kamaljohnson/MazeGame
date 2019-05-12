@@ -22,6 +22,12 @@ namespace Game.Items.Intractable.Laser
                  "#num -    x-times")]
         public string linkedButtonOnState = "";
         public string linkedButtonOffState = "";
+
+        [Header("activated laser directions")]
+        public bool right;
+        public bool left;
+        public bool forward;
+        public bool back;
         
         public bool ActivationStatus()
         {
@@ -40,22 +46,22 @@ namespace Game.Items.Intractable.Laser
 
         public int GetIntractableId()
         {
-            throw new System.NotImplementedException();
+            return intractableId;
         }
 
         public void SetIntractableId(int id)
         {
-            throw new System.NotImplementedException();
+            intractableId = id;
         }
 
         public Color GetItemColor()
         {
-            throw new System.NotImplementedException();
+            return Color.black;
         }
 
         public ItemCategories GetItemType()
         {
-            throw new System.NotImplementedException();
+            return ItemCategories.Intractable;
         }
     }
     
@@ -71,6 +77,8 @@ namespace Game.Items.Intractable.Laser
 
         public string o;    //Linked Button On State
         public string f;    //Linked Button Off State
+
+        public int l;    //activated laser directions
 
         public int i;       //intractable id
         public void ConvertToSerializable(Laser laser)
@@ -90,6 +98,12 @@ namespace Game.Items.Intractable.Laser
             f = laser.linkedButtonOffState;
 
             i = laser.GetIntractableId();
+            string tempBin = (laser.right ? "1" : "0") +
+                             (laser.left ? "1" : "0") +
+                             (laser.forward ? "1" : "0") +
+                             (laser.back ? "1" : "0");
+            l = Convert.ToInt32(tempBin, 2);
+
         }
 
         public Laser GetLaser()
@@ -98,6 +112,25 @@ namespace Game.Items.Intractable.Laser
 
             laser.linkedButtonOnState = o;
             laser.linkedButtonOffState = f;
+            
+            //converting p to binary and then to individual ints
+            int  n, k;       
+            int[] tempPathData = new int[4];
+            for (int j = 0; j < 4; j++)
+            {
+                tempPathData[j] = 0;
+            }
+            n = l;     
+            for(k=0; n>0; k++)      
+            {      
+                tempPathData[k]=n%2;      
+                n = n/2;    
+            }
+            
+            laser.right = tempPathData[3] == 1;
+            laser.left = tempPathData[2] == 1;
+            laser.forward = tempPathData[1] == 1;
+            laser.back = tempPathData[0] == 1;
             
             return laser;
         }
