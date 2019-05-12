@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Items.Intractable.Lazer
+namespace Game.Items.Intractable.Laser
 {
     
-    public class Lazer : MonoBehaviour, IIntractables, IItems
+    public class Laser : MonoBehaviour, IIntractables, IItems
     {
-        public int interactableId;    //this id is used to link buttons
+        public int intractableId;    //this id is used to link buttons
         public bool itemSet;    //is the item set with values
 
         [Header("State Properties")]
@@ -73,9 +73,9 @@ namespace Game.Items.Intractable.Lazer
         public string f;    //Linked Button Off State
 
         public int i;       //intractable id
-        public void ConvertToSerializable(Lazer lazer)
+        public void ConvertToSerializable(Laser laser)
         {
-            var transform = lazer.transform;
+            var transform = laser.transform;
             var position = transform.position;
             x = (int)position.x;
             y = (int)position.y;
@@ -86,20 +86,20 @@ namespace Game.Items.Intractable.Lazer
             v = (int) eulerAngles.y;
             w = (int) eulerAngles.z;
 
-            o = lazer.linkedButtonOnState;
-            f = lazer.linkedButtonOffState;
+            o = laser.linkedButtonOnState;
+            f = laser.linkedButtonOffState;
 
-            i = lazer.GetIntractableId();
+            i = laser.GetIntractableId();
         }
 
-        public Lazer GetLazer()
+        public Laser GetLaser()
         {
-            Lazer lazer = new Lazer();
+            Laser laser = new Laser();
 
-            lazer.linkedButtonOnState = o;
-            lazer.linkedButtonOffState = f;
+            laser.linkedButtonOnState = o;
+            laser.linkedButtonOffState = f;
             
-            return lazer;
+            return laser;
         }
     }
 }

@@ -19,10 +19,11 @@ namespace Game
         public GameObject mazeCubePrefab;
         public GameObject mazeWallPrefab;
         
-        //the item prefabs
+        //the item prefabsl
         [Header("Maze Items Properties")]
         public GameObject portalPrefab;
         public GameObject spikePrefab;
+        public GameObject laserPrefab;
         public GameObject gatePrefab;
         public GameObject buttonPrefab;
         public GameObject icePrefab;

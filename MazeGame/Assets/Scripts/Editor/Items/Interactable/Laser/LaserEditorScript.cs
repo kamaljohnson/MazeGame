@@ -4,9 +4,9 @@ using Game.Items.Activators.Button;
 using UnityEditor;
 using UnityEngine;
 
-namespace LevelEditor.Items.Intractable.Lazer
+namespace LevelEditor.Items.Intractable.Laser
 {
-    public class LazerEditorScript : Editor, ITem, ITemButtonInteraction
+    public class LaserEditorScript : Editor, ITem, ITemButtonInteraction
     {
         public void Init()
         {

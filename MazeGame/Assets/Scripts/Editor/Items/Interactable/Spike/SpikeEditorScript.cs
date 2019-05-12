@@ -10,8 +10,8 @@ namespace LevelEditor.Items.Intractable.Spike
     public class SpikeEditorScript : Editor, ITem, ITemButtonInteraction
     {
         private Game.Items.Intractable.Spike.Spike _spike;
-        public static int currentGroupId;
-        public static int currentSpikeId;
+        private static int _currentGroupId;
+        private static int _currentSpikeId;
 
         private void OnEnable()
         {
@@ -52,10 +52,10 @@ namespace LevelEditor.Items.Intractable.Spike
                     if (Handles.Button(intractableSpike.transform.position + intractableSpike.transform.up * 0.2f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
                     {
                         spike.itemSet = true;
-                        spike.groupId = currentGroupId;
-                        spike.spikeId = currentSpikeId;
+                        spike.groupId = _currentGroupId;
+                        spike.spikeId = _currentSpikeId;
                         spike.type = _spike.type;
-                        currentSpikeId++;
+                        _currentSpikeId++;
                     }
                 }
             }
@@ -65,8 +65,8 @@ namespace LevelEditor.Items.Intractable.Spike
         {
             _spike = (Game.Items.Intractable.Spike.Spike)target;
             _spike.name = "Spike";
-            currentGroupId++;
-            currentSpikeId = 0;
+            _currentGroupId++;
+            _currentSpikeId = 0;
         }
 
         public void AddItem()
