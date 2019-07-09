@@ -22,7 +22,7 @@ namespace Game
         
         public void Start()
         {
-            Screen.orientation = ScreenOrientation.Portrait;
+            Screen.orientation = ScreenOrientation.Landscape;
         }
     
         public void Update()
