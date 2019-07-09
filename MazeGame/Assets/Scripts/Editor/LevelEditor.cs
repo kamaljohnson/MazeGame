@@ -33,7 +33,7 @@ namespace LevelEditor
         public static Transform Mazes;
         public static GameObject CurrentMaze;
 
-        //path of the prefabs
+        //path of the prefabs`
         public string mazeCubesFilePath;
         public string mazeWallsFilePath;
         public string itemFilePath;
