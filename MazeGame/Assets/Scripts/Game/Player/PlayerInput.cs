@@ -16,7 +16,8 @@ namespace Game
     {
         public InputTypes inputTypes;
 
-        public Joystick joystick;
+        public Joystick movementJoystick;
+        public Joystick attackJoystick;
         
         [HideInInspector]
         public List<bool> playerMovementInputs = new List<bool>
@@ -278,26 +279,28 @@ namespace Game
                 }
             }
         }
-
+        
         private void HandleJoystickInputs()
         {
-            
-            if (joystick.Horizontal >= 0.4f && joystick.Vertical >= 0.4f)
+            // Handles movement of the player cube
+            if (movementJoystick.Horizontal >= 0.4f && movementJoystick.Vertical >= 0.4f)
             {
                 playerMovementInputs[(int)Direction.Forward] = true;
             }
-            if (joystick.Horizontal <= -0.4f && joystick.Vertical <= -0.4f)
+            if (movementJoystick.Horizontal <= -0.4f && movementJoystick.Vertical <= -0.4f)
             {
                 playerMovementInputs[(int)Direction.Back] = true;
             }
-            if (joystick.Horizontal >= 0.4f && joystick.Vertical <= -0.4f)
+            if (movementJoystick.Horizontal >= 0.4f && movementJoystick.Vertical <= -0.4f)
             {
                 playerMovementInputs[(int)Direction.Right] = true;
             }
-            if (joystick.Horizontal <= -0.4f && joystick.Vertical >= 0.4f)
+            if (movementJoystick.Horizontal <= -0.4f && movementJoystick.Vertical >= 0.4f)
             {
                 playerMovementInputs[(int)Direction.Left] = true;
             }
+            
+            //TODO: handle attack joystick commands
             
             //TODO: this should be changed to touch inputs
             /*if(Input.GetKeyDown(KeyCode.E))
@@ -309,7 +312,7 @@ namespace Game
                 cameraOrientationInput[1] = true;
             }*/
         }
-
+        
         private void ResetInputs()
         {
             for (var i = 0; i < playerMovementInputs.Count; i++)
