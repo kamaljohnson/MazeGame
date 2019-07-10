@@ -5,10 +5,10 @@ using UnityEngine;
 namespace Game.Player
 {
     public class Movement : MonoBehaviour
-    {
+    {        
         public Transform playerCube;
         public PlayerInput input;
-
+        
         public float stepSize;
 
         public Transform rightAnchor;
@@ -60,9 +60,9 @@ namespace Game.Player
             
             HandleInput();
 
-            if(movementSnappedFull)
+            if (movementSnappedFull)
             {
-                CheckJunction();
+               CheckJunction();
             }
 
             if (_atJunction)
@@ -144,88 +144,95 @@ namespace Game.Player
 
         private void CheckJunction()
         {   
-            //getting the raycast data
+            //getting the ray-cast data
             var transformPosition = transform.position;
 
-            //right raycast data
+            //right ray-cast data
             playerRayCastData[(int) Direction.Right] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Right], out _, stepSize + 0.1f * stepSize);
             var color = playerRayCastData[(int) Direction.Right] ? Color.red : Color.green;
             Debug.DrawRay(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, transform.right * (stepSize + 0.1f * stepSize), color);
 
-            //left raycast data
+            //left ray-cast data
             playerRayCastData[(int) Direction.Left] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Left], out _, stepSize + 0.1f * stepSize);
             color = playerRayCastData[(int) Direction.Left] ? Color.red : Color.green;
             Debug.DrawRay(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, -transform.right * (stepSize + 0.1f * stepSize), color);
             
-            //forward raycast data
+            //forward ray-cast data
             playerRayCastData[(int) Direction.Forward] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Forward], out _, stepSize + 0.1f * stepSize);
             color = playerRayCastData[(int) Direction.Forward] ? Color.red : Color.green;
             Debug.DrawRay(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, transform.forward * (stepSize + 0.1f * stepSize), color);
             
-            //back raycast data
+            //back ray-cast data
             playerRayCastData[(int) Direction.Back] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Back], out _, stepSize + 0.1f * stepSize);
             color = playerRayCastData[(int) Direction.Back] ? Color.red : Color.green;
             Debug.DrawRay(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, -transform.forward * (stepSize + 0.1f * stepSize) , color);
             
             
-            //checking if the there is a new path in the perpendicular dirction of travel
-            switch (_movementDirection)
+            //checking if the there is a new path in the perpendicular direction of travel
+            if (!input.lockInputTillJunction && !Ice.onIce)
             {
-                case Direction.Right:
-                    if (playerRayCastData[(int)Direction.Right])
-                    {
-                        _atJunction = true;                        
-                    }
-                    if (!playerRayCastData[(int) Direction.Forward] || !playerRayCastData[(int) Direction.Back])
-                    {
-                        if (!Ice.onIce)
+                _atJunction = true;
+            }
+            else
+            {
+                switch (_movementDirection)
+                {
+                    case Direction.Right:
+                        if (playerRayCastData[(int)Direction.Right])
                         {
-                            _atJunction = true;
+                            _atJunction = true;                        
                         }
-                    }
-                    break;
-                case Direction.Left:
-                    if (playerRayCastData[(int)Direction.Left])
-                    {
-                        _atJunction = true;                        
-                    }
-                    if (!playerRayCastData[(int) Direction.Forward] || !playerRayCastData[(int) Direction.Back])
-                    {
-                        if (!Ice.onIce)
+                        if (!playerRayCastData[(int) Direction.Forward] || !playerRayCastData[(int) Direction.Back])
                         {
-                            _atJunction = true;
+                            if (!Ice.onIce)
+                            {
+                                _atJunction = true;
+                            }
                         }
-                    }
-                    break;
-                case Direction.Forward:
-                    if (playerRayCastData[(int)Direction.Forward])
-                    {
-                        _atJunction = true;                        
-                    }
-                    if (!playerRayCastData[(int) Direction.Right] || !playerRayCastData[(int) Direction.Left])
-                    {
-                        if (!Ice.onIce)
+                        break;
+                    case Direction.Left:
+                        if (playerRayCastData[(int)Direction.Left])
                         {
-                            _atJunction = true;
+                            _atJunction = true;                        
                         }
-                    }
-                    break;
-                case Direction.Back:
-                    if (playerRayCastData[(int)Direction.Back])
-                    {
-                        _atJunction = true;                        
-                    }
-                    if (!playerRayCastData[(int) Direction.Right] || !playerRayCastData[(int) Direction.Left])
-                    {
-                        if (!Ice.onIce)
+                        if (!playerRayCastData[(int) Direction.Forward] || !playerRayCastData[(int) Direction.Back])
                         {
-                            _atJunction = true;
+                            if (!Ice.onIce)
+                            {
+                                _atJunction = true;
+                            }
                         }
-                    }
-                    break;
-                case Direction.None:
-                    _atJunction = true;
-                    break;
+                        break;
+                    case Direction.Forward:
+                        if (playerRayCastData[(int)Direction.Forward])
+                        {
+                            _atJunction = true;                        
+                        }
+                        if (!playerRayCastData[(int) Direction.Right] || !playerRayCastData[(int) Direction.Left])
+                        {
+                            if (!Ice.onIce)
+                            {
+                                _atJunction = true;
+                            }
+                        }
+                        break;
+                    case Direction.Back:
+                        if (playerRayCastData[(int)Direction.Back])
+                        {
+                            _atJunction = true;                        
+                        }
+                        if (!playerRayCastData[(int) Direction.Right] || !playerRayCastData[(int) Direction.Left])
+                        {
+                            if (!Ice.onIce)
+                            {
+                                _atJunction = true;
+                            }
+                        }
+                        break;
+                    case Direction.None:
+                        _atJunction = true;
+                        break;
+                }
             }
         }
 

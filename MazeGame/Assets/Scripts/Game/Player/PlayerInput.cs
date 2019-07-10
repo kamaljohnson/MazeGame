@@ -15,9 +15,12 @@ namespace Game
     public class PlayerInput : MonoBehaviour
     {
         public InputTypes inputTypes;
+        public bool lockInputTillJunction;
 
         public Joystick movementJoystick;
         public Joystick attackJoystick;
+        [Range(1, 100)]
+        public float joystickSensitivity;
         
         [HideInInspector]
         public List<bool> playerMovementInputs = new List<bool>
@@ -283,19 +286,19 @@ namespace Game
         private void HandleJoystickInputs()
         {
             // Handles movement of the player cube
-            if (movementJoystick.Horizontal >= 0.4f && movementJoystick.Vertical >= 0.4f)
+            if (movementJoystick.Horizontal >= 1/joystickSensitivity && movementJoystick.Vertical >= 1/joystickSensitivity)
             {
                 playerMovementInputs[(int)Direction.Forward] = true;
             }
-            if (movementJoystick.Horizontal <= -0.4f && movementJoystick.Vertical <= -0.4f)
+            if (movementJoystick.Horizontal <= -1/joystickSensitivity && movementJoystick.Vertical <= -1/joystickSensitivity)
             {
                 playerMovementInputs[(int)Direction.Back] = true;
             }
-            if (movementJoystick.Horizontal >= 0.4f && movementJoystick.Vertical <= -0.4f)
+            if (movementJoystick.Horizontal >= 1/joystickSensitivity && movementJoystick.Vertical <= -1/joystickSensitivity)
             {
                 playerMovementInputs[(int)Direction.Right] = true;
             }
-            if (movementJoystick.Horizontal <= -0.4f && movementJoystick.Vertical >= 0.4f)
+            if (movementJoystick.Horizontal <= -1/joystickSensitivity && movementJoystick.Vertical >= 1/joystickSensitivity)
             {
                 playerMovementInputs[(int)Direction.Left] = true;
             }
