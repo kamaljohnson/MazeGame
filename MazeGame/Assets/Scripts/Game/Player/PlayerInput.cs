@@ -19,7 +19,7 @@ namespace Game
 
         public Joystick movementJoystick;
         public Joystick attackJoystick;
-        [Range(1, 100)]
+        [Range(1, 10)]
         public float joystickSensitivity;
         
         [HideInInspector]
