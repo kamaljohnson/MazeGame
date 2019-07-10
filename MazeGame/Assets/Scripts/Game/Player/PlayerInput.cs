@@ -1,10 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
 {
+
+    public enum InputTypes
+    {
+        Keyboard,
+        SwipeInput,
+        JoystickInput
+    }
+    
     public class PlayerInput : MonoBehaviour
     {
+        public InputTypes inputTypes;
+
+        public Joystick joystick;
+        
         [HideInInspector]
         public List<bool> playerMovementInputs = new List<bool>
         {
@@ -61,8 +74,18 @@ namespace Game
         {
             ResetInputs();
             
-            HandleKeyboardInputs();
-            HandleTouchInputs();
+            switch (inputTypes)
+            {
+                case InputTypes.Keyboard:
+                    HandleKeyboardInputs();
+                    break;
+                case InputTypes.SwipeInput:
+                    HandleSwipeInputs();
+                    break;
+                case InputTypes.JoystickInput:
+                    HandleJoystickInputs();
+                    break;
+            }
         }
 
         /*
@@ -134,7 +157,7 @@ namespace Game
             }
         }
         
-        private void HandleTouchInputs()
+        private void HandleSwipeInputs()
         {
             if (Input.touchCount == 1) // user is touching the screen with a single touch
             {
@@ -254,6 +277,37 @@ namespace Game
                     }
                 }
             }
+        }
+
+        private void HandleJoystickInputs()
+        {
+            
+            if (joystick.Horizontal >= 0.4f && joystick.Vertical >= 0.4f)
+            {
+                playerMovementInputs[(int)Direction.Forward] = true;
+            }
+            if (joystick.Horizontal <= -0.4f && joystick.Vertical <= -0.4f)
+            {
+                playerMovementInputs[(int)Direction.Back] = true;
+            }
+            if (joystick.Horizontal >= 0.4f && joystick.Vertical <= -0.4f)
+            {
+                playerMovementInputs[(int)Direction.Right] = true;
+            }
+            if (joystick.Horizontal <= -0.4f && joystick.Vertical >= 0.4f)
+            {
+                playerMovementInputs[(int)Direction.Left] = true;
+            }
+            
+            //TODO: this should be changed to touch inputs
+            /*if(Input.GetKeyDown(KeyCode.E))
+            {
+                cameraOrientationInput[0] = true;
+            }
+            if(Input.GetKeyDown(KeyCode.Q))
+            {
+                cameraOrientationInput[1] = true;
+            }*/
         }
 
         private void ResetInputs()

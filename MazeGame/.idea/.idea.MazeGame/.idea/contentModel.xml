@@ -97,6 +97,28 @@
             </e>
           </e>
         </e>
+        <e p="~assets" t="Include">
+          <e p="Virtual Joystick Pack" t="Include">
+            <e p="Examples" t="Include">
+              <e p="2D Example" t="Include">
+                <e p="Player2DExample.cs" t="Include" />
+              </e>
+              <e p="3D Example" t="Include">
+                <e p="Player3DExample.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="Base" t="Include">
+                <e p="Joystick.cs" t="Include" />
+              </e>
+              <e p="Joysticks" t="Include">
+                <e p="FixedJoystick.cs" t="Include" />
+                <e p="FloatingJoystick.cs" t="Include" />
+                <e p="VariableJoystick.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />
       <e p="MazeGame.sln" t="IncludeFlat" />
