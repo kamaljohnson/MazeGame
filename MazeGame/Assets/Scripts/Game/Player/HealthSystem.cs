@@ -1,5 +1,4 @@
-﻿using UnityEditor.ShaderGraph;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Player
 {
@@ -15,6 +14,7 @@ namespace Game.Player
         {
             _lives = initialLives;
             _armour = initialArmor;
+            FindObjectOfType<GameUI>().UpdateHealthSystem(_lives, _armour);
         }
         
         public void Update()
@@ -46,6 +46,7 @@ namespace Game.Player
                 _lives -= 1;
                 GameManager.Gamestate = GameManager.GameStates.Dead;
             }
+            FindObjectOfType<GameUI>().UpdateHealthSystem(_lives, _armour);
         }
 
         public static void AddLives(int amount)
