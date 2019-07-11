@@ -7,6 +7,9 @@ namespace Game.Items.Intractable.Portal
 {
     public class Portal : MonoBehaviour, IIntractables, IItems
     {
+        public Material checkpointActiveMaterial;
+        public Material checkpointDeActiveMaterial;
+        
         public int intractableId;    //this id is used to link buttons
         
         public bool itemSet;    //is the item set with values
@@ -89,7 +92,12 @@ namespace Game.Items.Intractable.Portal
         
         public void CheckpointSaveGameState()   //saves the entire state of the game for checkpoint reference
         {
-            Debug.Log("Saving Game State");
+            var allPortals = FindObjectsOfType<Portal>();
+            foreach (var portal in allPortals)
+            {
+                portal.transform.GetChild(0).GetComponent<MeshRenderer>().material = checkpointDeActiveMaterial;                
+            }
+            transform.GetChild(0).GetComponent<MeshRenderer>().material = checkpointActiveMaterial;
             CurrentCheckpointDestinationPortal = this;
             _checkpointMazeOrientation = GameManager.MazeTransform.eulerAngles;
             _checkpointPlayerPosition = GameManager.PlayerCubeTransform.localPosition;

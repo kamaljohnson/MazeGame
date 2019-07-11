@@ -152,10 +152,9 @@ namespace Game
                         var playerCube = Instantiate(this.playerCube);
                         playerCube.GetComponent<Movement>().input = inputManager.GetComponent<PlayerInput>();
                         playerCube.GetComponent<Movement>().SetParentMaze(mazeHolder.GetChild(tempPortal.GetComponent<Portal>().mazeId).gameObject);
-                        playerCube.transform.position = tempPortal.transform.position - tempPortal.transform.up * tempPortal.transform.localScale.y * 0.5f + playerCube.transform.up * 1/6f;
+                        playerCube.transform.position = tempPortal.transform.position - playerCube.transform.up * 1/3f;
                         playerCube.transform.eulerAngles = tempPortal.transform.eulerAngles;
-                        tempPortal.SetActive(false);
-
+                        //tempPortal.SetActive(false);
                         GameManager.PlayerCubeTransform = playerCube.transform;
                         GameManager.MazeTransform = mazeHolder.GetChild(tempPortal.GetComponent<Portal>().mazeId);
                         tempPortal.GetComponent<Portal>().CheckpointSaveGameState();

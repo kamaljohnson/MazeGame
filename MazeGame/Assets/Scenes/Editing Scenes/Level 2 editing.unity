@@ -3534,6 +3534,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a95602c9d153b4ead7d621f40ed298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointActiveMaterial: {fileID: 0}
+  checkpointDeActiveMaterial: {fileID: 0}
   intractableId: 0
   itemSet: 1
   isCheckpoint: 1
@@ -6837,9 +6839,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a95602c9d153b4ead7d621f40ed298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointActiveMaterial: {fileID: 0}
+  checkpointDeActiveMaterial: {fileID: 0}
   intractableId: 0
   itemSet: 1
-  isCheckpoint: 0
+  isCheckpoint: 1
   portalName: 2:0:0
   destinationPortalName: levelID:mazeID:portalID
   portalId: 0
