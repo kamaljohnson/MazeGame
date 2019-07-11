@@ -31,6 +31,11 @@ namespace Game.Items.Intractable.Laser
         public bool forward;
         public bool back;
 
+        public LineRenderer lrRight;
+        public LineRenderer lrLeft;
+        public LineRenderer lrForward;
+        public LineRenderer lrBack;
+
         [Header("Shooting Properties")]
         public int damage;
         public int range;
@@ -42,6 +47,24 @@ namespace Game.Items.Intractable.Laser
         public void Start()
         {
             _timer = 0;
+
+            var originOffset = transform.position - transform.up * 2f;
+
+            lrRight.enabled = false;
+            lrLeft.enabled = false;
+            lrForward.enabled = false;
+            lrBack.enabled = false;
+            
+            lrRight.SetPosition(0, originOffset);                    
+            lrLeft.SetPosition(0, originOffset);                    
+            lrForward.SetPosition(0, originOffset);                    
+            lrBack.SetPosition(0, originOffset);          
+            
+            lrRight.SetPosition(1, originOffset + transform.right * range);                    
+            lrLeft.SetPosition(1, originOffset - transform.right * range);                    
+            lrForward.SetPosition(1, originOffset + transform.forward * range);                    
+            lrBack.SetPosition(1, originOffset - transform.forward * range);                    
+
         }
         
         public void Update()
@@ -57,6 +80,10 @@ namespace Game.Items.Intractable.Laser
                 if (_timer > rechargeDelay + shootPeriod)
                 {
                     _timer = 0;
+                    lrRight.enabled = false;
+                    lrLeft.enabled = false;
+                    lrForward.enabled = false;
+                    lrBack.enabled = false;
                 }
             }
         }
@@ -69,6 +96,7 @@ namespace Game.Items.Intractable.Laser
             switch (direction)
             {
                 case Direction.Right:
+                    lrRight.enabled = true;
                     Debug.DrawRay(transform.position - transform.up * 2, transform.right * range, color);
                     if(Physics.Raycast(transform.position - transform.up * 2, transform.right, out hit, range))
                     {
@@ -79,6 +107,7 @@ namespace Game.Items.Intractable.Laser
                     }
                     break;
                 case Direction.Left:
+                    lrLeft.enabled = true;
                     Debug.DrawRay(transform.position - transform.up * 2, -transform.right * range, color);
                     if (Physics.Raycast(transform.position - transform.up * 2, -transform.right, out hit, range))
                     {
@@ -89,6 +118,7 @@ namespace Game.Items.Intractable.Laser
                     }
                     break;
                 case Direction.Forward:
+                    lrForward.enabled = true;
                     Debug.DrawRay(transform.position - transform.up * 2, transform.forward * range, color);
                     if (Physics.Raycast(transform.position - transform.up * 2, transform.forward, out hit, range))
                     {
@@ -99,6 +129,7 @@ namespace Game.Items.Intractable.Laser
                     }
                     break;
                 case Direction.Back:
+                    lrBack.enabled = true;
                     Debug.DrawRay(transform.position - transform.up * 2, -transform.forward * range, color);
                     if (Physics.Raycast(transform.position - transform.up * 2, -transform.forward, out hit, range))
                     {
