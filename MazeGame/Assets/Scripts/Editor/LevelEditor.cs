@@ -287,7 +287,8 @@ namespace LevelEditor
                 GUILayout.BeginHorizontal();
                 if (GUILayout.Button("Save", GUILayout.Height(30)))
                 {
-                    Save.LevelSaveManager sm = CreateInstance<Save.LevelSaveManager>();
+                    EditorApplication.SaveScene();
+                    var sm = CreateInstance<Save.LevelSaveManager>();
                     sm.Save();
                 }
 

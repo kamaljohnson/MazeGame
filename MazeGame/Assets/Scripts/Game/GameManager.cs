@@ -11,6 +11,7 @@ namespace Game
             Playing,
             Paused,
             LevelComplete,
+            Dead,
             GameOver,
             InMenu
         }

@@ -98,7 +98,7 @@ namespace Game.Items.Intractable.Spike
 
         private void OnTriggerEnter(Collider other)
         {
-            PlayerHealth.DecreaseHealth(1);
+            HealthSystem.Hit(1);
         }
 
         public bool ActivationStatus()
