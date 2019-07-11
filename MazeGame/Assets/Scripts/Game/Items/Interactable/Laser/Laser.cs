@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Transactions;
+using Game.Player;
 using UnityEngine;
 
 namespace Game.Items.Intractable.Laser
@@ -29,13 +30,33 @@ namespace Game.Items.Intractable.Laser
         public bool left;
         public bool forward;
         public bool back;
+
+        public int damage;
+        public int range;
+        public int rechargeDelay;
+        public int shootPeriod;
+        private float _timer;
+
+        public void Start()
+        {
+            _timer = 0;
+        }
         
         public void Update()
         {
-            if(right) Shoot(Direction.Right);
-            if(left) Shoot(Direction.Left);
-            if(forward) Shoot(Direction.Forward);
-            if(back) Shoot(Direction.Back);
+            
+            _timer += Time.deltaTime;
+            if (_timer > rechargeDelay)
+            {
+                if(right) Shoot(Direction.Right);
+                if(left) Shoot(Direction.Left);
+                if(forward) Shoot(Direction.Forward);
+                if(back) Shoot(Direction.Back);
+                if (_timer > rechargeDelay + shootPeriod)
+                {
+                    _timer = 0;
+                }
+            }
         }
 
         public void Shoot(Direction direction)
@@ -46,20 +67,44 @@ namespace Game.Items.Intractable.Laser
             switch (direction)
             {
                 case Direction.Right:
-                    Physics.Raycast(transform.position - transform.up * 2, transform.right, out hit, 3 + 0.1f * 3);
-                    Debug.DrawRay(transform.position - transform.up * 2, transform.right * 2, color);
+                    Debug.DrawRay(transform.position - transform.up * 2, transform.right * range, color);
+                    if(Physics.Raycast(transform.position - transform.up * 2, transform.right, out hit, range))
+                    {
+                        if (hit.collider.CompareTag("Player"))
+                        {
+                            HealthSystem.Hit(damage);
+                        }
+                    }
                     break;
                 case Direction.Left:
-                    Physics.Raycast(transform.position - transform.up * 2, -transform.right, out hit, 3 + 0.1f * 3);
-                    Debug.DrawRay(transform.position - transform.up * 2, -transform.right * 2, color);
+                    Debug.DrawRay(transform.position - transform.up * 2, -transform.right * range, color);
+                    if (Physics.Raycast(transform.position - transform.up * 2, -transform.right, out hit, range))
+                    {
+                        if (hit.collider.CompareTag("Player"))
+                        {
+                            HealthSystem.Hit(damage);
+                        }
+                    }
                     break;
                 case Direction.Forward:
-                    Physics.Raycast(transform.position - transform.up * 2, transform.forward, out hit, 3 + 0.1f * 3);
-                    Debug.DrawRay(transform.position - transform.up * 2, transform.forward * 2, color);
+                    Debug.DrawRay(transform.position - transform.up * 2, transform.forward * range, color);
+                    if (Physics.Raycast(transform.position - transform.up * 2, transform.forward, out hit, range))
+                    {
+                        if (hit.collider.CompareTag("Player"))
+                        {
+                            HealthSystem.Hit(damage);
+                        }
+                    }
                     break;
                 case Direction.Back:
-                    Physics.Raycast(transform.position - transform.up * 2, -transform.forward, out hit, 3 + 0.1f * 3);
-                    Debug.DrawRay(transform.position - transform.up * 2, -transform.forward * 2, color);
+                    Debug.DrawRay(transform.position - transform.up * 2, -transform.forward * range, color);
+                    if (Physics.Raycast(transform.position - transform.up * 2, -transform.forward, out hit, range))
+                    {
+                        if (hit.collider.CompareTag("Player"))
+                        {
+                            HealthSystem.Hit(damage);
+                        }
+                    }
                     break;
             }
         }
@@ -131,6 +176,12 @@ namespace Game.Items.Intractable.Laser
         public string o;    //Linked Button On State
         public string f;    //Linked Button Off State
 
+        public int d;    //laser damage
+        public int r;    //laser range
+        
+        public int rd; //    recharge delay
+        public int s; //    shoot period
+
         public int l;    //activated laser directions
 
         public int i;       //intractable id
@@ -149,6 +200,12 @@ namespace Game.Items.Intractable.Laser
 
             o = laser.linkedButtonOnState;
             f = laser.linkedButtonOffState;
+
+            d = laser.damage;
+            r = laser.range;
+            
+            rd = laser.rechargeDelay;
+            s = laser.shootPeriod;
 
             i = laser.GetIntractableId();
             string tempBin = (laser.right ? "1" : "0") +
@@ -184,6 +241,11 @@ namespace Game.Items.Intractable.Laser
             laser.left = tempPathData[2] == 1;
             laser.forward = tempPathData[1] == 1;
             laser.back = tempPathData[0] == 1;
+
+            laser.damage = d;
+            laser.range = r;
+            laser.rechargeDelay = rd;
+            laser.shootPeriod = s;
             
             return laser;
         }
