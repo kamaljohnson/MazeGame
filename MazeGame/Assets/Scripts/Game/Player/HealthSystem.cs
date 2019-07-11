@@ -5,13 +5,16 @@ namespace Game.Player
 {
     public class HealthSystem : MonoBehaviour
     {
-        public int maxLives;
+        public int initialLives;
+        public int initialArmor;
+        
         private static int _lives;
         private static int _armour;
 
         public void Start()
         {
-            _lives = maxLives;
+            _lives = initialLives;
+            _armour = initialArmor;
         }
         
         public void Update()

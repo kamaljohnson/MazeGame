@@ -41,6 +41,8 @@ namespace Game.Items.Intractable.Spike
         private float _timer;
         private int _direction;
         private int _maxSpikeId;
+
+        private bool _onSpike;
         
         public void Start()
         {
@@ -82,6 +84,16 @@ namespace Game.Items.Intractable.Spike
             {
                 DeactivateSpike();
             }
+
+            if (_onSpike)
+            {
+                if (GameManager.PlayerCubeTransform.GetComponent<Movement>().movementSnappedFull)
+                {
+                    HealthSystem.Hit(1);
+                }
+
+                _onSpike = false;
+            }
         }
         
         public void ActivateSpike()
@@ -98,12 +110,9 @@ namespace Game.Items.Intractable.Spike
             _isActivated = false;
         }
 
-        private void OnTriggerStay(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
-            if (GameManager.PlayerCubeTransform.GetComponent<Movement>().movementSnappedFull)
-            {
-                HealthSystem.Hit(1);
-            }
+            _onSpike = true;
         }
 
         public bool ActivationStatus()
