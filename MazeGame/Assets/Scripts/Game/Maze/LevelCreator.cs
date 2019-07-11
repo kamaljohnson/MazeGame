@@ -204,7 +204,7 @@ namespace Game
                         laser.v,
                         laser.w
                     );
-                    tempLaser.GetComponent<Laser>().SetLazerValues(laser.GetLaser());
+                    tempLaser.GetComponent<Laser>().SetLaserValues(laser.GetLaser());
                     
                     Button.AllInteractableItems.Add(tempLaser.GetComponent<Laser>());
                 }

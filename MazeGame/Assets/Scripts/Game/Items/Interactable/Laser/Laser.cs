@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
 
 namespace Game.Items.Intractable.Laser
@@ -39,15 +40,26 @@ namespace Game.Items.Intractable.Laser
 
         public void Shoot(Direction direction)
         {
+            Color color;
+            RaycastHit hit;
+            color = new Color(1f, 0.8f, 0.36f);
             switch (direction)
             {
                 case Direction.Right:
+                    Physics.Raycast(transform.position - transform.up * 2, transform.right, out hit, 3 + 0.1f * 3);
+                    Debug.DrawRay(transform.position - transform.up * 2, transform.right * 2, color);
                     break;
                 case Direction.Left:
+                    Physics.Raycast(transform.position - transform.up * 2, -transform.right, out hit, 3 + 0.1f * 3);
+                    Debug.DrawRay(transform.position - transform.up * 2, -transform.right * 2, color);
                     break;
                 case Direction.Forward:
+                    Physics.Raycast(transform.position - transform.up * 2, transform.forward, out hit, 3 + 0.1f * 3);
+                    Debug.DrawRay(transform.position - transform.up * 2, transform.forward * 2, color);
                     break;
                 case Direction.Back:
+                    Physics.Raycast(transform.position - transform.up * 2, -transform.forward, out hit, 3 + 0.1f * 3);
+                    Debug.DrawRay(transform.position - transform.up * 2, -transform.forward * 2, color);
                     break;
             }
         }
@@ -87,7 +99,7 @@ namespace Game.Items.Intractable.Laser
             return ItemCategories.Intractable;
         }
         
-        public void SetLazerValues(Laser laser)
+        public void SetLaserValues(Laser laser)
         {   
             intractableId = laser.intractableId;
             linkedButtonOnState = laser.linkedButtonOnState;
