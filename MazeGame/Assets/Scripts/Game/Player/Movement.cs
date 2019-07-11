@@ -393,7 +393,7 @@ namespace Game.Player
         public void Reset()
         {
             movementSnappedFull = true;
-            movementSnappedHalf = false;
+            movementSnappedHalf = true;
             _atJunction = true;
             _movementDirection = Direction.None;
             _tempMovementDirection = Direction.None;
