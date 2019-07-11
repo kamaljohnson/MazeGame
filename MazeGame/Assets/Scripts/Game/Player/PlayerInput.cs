@@ -14,7 +14,7 @@ namespace Game
     
     public class PlayerInput : MonoBehaviour
     {
-        public InputTypes inputTypes;
+        public InputTypes inputType;
         public bool lockInputTillJunction;
 
         public Joystick movementJoystick;
@@ -59,6 +59,11 @@ namespace Game
 
         public void Start()
         {
+            if (inputType != InputTypes.JoystickInput)
+            {
+                movementJoystick.gameObject.SetActive(false);
+                attackJoystick.gameObject.SetActive(false);
+            }
             RotationCount = 0;
             if (Application.platform == RuntimePlatform.Android)
             {
@@ -78,7 +83,7 @@ namespace Game
         {
             ResetInputs();
             
-            switch (inputTypes)
+            switch (inputType)
             {
                 case InputTypes.Keyboard:
                     HandleKeyboardInputs();

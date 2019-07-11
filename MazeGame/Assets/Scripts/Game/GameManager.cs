@@ -12,7 +12,7 @@ namespace Game
             Paused,
             LevelComplete,
             GameOver,
-            InMenu,
+            InMenu
         }
         
         public static Transform CurrentMazeTransform;
@@ -22,12 +22,7 @@ namespace Game
         
         public void Start()
         {
-            Screen.orientation = ScreenOrientation.Landscape;
-        }
-    
-        public void Update()
-        {
-            
+            Screen.orientation = ScreenOrientation.Portrait;
         }
     }
 }
