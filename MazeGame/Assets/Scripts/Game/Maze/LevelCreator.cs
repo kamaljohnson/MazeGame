@@ -113,7 +113,7 @@ namespace Game
                 foreach (var spike in maze.s)
                 {
                     var tempSpike = Instantiate(spikePrefab, tempMaze.transform, true);
-                    tempSpike.GetComponent<Collider>().enabled = true;
+                    tempSpike.GetComponent<Collider>().enabled = false;
                     
                     tempSpike.transform.position = new Vector3(
                         spike.x,
@@ -149,7 +149,6 @@ namespace Game
                     if (tempPortal.GetComponent<Portal>().portalId == 0)    //the starting of the maze
                     {
                         //TODO: replace this code with the Portal.GoToPortal(portalID = 0)
-                        Portal.CurrentCheckpointPortalId = 0;
                         var playerCube = Instantiate(this.playerCube);
                         playerCube.GetComponent<Movement>().input = inputManager.GetComponent<PlayerInput>();
                         playerCube.GetComponent<Movement>().SetParentMaze(mazeHolder.GetChild(tempPortal.GetComponent<Portal>().mazeId).gameObject);
@@ -158,7 +157,9 @@ namespace Game
                         tempPortal.SetActive(false);
 
                         GameManager.PlayerCubeTransform = playerCube.transform;
-                        GameManager.CurrentMazeTransform = mazeHolder.GetChild(tempPortal.GetComponent<Portal>().mazeId);
+                        GameManager.MazeTransform = mazeHolder.GetChild(tempPortal.GetComponent<Portal>().mazeId);
+                        tempPortal.GetComponent<Portal>().CheckpointSaveGameState();
+
                     }
 
                     Button.AllInteractableItems.Add(tempPortal.GetComponent<Portal>());

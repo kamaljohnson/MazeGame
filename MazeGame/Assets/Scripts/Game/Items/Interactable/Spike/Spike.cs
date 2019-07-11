@@ -87,18 +87,23 @@ namespace Game.Items.Intractable.Spike
         public void ActivateSpike()
         {
             transform.GetChild(0).GetComponent<Animator>().Play("SpikeActivationAnimation", -1, 0);
+            transform.GetComponent<Collider>().enabled = true;
             _isActivated = true;
         }
 
         public void DeactivateSpike()
         {
             transform.GetChild(0).GetComponent<Animator>().Play("SpikeDeActivationAnimation", -1, 0);
+            transform.GetComponent<Collider>().enabled = false;
             _isActivated = false;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
-            HealthSystem.Hit(1);
+            if (GameManager.PlayerCubeTransform.GetComponent<Movement>().movementSnappedFull)
+            {
+                HealthSystem.Hit(1);
+            }
         }
 
         public bool ActivationStatus()

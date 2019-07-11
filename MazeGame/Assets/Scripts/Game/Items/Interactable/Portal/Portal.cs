@@ -12,8 +12,14 @@ namespace Game.Items.Intractable.Portal
         public bool itemSet;    //is the item set with values
         
         public bool isCheckpoint;                //is the portal acting as a checkpoint
+        private Vector3 _checkpointMazeOrientation;
+        private Vector3 _checkpointPlayerPosition;
+        private Vector3 _checkpointPlayerOrientation;
+        
         public string portalName;               //name format: "levelID:mazeID:portalID"
         public string destinationPortalName;    //name format: "levelID:mazeID:portalID"
+
+        public static Portal CurrentCheckpointDestinationPortal;
 
         [Tooltip("set this to 0 if start position")]
         public int portalId;                   //0, 1, 2 ..etc [0 => level start location/portal]
@@ -33,8 +39,6 @@ namespace Game.Items.Intractable.Portal
         public string linkedButtonOnState = "";
         public string linkedButtonOffState = "";
         
-        public static int CurrentCheckpointPortalId;
-
         private bool _onPortal;
         private bool _portalActivated;
 
@@ -85,7 +89,26 @@ namespace Game.Items.Intractable.Portal
         
         public void CheckpointSaveGameState()   //saves the entire state of the game for checkpoint reference
         {
+            Debug.Log("Saving Game State");
+            CurrentCheckpointDestinationPortal = this;
+            _checkpointMazeOrientation = GameManager.MazeTransform.eulerAngles;
+            _checkpointPlayerPosition = GameManager.PlayerCubeTransform.localPosition;
+            _checkpointPlayerOrientation = GameManager.PlayerCubeTransform.localEulerAngles;
+        }
 
+        public void CheckpointLoadGameState()
+        {
+            Debug.Log("Loading Game State");
+            GameManager.MazeTransform.eulerAngles = _checkpointMazeOrientation;
+            GameManager.PlayerCubeTransform.localPosition = _checkpointPlayerPosition;
+            GameManager.PlayerCubeTransform.localEulerAngles = _checkpointPlayerOrientation;
+        }
+        
+        public void ActivateCheckpoint()    //sends the player to this portal destination if dead
+        {
+            Debug.Log("Checkpoint Activated");
+            CheckpointLoadGameState();
+            GoToPortalDestination();
         }
 
         public void GoToPortalDestination()     //teleport the player to the destination portal

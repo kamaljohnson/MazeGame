@@ -41,6 +41,7 @@ namespace Game.Player
             else
             {
                 _lives -= 1;
+                GameManager.Gamestate = GameManager.GameStates.Dead;
             }
         }
 

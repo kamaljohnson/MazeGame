@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using Game.Items.Path.Ice;
 using UnityEngine;
 
@@ -55,7 +56,7 @@ namespace Game.Player
 
         public void Update()
         {
-            if (GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().isRotating)    //no calculations will be made or applied while the maze is rotating
+            if (GameManager.MazeTransform.gameObject.GetComponent<Maze.MazeRotator>().isRotating)    //no calculations will be made or applied while the maze is rotating
                 return;
             
             HandleInput();
@@ -274,16 +275,16 @@ namespace Game.Player
                     switch (_movementDirection)
                     {
                         case Direction.Right:
-                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, speed);
+                            GameManager.MazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, speed);
                             break;
                         case Direction.Left:
-                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, speed);
+                            GameManager.MazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, speed);
                             break;
                         case Direction.Forward:
-                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(-transform.right, speed);
+                            GameManager.MazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(-transform.right, speed);
                             break;
                         case Direction.Back:
-                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(transform.right, speed);
+                            GameManager.MazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(transform.right, speed);
                             break;
                     }
                     
@@ -341,16 +342,16 @@ namespace Game.Player
                     switch (_movementDirection)
                     {
                         case Direction.Right:
-                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, speed);
+                            GameManager.MazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(-transform.forward, speed);
                             break;
                         case Direction.Left:
-                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, speed);
+                            GameManager.MazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(transform.forward, speed);
                             break;
                         case Direction.Forward:
-                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(transform.right, speed);
+                            GameManager.MazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(transform.right, speed);
                             break;
                         case Direction.Back:
-                            GameManager.CurrentMazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(-transform.right, speed);
+                            GameManager.MazeTransform.gameObject.GetComponent<Maze.MazeRotator>().Rotate(-transform.right, speed);
                             break;
                     }                
                 }
@@ -385,8 +386,21 @@ namespace Game.Player
 
         public void SetParentMaze(GameObject maze)
         {
-            GameManager.CurrentMazeTransform = maze.transform;
-            transform.parent = GameManager.CurrentMazeTransform;
+            GameManager.MazeTransform = maze.transform;
+            transform.parent = GameManager.MazeTransform;
+        }
+
+        public void Reset()
+        {
+            movementSnappedFull = true;
+            movementSnappedHalf = false;
+            _atJunction = true;
+            _movementDirection = Direction.None;
+            _tempMovementDirection = Direction.None;
+            _atVerticalDownEdge = false;
+            _atVerticalUpEdge = false;
+            playerCube.transform.localPosition = Vector3.zero;
+            playerCube.transform.localEulerAngles = Vector3.zero;
         }
     }
 }
