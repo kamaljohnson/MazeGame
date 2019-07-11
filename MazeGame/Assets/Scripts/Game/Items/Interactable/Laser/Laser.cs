@@ -48,22 +48,10 @@ namespace Game.Items.Intractable.Laser
         {
             _timer = 0;
 
-            var originOffset = transform.position - transform.up * 2f;
-
             lrRight.enabled = false;
             lrLeft.enabled = false;
             lrForward.enabled = false;
             lrBack.enabled = false;
-            
-            lrRight.SetPosition(0, originOffset);                    
-            lrLeft.SetPosition(0, originOffset);                    
-            lrForward.SetPosition(0, originOffset);                    
-            lrBack.SetPosition(0, originOffset);          
-            
-            lrRight.SetPosition(1, originOffset + transform.right * range);                    
-            lrLeft.SetPosition(1, originOffset - transform.right * range);                    
-            lrForward.SetPosition(1, originOffset + transform.forward * range);                    
-            lrBack.SetPosition(1, originOffset - transform.forward * range);                    
 
         }
         
@@ -93,6 +81,16 @@ namespace Game.Items.Intractable.Laser
             Color color;
             RaycastHit hit;
             color = new Color(1f, 0.8f, 0.36f);
+            
+            var originOffset = transform.position - transform.up * 2f;
+            
+            lrRight.SetPosition(0, originOffset);                    
+            lrLeft.SetPosition(0, originOffset);                    
+            lrForward.SetPosition(0, originOffset);                    
+            lrBack.SetPosition(0, originOffset);          
+                        
+            float tempRange = range;
+
             switch (direction)
             {
                 case Direction.Right:
@@ -100,44 +98,52 @@ namespace Game.Items.Intractable.Laser
                     Debug.DrawRay(transform.position - transform.up * 2, transform.right * range, color);
                     if(Physics.Raycast(transform.position - transform.up * 2, transform.right, out hit, range))
                     {
+                        tempRange = Vector3.Distance(hit.transform.position, transform.position);
                         if (hit.collider.CompareTag("Player"))
                         {
                             HealthSystem.Hit(damage);
                         }
                     }
+                    lrRight.SetPosition(1, originOffset + transform.right * tempRange);                    
                     break;
                 case Direction.Left:
                     lrLeft.enabled = true;
                     Debug.DrawRay(transform.position - transform.up * 2, -transform.right * range, color);
                     if (Physics.Raycast(transform.position - transform.up * 2, -transform.right, out hit, range))
                     {
+                        tempRange = Vector3.Distance(hit.transform.position, transform.position);
                         if (hit.collider.CompareTag("Player"))
                         {
                             HealthSystem.Hit(damage);
                         }
                     }
+                    lrLeft.SetPosition(1, originOffset - transform.right * tempRange);                    
                     break;
                 case Direction.Forward:
                     lrForward.enabled = true;
                     Debug.DrawRay(transform.position - transform.up * 2, transform.forward * range, color);
                     if (Physics.Raycast(transform.position - transform.up * 2, transform.forward, out hit, range))
                     {
+                        tempRange = Vector3.Distance(hit.transform.position, transform.position);
                         if (hit.collider.CompareTag("Player"))
                         {
                             HealthSystem.Hit(damage);
                         }
                     }
+                    lrForward.SetPosition(1, originOffset + transform.forward * tempRange);                    
                     break;
                 case Direction.Back:
                     lrBack.enabled = true;
                     Debug.DrawRay(transform.position - transform.up * 2, -transform.forward * range, color);
                     if (Physics.Raycast(transform.position - transform.up * 2, -transform.forward, out hit, range))
                     {
+                        tempRange = Vector3.Distance(hit.transform.position, transform.position);
                         if (hit.collider.CompareTag("Player"))
                         {
                             HealthSystem.Hit(damage);
                         }
                     }
+                    lrBack.SetPosition(1, originOffset - transform.forward * tempRange);    
                     break;
             }
         }
