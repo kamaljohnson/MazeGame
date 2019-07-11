@@ -31,10 +31,12 @@ namespace Game.Items.Intractable.Laser
         public bool forward;
         public bool back;
 
+        [Header("Shooting Properties")]
         public int damage;
         public int range;
         public int rechargeDelay;
         public int shootPeriod;
+        
         private float _timer;
 
         public void Start()
@@ -159,6 +161,11 @@ namespace Game.Items.Intractable.Laser
             transform.GetChild(2).gameObject.SetActive(GetComponent<Laser>().left);
             transform.GetChild(3).gameObject.SetActive(GetComponent<Laser>().forward);
             transform.GetChild(4).gameObject.SetActive(GetComponent<Laser>().back);
+
+            damage = laser.damage;
+            range = laser.range;
+            shootPeriod = laser.shootPeriod;
+            rechargeDelay = laser.rechargeDelay;
         }
     }
     
@@ -246,7 +253,7 @@ namespace Game.Items.Intractable.Laser
             laser.range = r;
             laser.rechargeDelay = rd;
             laser.shootPeriod = s;
-            
+                        
             return laser;
         }
     }
