@@ -100,7 +100,7 @@ namespace Game.Items.Intractable.Spike
 
         private void OnTriggerEnter(Collider other)
         {
-            HealthSystem.Hit(1);
+            HealthSystem.Hit(1, DamageType.Quantized);
         }
 
         public bool ActivationStatus()

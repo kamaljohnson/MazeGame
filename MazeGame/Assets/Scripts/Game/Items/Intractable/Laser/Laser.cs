@@ -99,7 +99,7 @@ namespace Game.Items.Intractable.Laser
                         tempRange = Vector3.Distance(hit.point, transform.position);
                         if (hit.collider.CompareTag("Player"))
                         {
-                            HealthSystem.Hit(damage);
+                            HealthSystem.Hit(damage, DamageType.Continuous);
                         }
                     }
                     lrRight.SetPosition(1, originOffset + transform.right * tempRange);                    
@@ -112,7 +112,7 @@ namespace Game.Items.Intractable.Laser
                         tempRange = Vector3.Distance(hit.point, transform.position);
                         if (hit.collider.CompareTag("Player"))
                         {
-                            HealthSystem.Hit(damage);
+                            HealthSystem.Hit(damage, DamageType.Continuous);
                         }
                     }
                     lrLeft.SetPosition(1, originOffset - transform.right * tempRange);                    
@@ -125,7 +125,7 @@ namespace Game.Items.Intractable.Laser
                         tempRange = Vector3.Distance(hit.point, transform.position);
                         if (hit.collider.CompareTag("Player"))
                         {
-                            HealthSystem.Hit(damage);
+                            HealthSystem.Hit(damage, DamageType.Continuous);
                         }
                     }
                     lrForward.SetPosition(1, originOffset + transform.forward * tempRange);                    
@@ -138,7 +138,7 @@ namespace Game.Items.Intractable.Laser
                         tempRange = Vector3.Distance(hit.point, transform.position);
                         if (hit.collider.CompareTag("Player"))
                         {
-                            HealthSystem.Hit(damage);
+                            HealthSystem.Hit(damage, DamageType.Continuous);
                         }
                     }
                     lrBack.SetPosition(1, originOffset - transform.forward * tempRange);    

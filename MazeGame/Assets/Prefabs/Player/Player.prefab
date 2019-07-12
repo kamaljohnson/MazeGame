@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialLives: 3
   initialArmor: 5
+  armourStrength: 1
 --- !u!1 &2022343882501894592
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +114,7 @@ GameObject:
   - component: {fileID: 2022343882672722415}
   - component: {fileID: 2022343882672722414}
   - component: {fileID: 2969318203125918189}
+  - component: {fileID: 4822394710827931909}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Player
@@ -212,6 +214,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &4822394710827931909
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022343882672722403}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 64dd8c30e39e5514dac0d5a1ac4c180d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2022343882734735062
 GameObject:
   m_ObjectHideFlags: 0
