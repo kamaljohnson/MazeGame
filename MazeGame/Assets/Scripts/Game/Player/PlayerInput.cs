@@ -73,6 +73,7 @@ namespace Game
             }
             else
             {
+                inputType = InputTypes.Keyboard;
                 _touchOnDragDistance = 10;
                 _touchOffDragDistance = 10;
                 _touchDragDistanceCameraOrientation = 10;
