@@ -98,7 +98,7 @@ namespace Game.Items.Intractable.Laser
                     Debug.DrawRay(transform.position - transform.up * 2, transform.right * range, color);
                     if(Physics.Raycast(transform.position - transform.up * 2, transform.right, out hit, range))
                     {
-                        tempRange = Vector3.Distance(hit.transform.position, transform.position);
+                        tempRange = Vector3.Distance(hit.point, transform.position);
                         if (hit.collider.CompareTag("Player"))
                         {
                             HealthSystem.Hit(damage);
@@ -111,7 +111,7 @@ namespace Game.Items.Intractable.Laser
                     Debug.DrawRay(transform.position - transform.up * 2, -transform.right * range, color);
                     if (Physics.Raycast(transform.position - transform.up * 2, -transform.right, out hit, range))
                     {
-                        tempRange = Vector3.Distance(hit.transform.position, transform.position);
+                        tempRange = Vector3.Distance(hit.point, transform.position);
                         if (hit.collider.CompareTag("Player"))
                         {
                             HealthSystem.Hit(damage);
@@ -124,7 +124,7 @@ namespace Game.Items.Intractable.Laser
                     Debug.DrawRay(transform.position - transform.up * 2, transform.forward * range, color);
                     if (Physics.Raycast(transform.position - transform.up * 2, transform.forward, out hit, range))
                     {
-                        tempRange = Vector3.Distance(hit.transform.position, transform.position);
+                        tempRange = Vector3.Distance(hit.point, transform.position);
                         if (hit.collider.CompareTag("Player"))
                         {
                             HealthSystem.Hit(damage);
@@ -137,7 +137,7 @@ namespace Game.Items.Intractable.Laser
                     Debug.DrawRay(transform.position - transform.up * 2, -transform.forward * range, color);
                     if (Physics.Raycast(transform.position - transform.up * 2, -transform.forward, out hit, range))
                     {
-                        tempRange = Vector3.Distance(hit.transform.position, transform.position);
+                        tempRange = Vector3.Distance(hit.point, transform.position);
                         if (hit.collider.CompareTag("Player"))
                         {
                             HealthSystem.Hit(damage);

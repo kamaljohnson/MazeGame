@@ -61,8 +61,6 @@ namespace Game.Items.Activators.Button
             if(interactionItem == null)
                 return;
             
-            Debug.Log("the interacteble obj is not null");
-            
             if (buttonOn)
             {
                 interactionItem.ActivateInteraction();
