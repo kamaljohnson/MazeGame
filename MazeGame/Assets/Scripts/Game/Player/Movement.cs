@@ -42,16 +42,7 @@ namespace Game.Player
         
         public void Start()
         {
-            stepSize = playerCube.transform.lossyScale.x;
-            movementSnappedFull = true;
-            movementSnappedHalf = true;
-            _snapCount = 0;
-            _atJunction = true;
-            _movementDirection = Direction.None;
-            _tempMovementDirection = Direction.None;
-
-            _atVerticalUpEdge = false;
-            _atVerticalDownEdge = false;
+            Reset();
         }
 
         public void Update()
@@ -392,15 +383,21 @@ namespace Game.Player
 
         public void Reset()
         {
+            var transform1 = playerCube.transform;
+            
+            stepSize = transform1.lossyScale.x;
             movementSnappedFull = true;
             movementSnappedHalf = true;
+            _snapCount = 0;
             _atJunction = true;
             _movementDirection = Direction.None;
             _tempMovementDirection = Direction.None;
-            _atVerticalDownEdge = false;
+
             _atVerticalUpEdge = false;
-            playerCube.transform.localPosition = Vector3.zero;
-            playerCube.transform.localEulerAngles = Vector3.zero;
+            _atVerticalDownEdge = false;
+            
+            transform1.localPosition = Vector3.zero;
+            transform1.localEulerAngles = Vector3.zero;
         }
     }
 }
