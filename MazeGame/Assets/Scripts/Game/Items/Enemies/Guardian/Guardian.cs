@@ -11,6 +11,52 @@ namespace Game.Items.Enemies.Guardian
         public List<Vector3> locations;
         public bool itemSet;    //is the item set with values
         
+        [Header("Properties")]
+        public float speed;
+        public float directionChangeDelay;
+
+        private bool _changingDirection;
+        private int _nextLocationIndex;
+        private float _timer;
+        private int _direction;
+        
+        public void Start()
+        {
+            _nextLocationIndex = 1;
+            _direction = 1;
+        }
+
+        public void Update()
+        {
+            if (!_changingDirection)
+            {
+                Move();
+            }
+            else
+            {
+                _timer += Time.deltaTime;
+                if (_timer >= directionChangeDelay)
+                {
+                    _changingDirection = false;
+                    _timer = 0;
+                }
+            }
+        }
+
+        private void Move()
+        {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, locations[_nextLocationIndex], speed * Time.deltaTime);
+            if (Vector3.Distance(transform.localPosition, locations[_nextLocationIndex]) < 0.01f)
+            {
+                transform.localPosition = locations[_nextLocationIndex];
+                _nextLocationIndex += _direction;
+                if (_nextLocationIndex == locations.Count - 1 || _nextLocationIndex == 0)
+                {
+                    _direction = -_direction;
+                }
+            }
+        }
+        
         public ItemCategories GetItemType()
         {
             return ItemCategories.Enemie;
@@ -57,6 +103,7 @@ namespace Game.Items.Enemies.Guardian
             v = (int) eulerAngles.y;
             w = (int) eulerAngles.z;
 
+            l = new List<IntVector3>();
             foreach (var loc in guardian.locations)
             {
                 IntVector3 pos;
@@ -70,6 +117,7 @@ namespace Game.Items.Enemies.Guardian
         public Guardian GetGuardian()
         {
             var guardian = new Guardian();
+            guardian.locations = new List<Vector3>();
             foreach (var loc in l)
             {
                 Vector3 pos;

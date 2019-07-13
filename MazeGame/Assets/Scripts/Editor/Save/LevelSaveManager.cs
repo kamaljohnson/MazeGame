@@ -43,6 +43,7 @@ namespace LevelEditor.Save
                 mazeData.b = new List<Game.Items.Activators.Button.SerializableItem>();
                 
                 mazeData.h = new List<Game.Items.Enemies.Hammer.SerializableItem>();
+                mazeData.gr = new List<Game.Items.Enemies.Guardian.SerializableItem>();
                 
                 mazeData.i = new List<Game.Items.Path.Ice.SerializableItem>();
                 
@@ -103,9 +104,9 @@ namespace LevelEditor.Save
                                     case "Button":
                                         Debug.Log("Button");
                                         var button = allItems[itemType][itemIndex].GetComponent<Game.Items.Activators.Button.Button>();
-                                        var serializedData = new Game.Items.Activators.Button.SerializableItem();
-                                        serializedData.ConvertToSerializable(button);
-                                        mazeData.b.Add(serializedData);
+                                        var serializedButtonData = new Game.Items.Activators.Button.SerializableItem();
+                                        serializedButtonData.ConvertToSerializable(button);
+                                        mazeData.b.Add(serializedButtonData);
                                         break;
                                 }
                                 break;
@@ -117,11 +118,16 @@ namespace LevelEditor.Save
                                     case "Hammer":
                                         Debug.Log("Hammer");
                                         var hammer = allItems[itemType][itemIndex].GetComponent<Game.Items.Enemies.Hammer.Hammer>();
-                                        var serializedData = new Game.Items.Enemies.Hammer.SerializableItem();
-                                        serializedData.ConvertToSerializable(hammer);
-                                        mazeData.h.Add(serializedData);
+                                        var serializedHammerData = new Game.Items.Enemies.Hammer.SerializableItem();
+                                        serializedHammerData.ConvertToSerializable(hammer);
+                                        mazeData.h.Add(serializedHammerData);
                                         break;
-                                    case "Guardian":
+                                    case "Guardian":                
+                                        Debug.Log("Guardian");
+                                        var guardian = allItems[itemType][itemIndex].GetComponent<Game.Items.Enemies.Guardian.Guardian>();
+                                        var serializedGuardianData = new Game.Items.Enemies.Guardian.SerializableItem();
+                                        serializedGuardianData.ConvertToSerializable(guardian);
+                                        mazeData.gr.Add(serializedGuardianData);
                                         break;
                                     case "Blade":
                                         break;
@@ -184,6 +190,7 @@ namespace LevelEditor.Save
         public List<Game.Items.Activators.Button.SerializableItem> b;    //the list of all buttons on the maze
         
         public List<Game.Items.Enemies.Hammer.SerializableItem> h;    //the list of all hammers on the maze
+        public List<Game.Items.Enemies.Guardian.SerializableItem> gr;    //the list of all guardians on the maze
         
         public List<Game.Items.Path.Ice.SerializableItem> i;    //the list of all ice on the maze
     }

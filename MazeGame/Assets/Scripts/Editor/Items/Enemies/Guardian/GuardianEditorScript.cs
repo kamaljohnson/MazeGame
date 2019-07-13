@@ -10,6 +10,7 @@ namespace LevelEditor.Items.Enemies.Guardian
     {
         private Game.Items.Enemies.Guardian.Guardian _guardian;
         private bool _showPathPositions;
+        private List<Vector3> _locations = new List<Vector3>();
         
         private void OnEnable()
         {
@@ -27,6 +28,11 @@ namespace LevelEditor.Items.Enemies.Guardian
             else
             {
                 DrawDeletionHandle();
+            }
+
+            if (_guardian.locations.Count == 0)
+            {
+                _locations = new List<Vector3>();
             }
         }
 
@@ -63,9 +69,9 @@ namespace LevelEditor.Items.Enemies.Guardian
                     if (!Physics.Raycast(mazeCube.transform.position, offset, out _, 1f))
                     {
                         Handles.zTest = UnityEngine.Rendering.CompareFunction.LessEqual;
-                        foreach (var location in _guardian.locations)
+                        foreach (var location in _locations)
                         {
-                            if (location == mazeCube.transform.position + offset * 0.5f)
+                            if (location == mazeCube.transform.localPosition + offset * 0.5f)
                             {
                                 Handles.color = new Color(0.78f, 1f, 0.09f);
                                 if (Handles.Button(mazeCube.transform.position + offset * 0.55f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
@@ -84,9 +90,10 @@ namespace LevelEditor.Items.Enemies.Guardian
                             {
                                 if (_guardian.locations.Count == 0)
                                 {
-                                    _guardian.locations.Add(_guardian.transform.position + offset * 0.5f);
+                                    _guardian.locations.Add(_guardian.transform.parent.localPosition + offset);
                                 }
-                                _guardian.locations.Add(mazeCube.transform.position + offset * 0.5f);
+                                _guardian.locations.Add(mazeCube.transform.localPosition + offset);
+                                _locations.Add(mazeCube.transform.localPosition + offset * 0.5f);
                             }
                         }
                     }
