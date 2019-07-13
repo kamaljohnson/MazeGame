@@ -24,6 +24,10 @@ namespace Game.Items.Enemies.Guardian
         {
             _nextLocationIndex = 1;
             _direction = 1;
+            if (_nextLocationIndex == locations.Count - 1 || _nextLocationIndex == 0)
+            {
+                _direction = -_direction;
+            }
         }
 
         public void Update()

@@ -3,6 +3,7 @@ using UnityEngine;
 using System.IO;
 using Game.Items;
 using Game.Items.Activators.Button;
+using Game.Items.Enemies.Blade;
 using Game.Items.Enemies.Guardian;
 using Game.Items.Enemies.Hammer;
 using Game.Items.Intractable.Gate;
@@ -32,6 +33,7 @@ namespace Game
         public GameObject icePrefab;
         public GameObject hammerPrefab;
         public GameObject guardianPrefab;
+        public GameObject bladePrefab;
 
         [Header("General Properties")]
         public GameObject playerCube;
@@ -276,6 +278,23 @@ namespace Game
                         guardian.w
                     );
                     tempGuardian.GetComponent<Guardian>().SetGuardianValues(guardian.GetGuardian());
+                }
+                
+                foreach (var blade in maze.bl)
+                {
+                    var tempBlade = Instantiate(bladePrefab, tempMaze.transform);
+                    
+                    tempBlade.transform.position = new Vector3(
+                        blade.x,
+                        blade.y,
+                        blade.z
+                    );                    
+                    tempBlade.transform.eulerAngles = new Vector3(
+                        blade.u,
+                        blade.v,
+                        blade.w
+                    );
+                    tempBlade.GetComponent<Blade>().SetBladeValues(blade.GetBlade());
                 }
                 
                 foreach (var ice in maze.i)
@@ -677,6 +696,7 @@ namespace Game
         
         public List<Items.Enemies.Hammer.SerializableItem> h;      //the list of all hammers on the maze
         public List<Items.Enemies.Guardian.SerializableItem> gr;      //the list of all guardians on the maze
+        public List<Items.Enemies.Blade.SerializableItem> bl;      //the list of all blade on the maze
         
         public List<Items.Path.Ice.SerializableItem> i;      //the list of all buttons on the maze
     }

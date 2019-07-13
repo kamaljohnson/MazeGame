@@ -44,6 +44,7 @@ namespace LevelEditor.Save
                 
                 mazeData.h = new List<Game.Items.Enemies.Hammer.SerializableItem>();
                 mazeData.gr = new List<Game.Items.Enemies.Guardian.SerializableItem>();
+                mazeData.bl = new List<Game.Items.Enemies.Blade.SerializableItem>();
                 
                 mazeData.i = new List<Game.Items.Path.Ice.SerializableItem>();
                 
@@ -130,6 +131,11 @@ namespace LevelEditor.Save
                                         mazeData.gr.Add(serializedGuardianData);
                                         break;
                                     case "Blade":
+                                        Debug.Log("Blade");
+                                        var blade = allItems[itemType][itemIndex].GetComponent<Game.Items.Enemies.Blade.Blade>();
+                                        var serializedBladeData = new Game.Items.Enemies.Blade.SerializableItem();
+                                        serializedBladeData.ConvertToSerializable(blade);
+                                        mazeData.bl.Add(serializedBladeData);
                                         break;
                                     case "Knight":
                                         break;
@@ -191,6 +197,7 @@ namespace LevelEditor.Save
         
         public List<Game.Items.Enemies.Hammer.SerializableItem> h;    //the list of all hammers on the maze
         public List<Game.Items.Enemies.Guardian.SerializableItem> gr;    //the list of all guardians on the maze
+        public List<Game.Items.Enemies.Blade.SerializableItem> bl;    //the list of all blade on the maze
         
         public List<Game.Items.Path.Ice.SerializableItem> i;    //the list of all ice on the maze
     }

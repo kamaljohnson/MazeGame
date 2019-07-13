@@ -1080,6 +1080,10 @@ namespace LevelEditor
                                     }                        
                                     break;
                                 case "Blade":
+                                    if (AllItems[itemType][i].GetComponent<Game.Items.Enemies.Blade.Blade>().itemSet)
+                                    {
+                                        allMazeItems[itemType].Add(AllItems[itemType][i]);
+                                    }          
                                     break;
                             }
                             break;
