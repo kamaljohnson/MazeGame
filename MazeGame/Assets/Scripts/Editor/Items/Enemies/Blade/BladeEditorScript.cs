@@ -28,6 +28,7 @@ namespace LevelEditor.Items.Enemies.Blade
             else
             {
                 DrawDeletionHandle();
+                DrawOrientationHandles();
             }
 
             if (_blade.locations.Count == 0)
@@ -55,6 +56,15 @@ namespace LevelEditor.Items.Enemies.Blade
             if (Handles.Button(_blade.transform.position + _blade.transform.up * 0.5f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 _showPathPositions = !_showPathPositions;
+            }
+        }
+
+        private void DrawOrientationHandles()
+        {
+            Handles.color = new Color(0.92f, 0.56f, 1f);
+            if (Handles.Button(_blade.transform.position + _blade.transform.up * 0.3f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            {
+                _blade.transform.localEulerAngles = _blade.transform.localEulerAngles == Vector3.zero ? new Vector3(0, 90, 0) : Vector3.zero;
             }
         }
         
