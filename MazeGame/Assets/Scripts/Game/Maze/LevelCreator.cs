@@ -3,6 +3,7 @@ using UnityEngine;
 using System.IO;
 using Game.Items;
 using Game.Items.Activators.Button;
+using Game.Items.Enemies.Guardian;
 using Game.Items.Enemies.Hammer;
 using Game.Items.Intractable.Gate;
 using Game.Items.Intractable.Laser;
@@ -21,7 +22,7 @@ namespace Game
         public GameObject mazeCubePrefab;
         public GameObject mazeWallPrefab;
         
-        //the item prefabsl
+        //the item prefabs
         [Header("Maze Items Properties")]
         public GameObject portalPrefab;
         public GameObject spikePrefab;
@@ -30,6 +31,7 @@ namespace Game
         public GameObject buttonPrefab;
         public GameObject icePrefab;
         public GameObject hammerPrefab;
+        public GameObject guardianPrefab;
 
         [Header("General Properties")]
         public GameObject playerCube;
@@ -257,6 +259,23 @@ namespace Game
                         hammer.v,
                         hammer.w
                     );
+                }
+                
+                foreach (var guardian in maze.gr)
+                {
+                    var tempGuardian = Instantiate(guardianPrefab, tempMaze.transform);
+                    
+                    tempGuardian.transform.position = new Vector3(
+                        guardian.x,
+                        guardian.y,
+                        guardian.z
+                    );                    
+                    tempGuardian.transform.eulerAngles = new Vector3(
+                        guardian.u,
+                        guardian.v,
+                        guardian.w
+                    );
+                    tempGuardian.GetComponent<Guardian>().SetGuardianValues(guardian.GetGuardian());
                 }
                 
                 foreach (var ice in maze.i)
@@ -656,7 +675,8 @@ namespace Game
         
         public List<Items.Activators.Button.SerializableItem> b;      //the list of all buttons on the maze
         
-        public List<Items.Enemies.Hammer.SerializableItem> h;      //the list of all buttons on the maze
+        public List<Items.Enemies.Hammer.SerializableItem> h;      //the list of all hammers on the maze
+        public List<Items.Enemies.Guardian.SerializableItem> gr;      //the list of all guardians on the maze
         
         public List<Items.Path.Ice.SerializableItem> i;      //the list of all buttons on the maze
     }
