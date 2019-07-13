@@ -23,7 +23,7 @@ namespace LevelEditor
         Intractable,    //[PORTAL, LASER, SPIKES, GATES]
         Activator,      //[BUTTON]
         Collectable,    //[COIN, DIAMOND, COLLECTION POINT]
-        Enemie,         //[GUARDIAN, KNIGHT, HAMMER]
+        Enemy,         //[GUARDIAN, BLADE, HAMMER, KNIGHT]
         Decoratable,    //[PLANT_01, FOUNTAIN, ...]
     }
 
@@ -401,7 +401,7 @@ namespace LevelEditor
                 new List<Object>(), //Intractable items
                 new List<Object>(), //Activator items
                 new List<Object>(), //Collectable items
-                new List<Object>(), //Enemie items
+                new List<Object>(), //Enemy items
                 new List<Object>(), //Decoratable items
             };
             AllItems = new List<List<GameObject>>
@@ -410,7 +410,7 @@ namespace LevelEditor
                 new List<GameObject>(), //Intractable items
                 new List<GameObject>(), //Activator items
                 new List<GameObject>(), //Collectable items
-                new List<GameObject>(), //Enemie items
+                new List<GameObject>(), //Enemy items
                 new List<GameObject>(), //Decoratable items
             };
 
@@ -1001,7 +1001,7 @@ namespace LevelEditor
         }
 
         /*
-         *returs a list of maze items whose values are properly set
+         *returns a list of maze items whose values are properly set
          * 
          */
         public static void GetAllMazeItems(out List<List<GameObject>> allMazeItems)
@@ -1067,7 +1067,17 @@ namespace LevelEditor
                             break;
                         case ItemCategories.Collectable:
                             break;
-                        case ItemCategories.Enemie:
+                        case ItemCategories.Enemy:
+                            switch (AllItems[itemType][i].name)
+                            {
+                                case "Hammer":
+                                    allMazeItems[itemType].Add(AllItems[itemType][i]);
+                                    break;
+                                case "Guardian":
+                                    break;
+                                case "Blade":
+                                    break;
+                            }
                             break;
                         case ItemCategories.Decoratable:
                             break;

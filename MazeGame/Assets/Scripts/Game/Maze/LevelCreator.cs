@@ -3,6 +3,7 @@ using UnityEngine;
 using System.IO;
 using Game.Items;
 using Game.Items.Activators.Button;
+using Game.Items.Enemies.Hammer;
 using Game.Items.Intractable.Gate;
 using Game.Items.Intractable.Laser;
 using Game.Items.Intractable.Portal;
@@ -28,6 +29,7 @@ namespace Game
         public GameObject gatePrefab;
         public GameObject buttonPrefab;
         public GameObject icePrefab;
+        public GameObject hammerPrefab;
 
         [Header("General Properties")]
         public GameObject playerCube;
@@ -241,6 +243,22 @@ namespace Game
                     }
                 }
 
+                foreach (var hammer in maze.h)
+                {
+                    var tempHammer = Instantiate(hammerPrefab, tempMaze.transform);
+                    
+                    tempHammer.transform.position = new Vector3(
+                        hammer.x,
+                        hammer.y,
+                        hammer.z
+                    );                    
+                    tempHammer.transform.eulerAngles = new Vector3(
+                        hammer.u,
+                        hammer.v,
+                        hammer.w
+                    );
+                }
+                
                 foreach (var ice in maze.i)
                 {
                     var tempIce = Instantiate(icePrefab, tempMaze.transform, true);
@@ -637,6 +655,8 @@ namespace Game
         public List<Items.Intractable.Spike.SerializableItem> s;      //the list of all buttons on the maze
         
         public List<Items.Activators.Button.SerializableItem> b;      //the list of all buttons on the maze
+        
+        public List<Items.Enemies.Hammer.SerializableItem> h;      //the list of all buttons on the maze
         
         public List<Items.Path.Ice.SerializableItem> i;      //the list of all buttons on the maze
     }

@@ -39,7 +39,10 @@ namespace LevelEditor.Save
                 mazeData.g = new List<Game.Items.Intractable.Gate.SerializableItem>();
                 mazeData.l = new List<Game.Items.Intractable.Laser.SerializableItem>();
                 mazeData.s = new List<Game.Items.Intractable.Spike.SerializableItem>();
+                
                 mazeData.b = new List<Game.Items.Activators.Button.SerializableItem>();
+                
+                mazeData.h = new List<Game.Items.Enemies.Hammer.SerializableItem>();
                 
                 mazeData.i = new List<Game.Items.Path.Ice.SerializableItem>();
                 
@@ -108,7 +111,23 @@ namespace LevelEditor.Save
                                 break;
                             case ItemCategories.Collectable:
                                 break;
-                            case ItemCategories.Enemie:
+                            case ItemCategories.Enemy:
+                                switch (allItems[itemType][itemIndex].name)
+                                {
+                                    case "Hammer":
+                                        Debug.Log("Hammer");
+                                        var hammer = allItems[itemType][itemIndex].GetComponent<Game.Items.Enemies.Hammer.Hammer>();
+                                        var serializedData = new Game.Items.Enemies.Hammer.SerializableItem();
+                                        serializedData.ConvertToSerializable(hammer);
+                                        mazeData.h.Add(serializedData);
+                                        break;
+                                    case "Guardian":
+                                        break;
+                                    case "Blade":
+                                        break;
+                                    case "Knight":
+                                        break;
+                                }
                                 break;
                             case ItemCategories.Decoratable:
                                 break;
@@ -161,7 +180,10 @@ namespace LevelEditor.Save
         public List<Game.Items.Intractable.Gate.SerializableItem> g;    //the list of all gates on the maze
         public List<Game.Items.Intractable.Laser.SerializableItem> l;    //the list of all lasers on the maze
         public List<Game.Items.Intractable.Spike.SerializableItem> s;    //the list of all buttons on the maze
+        
         public List<Game.Items.Activators.Button.SerializableItem> b;    //the list of all buttons on the maze
+        
+        public List<Game.Items.Enemies.Hammer.SerializableItem> h;    //the list of all hammers on the maze
         
         public List<Game.Items.Path.Ice.SerializableItem> i;    //the list of all ice on the maze
     }
