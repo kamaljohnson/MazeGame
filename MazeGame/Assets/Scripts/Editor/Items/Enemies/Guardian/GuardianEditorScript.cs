@@ -9,6 +9,7 @@ namespace LevelEditor.Items.Enemies.Guardian
     public class GuardianEditorScript : Editor, ITem
     {
         private Game.Items.Enemies.Guardian.Guardian _guardian;
+        private bool _showPathPositions;
         
         private void OnEnable()
         {
@@ -17,8 +18,16 @@ namespace LevelEditor.Items.Enemies.Guardian
 
         private void OnSceneGUI()
         {
-            DrawDeletionHandle();
             DrawPathSelectionHandle();
+
+            if (_showPathPositions)
+            {
+                DrawAllLocationHandles();
+            }
+            else
+            {
+                DrawDeletionHandle();
+            }
         }
 
         private void DrawDeletionHandle()
@@ -39,7 +48,7 @@ namespace LevelEditor.Items.Enemies.Guardian
             Handles.color = new Color(0.37f, 0.96f, 1f);
             if (Handles.Button(_guardian.transform.position + _guardian.transform.up * 0.5f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
-                DrawAllLocationHandles();
+                _showPathPositions = !_showPathPositions;
             }
         }
         
@@ -48,17 +57,37 @@ namespace LevelEditor.Items.Enemies.Guardian
             for (int i = 0; i < LevelEditor.CurrentMaze.transform.childCount; i++)
             {
                 GameObject mazeCube = LevelEditor.CurrentMaze.transform.GetChild(i).gameObject;
-                RaycastHit hit;
                 foreach (var offset in Helper.Vector3Directions)
                 {
-                    if (!Physics.Raycast(mazeCube.transform.position, offset, out hit, 1f))
+                    var positionFlag = true;
+                    if (!Physics.Raycast(mazeCube.transform.position, offset, out _, 1f))
                     {
-    
-                        Handles.color = new Color(0.54f, 0.25f, 1f);
                         Handles.zTest = UnityEngine.Rendering.CompareFunction.LessEqual;
-                        if (Handles.Button(mazeCube.transform.position + (offset * 0.55f), Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+                        foreach (var location in _guardian.locations)
                         {
-                            
+                            if (location == mazeCube.transform.position + offset * 0.5f)
+                            {
+                                Handles.color = new Color(0.78f, 1f, 0.09f);
+                                if (Handles.Button(mazeCube.transform.position + offset * 0.55f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+                                {
+                                    
+                                }
+                                positionFlag = false;
+                                break;
+                            }
+                        }
+
+                        if (positionFlag)
+                        {
+                            Handles.color = new Color(0.54f, 0.25f, 1f);
+                            if (Handles.Button(mazeCube.transform.position + offset * 0.55f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+                            {
+                                if (_guardian.locations.Count == 0)
+                                {
+                                    _guardian.locations.Add(_guardian.transform.position + offset * 0.5f);
+                                }
+                                _guardian.locations.Add(mazeCube.transform.position + offset * 0.5f);
+                            }
                         }
                     }
                 }
