@@ -1,20 +1,84 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Game.Items.Intractable.Spike;
+using Game.Player;
 using UnityEngine;
 
 namespace Game.Items.Enemies.Hammer
 {
     public class Hammer : MonoBehaviour, IItems
     {
-        public bool itemSet;    //is the item set with values
+        public bool itemSet;
+        public float strikeDelay;
+        public float animationDelay;
+
+        private bool _playerUnderHammer;
+        private bool _activated;
+        private float _timer;
+        private bool _stricked;
+
+        public void Start()
+        {
+            _activated = false;
+        }
+
+        public void Update()
+        {
+            if (_activated)
+            {
+                _timer += Time.deltaTime;
+                if (_timer >= strikeDelay && !_stricked)
+                {
+                    Strike();
+                    _activated = false;
+                }
+
+                if (_stricked && _timer >= strikeDelay + animationDelay)
+                {
+                    _stricked = false;
+                    _timer = 0;
+                }
+            }
+        }
+        
+        private void OnTriggerStay(Collider other)
+        {
+            if (!other.CompareTag("Hammer"))
+            {
+                _activated = true;
+                if (other.CompareTag("Player"))
+                {
+                    _playerUnderHammer = true;
+                }
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (_stricked)
+            {
+                _activated = false;
+            }
+            if (other.CompareTag("Player"))
+            {
+                _playerUnderHammer = false;
+            }
+        }
+
+        private void Strike()
+        {
+            _stricked = true;
+            transform.GetChild(0).GetComponent<Animator>().Play("HammerStrikeAnimation", -1, 0);
+            if (_playerUnderHammer)
+            {
+                HealthSystem.Hit(1, DamageType.Quantized);
+            }
+        }
         
         public ItemCategories GetItemType()
         {
             return ItemCategories.Enemie;
         }
     }
+    
 
     [Serializable]
     public class SerializableItem
