@@ -28,11 +28,12 @@ namespace Game.Items.Enemies.Hammer
                 if (_timer >= strikeDelay && !_stricked)
                 {
                     Strike();
-                    _activated = false;
+                    _timer = 0;
                 }
 
-                if (_stricked && _timer >= strikeDelay + animationDelay)
+                if (_stricked && _timer >= animationDelay)
                 {
+                    _activated = false;
                     _stricked = false;
                     _timer = 0;
                 }
