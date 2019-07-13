@@ -1,2 +1,1 @@
-# MazeGame
-maze game
+## Maze Game
