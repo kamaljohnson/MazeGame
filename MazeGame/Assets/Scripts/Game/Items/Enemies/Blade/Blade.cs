@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Player;
 using UnityEngine;
 
 namespace Game.Items.Enemies.Blade
@@ -9,8 +10,11 @@ namespace Game.Items.Enemies.Blade
     {
         public List<Vector3> locations;
         public bool itemSet;    //is the item set with values
+
+        [Header("Damage Properties")] 
+        public int damage;
         
-        [Header("Properties")]
+        [Header("Movement Properties")]
         public float speed;
         public float directionChangeDelay;
 
@@ -42,6 +46,14 @@ namespace Game.Items.Enemies.Blade
                     _changingDirection = false;
                     _timer = 0;
                 }
+            }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                HealthSystem.Hit(damage, DamageType.Continuous);
             }
         }
 

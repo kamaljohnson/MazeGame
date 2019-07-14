@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 5741747168385390597}
   - component: {fileID: 5197887398381782397}
   - component: {fileID: 988870165571380661}
+  - component: {fileID: 5910609177958716031}
   m_Layer: 0
   m_Name: 3
   m_TagString: Blade
@@ -161,5 +162,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locations: []
   itemSet: 0
-  speed: 3
+  damage: 1
+  speed: 1
   directionChangeDelay: 2
+--- !u!65 &5910609177958716031
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763595628925981771}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6175282, y: 0.40180779, z: 0.31665045}
+  m_Center: {x: 0, y: -0.56051564, z: 0}

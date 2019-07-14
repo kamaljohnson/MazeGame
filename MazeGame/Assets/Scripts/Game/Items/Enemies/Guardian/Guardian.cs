@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game.Items.Intractable.Spike;
+using Game.Player;
 using UnityEngine;
 
 namespace Game.Items.Enemies.Guardian
@@ -10,8 +11,11 @@ namespace Game.Items.Enemies.Guardian
     {
         public List<Vector3> locations;
         public bool itemSet;    //is the item set with values
+
+        [Header("Damage Properties")] 
+        public int damage;
         
-        [Header("Properties")]
+        [Header("Movement Properties")]
         public float speed;
         public float directionChangeDelay;
 
@@ -47,6 +51,14 @@ namespace Game.Items.Enemies.Guardian
             }
         }
 
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                HealthSystem.Hit(damage, DamageType.Continuous);
+            }
+        }
+        
         private void Move()
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, locations[_nextLocationIndex], speed * Time.deltaTime);
