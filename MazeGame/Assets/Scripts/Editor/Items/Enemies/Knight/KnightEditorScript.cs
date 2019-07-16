@@ -12,7 +12,7 @@ namespace LevelEditor.Items.Enemies.Knight
         
         private void OnEnable()
         {
-            _knight = (Game.Items.Enemies.Knight.Knight) target;
+            Init();
         }
 
         private void OnSceneGUI()
@@ -35,7 +35,8 @@ namespace LevelEditor.Items.Enemies.Knight
         
         public void Init()
         {
-            
+            _knight = (Game.Items.Enemies.Knight.Knight) target;
+            _knight.name = "Knight";
         }
 
         public void AddItem()

@@ -3,9 +3,12 @@ using UnityEngine;
 
 namespace Game.Items.Enemies.Knight
 {
-    public class Knight : MonoBehaviour
+    public class Knight : MonoBehaviour, IItems
     {
-    
+        public ItemCategories GetItemType()
+        {
+            return ItemCategories.Enemie;
+        }
     }
     
     [Serializable]

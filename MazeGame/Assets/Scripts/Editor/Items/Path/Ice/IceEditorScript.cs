@@ -51,7 +51,9 @@ namespace LevelEditor.Items.Path.Ice
         {
             LevelEditor.AllItems[(int) ItemCategories.Intractable].Remove(_ice.gameObject);
             DestroyImmediate(_ice.gameObject);
-            LevelEditor.ReCalculateAllItems();        }
+            LevelEditor.ReCalculateAllItems();
+            
+        }
 
         public bool CheckValuesSet()
         {
