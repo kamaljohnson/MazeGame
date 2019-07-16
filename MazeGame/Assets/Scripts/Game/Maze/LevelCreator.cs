@@ -34,6 +34,7 @@ namespace Game
         public GameObject hammerPrefab;
         public GameObject guardianPrefab;
         public GameObject bladePrefab;
+        public GameObject knightPrefab;
 
         [Header("General Properties")]
         public GameObject playerCube;
@@ -295,6 +296,22 @@ namespace Game
                         blade.w
                     );
                     tempBlade.GetComponent<Blade>().SetBladeValues(blade.GetBlade());
+                }
+                
+                foreach (var knight in maze.k)
+                {
+                    var tempKnight = Instantiate(knightPrefab, tempMaze.transform);
+                    
+                    tempKnight.transform.position = new Vector3(
+                        knight.x,
+                        knight.y,
+                        knight.z
+                    );                    
+                    tempKnight.transform.eulerAngles = new Vector3(
+                        knight.u,
+                        knight.v,
+                        knight.w
+                    );
                 }
                 
                 foreach (var ice in maze.i)
@@ -697,6 +714,7 @@ namespace Game
         public List<Items.Enemies.Hammer.SerializableItem> h;      //the list of all hammers on the maze
         public List<Items.Enemies.Guardian.SerializableItem> gr;      //the list of all guardians on the maze
         public List<Items.Enemies.Blade.SerializableItem> bl;      //the list of all blade on the maze
+        public List<Items.Enemies.Knight.SerializableItem> k;      //the list of all blade on the maze
         
         public List<Items.Path.Ice.SerializableItem> i;      //the list of all buttons on the maze
     }

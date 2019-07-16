@@ -1085,6 +1085,9 @@ namespace LevelEditor
                                         allMazeItems[itemType].Add(AllItems[itemType][i]);
                                     }          
                                     break;
+                                case "Knight":
+                                    allMazeItems[itemType].Add(AllItems[itemType][i]);
+                                    break;
                             }
                             break;
                         case ItemCategories.Decoratable:
