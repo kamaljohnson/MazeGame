@@ -45,8 +45,10 @@ namespace LevelEditor.Save
                 mazeData.h = new List<Game.Items.Enemies.Hammer.SerializableItem>();
                 mazeData.gr = new List<Game.Items.Enemies.Guardian.SerializableItem>();
                 mazeData.bl = new List<Game.Items.Enemies.Blade.SerializableItem>();
+                mazeData.k = new List<Game.Items.Enemies.Knight.SerializableItem>();
                 
                 mazeData.i = new List<Game.Items.Path.Ice.SerializableItem>();
+                mazeData.f = new List<Game.Items.Path.Fire.SerializableItem>();
                 
                 List<List<GameObject>> allItems;
                 LevelEditor.GetAllMazeItems(out allItems);
@@ -67,6 +69,14 @@ namespace LevelEditor.Save
                                         serializedIceData.ConvertToSerializable(allItems[itemType][itemIndex].GetComponent<Game.Items.Path.Ice.Ice>());
                                         mazeData.i.Add(serializedIceData);
                                         Debug.Log("Ice");
+                                        break;
+                                    
+                                    case "Fire":
+                                        Debug.Log("Fire");
+                                        var fire = allItems[itemType][itemIndex].GetComponent<Game.Items.Path.Fire.Fire>();
+                                        var serializedFireData = new Game.Items.Path.Fire.SerializableItem();
+                                        serializedFireData.ConvertToSerializable(fire);
+                                        mazeData.f.Add(serializedFireData);
                                         break;
                                 }
                                 break;
@@ -176,14 +186,14 @@ namespace LevelEditor.Save
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class SaveState
     {
         //list of all the maze cubes along with its list of attached nodes
         public List<MazeData> m;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class MazeData
     {
         //maze cube data
@@ -203,12 +213,13 @@ namespace LevelEditor.Save
         public List<Game.Items.Enemies.Hammer.SerializableItem> h;    //the list of all hammers on the maze
         public List<Game.Items.Enemies.Guardian.SerializableItem> gr;    //the list of all guardians on the maze
         public List<Game.Items.Enemies.Blade.SerializableItem> bl;    //the list of all blade on the maze
-        public List<Game.Items.Enemies.Knight.SerializableItem> k;    //the list of all blade on the maze
+        public List<Game.Items.Enemies.Knight.SerializableItem> k;    //the list of all knight on the maze
         
         public List<Game.Items.Path.Ice.SerializableItem> i;    //the list of all ice on the maze
+        public List<Game.Items.Path.Fire.SerializableItem> f;    //the list of all fire on the maze
     }
 
-    [System.Serializable]
+    [Serializable]
     public class MazeCubeData
     {
         //maze cube transform

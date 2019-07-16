@@ -200,7 +200,7 @@ namespace LevelEditor
                     {
                         GUILayout.FlexibleSpace();
                     }
-
+ 
                     if (i < _totalNumberOfMazeWallTypes)
                     {
                         DrawCustomMazeWallButtons(i);
@@ -1021,7 +1021,10 @@ namespace LevelEditor
                             switch (AllItems[itemType][i].name)
                             {
                                 case "Ice":
-                                    allMazeItems[itemType].Add((AllItems[itemType][i]));
+                                    allMazeItems[itemType].Add(AllItems[itemType][i]);
+                                    break;
+                                case "Fire":
+                                    allMazeItems[itemType].Add(AllItems[itemType][i]);
                                     break;
                             }
                             break;
