@@ -35,17 +35,6 @@ namespace Game.Items.Path.Ice
         public int u;
         public int v;
         public int w;
-        
-        public int c;   //IsCheckpoint
-
-        public int p;   //PortalID
-        public int m;   //MazeID
-        public int l;   //LevelID
-
-        public string o;    //Linked Button On State
-        public string f;    //Linked Button Off State
-
-        public int i;    //interactable id
 
         public void ConvertToSerializable(Ice ice)
         {
