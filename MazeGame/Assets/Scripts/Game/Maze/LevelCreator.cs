@@ -36,6 +36,7 @@ namespace Game
         public GameObject bladePrefab;
         public GameObject knightPrefab;
         public GameObject firePrefab;
+        public GameObject coinPrefab;
 
         [Header("General Properties")]
         public GameObject playerCube;
@@ -336,21 +337,38 @@ namespace Game
                 
                 foreach (var fire in maze.f)
                 {
-                    var tempIce = Instantiate(firePrefab, tempMaze.transform, true);
-                    tempIce.GetComponent<Collider>().enabled = true;
-                    tempIce.transform.GetChild(0).GetComponent<Collider>().enabled = true;
+                    var tempFire = Instantiate(firePrefab, tempMaze.transform, true);
+                    tempFire.GetComponent<Collider>().enabled = true;
+                    tempFire.transform.GetChild(0).GetComponent<Collider>().enabled = true;
                     
-                    tempIce.transform.position = new Vector3(
+                    tempFire.transform.position = new Vector3(
                         fire.x,
                         fire.y,
                         fire.z
                     );                    
-                    tempIce.transform.eulerAngles = new Vector3(
+                    tempFire.transform.eulerAngles = new Vector3(
                         fire.u,
                         fire.v,
                         fire.w
                     );
+                }
 
+                foreach (var coin in maze.co)
+                {
+                    var tempCoin = Instantiate(coinPrefab, tempMaze.transform, true);
+                    tempCoin.GetComponent<Collider>().enabled = true;
+                    tempCoin.transform.GetComponent<Collider>().enabled = true;
+                    
+                    tempCoin.transform.position = new Vector3(
+                        coin.x,
+                        coin.y,
+                        coin.z
+                    );                    
+                    tempCoin.transform.eulerAngles = new Vector3(
+                        coin.u,
+                        coin.v,
+                        coin.w
+                    );
                 }
                 
             }
@@ -724,20 +742,22 @@ namespace Game
         public int z;
 
         //item data
-        public List<Items.Intractable.Portal.SerializableItem> p;    //the list of all portals on the maze
-        public List<Items.Intractable.Gate.SerializableItem> g;    //the list of all gates on the maze
-        public List<Items.Intractable.Laser.SerializableItem> l;    //the list of all lasers on the maze
-        public List<Items.Intractable.Spike.SerializableItem> s;      //the list of all buttons on the maze
+        public List<Items.Intractable.Portal.SerializableItem> p;     //Portal
+        public List<Items.Intractable.Gate.SerializableItem> g;       //Gate
+        public List<Items.Intractable.Laser.SerializableItem> l;      //Laser
+        public List<Items.Intractable.Spike.SerializableItem> s;      //Spike
         
-        public List<Items.Activators.Button.SerializableItem> b;      //the list of all buttons on the maze
+        public List<Items.Activators.Button.SerializableItem> b;      //Button
         
-        public List<Items.Enemies.Hammer.SerializableItem> h;      //the list of all hammers on the maze
-        public List<Items.Enemies.Guardian.SerializableItem> gr;      //the list of all guardians on the maze
-        public List<Items.Enemies.Blade.SerializableItem> bl;      //the list of all blade on the maze
-        public List<Items.Enemies.Knight.SerializableItem> k;      //the list of all blade on the maze
+        public List<Items.Enemies.Hammer.SerializableItem> h;         //Hammer
+        public List<Items.Enemies.Guardian.SerializableItem> gr;      //Guardian
+        public List<Items.Enemies.Blade.SerializableItem> bl;         //Blade
+        public List<Items.Enemies.Knight.SerializableItem> k;         //Knight
         
-        public List<Items.Path.Ice.SerializableItem> i;      //the list of all buttons on the maze
-        public List<Items.Path.Fire.SerializableItem> f;      //the list of all buttons on the maze
+        public List<Items.Path.Ice.SerializableItem> i;               //Ice
+        public List<Items.Path.Fire.SerializableItem> f;              //Fire
+
+        public List<Items.Collectables.Coin.SerializableItem> co;     //Coin
     }
 
     [System.Serializable]

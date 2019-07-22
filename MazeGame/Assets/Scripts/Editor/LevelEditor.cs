@@ -1069,6 +1069,7 @@ namespace LevelEditor
                             }
                             break;
                         case ItemCategories.Collectable:
+                            allMazeItems[itemType].Add(AllItems[itemType][i]);
                             break;
                         case ItemCategories.Enemy:
                             switch (AllItems[itemType][i].name)

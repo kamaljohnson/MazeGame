@@ -50,6 +50,8 @@ namespace LevelEditor.Save
                 mazeData.i = new List<Game.Items.Path.Ice.SerializableItem>();
                 mazeData.f = new List<Game.Items.Path.Fire.SerializableItem>();
                 
+                mazeData.co = new List<Game.Items.Collectables.Coin.SerializableItem>();
+                
                 List<List<GameObject>> allItems;
                 LevelEditor.GetAllMazeItems(out allItems);
                 
@@ -122,6 +124,16 @@ namespace LevelEditor.Save
                                 }
                                 break;
                             case ItemCategories.Collectable:
+                                switch (allItems[itemType][itemIndex].name)
+                                {
+                                    case "Coin":
+                                        Debug.Log("Coin");
+                                        var coin = allItems[itemType][itemIndex].GetComponent<Game.Items.Collectables.Coin.Coin>();
+                                        var serializableCoinData = new Game.Items.Collectables.Coin.SerializableItem();
+                                        serializableCoinData.ConvertToSerializable(coin);
+                                        mazeData.co.Add(serializableCoinData);
+                                        break;
+                                }
                                 break;
                             case ItemCategories.Enemy:
                                 switch (allItems[itemType][itemIndex].name)
@@ -217,6 +229,8 @@ namespace LevelEditor.Save
         
         public List<Game.Items.Path.Ice.SerializableItem> i;    //the list of all ice on the maze
         public List<Game.Items.Path.Fire.SerializableItem> f;    //the list of all fire on the maze
+        
+        public List<Game.Items.Collectables.Coin.SerializableItem> co;    //the list of all fire on the maze
     }
 
     [Serializable]

@@ -1,17 +1,17 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
-namespace LevelEditor.Items.Path.Ice
+namespace LevelEditor.Items.Collectables.Coin
 {
-    [CustomEditor(typeof(Game.Items.Path.Ice.Ice))]
-    public class IceEditorScript : Editor, ITem
+    [CustomEditor(typeof(Game.Items.Collectables.Coin.Coin))]
+    public class CoinEditorScript : Editor, ITem
     {
-        private Game.Items.Path.Ice.Ice _ice;
-        
+        private Game.Items.Collectables.Coin.Coin _coin;
+
         private void OnEnable()
         {
-            _ice = (Game.Items.Path.Ice.Ice) target;
+            _coin = (Game.Items.Collectables.Coin.Coin) target;
+            _coin.name = "Coin";
         }
 
         private void OnSceneGUI()
@@ -22,7 +22,7 @@ namespace LevelEditor.Items.Path.Ice
         public void DrawDeletionHandle()
         {
             Handles.color = new Color(1f, 0f, 0.07f);
-            if (Handles.Button(_ice.transform.position + _ice.transform.up * 0.7f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
+            if (Handles.Button(_coin.transform.position + _coin.transform.up * 0.7f, Quaternion.identity, 0.15f, 0.15f, Handles.CubeCap))
             {
                 if (!EditorUtility.DisplayDialog("Warning!!",
                     "This will delete the item permenently", "Cancel", "Continue"))
@@ -39,20 +39,17 @@ namespace LevelEditor.Items.Path.Ice
 
         public void AddItem()
         {
-            throw new System.NotImplementedException();
         }
 
         public void EditItem()
         {
-            throw new System.NotImplementedException();
         }
 
         public void RemoveItem()
         {
-            LevelEditor.AllItems[(int) ItemCategories.Intractable].Remove(_ice.gameObject);
-            DestroyImmediate(_ice.gameObject);
+            LevelEditor.AllItems[(int) ItemCategories.Intractable].Remove(_coin.gameObject);
+            DestroyImmediate(_coin.gameObject);
             LevelEditor.ReCalculateAllItems();
-            
         }
 
         public bool CheckValuesSet()
@@ -60,5 +57,4 @@ namespace LevelEditor.Items.Path.Ice
             return true;
         }
     }
-
 }

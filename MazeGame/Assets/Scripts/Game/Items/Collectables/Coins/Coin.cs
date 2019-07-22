@@ -1,27 +1,16 @@
 ﻿using System;
-using Game.Player;
+using Game.Items.Path.Ice;
 using UnityEngine;
 
-namespace Game.Items.Path.Fire
+namespace Game.Items.Collectables.Coin
 {
-    public class Fire : MonoBehaviour, IItems, IPath
+    public class Coin : MonoBehaviour, IItems
     {
-        public int damage;
-        
         public ItemCategories GetItemType()
         {
-            return ItemCategories.Path;
-        }
-        
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                HealthSystem.Hit(damage, DamageType.Continuous);
-            }
+            return ItemCategories.Collectable;
         }
     }
-    
     [Serializable]
     public class SerializableItem
     {
@@ -33,9 +22,9 @@ namespace Game.Items.Path.Fire
         public int v;
         public int w;
 
-        public void ConvertToSerializable(Fire fire)
+        public void ConvertToSerializable(Coin coin)
         {
-            var transform = fire.transform;
+            var transform = coin.transform;
             var position = transform.position;
             x = (int)position.x;
             y = (int)position.y;
@@ -48,4 +37,3 @@ namespace Game.Items.Path.Fire
         }
     }
 }
-
