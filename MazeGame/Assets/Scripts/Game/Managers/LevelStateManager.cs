@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 namespace Game.Managers
 {
+    [Serializable]
     public class LevelStateManager : MonoBehaviour
     {
         public bool isLocked;

@@ -15,7 +15,13 @@ namespace Game.Items.Collectables.Coin
 
         public void OnTriggerEnter(Collider other)
         {
+            CollectCoin();
+        }
+
+        public void CollectCoin()
+        {
             Debug.Log("coin collected");
+            transform.GetChild(0).GetComponent<Animator>().Play("coinCollectAnimation", -1, 0);
             GameManager.stateManager.indexOfCoinsCollected.Add(index);
             Destroy(gameObject, 0.3f);
         }

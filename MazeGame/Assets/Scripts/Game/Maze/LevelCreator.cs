@@ -48,7 +48,7 @@ namespace Game
 
         public void Awake()
         {
-            stateManager.Load();
+            //stateManager.Load();
             LoadLevel();
             GameManager.stateManager = stateManager;
             GameManager.gameState = GameManager.GameStates.Playing;
