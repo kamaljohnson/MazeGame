@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Items.Path.Ice;
+using Game.Managers;
 using UnityEngine;
 
 namespace Game.Items.Collectables.Coin
@@ -11,7 +12,15 @@ namespace Game.Items.Collectables.Coin
         {
             return ItemCategories.Collectable;
         }
+
+        public void OnTriggerEnter(Collider other)
+        {
+            Debug.Log("coin collected");
+            GameManager.stateManager.indexOfCoinsCollected.Add(index);
+            Destroy(gameObject, 0.3f);
+        }
     }
+    
     [Serializable]
     public class SerializableItem
     {
