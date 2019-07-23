@@ -23,6 +23,7 @@ namespace Game.Managers
         
         public static Transform mazeTransform;
         public static Transform playerCubeTransform;
+        public static LevelStateManager stateManager;
     
         public static GameStates gameState;
 
@@ -43,6 +44,7 @@ namespace Game.Managers
                 case GameStates.Paused:
                     break;
                 case GameStates.LevelComplete:
+                    stateManager.Save();
                     break;
                 case GameStates.Dead:
                     Debug.Log("Dead");

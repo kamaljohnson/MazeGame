@@ -6,6 +6,7 @@ namespace Game.Items.Collectables.Coin
 {
     public class Coin : MonoBehaviour, IItems
     {
+        public int index;
         public ItemCategories GetItemType()
         {
             return ItemCategories.Collectable;

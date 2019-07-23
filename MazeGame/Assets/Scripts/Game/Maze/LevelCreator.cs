@@ -3,6 +3,7 @@ using UnityEngine;
 using System.IO;
 using Game.Items;
 using Game.Items.Activators.Button;
+using Game.Items.Collectables.Coin;
 using Game.Items.Enemies.Blade;
 using Game.Items.Enemies.Guardian;
 using Game.Items.Enemies.Hammer;
@@ -49,6 +50,7 @@ namespace Game
         {
             stateManager.Load();
             LoadLevel();
+            GameManager.stateManager = stateManager;
             GameManager.gameState = GameManager.GameStates.Playing;
         }
 
@@ -356,8 +358,15 @@ namespace Game
                     );
                 }
 
+                int currentCoinIndex = -1;
+                
                 foreach (var coin in maze.co)
                 {
+                    currentCoinIndex++;
+                    if (stateManager.indexOfCoinsCollected.Contains(currentCoinIndex))
+                    {
+                        continue;
+                    }
                     var tempCoin = Instantiate(coinPrefab, tempMaze.transform, true);
                     tempCoin.GetComponent<Collider>().enabled = true;
                     tempCoin.transform.GetComponent<Collider>().enabled = true;
@@ -372,8 +381,8 @@ namespace Game
                         coin.v,
                         coin.w
                     );
+                    tempCoin.GetComponent<Coin>().index = currentCoinIndex;
                 }
-                
             }
 
             /*
