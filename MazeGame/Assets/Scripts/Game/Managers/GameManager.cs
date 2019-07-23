@@ -6,7 +6,7 @@ using Game.Items.Intractable.Portal;
 using Game.Player;
 using UnityEngine;
 
-namespace Game
+namespace Game.Managers
 {
     public class GameManager : MonoBehaviour
     {

@@ -79,8 +79,6 @@
             <e p="Camera" t="Include">
               <e p="CameraMovement.cs" t="Include" />
             </e>
-            <e p="GameManager.cs" t="Include" />
-            <e p="GameUI.cs" t="Include" />
             <e p="Helper.cs" t="Include" />
             <e p="Items" t="Include">
               <e p="Activators" t="Include">
@@ -133,6 +131,11 @@
                   <e p="Ice.cs" t="Include" />
                 </e>
               </e>
+            </e>
+            <e p="Managers" t="Include">
+              <e p="GameManager.cs" t="Include" />
+              <e p="GameUIManager.cs" t="Include" />
+              <e p="LevelStateManager.cs" t="Include" />
             </e>
             <e p="Maze" t="Include">
               <e p="LevelCreator.cs" t="Include" />

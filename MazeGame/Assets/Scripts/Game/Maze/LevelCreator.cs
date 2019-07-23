@@ -10,6 +10,7 @@ using Game.Items.Intractable.Gate;
 using Game.Items.Intractable.Laser;
 using Game.Items.Intractable.Portal;
 using Game.Items.Intractable.Spike;
+using Game.Managers;
 using Game.Maze;
 using Game.Player;
 using UnityEngine.SceneManagement;

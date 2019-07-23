@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Game;
-using Game.Player;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-namespace Game
+namespace Game.Managers
 {
-    public class GameUI : MonoBehaviour
+    public class GameUIManager : MonoBehaviour
     {
     
         public TMP_Text lives;

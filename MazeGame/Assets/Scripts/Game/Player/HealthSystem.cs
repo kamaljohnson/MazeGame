@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Managers;
 using UnityEngine;
 
 namespace Game.Player
@@ -32,7 +33,7 @@ namespace Game.Player
             _damageTimer = 0;
             _lives = initialLives;
             _armour = initialArmor;
-            FindObjectOfType<GameUI>().UpdateHealthSystem(_lives, _armour);
+            FindObjectOfType<GameUIManager>().UpdateHealthSystem(_lives, _armour);
         }
         
         public void Update()
@@ -95,7 +96,7 @@ namespace Game.Player
                 LostLife();
                 GameManager.Gamestate = GameManager.GameStates.Dead;
             }
-            FindObjectOfType<GameUI>().UpdateHealthSystem(_lives, _armour);
+            FindObjectOfType<GameUIManager>().UpdateHealthSystem(_lives, _armour);
         }
 
         private static void LostLife()
