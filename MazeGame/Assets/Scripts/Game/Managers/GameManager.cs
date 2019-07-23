@@ -5,6 +5,7 @@ using System.Net.NetworkInformation;
 using Game.Items.Intractable.Portal;
 using Game.Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.Managers
 {
@@ -20,19 +21,22 @@ namespace Game.Managers
             InMenu
         }
         
-        public static Transform MazeTransform;
-        public static Transform PlayerCubeTransform;
+        public static Transform mazeTransform;
+        public static Transform playerCubeTransform;
     
-        public static GameStates Gamestate;
+        public static GameStates gameState;
+
+        public static string levelName;
         
         public void Start()
         {
             Screen.orientation = ScreenOrientation.Portrait;
+            levelName = SceneManager.GetActiveScene().name;
         }
 
         public void Update()
         {
-            switch (Gamestate)
+            switch (gameState)
             {
                 case GameStates.Playing:
                     break;
@@ -44,9 +48,9 @@ namespace Game.Managers
                     Debug.Log("Dead");
                     if (Portal.CurrentCheckpointDestinationPortal != null)
                     {
-                        PlayerCubeTransform.GetComponent<Movement>().Reset();
+                        playerCubeTransform.GetComponent<Movement>().Reset();
                         Portal.CurrentCheckpointDestinationPortal.ActivateCheckpoint();
-                        Gamestate = GameStates.Playing;
+                        gameState = GameStates.Playing;
                     }
                     break;
                 case GameStates.GameOver:

@@ -42,12 +42,14 @@ namespace Game
         [Header("General Properties")]
         public GameObject playerCube;
         public GameObject inputManager;
+        public LevelStateManager stateManager;
         private Vector3 _playerStartPosition;
 
         public void Awake()
         {
+            stateManager.Load();
             LoadLevel();
-            GameManager.Gamestate = GameManager.GameStates.Playing;
+            GameManager.gameState = GameManager.GameStates.Playing;
         }
 
         private void LoadLevel()
@@ -165,8 +167,8 @@ namespace Game
                         playerCube.transform.position = tempPortal.transform.position - playerCube.transform.up * 1/3f;
                         playerCube.transform.eulerAngles = tempPortal.transform.eulerAngles;
                         //tempPortal.SetActive(false);
-                        GameManager.PlayerCubeTransform = playerCube.transform;
-                        GameManager.MazeTransform = mazeHolder.GetChild(tempPortal.GetComponent<Portal>().mazeId);
+                        GameManager.playerCubeTransform = playerCube.transform;
+                        GameManager.mazeTransform = mazeHolder.GetChild(tempPortal.GetComponent<Portal>().mazeId);
                         tempPortal.GetComponent<Portal>().CheckpointSaveGameState();
 
                     }

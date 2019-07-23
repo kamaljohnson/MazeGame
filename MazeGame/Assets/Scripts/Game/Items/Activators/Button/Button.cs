@@ -36,7 +36,7 @@ namespace Game.Items.Activators.Button
         
         private void Update()
         {
-            if (GameManager.PlayerCubeTransform.GetComponent<Movement>().movementSnappedFull && !_buttonActivated)
+            if (GameManager.playerCubeTransform.GetComponent<Movement>().movementSnappedFull && !_buttonActivated)
             {
                 _buttonActivated = true;
                 if (type == ButtonTypes.Temporary)

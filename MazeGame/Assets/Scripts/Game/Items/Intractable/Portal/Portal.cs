@@ -50,7 +50,7 @@ namespace Game.Items.Intractable.Portal
         {
             if(_onPortal)
             {
-                if (GameManager.PlayerCubeTransform.GetComponent<Movement>().movementSnappedFull && !_portalActivated)
+                if (GameManager.playerCubeTransform.GetComponent<Movement>().movementSnappedFull && !_portalActivated)
                 {
                     _portalActivated = true;
                     ActivatePortalEvent();
@@ -62,7 +62,7 @@ namespace Game.Items.Intractable.Portal
         {
             if (portalId == -1)
             {
-                GameManager.Gamestate = GameManager.GameStates.LevelComplete;
+                GameManager.gameState = GameManager.GameStates.LevelComplete;
                 Debug.Log("level end reached");
             }
             else if (isCheckpoint)
@@ -100,17 +100,17 @@ namespace Game.Items.Intractable.Portal
             }
             transform.GetChild(0).GetComponent<MeshRenderer>().material = checkpointActiveMaterial;
             CurrentCheckpointDestinationPortal = this;
-            _checkpointMazeOrientation = GameManager.MazeTransform.eulerAngles;
-            _checkpointPlayerPosition = GameManager.PlayerCubeTransform.localPosition;
-            _checkpointPlayerOrientation = GameManager.PlayerCubeTransform.localEulerAngles;
+            _checkpointMazeOrientation = GameManager.mazeTransform.eulerAngles;
+            _checkpointPlayerPosition = GameManager.playerCubeTransform.localPosition;
+            _checkpointPlayerOrientation = GameManager.playerCubeTransform.localEulerAngles;
         }
 
         public void CheckpointLoadGameState()
         {
             Debug.Log("Loading Game State");
-            GameManager.MazeTransform.eulerAngles = _checkpointMazeOrientation;
-            GameManager.PlayerCubeTransform.localPosition = _checkpointPlayerPosition;
-            GameManager.PlayerCubeTransform.localEulerAngles = _checkpointPlayerOrientation;
+            GameManager.mazeTransform.eulerAngles = _checkpointMazeOrientation;
+            GameManager.playerCubeTransform.localPosition = _checkpointPlayerPosition;
+            GameManager.playerCubeTransform.localEulerAngles = _checkpointPlayerOrientation;
         }
         
         public void ActivateCheckpoint()    //sends the player to this portal destination if dead

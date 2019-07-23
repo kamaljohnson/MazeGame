@@ -40,7 +40,7 @@ namespace Game.Player
         {
             if (_lives <= 0)
             {
-                GameManager.Gamestate = GameManager.GameStates.GameOver;
+                GameManager.gameState = GameManager.GameStates.GameOver;
             }
 
             if (_isGettingDamage && _armour != 0)
@@ -71,7 +71,7 @@ namespace Game.Player
                         {
                             _lives -= 1;
                             LostLife();
-                            GameManager.Gamestate = GameManager.GameStates.Dead;
+                            GameManager.gameState = GameManager.GameStates.Dead;
                         }
                         break;
                     case DamageType.Quantized:
@@ -85,7 +85,7 @@ namespace Game.Player
                             _armour = 0;
                             _lives -= 1;
                             LostLife();
-                            GameManager.Gamestate = GameManager.GameStates.Dead;
+                            GameManager.gameState = GameManager.GameStates.Dead;
                         }
                         break;
                 }
@@ -94,7 +94,7 @@ namespace Game.Player
             {
                 _lives -= 1;
                 LostLife();
-                GameManager.Gamestate = GameManager.GameStates.Dead;
+                GameManager.gameState = GameManager.GameStates.Dead;
             }
             FindObjectOfType<GameUIManager>().UpdateHealthSystem(_lives, _armour);
         }

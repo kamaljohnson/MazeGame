@@ -43,7 +43,7 @@ namespace Game.Camera
                 _changeDirection = _tempChangeDirection;
                 _tempChangeDirection = Direction.None;
                 
-                _cameraPivotMazeTransform = GameManager.MazeTransform;
+                _cameraPivotMazeTransform = GameManager.mazeTransform;
                 _isChangingOrientation = true;
             }
 
