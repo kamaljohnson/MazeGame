@@ -21,7 +21,7 @@ namespace Game.Items.Collectables.Diamond
         {
             Debug.Log("diamond collected");
             //transform.GetChild(0).GetComponent<Animator>().Play("coinCollectAnimation", -1, 0);
-            GameManager.stateManager.indexOfCoinsCollected.Add(index);
+            GameManager.stateManager.indexOfDiamondsCollected.Add(index);
             Destroy(gameObject, 0.3f);
         }
     }

@@ -5,6 +5,7 @@ using System.IO;
 using Game.Items;
 using Game.Items.Activators.Button;
 using Game.Items.Collectables.Coin;
+using Game.Items.Collectables.Diamond;
 using Game.Items.Enemies.Blade;
 using Game.Items.Enemies.Guardian;
 using Game.Items.Enemies.Hammer;
@@ -396,7 +397,7 @@ namespace Game
                 foreach (var diamond in maze.d)
                 {
                     currentDiamondIndex++;
-                    if (GameManager.stateManager.indexOfCoinsCollected.Contains(currentDiamondIndex))
+                    if (GameManager.stateManager.indexOfDiamondsCollected.Contains(currentDiamondIndex))
                     {
                         continue;
                     }
@@ -414,7 +415,7 @@ namespace Game
                         diamond.v,
                         diamond.w
                     );
-                    tempDiamond.GetComponent<Coin>().index = currentDiamondIndex;
+                    tempDiamond.GetComponent<Diamond>().index = currentDiamondIndex;
                 }
             }
 

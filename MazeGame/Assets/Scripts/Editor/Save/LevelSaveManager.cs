@@ -135,7 +135,7 @@ namespace LevelEditor.Save
                                         mazeData.co.Add(serializableCoinData);
                                         break;
                                     case "Diamond":
-                                        Debug.Log("Coin");
+                                        Debug.Log("Diamond");
                                         var diamond = allItems[itemType][itemIndex].GetComponent<Game.Items.Collectables.Diamond.Diamond>();
                                         var serializableDiamondData = new Game.Items.Collectables.Diamond.SerializableItem();
                                         serializableDiamondData.ConvertToSerializable(diamond);
