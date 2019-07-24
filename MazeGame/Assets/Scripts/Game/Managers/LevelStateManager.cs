@@ -24,19 +24,7 @@ namespace Game.Managers
             }
             else //loading the data from the existing file
             {
-                string jsonString = "";        
-                if(Application.platform == RuntimePlatform.Android)
-                {
-                    Debug.Log("loading old state");
-                    WWW reader = new WWW(directory);
-                    while (!reader.isDone) { }
-
-                    jsonString = reader.text;
-                }
-                else
-                {
-                    jsonString = File.ReadAllText(directory);
-                }   
+                string jsonString = File.ReadAllText(directory);
                 
                 var ls = JsonUtility.FromJson<LevelStateManager>(jsonString);
         
@@ -68,13 +56,11 @@ namespace Game.Managers
             
                 jsonString = JsonUtility.ToJson(state);
                 File.WriteAllText(fullPath, jsonString);
-                Debug.Log("writen : " + jsonString + " to file : " + directory);
             }
             else
             {
-                Debug.Log("file exists in " + fullPath);
-            
                 File.WriteAllText(fullPath, jsonString);
+
             }
         }
     }

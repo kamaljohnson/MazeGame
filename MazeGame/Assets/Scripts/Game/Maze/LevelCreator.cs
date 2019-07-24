@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Game.Items;
@@ -51,9 +52,9 @@ namespace Game
             {
                 GameManager.stateManager.LoadLevelState();
             }
-            catch (IOException exception)
+            catch (Exception exception)
             {
-                Debug.Log(exception);
+                Debug.Log("error -> " + exception);
             }
             LoadLevel();
             GameManager.gameState = GameManager.GameStates.Playing;

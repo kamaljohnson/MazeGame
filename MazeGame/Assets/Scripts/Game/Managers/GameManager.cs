@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
+﻿#if PLATFORM_ANDROID
+using UnityEngine.Android;
+#endif
 using Game.Items.Intractable.Portal;
 using Game.Player;
 using UnityEngine;
@@ -31,6 +30,14 @@ namespace Game.Managers
         
         public void Awake()
         {
+            if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
+            {
+                Permission.RequestUserPermission(Permission.ExternalStorageRead);
+            }
+            if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite))
+            {
+                Permission.RequestUserPermission(Permission.ExternalStorageWrite);
+            }
             stateManager = new LevelStateManager();
             Screen.orientation = ScreenOrientation.Portrait;
             levelName = SceneManager.GetActiveScene().name;
@@ -46,6 +53,7 @@ namespace Game.Managers
                     break;
                 case GameStates.LevelComplete:
                     stateManager.SaveLevelState();
+                    gameState = GameStates.InMenu;
                     break;
                 case GameStates.Dead:
                     Debug.Log("Dead");
