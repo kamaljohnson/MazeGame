@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Game.Managers
 {
     [Serializable]
-    public class LevelStateManager : MonoBehaviour
+    public class LevelStateManager
     {
         public bool isLocked;
         public int stars;
@@ -32,13 +32,12 @@ namespace Game.Managers
                     while (!reader.isDone) { }
 
                     jsonString = reader.text;
-                    Debug.Log("loading complete : " + jsonString + " from :" + directory);
                 }
                 else
                 {
                     jsonString = File.ReadAllText(directory);
                 }   
-            
+                
                 var ls = JsonUtility.FromJson<LevelStateManager>(jsonString);
         
                 isLocked = ls.isLocked;

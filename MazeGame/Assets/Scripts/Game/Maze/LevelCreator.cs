@@ -43,14 +43,12 @@ namespace Game
         [Header("General Properties")]
         public GameObject playerCube;
         public GameObject inputManager;
-        public LevelStateManager stateManager;
         private Vector3 _playerStartPosition;
 
-        public void Awake()
+        public void Start()
         {
-            //stateManager.Load();
+            GameManager.stateManager.Load();
             LoadLevel();
-            GameManager.stateManager = stateManager;
             GameManager.gameState = GameManager.GameStates.Playing;
         }
 
@@ -363,7 +361,7 @@ namespace Game
                 foreach (var coin in maze.co)
                 {
                     currentCoinIndex++;
-                    if (stateManager.indexOfCoinsCollected.Contains(currentCoinIndex))
+                    if (GameManager.stateManager.indexOfCoinsCollected.Contains(currentCoinIndex))
                     {
                         continue;
                     }

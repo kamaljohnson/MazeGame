@@ -29,8 +29,9 @@ namespace Game.Managers
 
         public static string levelName;
         
-        public void Start()
+        public void Awake()
         {
+            stateManager = new LevelStateManager();
             Screen.orientation = ScreenOrientation.Portrait;
             levelName = SceneManager.GetActiveScene().name;
         }
