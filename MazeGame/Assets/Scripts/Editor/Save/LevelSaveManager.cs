@@ -51,6 +51,7 @@ namespace LevelEditor.Save
                 mazeData.f = new List<Game.Items.Path.Fire.SerializableItem>();
                 
                 mazeData.co = new List<Game.Items.Collectables.Coin.SerializableItem>();
+                mazeData.d = new List<Game.Items.Collectables.Diamond.SerializableItem>();
                 
                 List<List<GameObject>> allItems;
                 LevelEditor.GetAllMazeItems(out allItems);
@@ -132,6 +133,13 @@ namespace LevelEditor.Save
                                         var serializableCoinData = new Game.Items.Collectables.Coin.SerializableItem();
                                         serializableCoinData.ConvertToSerializable(coin);
                                         mazeData.co.Add(serializableCoinData);
+                                        break;
+                                    case "Diamond":
+                                        Debug.Log("Coin");
+                                        var diamond = allItems[itemType][itemIndex].GetComponent<Game.Items.Collectables.Diamond.Diamond>();
+                                        var serializableDiamondData = new Game.Items.Collectables.Diamond.SerializableItem();
+                                        serializableDiamondData.ConvertToSerializable(diamond);
+                                        mazeData.d.Add(serializableDiamondData);
                                         break;
                                 }
                                 break;
@@ -231,6 +239,7 @@ namespace LevelEditor.Save
         public List<Game.Items.Path.Fire.SerializableItem> f;    //the list of all fire on the maze
         
         public List<Game.Items.Collectables.Coin.SerializableItem> co;    //the list of all fire on the maze
+        public List<Game.Items.Collectables.Diamond.SerializableItem> d;    //the list of all fire on the maze
     }
 
     [Serializable]

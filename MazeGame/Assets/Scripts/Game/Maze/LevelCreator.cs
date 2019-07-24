@@ -40,6 +40,7 @@ namespace Game
         public GameObject knightPrefab;
         public GameObject firePrefab;
         public GameObject coinPrefab;
+        public GameObject diamondPrefab;
 
         [Header("General Properties")]
         public GameObject playerCube;
@@ -388,6 +389,32 @@ namespace Game
                         coin.w
                     );
                     tempCoin.GetComponent<Coin>().index = currentCoinIndex;
+                }
+                
+                int currentDiamondIndex = -1;
+
+                foreach (var diamond in maze.d)
+                {
+                    currentDiamondIndex++;
+                    if (GameManager.stateManager.indexOfCoinsCollected.Contains(currentDiamondIndex))
+                    {
+                        continue;
+                    }
+                    var tempDiamond = Instantiate(diamondPrefab, tempMaze.transform, true);
+                    tempDiamond.GetComponent<Collider>().enabled = true;
+                    tempDiamond.transform.GetComponent<Collider>().enabled = true;
+                    
+                    tempDiamond.transform.position = new Vector3(
+                        diamond.x,
+                        diamond.y,
+                        diamond.z
+                    );                    
+                    tempDiamond.transform.eulerAngles = new Vector3(
+                        diamond.u,
+                        diamond.v,
+                        diamond.w
+                    );
+                    tempDiamond.GetComponent<Coin>().index = currentDiamondIndex;
                 }
             }
 
@@ -776,6 +803,7 @@ namespace Game
         public List<Items.Path.Fire.SerializableItem> f;              //Fire
 
         public List<Items.Collectables.Coin.SerializableItem> co;     //Coin
+        public List<Items.Collectables.Diamond.SerializableItem> d;     //Coin
     }
 
     [System.Serializable]
