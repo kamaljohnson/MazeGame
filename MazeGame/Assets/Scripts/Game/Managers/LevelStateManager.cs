@@ -13,14 +13,14 @@ namespace Game.Managers
         public List<int> indexOfCoinsCollected = new List<int>();
         public List<int> indexOfDiamondsCollected = new List<int>();
         
-        public void Load()
+        public void LoadLevelState()
         {
             string directory = Application.persistentDataPath + "/" + GameManager.levelName + ".txt";
         
             //file not found making one instead
             if (!File.Exists(directory))
             {
-                Save();
+                SaveLevelState();
             }
             else //loading the data from the existing file
             {
@@ -47,7 +47,7 @@ namespace Game.Managers
             }
         }
         
-        public void Save()
+        public void SaveLevelState()
         {
             string directory;
     

@@ -45,7 +45,7 @@ namespace Game.Managers
                 case GameStates.Paused:
                     break;
                 case GameStates.LevelComplete:
-                    stateManager.Save();
+                    stateManager.SaveLevelState();
                     break;
                 case GameStates.Dead:
                     Debug.Log("Dead");

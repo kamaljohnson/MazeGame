@@ -47,7 +47,14 @@ namespace Game
 
         public void Start()
         {
-            GameManager.stateManager.Load();
+            try
+            {
+                GameManager.stateManager.LoadLevelState();
+            }
+            catch (IOException exception)
+            {
+                Debug.Log(exception);
+            }
             LoadLevel();
             GameManager.gameState = GameManager.GameStates.Playing;
         }
