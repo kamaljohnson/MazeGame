@@ -60,6 +60,8 @@ namespace Game.Maze
 
         public void SetNodeFromNode(Node node, Vector3 parentCubePos)
         {
+            inactive = node.inactive;
+            
             rightPath = node.rightPath;
             leftPath = node.leftPath;
             upPath = node.upPath;
@@ -215,84 +217,45 @@ namespace Game.Maze
                 rUrender = true;
                 lDrender = true;
                 lUrender = true;
-            }
-            else
-            {
-                if (!Physics.Raycast(parentCubePos, transform.right, out hit, 1))
+                
+                if (!Physics.Raycast(parentCubePos, transform.right * 0.6f, out hit, 0.5f))
                 {
+                    erUrender = true;
+                    erDrender = true;
                     if (rrender)
                     {
-                        rUrender = true;
-                        rDrender = true;
                         eRrender = true;
                     }
                 }
-                if (!Physics.Raycast(parentCubePos, -transform.right, out hit, 1))
+
+                if (!Physics.Raycast(parentCubePos, -transform.right * 0.6f, out hit, 0.5f))
                 {
+                    elUrender = true;
+                    elDrender = true;
                     if (lrender)
                     {
-                        lUrender = true;
-                        lDrender = true;
                         eLrender = true;
                     }
                 }
-                if (!Physics.Raycast(parentCubePos, transform.up, out hit, 1))
+
+                if (!Physics.Raycast(parentCubePos, transform.up * 0.6f, out hit, 0.5f))
                 {
+                    euRrender = true;
+                    euLrender = true;
                     if (urender)
                     {
-                        rUrender = true;
-                        lUrender = true;
                         eUrender = true;
                     }
                 }
-                if (!Physics.Raycast(parentCubePos, -transform.up, out hit, 1))
+
+                if (!Physics.Raycast(parentCubePos, -transform.up * 0.6f, out hit, 0.5f))
                 {
+                    edRrender = true;
+                    edLrender = true;
                     if (drender)
                     {
-                        rDrender = true;
-                        lDrender = true;
                         eDrender = true;
                     }
-                }
-            }
-
-            if (!Physics.Raycast(parentCubePos, transform.right * 0.6f, out hit, 0.5f))
-            {
-                erUrender = true;
-                erDrender = true;
-                if (rrender)
-                {
-                    eRrender = true;
-                }
-            }
-
-            if (!Physics.Raycast(parentCubePos, -transform.right * 0.6f, out hit, 0.5f))
-            {
-                elUrender = true;
-                elDrender = true;
-                if (lrender)
-                {
-                    eLrender = true;
-                }
-            }
-
-            if (!Physics.Raycast(parentCubePos, transform.up * 0.6f, out hit, 0.5f))
-            {
-                euRrender = true;
-                euLrender = true;
-                if (urender)
-                {
-                    eUrender = true;
-                }
-            }
-
-            if (!Physics.Raycast(parentCubePos, -transform.up * 0.6f, out hit, 0.5f))
-            {
-                edRrender = true;
-                edLrender = true;
-                if (drender)
-                {
-                    eDrender = true;
                 }
             }
 
@@ -384,11 +347,14 @@ namespace Game.Maze
             u = (int)eulerAngles.x;
             v = (int)eulerAngles.y;
             w = (int)eulerAngles.z;
+
+            string tempBin;
             
-            string tempBin = (node.rightPath ? "1" : "0") +
+            tempBin = (node.rightPath ? "1" : "0") +
                 (node.leftPath ? "1" : "0") +
                 (node.upPath ? "1" : "0") +
-                (node.downPath ? "1" : "0");
+                (node.downPath ? "1" : "0");    
+            
             p = Convert.ToInt32(tempBin, 2);
         }
 
@@ -407,7 +373,7 @@ namespace Game.Maze
             {
                 tempPathData[j] = 0;
             }
-            n= p;     
+            n = p;     
             for(k=0; n>0; k++)      
             {      
                 tempPathData[k]=n%2;      

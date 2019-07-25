@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -243,7 +243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &41235990
 Transform:
   m_ObjectHideFlags: 0
@@ -1703,8 +1703,8 @@ MonoBehaviour:
   eDrender: 0
   erUrender: 0
   erDrender: 0
-  elUrender: 1
-  elDrender: 1
+  elUrender: 0
+  elDrender: 0
   euRrender: 0
   euLrender: 0
   edRrender: 0
@@ -2100,7 +2100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &479166300
 Transform:
   m_ObjectHideFlags: 0
@@ -2887,15 +2887,15 @@ MonoBehaviour:
   eDrender: 0
   erUrender: 0
   erDrender: 0
-  elUrender: 1
-  elDrender: 1
-  euRrender: 1
-  euLrender: 1
+  elUrender: 0
+  elDrender: 0
+  euRrender: 0
+  euLrender: 0
   edRrender: 0
   edLrender: 0
   eerUrender: 0
   eerDrender: 0
-  eelUrender: 1
+  eelUrender: 0
   eelDrender: 0
 --- !u!1 &549846025
 GameObject:
@@ -3301,8 +3301,8 @@ MonoBehaviour:
   elDrender: 0
   euRrender: 0
   euLrender: 0
-  edRrender: 1
-  edLrender: 1
+  edRrender: 0
+  edLrender: 0
   eerUrender: 0
   eerDrender: 0
   eelUrender: 0
@@ -3733,8 +3733,8 @@ MonoBehaviour:
   erDrender: 0
   elUrender: 0
   elDrender: 0
-  euRrender: 1
-  euLrender: 1
+  euRrender: 0
+  euLrender: 0
   edRrender: 0
   edLrender: 0
   eerUrender: 0
@@ -5188,11 +5188,11 @@ MonoBehaviour:
   rightPath: 0
   leftPath: 0
   upPath: 0
-  downPath: 0
+  downPath: 1
   rightNode: {fileID: 0}
   leftNode: {fileID: 0}
   upNode: {fileID: 0}
-  downNode: {fileID: 0}
+  downNode: {fileID: 462796797}
   rrender: 0
   lrender: 0
   urender: 0
@@ -5205,16 +5205,16 @@ MonoBehaviour:
   eLrender: 0
   eUrender: 0
   eDrender: 0
-  erUrender: 1
-  erDrender: 1
+  erUrender: 0
+  erDrender: 0
   elUrender: 0
   elDrender: 0
   euRrender: 0
   euLrender: 0
-  edRrender: 1
-  edLrender: 1
+  edRrender: 0
+  edLrender: 0
   eerUrender: 0
-  eerDrender: 1
+  eerDrender: 0
   eelUrender: 0
   eelDrender: 0
 --- !u!1 &881061282
@@ -5476,8 +5476,8 @@ MonoBehaviour:
   elDrender: 0
   euRrender: 0
   euLrender: 0
-  edRrender: 1
-  edLrender: 1
+  edRrender: 0
+  edLrender: 0
   eerUrender: 0
   eerDrender: 0
   eelUrender: 0
@@ -5551,8 +5551,8 @@ MonoBehaviour:
   eDrender: 0
   erUrender: 0
   erDrender: 0
-  elUrender: 1
-  elDrender: 1
+  elUrender: 0
+  elDrender: 0
   euRrender: 0
   euLrender: 0
   edRrender: 0
@@ -6247,8 +6247,8 @@ MonoBehaviour:
   eLrender: 0
   eUrender: 0
   eDrender: 0
-  erUrender: 1
-  erDrender: 1
+  erUrender: 0
+  erDrender: 0
   elUrender: 0
   elDrender: 0
   euRrender: 0
@@ -6514,16 +6514,16 @@ MonoBehaviour:
   eDrender: 0
   erUrender: 0
   erDrender: 0
-  elUrender: 1
-  elDrender: 1
+  elUrender: 0
+  elDrender: 0
   euRrender: 0
   euLrender: 0
-  edRrender: 1
-  edLrender: 1
+  edRrender: 0
+  edLrender: 0
   eerUrender: 0
   eerDrender: 0
   eelUrender: 0
-  eelDrender: 1
+  eelDrender: 0
 --- !u!1 &1051096573
 GameObject:
   m_ObjectHideFlags: 0
@@ -7922,8 +7922,8 @@ MonoBehaviour:
   erDrender: 0
   elUrender: 0
   elDrender: 0
-  euRrender: 1
-  euLrender: 1
+  euRrender: 0
+  euLrender: 0
   edRrender: 0
   edLrender: 0
   eerUrender: 0
@@ -8881,8 +8881,8 @@ MonoBehaviour:
   eLrender: 0
   eUrender: 0
   eDrender: 0
-  erUrender: 1
-  erDrender: 1
+  erUrender: 0
+  erDrender: 0
   elUrender: 0
   elDrender: 0
   euRrender: 0
@@ -9921,15 +9921,15 @@ MonoBehaviour:
   eLrender: 0
   eUrender: 0
   eDrender: 0
-  erUrender: 1
-  erDrender: 1
+  erUrender: 0
+  erDrender: 0
   elUrender: 0
   elDrender: 0
-  euRrender: 1
-  euLrender: 1
+  euRrender: 0
+  euLrender: 0
   edRrender: 0
   edLrender: 0
-  eerUrender: 1
+  eerUrender: 0
   eerDrender: 0
   eelUrender: 0
   eelDrender: 0
@@ -13000,7 +13000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2096150048
 Transform:
   m_ObjectHideFlags: 0

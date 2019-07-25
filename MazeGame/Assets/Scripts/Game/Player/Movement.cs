@@ -17,6 +17,9 @@ namespace Game.Player
         public Transform leftAnchor;
         public Transform forwardAnchor;
         public Transform backAnchor;
+        
+        public float maxDistanceMultiplier;
+
 
         public float speed = 400f;
         private float _tempAngleRotated;
@@ -60,7 +63,7 @@ namespace Game.Player
 
             if (_atJunction)
             {
-                UpdateMoveableDirections();
+                UpdateMovableDirections();
             }
             else if(movementSnappedFull)
             {
@@ -75,14 +78,14 @@ namespace Game.Player
 
         private void HandleInput()
         {
-            Direction tempdirection = input.GetInputPlayerMovementDirection();
-            if (tempdirection != Direction.None)
+            var tempDirection = input.GetInputPlayerMovementDirection();
+            if (tempDirection != Direction.None)
             {
-                _tempMovementDirection = tempdirection;
+                _tempMovementDirection = tempDirection;
             }
         }
 
-        private void UpdateMoveableDirections()
+        private void UpdateMovableDirections()
         {
             if(_tempMovementDirection == Direction.None)
                 return;
@@ -139,26 +142,26 @@ namespace Game.Player
         {   
             //getting the ray-cast data
             var transformPosition = transform.position;
-
+            
             //right ray-cast data
-            playerRayCastData[(int) Direction.Right] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Right], out _, stepSize + 0.1f * stepSize);
+            playerRayCastData[(int) Direction.Right] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Right], out _, stepSize + maxDistanceMultiplier * stepSize);
             var color = playerRayCastData[(int) Direction.Right] ? Color.red : Color.green;
-            Debug.DrawRay(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, transform.right * (stepSize + 0.1f * stepSize), color);
+            Debug.DrawRay(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, transform.right * (stepSize + maxDistanceMultiplier * stepSize), color);
 
             //left ray-cast data
-            playerRayCastData[(int) Direction.Left] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Left], out _, stepSize + 0.1f * stepSize);
+            playerRayCastData[(int) Direction.Left] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Left], out _, stepSize + maxDistanceMultiplier * stepSize);
             color = playerRayCastData[(int) Direction.Left] ? Color.red : Color.green;
-            Debug.DrawRay(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, -transform.right * (stepSize + 0.1f * stepSize), color);
+            Debug.DrawRay(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, -transform.right * (stepSize + maxDistanceMultiplier * stepSize), color);
             
             //forward ray-cast data
-            playerRayCastData[(int) Direction.Forward] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Forward], out _, stepSize + 0.1f * stepSize);
+            playerRayCastData[(int) Direction.Forward] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Forward], out _, stepSize + maxDistanceMultiplier * stepSize);
             color = playerRayCastData[(int) Direction.Forward] ? Color.red : Color.green;
-            Debug.DrawRay(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, transform.forward * (stepSize + 0.1f * stepSize), color);
+            Debug.DrawRay(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, transform.forward * (stepSize + maxDistanceMultiplier * stepSize), color);
             
             //back ray-cast data
-            playerRayCastData[(int) Direction.Back] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Back], out _, stepSize + 0.1f * stepSize);
+            playerRayCastData[(int) Direction.Back] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Back], out _, stepSize + maxDistanceMultiplier * stepSize);
             color = playerRayCastData[(int) Direction.Back] ? Color.red : Color.green;
-            Debug.DrawRay(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, -transform.forward * (stepSize + 0.1f * stepSize) , color);
+            Debug.DrawRay(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, -transform.forward * (stepSize + maxDistanceMultiplier * stepSize) , color);
             
             
             //checking if the there is a new path in the perpendicular direction of travel
@@ -321,7 +324,7 @@ namespace Game.Player
 
             if (movementSnappedHalf && !movementSnappedFull)
             {
-                if (CheckWallInfront())
+                if (CheckWallInFront())
                 {
                     _atVerticalUpEdge = true;
                     _snapCount++;
@@ -351,7 +354,7 @@ namespace Game.Player
             
         }
 
-        private bool CheckWallInfront()
+        private bool CheckWallInFront()
         {
             Color color;
             RaycastHit hit;

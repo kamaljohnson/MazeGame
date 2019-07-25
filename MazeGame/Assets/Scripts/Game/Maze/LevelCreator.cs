@@ -724,7 +724,7 @@ namespace Game
                  */
                 CombineMeshes(cubes.gameObject);
                 cubes.gameObject.GetComponent<Renderer>().material = mazeCubePrefab.GetComponent<Renderer>().sharedMaterial;
-                CombineMeshes(walls.gameObject);
+                //CombineMeshes(walls.gameObject);
                 walls.gameObject.GetComponent<Renderer>().material = mazeWallPrefab.GetComponent<Renderer>().sharedMaterial;
 
             }
@@ -772,7 +772,7 @@ namespace Game
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class SaveState
     {
         //list of all the maze cubes along with its list of attached nodes
