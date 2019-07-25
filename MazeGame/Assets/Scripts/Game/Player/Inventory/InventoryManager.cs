@@ -18,11 +18,11 @@ namespace Game.Player.Inventory
         public InventoryItem fire;
 
         [Header("UI Elements")] 
-        public Image coinIcon;
-        public Image diamondIcon;
-        public Image waterIcon;
-        public Image energyBlockIcon;
-        public Image fireIcon;
+        public Button coinIcon;
+        public Button diamondIcon;
+        public Button waterIcon;
+        public Button energyBlockIcon;
+        public Button fireIcon;
 
         public TMP_Text name;
         public TMP_Text description;
@@ -33,18 +33,33 @@ namespace Game.Player.Inventory
         
         public void Start()
         {
-            coinIcon = coin.icon;
-            diamondIcon = diamond.icon;
+            coinIcon.image = coin.icon;
+            diamondIcon.image = diamond.icon;
             
-            waterIcon = water.icon;
-            energyBlockIcon = energyBlock.icon;
-            fireIcon = fire.icon;
+            waterIcon.image = water.icon;
+            energyBlockIcon.image = energyBlock.icon;
+            fireIcon.image = fire.icon;
 
-            name.text = coin.name;
-            description.text = coin.description;
+            ShowDetailsOfItem(coin);
+                
             _manager = this;
             
             closeButton.onClick.AddListener(HideInventory);
+            
+            coinIcon.onClick.AddListener(delegate { ShowDetailsOfItem (coin); });
+            diamondIcon.onClick.AddListener(delegate { ShowDetailsOfItem (diamond); });
+            
+            waterIcon.onClick.AddListener(delegate { ShowDetailsOfItem (water); });
+            energyBlockIcon.onClick.AddListener(delegate { ShowDetailsOfItem (energyBlock); });
+            fireIcon.onClick.AddListener(delegate { ShowDetailsOfItem (fire); });
+            
+            HideInventory();
+        }
+
+        public void ShowDetailsOfItem(InventoryItem item)
+        {
+            name.text = item.name;
+            description.text = item.description;
         }
 
         public static void ShowInventory()

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Game.Items.Activators.Button;
+using Game.Player.Inventory;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.UI;
+using Button = UnityEngine.UI.Button;
 
 namespace Game.Managers
 {
@@ -13,6 +15,13 @@ namespace Game.Managers
 
         public TMP_Text debug;
         static string _debugText;
+
+        public Button inventoryButton;
+
+        public void Start()
+        {
+            inventoryButton.onClick.AddListener(InventoryManager.ShowInventory);
+        }
         
         public void Update()
         {
