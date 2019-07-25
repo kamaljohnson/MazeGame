@@ -33,12 +33,12 @@ namespace Game.Player.Inventory
         
         public void Start()
         {
-            coinIcon.image = coin.icon;
-            diamondIcon.image = diamond.icon;
+            coinIcon.image.sprite = coin.icon;
+            diamondIcon.image.sprite = diamond.icon;
             
-            waterIcon.image = water.icon;
-            energyBlockIcon.image = energyBlock.icon;
-            fireIcon.image = fire.icon;
+            waterIcon.image.sprite = water.icon;
+            energyBlockIcon.image.sprite = energyBlock.icon;
+            fireIcon.image.sprite = fire.icon;
 
             ShowDetailsOfItem(coin);
                 

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -21,7 +18,7 @@ namespace Game.Player.Inventory
         public string name;
         [TextArea]
         public string description;
-        public Image icon;
+        public Sprite icon;
         public ItemType type;
     }
 }
