@@ -18,9 +18,6 @@ namespace Game.Player
         public Transform forwardAnchor;
         public Transform backAnchor;
         
-        public float maxDistanceMultiplier;
-
-
         public float speed = 400f;
         private float _tempAngleRotated;
         
@@ -142,6 +139,8 @@ namespace Game.Player
         {   
             //getting the ray-cast data
             var transformPosition = transform.position;
+
+            const float maxDistanceMultiplier = 0.1f;
             
             //right ray-cast data
             playerRayCastData[(int) Direction.Right] = Physics.Raycast(transformPosition + Helper.DirectionVector[(int)Direction.Down] * 0.01f, Helper.DirectionVector[(int)Direction.Right], out _, stepSize + maxDistanceMultiplier * stepSize);
