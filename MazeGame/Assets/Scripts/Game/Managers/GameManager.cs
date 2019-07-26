@@ -3,6 +3,7 @@ using UnityEngine.Android;
 #endif
 using Game.Items.Intractable.Portal;
 using Game.Player;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,6 +29,8 @@ namespace Game.Managers
         public static GameStates gameState;
 
         public static string levelName;
+
+        public SceneAsset templateScene;
         
         public void Awake()
         {
@@ -42,6 +45,9 @@ namespace Game.Managers
             stateManager = new LevelStateManager();
             Screen.orientation = ScreenOrientation.Portrait;
             levelName = SceneManager.GetActiveScene().name;
+            
+            DontDestroyOnLoad(this);
+            SceneManager.LoadScene(templateScene.name);
         }
 
         public void Update()

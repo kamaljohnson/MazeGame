@@ -18,7 +18,7 @@ using Game.Maze;
 using Game.Player;
 using UnityEngine.SceneManagement;
 
-namespace Game
+namespace Game.Maze
 {
     public class LevelCreator : MonoBehaviour
     {
@@ -64,8 +64,7 @@ namespace Game
 
         private void LoadLevel()
         {
-            var levelName = SceneManager.GetActiveScene().name;
-            var state = LoadLevelDataFromFile(levelName);
+            var state = LoadLevelDataFromFile(GameManager.levelName);
             
             Button.AllInteractableItems = new List<IIntractables>();
             /*
