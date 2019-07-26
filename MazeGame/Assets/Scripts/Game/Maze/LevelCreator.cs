@@ -725,13 +725,13 @@ namespace Game
                  * combining all the cube meshes to mazeCubes
                  * combining all the wall meshes to mazeWalls
                  */
-                //CombineMeshes(cubes.gameObject);
-                //cubes.gameObject.GetComponent<Renderer>().material = mazeCubePrefab.GetComponent<Renderer>().sharedMaterial;
-                //CombineMeshes(walls.gameObject);
-                //walls.gameObject.GetComponent<Renderer>().material = mazeWallPrefab.GetComponent<Renderer>().sharedMaterial;
+                CombineMeshes(cubes.gameObject);
+                cubes.gameObject.GetComponent<Renderer>().material = mazeCubePrefab.GetComponent<Renderer>().sharedMaterial;
+                CombineMeshes(walls.gameObject);
+                walls.gameObject.GetComponent<Renderer>().material = mazeWallPrefab.GetComponent<Renderer>().sharedMaterial;
 
             }
-//            mazeHolder.transform.localScale = Vector3.one * 5; 
+            mazeHolder.transform.localScale = Vector3.one * 5; 
         }
 
         public void CombineMeshes(GameObject parentGameObject)
