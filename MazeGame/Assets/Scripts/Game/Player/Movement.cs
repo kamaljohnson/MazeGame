@@ -51,7 +51,10 @@ namespace Game.Player
             if (GameManager.mazeTransform.gameObject.GetComponent<Maze.MazeRotator>().isRotating)    //no calculations will be made or applied while the maze is rotating
                 return;
             
-            HandleInput();
+            if (GameManager.gameState == GameManager.GameStates.Playing)
+            {
+                HandleInput();
+            }
 
             if (movementSnappedFull)
             {

@@ -13,6 +13,7 @@ namespace Game.Managers
         public enum GameStates
         {
             Playing,
+            InGameUi,
             Paused,
             LevelComplete,
             Dead,

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Game.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -64,12 +65,14 @@ namespace Game.Player.Inventory
 
         public static void ShowInventory()
         {
+            GameManager.gameState = GameManager.GameStates.InGameUi;
             _manager.gameObject.SetActive(true);
         }
 
         public static void HideInventory()
         {
             _manager.gameObject.SetActive(false);
+            GameManager.gameState = GameManager.GameStates.Playing;
         }
     }
 }

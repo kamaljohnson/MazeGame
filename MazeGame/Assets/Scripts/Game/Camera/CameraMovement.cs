@@ -27,7 +27,10 @@ namespace Game.Camera
 
         public void Update()
         {
-            HandleInput();
+            if (GameManager.gameState == GameManager.GameStates.Playing)
+            {
+                HandleInput();
+            }
             if (_tempChangeDirection != Direction.None && !_isChangingOrientation)
             {
                 PlayerInput.RotationCount += _tempChangeDirection == Direction.Right ? 1: -1;
