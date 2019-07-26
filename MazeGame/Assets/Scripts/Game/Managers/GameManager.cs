@@ -30,7 +30,7 @@ namespace Game.Managers
 
         public static string levelName;
 
-        public SceneAsset templateScene;
+        public int templateId;
         
         public void Awake()
         {
@@ -47,7 +47,7 @@ namespace Game.Managers
             levelName = SceneManager.GetActiveScene().name;
             
             DontDestroyOnLoad(this);
-            SceneManager.LoadScene(templateScene.name);
+            SceneManager.LoadScene(templateId.ToString());
         }
 
         public void Update()
