@@ -417,6 +417,9 @@ namespace Game
                     );
                     tempDiamond.GetComponent<Diamond>().index = currentDiamondIndex;
                 }
+                
+                
+                
             }
 
             /*
@@ -722,13 +725,13 @@ namespace Game
                  * combining all the cube meshes to mazeCubes
                  * combining all the wall meshes to mazeWalls
                  */
-                CombineMeshes(cubes.gameObject);
-                cubes.gameObject.GetComponent<Renderer>().material = mazeCubePrefab.GetComponent<Renderer>().sharedMaterial;
-                CombineMeshes(walls.gameObject);
-                walls.gameObject.GetComponent<Renderer>().material = mazeWallPrefab.GetComponent<Renderer>().sharedMaterial;
+                //CombineMeshes(cubes.gameObject);
+                //cubes.gameObject.GetComponent<Renderer>().material = mazeCubePrefab.GetComponent<Renderer>().sharedMaterial;
+                //CombineMeshes(walls.gameObject);
+                //walls.gameObject.GetComponent<Renderer>().material = mazeWallPrefab.GetComponent<Renderer>().sharedMaterial;
 
             }
-            mazeHolder.transform.localScale = Vector3.one * 5; 
+//            mazeHolder.transform.localScale = Vector3.one * 5; 
         }
 
         public void CombineMeshes(GameObject parentGameObject)
@@ -779,7 +782,7 @@ namespace Game
         public List<MazeData> m;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class MazeData
     {
         public List<MazeCubeData> c;
@@ -807,7 +810,7 @@ namespace Game
         public List<Items.Collectables.Diamond.SerializableItem> d;     //Coin
     }
 
-    [System.Serializable]
+    [Serializable]
     public class MazeCubeData
     {
         //maze cube transform

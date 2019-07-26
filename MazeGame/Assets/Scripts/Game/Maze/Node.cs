@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -217,45 +218,73 @@ namespace Game.Maze
                 rUrender = true;
                 lDrender = true;
                 lUrender = true;
-                
-                if (!Physics.Raycast(parentCubePos, transform.right * 0.6f, out hit, 0.5f))
+            }
+            
+            if (!Physics.Raycast(parentCubePos, transform.right * 0.6f, out hit, 0.5f))
+            {
+                Debug.DrawRay(parentCubePos, transform.right * 0.6f, Color.cyan, 200f);
+                if (!inactive)
                 {
                     erUrender = true;
                     erDrender = true;
-                    if (rrender)
-                    {
-                        eRrender = true;
-                    }
+                    eRrender = rrender;
                 }
+                else
+                {
+                    rUrender = true;
+                    rDrender = true;
+                    rrender = !rightPath;
+                }
+            }
 
-                if (!Physics.Raycast(parentCubePos, -transform.right * 0.6f, out hit, 0.5f))
+            if (!Physics.Raycast(parentCubePos, -transform.right * 0.6f, out hit, 0.5f))
+            {
+                Debug.DrawRay(parentCubePos, -transform.right * 0.6f, Color.cyan, 200f);
+                if (!inactive)
                 {
                     elUrender = true;
                     elDrender = true;
-                    if (lrender)
-                    {
-                        eLrender = true;
-                    }
+                    eLrender = lrender;
                 }
+                else
+                {
+                    lUrender = true;
+                    lDrender = true;
+                    lrender = !leftPath;
+                }
+            }          
 
-                if (!Physics.Raycast(parentCubePos, transform.up * 0.6f, out hit, 0.5f))
+            if (!Physics.Raycast(parentCubePos, transform.up * 0.6f, out hit, 0.5f))
+            {
+                Debug.DrawRay(parentCubePos, transform.up * 0.6f, Color.cyan, 200f);
+                if (!inactive)
                 {
                     euRrender = true;
                     euLrender = true;
-                    if (urender)
-                    {
-                        eUrender = true;
-                    }
+                    eUrender = urender;
                 }
+                else
+                {
+                    rUrender = true;
+                    lUrender = true;
+                    urender = !upPath;
+                }
+            }
 
-                if (!Physics.Raycast(parentCubePos, -transform.up * 0.6f, out hit, 0.5f))
+            if (!Physics.Raycast(parentCubePos, -transform.up * 0.6f, out hit, 0.5f))
+            {
+                Debug.DrawRay(parentCubePos, -transform.up * 0.6f, Color.cyan, 200f);
+                if (!inactive)
                 {
                     edRrender = true;
                     edLrender = true;
-                    if (drender)
-                    {
-                        eDrender = true;
-                    }
+                    eDrender = drender;
+                }
+                else
+                {
+                    rDrender = true;
+                    lDrender = true;
+                    drender = !downPath;
                 }
             }
 
@@ -379,11 +408,11 @@ namespace Game.Maze
                 tempPathData[k]=n%2;      
                 n = n/2;    
             }
-            
+
             node.rightPath = tempPathData[3] == 1;
             node.leftPath = tempPathData[2] == 1;
             node.upPath = tempPathData[1] == 1;
-            node.downPath = tempPathData[0] == 1;
+            node.downPath = tempPathData[0] == 1;    
 
             return node;
         }
