@@ -222,7 +222,6 @@ namespace Game.Maze
             
             if (!Physics.Raycast(parentCubePos, transform.right * 0.6f, out hit, 0.5f))
             {
-                Debug.DrawRay(parentCubePos, transform.right * 0.6f, Color.cyan, 200f);
                 if (!inactive)
                 {
                     erUrender = true;
@@ -239,7 +238,6 @@ namespace Game.Maze
 
             if (!Physics.Raycast(parentCubePos, -transform.right * 0.6f, out hit, 0.5f))
             {
-                Debug.DrawRay(parentCubePos, -transform.right * 0.6f, Color.cyan, 200f);
                 if (!inactive)
                 {
                     elUrender = true;
@@ -256,7 +254,6 @@ namespace Game.Maze
 
             if (!Physics.Raycast(parentCubePos, transform.up * 0.6f, out hit, 0.5f))
             {
-                Debug.DrawRay(parentCubePos, transform.up * 0.6f, Color.cyan, 200f);
                 if (!inactive)
                 {
                     euRrender = true;
@@ -273,7 +270,6 @@ namespace Game.Maze
 
             if (!Physics.Raycast(parentCubePos, -transform.up * 0.6f, out hit, 0.5f))
             {
-                Debug.DrawRay(parentCubePos, -transform.up * 0.6f, Color.cyan, 200f);
                 if (!inactive)
                 {
                     edRrender = true;
