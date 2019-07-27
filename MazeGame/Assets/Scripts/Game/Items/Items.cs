@@ -30,6 +30,8 @@ namespace Game.Items
     
     public interface IIntractables
     {
+        string GetLinkedButtonState();
+        
         /// <summary>
         /// returns if the item is activated or not,
         /// i.e. the button linked to the item is on or off

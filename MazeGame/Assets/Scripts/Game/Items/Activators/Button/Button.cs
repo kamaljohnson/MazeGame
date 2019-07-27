@@ -27,11 +27,16 @@ namespace Game.Items.Activators.Button
         private bool _tempButtonState;
         private bool _buttonActivated;
 
-        private void Start()
+        public void Start()
         {
-            buttonOn = false;
-            _tempButtonState = false;
-            _buttonActivated = true;
+            _buttonActivated = false;
+        }
+
+        public void InitButtonState(bool state)
+        {
+            Debug.Log(state);
+            buttonOn = state;
+            _tempButtonState = state;
         }
         
         private void Update()

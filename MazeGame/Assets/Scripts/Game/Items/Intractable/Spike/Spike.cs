@@ -103,6 +103,11 @@ namespace Game.Items.Intractable.Spike
             HealthSystem.Hit(1, DamageType.Quantized);
         }
 
+        public string GetLinkedButtonState()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool ActivationStatus()
         {
             return true;

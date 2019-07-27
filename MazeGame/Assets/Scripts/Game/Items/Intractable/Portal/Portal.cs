@@ -40,8 +40,7 @@ namespace Game.Items.Intractable.Portal
                  "c    -    CLK-ROT\n" +
                  "a    -    A-CLK-ROT\n" +
                  "#num -    x-times")]
-        public string linkedButtonOnState = "";
-        public string linkedButtonOffState = "";
+        public string linkedButtonState = "";
         
         private bool _onPortal;
         private bool _portalActivated;
@@ -86,8 +85,7 @@ namespace Game.Items.Intractable.Portal
             mazeId = portal.mazeId;
 
             intractableId = portal.intractableId;
-            linkedButtonOnState = portal.linkedButtonOnState;
-            linkedButtonOffState = portal.linkedButtonOffState;
+            linkedButtonState = portal.linkedButtonState;
         }
 
         
@@ -141,6 +139,11 @@ namespace Game.Items.Intractable.Portal
             return ItemCategories.Intractable;
         }
 
+        public string GetLinkedButtonState()
+        {
+            return linkedButtonState;
+        }
+
         public bool ActivationStatus()
         {
             return gameObject.activeSelf;
@@ -149,27 +152,13 @@ namespace Game.Items.Intractable.Portal
         public void ActivateInteraction()
         {
             //TODO: change this to animation
-            if (linkedButtonOnState == "o")
-            {
-                gameObject.SetActive(true);
-            }
-            else
-            {
-                gameObject.SetActive(false);                
-            }
+            gameObject.SetActive(true);
         }
 
         public void DeActivateInteraction()
         {
             //TODO: change this to animation
-            if (linkedButtonOffState == "o")
-            {
-                gameObject.SetActive(true);
-            }
-            else
-            {
-                gameObject.SetActive(false);                
-            }
+            gameObject.SetActive(false);
         }
 
         public int GetIntractableId()
@@ -229,8 +218,7 @@ namespace Game.Items.Intractable.Portal
             m = portal.mazeId;
             l = portal.levelId;
 
-            o = portal.linkedButtonOnState;
-            f = portal.linkedButtonOffState;
+            o = portal.linkedButtonState;
 
             i = portal.GetIntractableId();
         }
@@ -244,8 +232,7 @@ namespace Game.Items.Intractable.Portal
             portal.mazeId = m;
             portal.levelId = l;
 
-            portal.linkedButtonOnState = o;
-            portal.linkedButtonOffState = f;
+            portal.linkedButtonState = o;
 
             portal.intractableId = i;
             

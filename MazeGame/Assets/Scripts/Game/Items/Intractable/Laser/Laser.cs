@@ -145,7 +145,12 @@ namespace Game.Items.Intractable.Laser
                     break;
             }
         }
-        
+
+        public string GetLinkedButtonState()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool ActivationStatus()
         {
             throw new System.NotImplementedException();

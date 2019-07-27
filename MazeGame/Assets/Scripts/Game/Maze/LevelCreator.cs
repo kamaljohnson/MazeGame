@@ -252,7 +252,9 @@ namespace Game.Maze
                         if (intractableItem.GetIntractableId() == button.i)
                         {
                             tempButton.GetComponent<Button>().interactionItem = intractableItem;
+                            tempButton.GetComponent<Button>().InitButtonState(intractableItem.GetLinkedButtonState() == "f");
                             tempButton.GetComponent<Button>().ActivateButtonEvent();
+                            
                             if (intractableItem.GetItemColor() != null)
                             {
                                 tempButton.transform.GetChild(0).GetComponent<MeshRenderer>().material.color =

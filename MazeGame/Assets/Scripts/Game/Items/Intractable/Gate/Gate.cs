@@ -37,9 +37,8 @@ namespace Game.Items.Intractable.Gate
                  "c    -    CLK-ROT\n" +
                  "a    -    A-CLK-ROT\n" +
                  "#num -    x-times")]
-        public string linkedButtonOnState = "";
-        public string linkedButtonOffState = "";
-        
+        public string linkedButtonState = "";
+
         public void CreateGate()
         {
             switch (gateDirection)
@@ -90,7 +89,12 @@ namespace Game.Items.Intractable.Gate
                 }
             }
         }
-        
+
+        public string GetLinkedButtonState()
+        {
+            return linkedButtonState;
+        }
+
         public bool ActivationStatus()
         {
             //TODO: return the gate state i.e. open or closed
@@ -146,8 +150,7 @@ namespace Game.Items.Intractable.Gate
             colorId = gate.colorId;
             
             intractableId = gate.intractableId;
-            linkedButtonOnState = gate.linkedButtonOnState;
-            linkedButtonOffState = gate.linkedButtonOffState;
+            linkedButtonState = gate.linkedButtonState;
         }
     }
     
@@ -183,8 +186,7 @@ namespace Game.Items.Intractable.Gate
             v = (int) eulerAngles.y;
             w = (int) eulerAngles.z;
 
-            o = gate.linkedButtonOnState;
-            f = gate.linkedButtonOffState;
+            o = gate.linkedButtonState;
 
             i = gate.GetIntractableId();
             c = gate.colorId;
@@ -195,8 +197,7 @@ namespace Game.Items.Intractable.Gate
         {
             Gate gate = new Gate();
 
-            gate.linkedButtonOnState = o;
-            gate.linkedButtonOffState = f;
+            gate.linkedButtonState = o;
 
             gate.intractableId = i;
             gate.gateDirection = (Direction) d;
